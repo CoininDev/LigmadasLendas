@@ -11,7 +11,6 @@ func _input(event):
 	select_target()
 #funções específicas
 func select_target():
-	
 	if Input.is_action_pressed("mright"):
 		#converter o ponto do mouse na tela 2d para um ponto 3d no jogo.
 		#para isso é preciso criar um raio, uma linha reta que parte da camera e segue até encontrar uma colisão.
@@ -25,11 +24,12 @@ func select_target():
 		rayquery.from = from
 		rayquery.to = to
 		var result = space.intersect_ray(rayquery)
-		print(result)
 		if result.has("position"):
 			navagent.target_position = result.position
+
 func move(delta):
 	var targetpos = navagent.get_next_path_position()
 	var dir = global_position.direction_to(targetpos)
+	look_at(Vector3(targetpos.x, global_position.y, targetpos.z), Vector3.UP)#olhar para a direção certa
 	velocity = dir * speed * delta
 	move_and_slide()
