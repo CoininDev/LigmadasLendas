@@ -33,3 +33,7 @@ func move(delta):
 	look_at(Vector3(targetpos.x, global_position.y, targetpos.z), Vector3.UP)#olhar para a direção certa
 	velocity = dir * speed * delta
 	move_and_slide()
+
+
+
+
