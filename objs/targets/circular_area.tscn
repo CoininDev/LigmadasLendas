@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://7g5bq1ieqvc7"]
+
+[ext_resource type="Script" path="res://scripts/targets/target_area.gd" id="1_8l00f"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1hmq0"]
+radius = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1nlco"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0.498039, 1, 1, 1)
+metallic = 1.0
+emission = Color(0.964706, 0.678431, 0.886275, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_k45u5"]
+material = SubResource("StandardMaterial3D_1nlco")
+radius = 4.0
+height = 4.0
+is_hemisphere = true
+
+[node name="CircularArea" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.2664)
+script = ExtResource("1_8l00f")
+
+[node name="area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="area"]
+shape = SubResource("SphereShape3D_1hmq0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="area/CollisionShape3D"]
+mesh = SubResource("SphereMesh_k45u5")
+skeleton = NodePath("../../..")
+
+[connection signal="body_entered" from="area" to="area" method="_on_body_entered"]
+[connection signal="body_exited" from="area" to="area" method="_on_body_exited"]
