@@ -1,46 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbbm3a5x1u3ny"]
+[gd_scene load_steps=8 format=3 uid="uid://dbbm3a5x1u3ny"]
 
 [ext_resource type="Script" path="res://scripts/targets/projectile.gd" id="1_p4gnw"]
+[ext_resource type="Material" uid="uid://tdbycpp30oep" path="res://graphics/gold.tres" id="2_hrrje"]
+[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/casd.tres" id="3_x1rdy"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1yxy4"]
-size = Vector3(0.5, 0.5, 0.5)
+[sub_resource type="SphereMesh" id="SphereMesh_bq3fo"]
+material = ExtResource("2_hrrje")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gspj"]
-transparency = 1
-blend_mode = 1
-albedo_color = Color(0.843137, 0, 0.156863, 1)
-metallic = 1.0
-metallic_specular = 0.0
-roughness = 0.0
-emission_enabled = true
-emission = Color(0.952941, 0, 0.109804, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_4kxeh"]
-material = SubResource("StandardMaterial3D_3gspj")
+[sub_resource type="SphereShape3D" id="SphereShape3D_8eypi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jqegb"]
 
-[node name="Projectile" type="Node3D" node_paths=PackedStringArray("caster")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67, 1, 13.482)
+[sub_resource type="CylinderMesh" id="CylinderMesh_gtoe1"]
+material = ExtResource("3_x1rdy")
+bottom_radius = 0.0
+height = 14.0
+
+[node name="Projectile" type="Node3D"]
 script = ExtResource("1_p4gnw")
-caster = NodePath("")
 effects = {
 "marca": true
+}
+properties = {
+"distance": 15,
+"graphics": SubResource("SphereMesh_bq3fo"),
+"radius": 0.5,
+"speed": 10.0
 }
 
 [node name="bullet" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bullet"]
-shape = SubResource("BoxShape3D_1yxy4")
+shape = SubResource("SphereShape3D_8eypi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="bullet"]
-mesh = SubResource("SphereMesh_4kxeh")
 
 [node name="end" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="end"]
 shape = SubResource("BoxShape3D_jqegb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="end"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 7)
+mesh = SubResource("CylinderMesh_gtoe1")
+skeleton = NodePath("../../bullet")
 
 [connection signal="area_entered" from="bullet" to="." method="_on_bullet_area_entered"]

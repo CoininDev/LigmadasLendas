@@ -1,17 +1,23 @@
 extends Node3D
 
-@export var caster : Node3D
-@export var effects : Dictionary
-@export var apply_to : Array
-@export var range = 20
-var inside : Array
+@export var caster:Node3D
+@export var effects:Dictionary
+@export var apply_to:Array
+@export var button:String
 
-# Called when the node enters the scene tree for the first time.
+@export var properties:Dictionary
+
+var inside:Array
+var running = false
+
 func _ready():
-	pass # Replace with function body.
+	$area/CollisionShape3D.shape.radius = properties["area_radius"]
+	$area/MeshInstance3D.mesh.radius = properties["area_radius"]
+	$area/MeshInstance3D.mesh.height = properties["area_radius"]
 func _process(delta):
-	move()
-	position = caster.position
+	if not running:
+		move()
+		position = caster.position
 
 func move():
 	var camera = get_tree().get_nodes_in_group("camera")[0]
@@ -33,8 +39,8 @@ func move():
 		
 		#distance
 		$area.position.z = -result0.distance_to(position)
-		if $area.position.z < -range:
-			$area.position.z = -range
+		if $area.position.z < -properties["range"]:
+			$area.position.z = -properties["range"]
 func _on_body_entered(body):
 	for group in apply_to:
 		if body.is_in_group(group) and body != caster:
@@ -43,7 +49,21 @@ func _on_body_exited(body):
 	if inside.has(body):
 		inside.erase(body)
 func _input(event):
-	if Input.is_action_just_pressed("mleft"):
-		for i in inside:
-			for effect in effects:
-				i.effects[effect] = effects[effect]
+	if Input.is_action_just_released(button):
+		if properties["delay_sec"] > 0:
+			running = true
+			$area/MeshInstance3D.mesh = properties["graphics"]
+			$timer.wait_time = properties["delay_sec"]
+			$timer.start()
+		else:
+			for i in inside:
+				for effect in effects:
+					i.effects[effect] = effects[effect]
+			queue_free()
+
+
+func _on_timer_timeout():
+	for i in inside:
+		for effect in effects:
+			i.effects[effect] = effects[effect]
+	queue_free()

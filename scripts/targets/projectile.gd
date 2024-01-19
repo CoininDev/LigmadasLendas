@@ -1,15 +1,25 @@
 extends Node3D
 
-@export var caster : Node3D
-@export var effects : Dictionary
-@export var apply_to : Array
-@export var speed = 10
+@export var caster:Node3D
+@export var effects:Dictionary
+@export var apply_to:Array
+@export var button:String
+
+@export var properties:Dictionary
+
 var running = false
+
+func _ready():
+	$bullet/CollisionShape3D.shape.radius = properties["radius"]
+	$end.position.z = -properties["distance"]
+	#$end/MeshInstance3D.mesh.height = position.distance_to($bullet.position)
+	#$end/MeshInstance3D.position.z = position.distance_to($bullet.position)
 func _process(delta):
 	if not running:
 		look_at(Vector3(mouse_pos().x,1,mouse_pos().z))
 		position.x = caster.position.x
 		position.z = caster.position.z
+		position.y = 1
 	if running:
 		run(delta)
 func mouse_pos():
@@ -26,10 +36,13 @@ func mouse_pos():
 	if result.has("position"):
 		return result.position
 func _input(event):
-	if Input.is_action_just_pressed("mleft"):
+	if Input.is_action_just_released(button):
 		running = true
+		if properties["graphics"]:
+			$bullet/MeshInstance3D.mesh = properties["graphics"]
+		$end/MeshInstance3D.visible = false
 func run(delta):
-	$bullet.translate(Vector3(0,0,-1) * speed * delta)
+	$bullet.translate(Vector3(0,0,-1) * properties["speed"] * delta)
 	position.y = 1
 
 func _on_bullet_area_entered(body):
