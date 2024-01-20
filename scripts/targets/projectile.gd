@@ -10,16 +10,14 @@ extends Node3D
 var running = false
 
 func _ready():
+	positioning_phase()
 	$bullet/CollisionShape3D.shape.radius = properties["radius"]
 	$end.position.z = -properties["distance"]
-	#$end/MeshInstance3D.mesh.height = position.distance_to($bullet.position)
-	#$end/MeshInstance3D.position.z = position.distance_to($bullet.position)
+	$RangeShow.position.z = floor(-properties["distance"]/2)
+	$RangeShow.mesh.size.y = properties["distance"]
 func _process(delta):
 	if not running:
-		look_at(Vector3(mouse_pos().x,1,mouse_pos().z))
-		position.x = caster.position.x
-		position.z = caster.position.z
-		position.y = 1
+		positioning_phase()
 	if running:
 		run(delta)
 func mouse_pos():
@@ -40,7 +38,7 @@ func _input(event):
 		running = true
 		if properties["graphics"]:
 			$bullet/MeshInstance3D.mesh = properties["graphics"]
-		$end/MeshInstance3D.visible = false
+		$RangeShow.visible = false
 func run(delta):
 	$bullet.translate(Vector3(0,0,-1) * properties["speed"] * delta)
 	position.y = 1
@@ -52,3 +50,10 @@ func _on_bullet_area_entered(body):
 		if body.is_in_group(group):
 			for effect in effects:
 				body.effects[effect] = effects[effect]
+
+
+func positioning_phase():
+	look_at(Vector3(mouse_pos().x,1,mouse_pos().z))
+	position.x = caster.position.x
+	position.z = caster.position.z
+	position.y = 1

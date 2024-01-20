@@ -37,3 +37,28 @@ func _on_right_mouse_exited():
 	right=false
 func _on_left_mouse_exited():
 	left=false
+
+func _on_up_right_mouse_entered():
+	up = true
+	right = true
+func _on_up_left_mouse_entered():
+	up = true
+	left = true
+func _on_down_right_mouse_entered():
+	down = true
+	right = true
+func _on_down_left_mouse_entered():
+	down = true
+	left = true
+func _on_up_right_mouse_exited():
+	up = false
+	right = false
+func _on_up_left_mouse_exited():
+	up = false
+	left = false
+func _on_down_right_mouse_exited():
+	down = false
+	right = false
+func _on_down_left_mouse_exited():
+	down = false
+	left = false

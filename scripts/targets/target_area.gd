@@ -11,6 +11,9 @@ var inside:Array
 var running = false
 
 func _ready():
+	move()
+	position = caster.position
+	
 	$area/CollisionShape3D.shape.radius = properties["area_radius"]
 	$area/MeshInstance3D.mesh.radius = properties["area_radius"]
 	$area/MeshInstance3D.mesh.height = properties["area_radius"]
