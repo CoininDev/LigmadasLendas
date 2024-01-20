@@ -11,10 +11,8 @@ material = ExtResource("2_hrrje")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jqegb"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_gtoe1"]
+[sub_resource type="QuadMesh" id="QuadMesh_hjj8v"]
 material = ExtResource("3_x1rdy")
-bottom_radius = 0.0
-height = 14.0
 
 [node name="Projectile" type="Node3D"]
 script = ExtResource("1_p4gnw")
@@ -42,9 +40,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="end"]
 shape = SubResource("BoxShape3D_jqegb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="end"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 7)
-mesh = SubResource("CylinderMesh_gtoe1")
-skeleton = NodePath("../../bullet")
+[node name="RangeShow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -8)
+mesh = SubResource("QuadMesh_hjj8v")
+skeleton = NodePath("../bullet")
 
 [connection signal="area_entered" from="bullet" to="." method="_on_bullet_area_entered"]

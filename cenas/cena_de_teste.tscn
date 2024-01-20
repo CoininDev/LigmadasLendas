@@ -5,6 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://7g5bq1ieqvc7" path="res://objs/targets/circular_area.tscn" id="2_a2iur"]
 [ext_resource type="Material" uid="uid://tdbycpp30oep" path="res://graphics/gold.tres" id="2_ej5h0"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_u1rgv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bw0sc"]
+
+[sub_resource type="Sky" id="Sky_85t4l"]
+sky_material = SubResource("ProceduralSkyMaterial_bw0sc")
+
+[sub_resource type="Environment" id="Environment_i6cj1"]
+background_mode = 2
+sky = SubResource("Sky_85t4l")
+ssao_enabled = true
+
 [sub_resource type="SphereMesh" id="SphereMesh_7eere"]
 material = ExtResource("2_ej5h0")
 radius = 4.0
@@ -67,19 +79,122 @@ background_mode = 2
 sky = SubResource("Sky_usmbq")
 ssao_enabled = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_u1rgv"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bw0sc"]
-
-[sub_resource type="Sky" id="Sky_85t4l"]
-sky_material = SubResource("ProceduralSkyMaterial_bw0sc")
-
-[sub_resource type="Environment" id="Environment_i6cj1"]
-background_mode = 2
-sky = SubResource("Sky_85t4l")
-ssao_enabled = true
-
 [node name="Cena de teste" type="Node3D"]
+
+[node name="CameraMan" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.482855, 0.8757, 0, -0.8757, 0.482855, -0.286873, 15.2398, 31.0159)
+script = ExtResource("2_8g36f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraMan"]
+shape = SubResource("BoxShape3D_u1rgv")
+disabled = true
+
+[node name="Camera3D" type="Camera3D" parent="CameraMan" groups=["camera"]]
+transform = Transform3D(1, 0, 0, 0, 1, 4.47035e-07, 0, -4.76837e-07, 1, 0, 0, 0)
+environment = SubResource("Environment_i6cj1")
+
+[node name="Cantos" type="Control" parent="CameraMan/Camera3D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="up" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_right = -16.0
+offset_bottom = 21.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="up_left" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
+layout_mode = 1
+offset_right = 16.0
+offset_bottom = 21.0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="up_right" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 21.0
+grow_horizontal = 0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="down_left" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_right = 16.0
+grow_vertical = 0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="down_right" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="down" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -21.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="left" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 22.0
+offset_right = 16.0
+offset_bottom = -21.0
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="right" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = 21.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
 
 [node name="CharBase" type="CharacterBody3D" parent="." groups=["char"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67001, 1.60324, 13.4823)
@@ -137,72 +252,16 @@ environment = SubResource("Environment_h6fdy")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.36291, 0.931824, 0, -0.931824, 0.36291, 0, 8, 0)
 
-[node name="CameraMan" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.482855, 0.8757, 0, -0.8757, 0.482855, -0.286873, 15.2398, 31.0159)
-script = ExtResource("2_8g36f")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraMan"]
-shape = SubResource("BoxShape3D_u1rgv")
-disabled = true
-
-[node name="Camera3D" type="Camera3D" parent="CameraMan" groups=["camera"]]
-transform = Transform3D(1, 0, 0, 0, 1, 4.47035e-07, 0, -4.76837e-07, 1, 0, 0, 0)
-environment = SubResource("Environment_i6cj1")
-
-[node name="Cantos" type="Control" parent="CameraMan/Camera3D"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="up" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 21.0
-grow_horizontal = 2
-size_flags_horizontal = 2
-size_flags_vertical = 3
-mouse_filter = 1
-editor_only = false
-
-[node name="down" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -21.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 1
-editor_only = false
-
-[node name="left" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 16.0
-grow_vertical = 2
-mouse_filter = 1
-editor_only = false
-
-[node name="right" type="ReferenceRect" parent="CameraMan/Camera3D/Cantos"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 1
-editor_only = false
-
 [connection signal="mouse_entered" from="CameraMan/Camera3D/Cantos/up" to="CameraMan" method="_on_up_mouse_entered"]
 [connection signal="mouse_exited" from="CameraMan/Camera3D/Cantos/up" to="CameraMan" method="_on_up_mouse_exited"]
+[connection signal="mouse_entered" from="CameraMan/Camera3D/Cantos/up_left" to="CameraMan" method="_on_up_left_mouse_entered"]
+[connection signal="mouse_exited" from="CameraMan/Camera3D/Cantos/up_left" to="CameraMan" method="_on_up_left_mouse_exited"]
+[connection signal="mouse_entered" from="CameraMan/Camera3D/Cantos/up_right" to="CameraMan" method="_on_up_right_mouse_entered"]
+[connection signal="mouse_exited" from="CameraMan/Camera3D/Cantos/up_right" to="CameraMan" method="_on_up_right_mouse_exited"]
+[connection signal="mouse_entered" from="CameraMan/Camera3D/Cantos/down_left" to="CameraMan" method="_on_down_left_mouse_entered"]
+[connection signal="mouse_exited" from="CameraMan/Camera3D/Cantos/down_left" to="CameraMan" method="_on_down_left_mouse_exited"]
+[connection signal="mouse_entered" from="CameraMan/Camera3D/Cantos/down_right" to="CameraMan" method="_on_down_right_mouse_entered"]
+[connection signal="mouse_exited" from="CameraMan/Camera3D/Cantos/down_right" to="CameraMan" method="_on_down_right_mouse_exited"]
 [connection signal="mouse_entered" from="CameraMan/Camera3D/Cantos/down" to="CameraMan" method="_on_down_mouse_entered"]
 [connection signal="mouse_exited" from="CameraMan/Camera3D/Cantos/down" to="CameraMan" method="_on_down_mouse_exited"]
 [connection signal="mouse_entered" from="CameraMan/Camera3D/Cantos/left" to="CameraMan" method="_on_left_mouse_entered"]
