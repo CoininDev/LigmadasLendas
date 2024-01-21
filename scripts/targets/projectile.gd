@@ -33,7 +33,7 @@ func mouse_pos():
 	var result = space.intersect_ray(rayquery)
 	if result.has("position"):
 		return result.position
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_released(button):
 		running = true
 		if properties["graphics"]:

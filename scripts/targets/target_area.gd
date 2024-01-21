@@ -17,7 +17,7 @@ func _ready():
 	$area/CollisionShape3D.shape.radius = properties["area_radius"]
 	$area/MeshInstance3D.mesh.radius = properties["area_radius"]
 	$area/MeshInstance3D.mesh.height = properties["area_radius"]
-func _process(delta):
+func _process(_delta):
 	if not running:
 		move()
 		position = caster.position
@@ -51,7 +51,7 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if inside.has(body):
 		inside.erase(body)
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_released(button):
 		if properties["delay_sec"] > 0:
 			running = true

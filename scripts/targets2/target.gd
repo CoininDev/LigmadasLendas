@@ -1,5 +1,5 @@
 class_name  Target
-extends Node
+extends Node3D
 
 @export var caster:Node3D
 @export var effects:Dictionary
@@ -12,11 +12,14 @@ func create():
 func _ready():
 	pass 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func apply():
 	pass
 
 func preview():
+	pass
+
+func check(_thing):
 	pass

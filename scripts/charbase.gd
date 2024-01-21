@@ -53,7 +53,7 @@ func _process(delta):
 	move(delta)
 	
 	
-func _input(event):
+func _input(_event):
 	select_target()
 	if Input.is_action_just_pressed("q"):
 		cast_Q()
@@ -89,16 +89,21 @@ func move(delta):
 #habilidades
 
 func cast_Q():
-	var q = q_target.instantiate()
-	for effect in q_effects:
-		q.effects[effect] = q_effects[effect]
-	for property in q_properties:
-		q.properties[property] = q_properties[property]
+	#var q = q_target.instantiate()
+	#for effect in q_effects:
+		#q.effects[effect] = q_effects[effect]
+	#for property in q_properties:
+		#q.properties[property] = q_properties[property]
+	#q.caster = self
+	#q.apply_to = q_apply_to
+	#q.button = "q"
+	#get_parent().add_child(q)
+	var q = ProjectileTarget.new()
 	q.caster = self
-	q.apply_to = q_apply_to
 	q.button = "q"
+	q.position = Vector3.ZERO
 	get_parent().add_child(q)
-	
+	q.properties["gfx"].material = load("res://graphics/gold.tres")
 
 func cast_W():
 	var w = w_target.instantiate()
