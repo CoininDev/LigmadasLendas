@@ -7,7 +7,7 @@ var down = false
 var right = false
 var left = false
 
-func _process(delta):
+func _process(_delta):
 	var input_dir = Vector3((int(right)-int(left)), 0, (int(down)-int(up)))
 	#var input_dir = Vector3((int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))), 0, (int(Input.is_action_pressed("ui_up"))-int(Input.is_action_pressed("ui_down"))))
 	var direction = (transform.basis * input_dir).normalized()
