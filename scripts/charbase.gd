@@ -15,36 +15,11 @@ var physic_power = raw_physic_power
 var magic_power = raw_magic_power
 var psycho_power = raw_psycho_power
 
+
+
 @export var effects = {
 	"marca": false
 }
-
-@export_category("Habilidades")
-
-@export_group("Q")
-@export var q_target:PackedScene = preload("res://objs/targets/projectile.tscn")
-@export var q_effects:Dictionary
-@export var q_properties:Dictionary
-@export var q_apply_to:Array
-
-@export_group("W")
-@export var w_target:PackedScene = preload("res://objs/targets/projectile.tscn")
-@export var w_effects:Dictionary
-@export var w_properties:Dictionary
-@export var w_apply_to:Array
-
-@export_group("E")
-@export var e_target:PackedScene = preload("res://objs/targets/projectile.tscn")
-@export var e_effects:Dictionary
-@export var e_properties:Dictionary
-@export var e_apply_to:Array
-
-@export_group("R")
-@export var r_target:PackedScene = preload("res://objs/targets/circular_area.tscn")
-@export var r_effects:Dictionary
-@export var r_properties:Dictionary
-@export var r_apply_to:Array
-
 @onready var navagent = $NavigationAgent3D
 #funções centrais
 func _process(delta):
@@ -54,17 +29,9 @@ func _process(delta):
 	
 	
 func _input(_event):
-	select_target()
-	if Input.is_action_just_pressed("q"):
-		cast_Q()
-	if Input.is_action_just_pressed("w"):
-		cast_W()
-	if Input.is_action_just_pressed("e"):
-		cast_E()
-	if Input.is_action_just_pressed("r"):
-		cast_R()
+	select_destiny_move()
 #movimento
-func select_target():
+func select_destiny_move():
 	if Input.is_action_pressed("mright"):
 		#converter o ponto do mouse na tela 2d para um ponto 3d no jogo.
 		#para isso é preciso criar um raio, uma linha reta que parte da camera e segue até encontrar uma colisão.
@@ -86,57 +53,3 @@ func move(delta):
 	look_at(Vector3(targetpos.x, global_position.y, targetpos.z), Vector3.UP)#olhar para a direção certa
 	velocity = dir * speed * delta
 	move_and_slide()
-#habilidades
-
-func cast_Q():
-	#var q = q_target.instantiate()
-	#for effect in q_effects:
-		#q.effects[effect] = q_effects[effect]
-	#for property in q_properties:
-		#q.properties[property] = q_properties[property]
-	#q.caster = self
-	#q.apply_to = q_apply_to
-	#q.button = "q"
-	#get_parent().add_child(q)
-	var q = ProjectileTarget.new()
-	q.caster = self
-	q.button = "q"
-	q.position = Vector3.ZERO
-	get_parent().add_child(q)
-	q.properties["gfx"].material = load("res://graphics/gold.tres")
-
-func cast_W():
-	var w = w_target.instantiate()
-	for effect in w_effects:
-		w.effects[effect] = w_effects[effect]
-	for property in w_properties:
-		w.properties[property] = w_properties[property]
-	w.caster = self
-	w.apply_to = w_apply_to
-	w.button = "w"
-	get_parent().add_child(w)
-	
-
-func cast_E():
-	var e = e_target.instantiate()
-	for effect in e_effects:
-		e.effects[effect] = e_effects[effect]
-	for property in e_properties:
-		e.properties[property] = e_properties[property]
-	e.caster = self
-	e.apply_to = e_apply_to
-	e.button = "e"
-	get_parent().add_child(e)
-	
-
-func cast_R():
-	var r = r_target.instantiate()
-	for effect in r_effects:
-		r.effects[effect] = r_effects[effect]
-	for property in r_properties:
-		r.properties[property] = r_properties[property]
-	r.caster = self
-	r.apply_to = r_apply_to 
-	r.button = "r"
-	get_parent().add_child(r)
-	
