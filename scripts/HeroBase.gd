@@ -54,7 +54,7 @@ func _process(delta):
 	
 func _input(_e):
 	select_move_destiny()
-	select_target()
+	select_atk_target()
 
 #movement
 func select_move_destiny():
@@ -71,7 +71,7 @@ func select_move_destiny():
 		rayquery.from = from
 		rayquery.to = to
 		var result = space.intersect_ray(rayquery)
-		if result.has("position"):
+		if !result.is_empty():
 			comps["nav"].target_position = result.position
 func move(delta):
 	var targetpos = comps["nav"].get_next_path_position()
@@ -81,8 +81,10 @@ func move(delta):
 	move_and_slide()
 
 #attack
-func select_target():
-	if Input.is_action_just_pressed("mleft"):
+func select_atk_target():
+	if Input.is_action_pressed("mleft"):
+		#converter o ponto do mouse na tela 2d para um ponto 3d no jogo.
+		#para isso é preciso criar um raio, uma linha reta que parte da camera e segue até encontrar uma colisão.
 		var camera = get_tree().get_nodes_in_group("camera")[0]
 		var mousepos = get_viewport().get_mouse_position()
 		var raylen = 1000
@@ -93,9 +95,9 @@ func select_target():
 		rayquery.from = from
 		rayquery.to = to
 		var result = space.intersect_ray(rayquery)
-		if result.has("collider"):
-			if result.collider.is_in_group("hero"):
-				atk_target = result.collider
+		if !result.is_empty():
+			atk_target = result.collider
+
 
 #id
 func unique_token():

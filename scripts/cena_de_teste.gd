@@ -4,6 +4,7 @@ extends Node3D
 func _ready():
 	var hero = HeroBase.new()
 	hero.comps["gfx"].mesh = CylinderMesh.new()
+	hero.comps["gfx"].mesh.material = load("res://graphics/casd.tres")
 	hero.position = $"hero spawn".position
 	add_child(hero)
 	
