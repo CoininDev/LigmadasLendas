@@ -2,23 +2,30 @@ extends CharacterBody3D
 const SPEED = 50
 const JUMP_VELOCITY = 4.5
 
+var toggle_camera_player = false
+@export var player_camera = Camera3D
+
 var up = false
 var down = false
 var right = false
 var left = false
 
 func _process(delta):
-	var input_dir = Vector3((int(right)-int(left)), 0, (int(down)-int(up)))
-	#var input_dir = Vector3((int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))), 0, (int(Input.is_action_pressed("ui_up"))-int(Input.is_action_pressed("ui_down"))))
-	var direction = (transform.basis * input_dir).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if !toggle_camera_player:
+		var input_dir = Vector3((int(right)-int(left)), 0, (int(down)-int(up)))
+		#var input_dir = Vector3((int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))), 0, (int(Input.is_action_pressed("ui_up"))-int(Input.is_action_pressed("ui_down"))))
+		var direction = (transform.basis * input_dir).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	move_and_slide()
+		move_and_slide()
+func _input(event):
+	if Input.is_action_pressed("space"):
+		global_position = player_camera_pos.global_position
 
 #cantos únicos
 func _on_up_mouse_entered():

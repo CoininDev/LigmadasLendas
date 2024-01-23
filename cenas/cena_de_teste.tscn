@@ -1,9 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://dvmj1414akb08"]
+[gd_scene load_steps=16 format=3 uid="uid://dvmj1414akb08"]
 
-[ext_resource type="Script" path="res://scripts/charbase.gd" id="1_y0m06"]
+[ext_resource type="PackedScene" uid="uid://68ia4xebvqnb" path="res://objs/char_base.tscn" id="1_2bmxh"]
 [ext_resource type="Script" path="res://scripts/CameraMan.gd" id="2_8g36f"]
-[ext_resource type="PackedScene" uid="uid://7g5bq1ieqvc7" path="res://objs/targets/circular_area.tscn" id="2_a2iur"]
-[ext_resource type="Material" uid="uid://tdbycpp30oep" path="res://graphics/gold.tres" id="2_ej5h0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u1rgv"]
 
@@ -16,37 +14,6 @@ sky_material = SubResource("ProceduralSkyMaterial_bw0sc")
 background_mode = 2
 sky = SubResource("Sky_85t4l")
 ssao_enabled = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_7eere"]
-material = ExtResource("2_ej5h0")
-radius = 4.0
-height = 4.0
-is_hemisphere = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_kpxkx"]
-material = ExtResource("2_ej5h0")
-radius = 10.0
-height = 10.0
-is_hemisphere = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq4fk"]
-albedo_color = Color(0.411765, 0.207843, 0.14902, 1)
-metallic = 1.0
-metallic_specular = 1.0
-roughness = 0.02
-emission = Color(0.305882, 0.658824, 0.592157, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_lnl31"]
-material = SubResource("StandardMaterial3D_mq4fk")
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_0wd5r"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_imhtu"]
-albedo_color = Color(0.145098, 0, 0.956863, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ofqr5"]
-material = SubResource("StandardMaterial3D_imhtu")
-height = 1.0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_7vdlp"]
 vertices = PackedVector3Array(-49.5, 1, 6.75, -5.5, 1, 6.75, -5.5, 1, 5.5, -49.5, 1, 6.75, -5.5, 1, 5.5, -4.25, 1, 3.75, -49.5, 1, 6.75, -4.25, 1, 3.75, -1.75, 1, 3.25, -1.75, 1, -49.5, -49.5, 1, -49.5, 1.5, 1, 5, 1.75, 1, 6.75, 49.5, 1, 6.75, 0.5, 1, 3.75, 1.5, 1, 5, 49.5, 1, 6.75, -1.75, 1, 3.25, 0.5, 1, 3.75, 49.5, 1, 6.75, 49.5, 1, -49.5, -1.75, 1, -49.5, -3, 3.25, 6, -3.5, 3.25, 5, -4.25, 3.25, 6.5, -3.75, 3.25, 8.25, -2.75, 3.25, 7.75, -0.75, 3.25, 6.25, -0.75, 3.25, 7.5, 0.25, 3.25, 7.75, 0.25, 3.25, 5.75, -3.5, 3.25, 5, -3, 3.25, 6, -1.5, 3.25, 5.5, -1.5, 3.25, 4.5, -2.75, 3.25, 7.75, -3.75, 3.25, 8.25, -2.75, 3.25, 9, -1, 3.25, 9, -1.5, 3.25, 8, -0.75, 3.25, 7.5, -1.5, 3.25, 8, -1, 3.25, 9, 0.25, 3.25, 7.75, 0.25, 3.25, 5.75, -1.5, 3.25, 4.5, -1.5, 3.25, 5.5, -0.75, 3.25, 6.25, -1.25, 1, 5.25, -0.5, 1, 5.75, -0.5, 1, 5.25, -1.5, 1, 4.75, -2.75, 1, 8.25, -3.25, 1, 7.75, -3.75, 1, 7.75, -2.5, 1, 8.75, -3, 1, 5.5, -1.25, 1, 5.25, -1.5, 1, 4.75, -3.25, 1, 5.25, 0, 1, 7.5, 0, 1, 6, -0.5, 1, 5.75, -0.5, 1, 7.75, -3.25, 1, 7.75, -3, 1, 5.5, -3.25, 1, 5.25, -4, 1, 6.75, -3.75, 1, 7.75, -1.25, 1, 8.75, 0, 1, 7.5, -0.5, 1, 7.75, -1, 1, 8.25, -1, 1, 8.25, -2.75, 1, 8.25, -2.5, 1, 8.75, -1.25, 1, 8.75, -1.75, 1, 49.5, -1.75, 1, 10.5, -4, 1, 10, -1.75, 1, 49.5, -4, 1, 10, -5.25, 1, 8.75, -1.75, 1, 49.5, -5.25, 1, 8.75, -5.5, 1, 6.75, -49.5, 1, 6.75, -49.5, 1, 49.5, -0.25, 1, 10.25, -1.75, 1, 10.5, -1.75, 1, 49.5, 1.25, 1, 9, -0.25, 1, 10.25, -1.75, 1, 49.5, 1.75, 1, 6.75, 1.25, 1, 9, -1.75, 1, 49.5, 49.5, 1, 49.5, 49.5, 1, 6.75)
@@ -81,17 +48,25 @@ ssao_enabled = true
 
 [node name="Cena de teste" type="Node3D"]
 
-[node name="CameraMan" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.482855, 0.8757, 0, -0.8757, 0.482855, -0.286873, 15.2398, 31.0159)
+[node name="CharBase" parent="." instance=ExtResource("1_2bmxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.53822, 2, 15.2886)
+
+[node name="camerapoint" type="Node3D" parent="CharBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 5.5)
+
+[node name="CameraMan" type="CharacterBody3D" parent="." node_paths=PackedStringArray("player_camera_pos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.287, 15, 31)
 script = ExtResource("2_8g36f")
+player_camera_pos = NodePath("../CharBase/camerapoint")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraMan"]
 shape = SubResource("BoxShape3D_u1rgv")
 disabled = true
 
 [node name="Camera3D" type="Camera3D" parent="CameraMan" groups=["camera"]]
-transform = Transform3D(1, 0, 0, 0, 1, 4.47035e-07, 0, -4.76837e-07, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
 environment = SubResource("Environment_i6cj1")
+current = true
 
 [node name="Cantos" type="Control" parent="CameraMan/Camera3D"]
 layout_mode = 3
@@ -195,39 +170,6 @@ offset_bottom = -21.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
-
-[node name="CharBase" type="CharacterBody3D" parent="." groups=["char"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67001, 1.60324, 13.4823)
-script = ExtResource("1_y0m06")
-q_apply_to = ["char"]
-w_target = ExtResource("2_a2iur")
-w_effects = {
-"adsf": 5.0
-}
-w_properties = {
-"area_radius": 4.0,
-"delay_sec": 0.5,
-"graphics": SubResource("SphereMesh_7eere")
-}
-r_properties = {
-"area_radius": 10.0,
-"delay_sec": 0.5,
-"graphics": SubResource("SphereMesh_kpxkx")
-}
-r_apply_to = ["char"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharBase"]
-mesh = SubResource("CylinderMesh_lnl31")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharBase"]
-shape = SubResource("CylinderShape3D_0wd5r")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharBase"]
-avoidance_enabled = true
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharBase"]
-transform = Transform3D(-0.0199716, 0.441931, 0, -0.432807, -0.0203926, 0, 0, 0, 0.554438, 0.063448, 0.755017, -0.684919)
-mesh = SubResource("CapsuleMesh_ofqr5")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_7vdlp")
