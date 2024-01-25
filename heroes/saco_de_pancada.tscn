@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://bi4vcv41hoy0q"]
+
+[ext_resource type="Script" path="res://scripts/hitbox_owner.gd" id="1_1r62l"]
+[ext_resource type="Material" uid="uid://tdbycpp30oep" path="res://graphics/gold.tres" id="1_14yie"]
+[ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="2_w8m13"]
+[ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/hitbox_component.tscn" id="3_mautj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vra3a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vhjqo"]
+material = ExtResource("1_14yie")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_71wfx"]
+radius = 0.435602
+
+[node name="SacoDePancada" type="StaticBody3D" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("1_1r62l")
+hitbox = NodePath("HitboxComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_vra3a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_vhjqo")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_w8m13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46033, 0)
+health_bar_visible = true
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_mautj")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("CylinderShape3D_71wfx")

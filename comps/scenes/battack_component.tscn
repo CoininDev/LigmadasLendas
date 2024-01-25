@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ek5hq7khlfdc"]
+
+[ext_resource type="Script" path="res://comps/scripts/BAttackComponent.gd" id="1_vrdmx"]
+
+[node name="BAttackComponent" type="Node3D"]
+script = ExtResource("1_vrdmx")

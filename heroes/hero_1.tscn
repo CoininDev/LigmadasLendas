@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://bj8w60mbxu343"]
+
+[ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/arerer.tres" id="1_25tss"]
+[ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="1_jp1t4"]
+[ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/hitbox_component.tscn" id="2_qs483"]
+[ext_resource type="Script" path="res://scripts/hitbox_owner.gd" id="3_7q76x"]
+[ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="3_uakab"]
+[ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/nav_component.tscn" id="5_2h5n0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_krpe6"]
+radius = 0.452258
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wvo1n"]
+material = ExtResource("1_25tss")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ey8t6"]
+
+[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("3_7q76x")
+hitbox = NodePath("HitboxComponent")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_qs483")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("CylinderShape3D_krpe6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_wvo1n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_ey8t6")
+script = ExtResource("3_7q76x")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_jp1t4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36058, 0)
+
+[node name="BAttackComponent" parent="." instance=ExtResource("3_uakab")]
+atk_damage = 50.0
+range = 5.0
+
+[node name="NavComponent" parent="." instance=ExtResource("5_2h5n0")]
+target_desired_distance = 0.2
+path_height_offset = -0.25

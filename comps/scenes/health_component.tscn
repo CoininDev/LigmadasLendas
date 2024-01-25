@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://d20x3gfrmoext"]
+
+[ext_resource type="Script" path="res://comps/scripts/HealthComponent.gd" id="1_3liw7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bquaw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hm5eo"]
+bg_color = Color(0.25098, 0.654902, 0.290196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dx5rf"]
+bg_color = Color(0, 0.0745098, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5jen"]
+bg_color = Color(1, 0.156863, 0.231373, 1)
+
+[node name="HealthComponent" type="Node3D"]
+script = ExtResource("1_3liw7")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport"]
+z_index = 1
+offset_right = 300.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_bquaw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hm5eo")
+value = 60.0
+
+[node name="DamageBar" type="ProgressBar" parent="SubViewport/HealthBar"]
+z_index = -1
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_dx5rf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b5jen")
+value = 65.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="SubViewport/HealthBar/DamageBar"]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="SubViewport/HealthBar/DamageBar/Timer" to="." method="_on_timer_timeout"]

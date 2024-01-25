@@ -7,6 +7,9 @@ var down = false
 var right = false
 var left = false
 
+@export var point:Node3D
+var lock_camera = true
+
 func _process(_delta):
 	var input_dir = Vector3((int(right)-int(left)), 0, (int(down)-int(up)))
 	#var input_dir = Vector3((int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))), 0, (int(Input.is_action_pressed("ui_up"))-int(Input.is_action_pressed("ui_down"))))
@@ -17,7 +20,6 @@ func _process(_delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
 	move_and_slide()
 
 #cantos únicos
