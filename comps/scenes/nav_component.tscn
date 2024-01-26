@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bid6uhyybfx4x"]
-
-[ext_resource type="Script" path="res://comps/scripts/NavComponent.gd" id="1_rvkvk"]
-
-[node name="NavComponent" type="NavigationAgent3D"]
-script = ExtResource("1_rvkvk")

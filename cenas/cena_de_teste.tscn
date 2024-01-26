@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvmj1414akb08"]
+[gd_scene load_steps=13 format=3 uid="uid://dvmj1414akb08"]
 
 [ext_resource type="PackedScene" uid="uid://c1xp1m6kdpsgk" path="res://objs/camera_man.tscn" id="1_kqkdf"]
 [ext_resource type="PackedScene" uid="uid://bj8w60mbxu343" path="res://heroes/hero_1.tscn" id="2_5g5id"]
@@ -20,6 +20,9 @@ size = Vector3(100, 1, 99.5153)
 
 [sub_resource type="TorusMesh" id="TorusMesh_lkigu"]
 outer_radius = 3.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_i1l3h"]
+radius = 3.01102
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h1w24"]
 
@@ -53,17 +56,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8907, 1.63523, 6.80742)
 mesh = SubResource("TorusMesh_lkigu")
 skeleton = NodePath("../chão")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/obstáculo"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/obstáculo/StaticBody3D"]
+shape = SubResource("CylinderShape3D_i1l3h")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h6fdy")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.36291, 0.931824, 0, -0.931824, 0.36291, 0, 8, 0)
 
-[node name="Hero1" parent="." instance=ExtResource("2_5g5id")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.292, 1, 22.125)
-
 [node name="SacoDePancada" parent="." instance=ExtResource("3_73l0t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12.548)
 constant_linear_velocity = Vector3(0.1, 0, 0)
+
+[node name="Hero1" parent="." instance=ExtResource("2_5g5id")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.292, 1, 22.125)
 
 [editable path="CameraMan"]

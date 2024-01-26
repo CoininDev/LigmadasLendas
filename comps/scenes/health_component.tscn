@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d20x3gfrmoext"]
+[gd_scene load_steps=7 format=3 uid="uid://d20x3gfrmoext"]
 
 [ext_resource type="Script" path="res://comps/scripts/HealthComponent.gd" id="1_3liw7"]
 
@@ -13,10 +13,15 @@ bg_color = Color(0, 0.0745098, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5jen"]
 bg_color = Color(1, 0.156863, 0.231373, 1)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_mxq3j"]
+viewport_path = NodePath("SubViewport")
+
 [node name="HealthComponent" type="Node3D"]
 script = ExtResource("1_3liw7")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(300, 28)
+size_2d_override_stretch = true
 
 [node name="HealthBar" type="ProgressBar" parent="SubViewport"]
 z_index = 1
@@ -39,5 +44,11 @@ show_percentage = false
 [node name="Timer" type="Timer" parent="SubViewport/HealthBar/DamageBar"]
 wait_time = 0.4
 one_shot = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+billboard = 1
+transparent = false
+texture = SubResource("ViewportTexture_mxq3j")
 
 [connection signal="timeout" from="SubViewport/HealthBar/DamageBar/Timer" to="." method="_on_timer_timeout"]

@@ -12,7 +12,9 @@ sky_material = SubResource("ProceduralSkyMaterial_bw0sc")
 [sub_resource type="Environment" id="Environment_i6cj1"]
 background_mode = 2
 sky = SubResource("Sky_85t4l")
-ssao_enabled = true
+sdfgi_bounce_feedback = 0.08
+fog_light_color = Color(0.454902, 0.454902, 0.454902, 1)
+fog_density = 0.1
 
 [node name="CameraMan" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.482855, 0.8757, 0, -0.8757, 0.482855, -0.286873, 15.2398, 31.0159)
