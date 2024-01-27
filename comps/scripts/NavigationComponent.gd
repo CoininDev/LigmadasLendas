@@ -10,27 +10,6 @@ func _process(delta):
 		return
 	move(delta)
 
-func _input(_event):
-	click_destiny()
-#movimento
-func click_destiny():
-	if Input.is_action_pressed(action):
-		path_desired_distance = desired_distance
-		#converter o ponto do mouse na tela 2d para um ponto 3d no jogo.
-		#para isso é preciso criar um raio, uma linha reta que parte da camera e segue até encontrar uma colisão.
-		var camera = get_tree().get_nodes_in_group("camera")[0]
-		var mousepos = get_viewport().get_mouse_position()
-		var raylen = 1000
-		var from = camera.project_ray_origin(mousepos)
-		var to = from + camera.project_ray_normal(mousepos) * raylen
-		var space = get_parent().get_world_3d().direct_space_state
-		var rayquery = PhysicsRayQueryParameters3D.new()
-		rayquery.from = from
-		rayquery.to = to
-		var result = space.intersect_ray(rayquery)
-		if !result.is_empty():
-			target_position = result.position
-
 func select_destiny(position:Vector3, desired_distance:float):
 	path_desired_distance = desired_distance
 	target_position = position

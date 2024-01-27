@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwhihpdu5pw3h"]
+
+[ext_resource type="Script" path="res://comps/scripts/GUIComponent.gd" id="1_k14il"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gyqtx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4l8cf"]
+bg_color = Color(0.25098, 0.654902, 0.290196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtgd1"]
+bg_color = Color(0, 0.0745098, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nphwr"]
+bg_color = Color(1, 0.156863, 0.231373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5hd3"]
+bg_color = Color(0.0862745, 0, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo3du"]
+bg_color = Color(0.521569, 0.435294, 1, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qvrbv"]
+viewport_path = NodePath("SubViewport")
+
+[node name="GUIComponent" type="Node3D"]
+script = ExtResource("1_k14il")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(199, 33)
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport"]
+z_index = 1
+offset_right = 200.0
+offset_bottom = 23.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_gyqtx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4l8cf")
+value = 100.0
+
+[node name="DamageBar" type="ProgressBar" parent="SubViewport/HealthBar"]
+z_index = -1
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 23.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xtgd1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nphwr")
+value = 65.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="SubViewport/HealthBar/DamageBar"]
+wait_time = 0.4
+one_shot = true
+
+[node name="SanityBar" type="ProgressBar" parent="SubViewport"]
+z_index = 2
+offset_top = 23.0
+offset_right = 200.0
+offset_bottom = 34.0
+theme_override_styles/background = SubResource("StyleBoxFlat_d5hd3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eo3du")
+value = 80.0
+allow_lesser = true
+show_percentage = false
+
+[node name="SanityLabel" type="Label" parent="SubViewport/SanityBar"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = -2.0
+offset_right = 109.0
+offset_bottom = 12.0
+theme_override_font_sizes/font_size = 10
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = SubResource("ViewportTexture_qvrbv")
+
+[connection signal="timeout" from="SubViewport/HealthBar/DamageBar/Timer" to="." method="_on_timer_timeout"]

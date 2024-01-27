@@ -2,36 +2,30 @@ extends Node3D
 class_name HealthComponent
 
 signal died
+signal damaged
 
 @export var MAX_HEALTH:float = 100
-@export var health_bar_visible:bool = false
-@onready var health_bar = $SubViewport/HealthBar
-@onready var damage_bar = $SubViewport/HealthBar/DamageBar
-@onready var damage_bar_timer = $SubViewport/HealthBar/DamageBar/Timer
-@onready var bar_sprite = $Sprite3D
+@export var physical_resistance:float = 0
+@export var magical_resistance:float = 0
 var health:float
 
 func _ready():
 	health = MAX_HEALTH
-	health_bar.max_value = MAX_HEALTH
-	health_bar.value = health
-	damage_bar.max_value = MAX_HEALTH
-	damage_bar.value = health
-	bar_sprite.visible = health_bar_visible
-
-func _process(delta):
-	health_bar.value = health
 
 func damage(atk: Attack):
-	health -= atk.atk_damage
-	damage_bar_timer.start()
+	atk.physic_damage -= physical_resistance
+	atk.magic_damage -= magical_resistance
+	
+	health -= atk.physic_damage
+	health -= atk.magic_damage
+	damaged.emit()
 	
 	if health <= 0:
-		died.connect(atk.caster.cancel)
+		if atk.caster.has_method("cancel"):
+			died.connect(atk.caster.cancel)
 		died.emit()
 		get_parent().queue_free()
 
-
-
-func _on_timer_timeout():
-	damage_bar.value = health
+func heal(healing:float):
+	if health < MAX_HEALTH:
+		health += healing

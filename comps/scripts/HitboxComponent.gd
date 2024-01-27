@@ -1,7 +1,8 @@
-extends Area3D
+extends Node3D
 class_name HitboxComponent
 
-@export var health_component: Node3D
+@export var health_component: HealthComponent
+#@export var effects_component: EffectsComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

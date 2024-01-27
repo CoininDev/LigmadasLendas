@@ -15,6 +15,7 @@ func _ready():
 	range_show.scale.x = range * escala
 	range_show.scale.z = range * escala
 	timer.timeout.connect(timeout)
+	timer.wait_time = atk_cooldown
 
 func _process(delta):
 	if target:
@@ -24,43 +25,30 @@ func _process(delta):
 				walk()
 			else:
 				if timer.is_stopped():
+					#attack()
 					timer.start()
 	else:
 		timer.stop()
 func _input(event):
 	show_range_handler()
-	if Input.is_action_just_pressed(action):
-		select_target()
 	for cancelling_action in cancelling_actions:
 		if Input.is_action_just_pressed(cancelling_action) or Input.is_action_just_released(cancelling_action):
 			cancel()
 
-func select_target():
-	var camera = get_tree().get_nodes_in_group("camera")[0]
-	var mousepos = get_viewport().get_mouse_position()
-	var raylen = 1000
-	var from = camera.project_ray_origin(mousepos)
-	var to = from + camera.project_ray_normal(mousepos) * raylen
-	var space = get_parent().get_world_3d().direct_space_state
-	var rayquery = PhysicsRayQueryParameters3D.new()
-	rayquery.from = from
-	rayquery.to = to
-	var result = space.intersect_ray(rayquery)
-	if !result.is_empty():
-		target = result.collider
-
 func walk():
-	nav_comp.select_destiny(target.position, range)
+	nav_comp.select_destiny(target.position, range-0.2)
 
 func attack():
 	var atk = Attack.new()
-	atk.atk_damage = atk_damage
+	atk.physic_damage = atk_damage
 	atk.caster = self
 	target.damage(atk)
 
 func timeout():
 	timer.wait_time = atk_cooldown
-	attack()
+	var distance = target.global_position.distance_to(global_position)
+	if distance <= range:
+		attack()
 	
 
 func show_range_handler():

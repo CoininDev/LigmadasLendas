@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://pfj3r5o6efgg"]
+
+[ext_resource type="Script" path="res://comps/scripts/CameraPointComponent.gd" id="1_lo2l6"]
+
+[node name="CameraPointComponent" type="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.65939, 10.4464)
+script = ExtResource("1_lo2l6")

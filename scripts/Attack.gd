@@ -1,7 +1,8 @@
 extends Node
 class_name Attack
 
-var atk_damage:float=0
+var physic_damage:float=0
+var magic_damage:float=0
 var root_time:float=0
 var fear_time:float=0
 var silence_time:float=0
