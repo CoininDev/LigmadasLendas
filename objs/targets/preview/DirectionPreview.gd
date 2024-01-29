@@ -1,5 +1,5 @@
 extends Node3D
-class_name DirectionCaster
+class_name DirectionPreview
 
 func _process(delta):
 	var camera = get_tree().get_nodes_in_group("camera")[0]
@@ -15,4 +15,3 @@ func _process(delta):
 	if !result.is_empty():
 		look_at(result.position)
 		rotation.x = 0
-		

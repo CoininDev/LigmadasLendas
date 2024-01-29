@@ -3,22 +3,25 @@ class_name HeroBase
 @export var dmgr: DamageMgrComponent
 
 
-var q = Ability.new
-var w = Ability.new
-var e = Ability.new
-var r = Ability.new
+var q = Ability.new()
+var w = Ability.new()
+var e = Ability.new()
+var r = Ability.new()
 
-@onready var q_caster = $AbilityCasters/Q
+@onready var q_p =  $AbilityCasters/Q
 
 func damage(atk: Attack):
 	dmgr.damage(atk)
 
+func _ready():
+	pass
 func _process(delta):
-	q.target_direction = q_caster.rotation
-	print(q.target_direction)
+	#q.target_direction = q_p.rotation
+	print(q_p)
+	pass
 
 func q_preview():
-	q_caster.visible = true
+	q_p.visible = true
 
 func w_preview():
 	pass
@@ -38,7 +41,7 @@ func f_preview():
 
 
 func q_cast():
-	pass
+	q_p.visible = false
 
 func w_cast():
 	pass

@@ -1,7 +1,7 @@
 extends Node
 class_name Ability
-@export var apply_to:Array
-@export var target_position:Vector3
-@export var target_direction:Vector3
-@export var range:float
-@export var target:Node3D
+var apply_to:Array = []
+var target_position:Vector3 = Vector3.ZERO
+var target_direction:Vector3 = Vector3.ZERO 
+var range:float = 0
+var target:Node3D = Node3D.new()
