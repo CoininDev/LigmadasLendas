@@ -1,24 +1,25 @@
-[gd_scene load_steps=13 format=3 uid="uid://bj8w60mbxu343"]
+[gd_scene load_steps=14 format=3 uid="uid://bj8w60mbxu343"]
 
 [ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/arerer.tres" id="1_25tss"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="1_jp1t4"]
-[ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/hitbox_component.tscn" id="2_qs483"]
-[ext_resource type="Script" path="res://scripts/char.gd" id="3_7q76x"]
+[ext_resource type="Script" path="res://scripts/HeroBase.gd" id="1_ofmxg"]
+[ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="2_qs483"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="3_uakab"]
 [ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="5_2h5n0"]
 [ext_resource type="PackedScene" uid="uid://pfj3r5o6efgg" path="res://comps/scenes/camera_point_component.tscn" id="7_rnlar"]
 [ext_resource type="PackedScene" uid="uid://5fpdn8fr4h7o" path="res://comps/scenes/controller_component.tscn" id="8_npv3n"]
 [ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="9_q2u5u"]
 [ext_resource type="PackedScene" uid="uid://bfx1wxpmwujue" path="res://comps/scenes/sanity_component.tscn" id="10_8gc1h"]
+[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/targets/preview/direction_caster.tscn" id="11_3557q"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wvo1n"]
 material = ExtResource("1_25tss")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ey8t6"]
 
-[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("hitbox")]
-script = ExtResource("3_7q76x")
-hitbox = NodePath("HitboxComponent")
+[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr")]
+script = ExtResource("1_ofmxg")
+dmgr = NodePath("DamageMgrComponent")
 
 [node name="CameraPointComponent" parent="." instance=ExtResource("7_rnlar")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
@@ -29,7 +30,7 @@ mesh = SubResource("CapsuleMesh_wvo1n")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_ey8t6")
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_qs483")]
+[node name="DamageMgrComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_qs483")]
 health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_jp1t4")]
@@ -46,9 +47,10 @@ target_desired_distance = 0.2
 path_height_offset = -0.25
 speed = 300
 
-[node name="ControllerComponent" parent="." node_paths=PackedStringArray("nav", "battack") instance=ExtResource("8_npv3n")]
+[node name="ControllerComponent" parent="." node_paths=PackedStringArray("nav", "battack", "hero") instance=ExtResource("8_npv3n")]
 nav = NodePath("../NavComponent")
 battack = NodePath("../BAttackComponent")
+hero = NodePath("..")
 
 [node name="GUIComponent" parent="." node_paths=PackedStringArray("health_comp", "sanity_comp") instance=ExtResource("9_q2u5u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73506, 0)
@@ -58,3 +60,8 @@ sanity_comp = NodePath("../SanityComponent")
 
 [node name="SanityComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("10_8gc1h")]
 health_comp = NodePath("../HealthComponent")
+
+[node name="AbilityCasters" type="Node" parent="."]
+
+[node name="Q" parent="AbilityCasters" instance=ExtResource("11_3557q")]
+visible = false

@@ -3,6 +3,7 @@ class_name Attack
 
 var physic_damage:float=0
 var magic_damage:float=0
+var heal:float=0
 var root_time:float=0
 var fear_time:float=0
 var silence_time:float=0

@@ -1,5 +1,5 @@
 extends Node3D
-class_name HitboxComponent
+class_name DamageMgrComponent
 
 @export var health_component: HealthComponent
 #@export var effects_component: EffectsComponent
