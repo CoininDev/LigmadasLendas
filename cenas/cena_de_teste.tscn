@@ -75,7 +75,6 @@ point = NodePath("../Hero1/CameraPointComponent")
 
 [node name="SacoDePancada" parent="." instance=ExtResource("3_73l0t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12.548)
-constant_linear_velocity = Vector3(0.1, 0, 0)
 
 [node name="HealthComponent" parent="SacoDePancada" index="2"]
 MAX_HEALTH = 300.0

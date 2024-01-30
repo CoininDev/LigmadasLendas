@@ -1,11 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb82m0a0q1pso"]
+[gd_scene load_steps=5 format=3 uid="uid://bb82m0a0q1pso"]
 
 [ext_resource type="Script" path="res://objs/targets/preview/DirectionPreview.gd" id="1_shm6c"]
 [ext_resource type="Texture2D" uid="uid://boia5wfdh8g3d" path="res://graphics/iconmonstr-arrow-up-thin.svg" id="2_gau3e"]
 
-[node name="DirectionPreview" type="Node3D"]
-script = ExtResource("1_shm6c")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3isd"]
+transparency = 1
+albedo_texture = ExtResource("2_gau3e")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-14, 2.11394e-06, -9.24033e-14, 0, -6.11959e-07, -14, -2.11394e-06, -14, 6.11959e-07, 0, 0, -2.67349)
-texture = ExtResource("2_gau3e")
+[sub_resource type="PlaneMesh" id="PlaneMesh_gw8oa"]
+material = SubResource("StandardMaterial3D_o3isd")
+size = Vector2(1, 1)
+
+[node name="DirectionPreview" type="Node3D" node_paths=PackedStringArray("mesh_instance")]
+visible = false
+script = ExtResource("1_shm6c")
+mesh_instance = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_gw8oa")

@@ -20,23 +20,19 @@ func abilities():
 		hero.e_preview()
 	if Input.is_action_just_pressed("r"):
 		hero.r_preview()
-	if Input.is_action_just_pressed("d"):
-		hero.d_preview()
-	if Input.is_action_just_pressed("f"):
-		hero.f_preview()
+	if Input.is_action_just_pressed("a"):
+		hero.a_preview()
 	
 	if Input.is_action_just_released("q"):
 		hero.q_cast()
 	if Input.is_action_just_released("w"):
 		hero.w_cast()
 	if Input.is_action_just_released("e"):
-		hero.w_cast()
+		hero.e_cast()
 	if Input.is_action_just_released("r"):
-		hero.w_cast()
-	if Input.is_action_just_released("d"):
-		hero.w_cast()
-	if Input.is_action_just_released("f"):
-		hero.w_cast()
+		hero.r_cast()
+	if Input.is_action_just_released("a"):
+		hero.a_cast()
 
 func walk():
 	if Input.is_action_pressed(walk_action):
@@ -69,4 +65,4 @@ func attack():
 		var result = space.intersect_ray(rayquery)
 		if !result.is_empty() && get_parent() != result.collider:
 			if result.collider.is_in_group("hitbox_owner"):
-				battack.target = result.collider
+				battack.select_target(result.collider)

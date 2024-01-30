@@ -11,4 +11,4 @@ func _ready():
 
 func _on_timer_timeout():
 	var heal = sanity/100 * 0.05
-	health_comp.heal(health_comp.health*heal)
+	health_comp.heal(health_comp.MAX_HEALTH*heal)

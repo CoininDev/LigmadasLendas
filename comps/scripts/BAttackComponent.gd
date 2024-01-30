@@ -2,11 +2,11 @@ extends Node3D
 class_name BAttackComponent
 @export var atk_damage: float
 @export var atk_cooldown: float
-@export var action = "mleft"
 @export var range: float
 @export var nav_comp: NavigationComponent
 var cancelling_actions = ["mright"]
 var target: Node3D
+var blocked:bool = false
 @onready var range_show = $range_show
 @onready var timer = $Timer
 
@@ -59,3 +59,7 @@ func show_range_handler():
 
 func cancel():
 	target = null
+
+func select_target(x:Node3D):
+	if !blocked:
+		target = x

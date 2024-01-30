@@ -1,6 +1,8 @@
 extends Node3D
 class_name DirectionPreview
 
+@export var mesh_instance:MeshInstance3D
+
 func _process(delta):
 	var camera = get_tree().get_nodes_in_group("camera")[0]
 	var mousepos = get_viewport().get_mouse_position()
