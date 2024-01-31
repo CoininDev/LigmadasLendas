@@ -1,6 +1,7 @@
 extends Node
 class_name Ability
 var apply_to:Array = []
+var atk:Attack
 var target_position:Vector3 = Vector3.ZERO
 var target_direction:Vector3 = Vector3.ZERO 
 var range:float = 0

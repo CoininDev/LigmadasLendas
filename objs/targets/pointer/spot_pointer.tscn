@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://df4c8oi2h37jp"]
+
+[ext_resource type="Script" path="res://objs/targets/pointer/SpotPointer.gd" id="1_nvov1"]
+[ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/circle.svg" id="2_ll0xn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6wj8"]
+transparency = 1
+albedo_texture = ExtResource("2_ll0xn")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6f1dq"]
+material = SubResource("StandardMaterial3D_u6wj8")
+size = Vector2(1, 1)
+
+[node name="SpotPointer" type="Node3D"]
+visible = false
+script = ExtResource("1_nvov1")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Marker3D"]
+mesh = SubResource("PlaneMesh_6f1dq")
+skeleton = NodePath("../..")

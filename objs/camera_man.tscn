@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1xp1m6kdpsgk"]
+[gd_scene load_steps=7 format=3 uid="uid://c1xp1m6kdpsgk"]
 
 [ext_resource type="Script" path="res://scripts/CameraMan.gd" id="1_v86fq"]
+[ext_resource type="Script" path="res://scripts/showing_input_in_screen.gd" id="2_gm4td"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u1rgv"]
 
@@ -141,6 +142,34 @@ offset_bottom = -21.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
+
+[node name="HUD" type="Control" parent="Camera3D" node_paths=PackedStringArray("camera")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 113.0
+offset_top = 60.0
+offset_right = 113.0
+offset_bottom = 60.0
+script = ExtResource("2_gm4td")
+camera = NodePath("..")
+
+[node name="Label" type="Label" parent="Camera3D/HUD"]
+layout_mode = 0
+offset_left = -106.0
+offset_top = -57.0
+offset_right = 150.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 30
+text = "Key"
+
+[node name="Label2" type="Label" parent="Camera3D/HUD"]
+layout_mode = 0
+offset_left = -106.0
+offset_top = -25.0
+offset_right = -68.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 30
+text = "0"
 
 [connection signal="mouse_entered" from="Camera3D/Cantos/up" to="." method="_on_up_mouse_entered"]
 [connection signal="mouse_exited" from="Camera3D/Cantos/up" to="." method="_on_up_mouse_exited"]

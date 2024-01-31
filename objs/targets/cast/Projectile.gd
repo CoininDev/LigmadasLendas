@@ -9,6 +9,7 @@ extends Node3D
 @export var speed:float
 @export var unique_victim:bool = false
 
+var obsolete:Array = []
 var running = false
 @onready var end = $end
 @onready var bullet = $bullet
@@ -21,8 +22,6 @@ func _ready():
 func _process(delta):
 	if running:
 		run(delta)
-	if bullet.has_overlapping_areas():
-		print(bullet.get_overlapping_areas())
 
 func start():
 	running = true
@@ -39,7 +38,9 @@ func _on_bullet_body_entered(body):
 	if body != atk.caster:
 		for group in apply_to:
 			if body.is_in_group(group):
-				body.damage(atk)
+				if !obsolete.has(body):
+					body.damage(atk)
+					obsolete.append(body)
 
 
 func _on_bullet_area_entered(area):

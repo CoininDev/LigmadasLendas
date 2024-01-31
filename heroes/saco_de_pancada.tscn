@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="7_r5h44"]
 [ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="8_xgmrb"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="9_lc4gq"]
-[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/targets/preview/direction_preview.tscn" id="10_f0st5"]
+[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/targets/pointer/direction_pointer.tscn" id="10_v1yr6"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vra3a"]
 
@@ -46,7 +46,8 @@ sanity_comp = NodePath("../SanityComponent")
 MAX_SANITY = 50.0
 health_comp = NodePath("../HealthComponent")
 
-[node name="NavigationComponent" parent="." instance=ExtResource("7_r5h44")]
+[node name="NavigationComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("7_r5h44")]
+hero = NodePath("..")
 
 [node name="EffectsComponent" parent="." node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp") instance=ExtResource("8_xgmrb")]
 battack_comp = NodePath("../BAttackComponent")
@@ -59,10 +60,13 @@ atk_cooldown = 0.5
 
 [node name="AbilityPointers" type="Node3D" parent="."]
 
-[node name="Q" parent="AbilityPointers" instance=ExtResource("10_f0st5")]
+[node name="Q" parent="AbilityPointers" instance=ExtResource("10_v1yr6")]
 
-[node name="W" parent="AbilityPointers" instance=ExtResource("10_f0st5")]
+[node name="W" parent="AbilityPointers" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("10_v1yr6")]
+mesh_instance = NodePath("../Q/MeshInstance3D")
 
-[node name="E" parent="AbilityPointers" instance=ExtResource("10_f0st5")]
+[node name="E" parent="AbilityPointers" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("10_v1yr6")]
+mesh_instance = NodePath("../Q/MeshInstance3D")
 
-[node name="R" parent="AbilityPointers" instance=ExtResource("10_f0st5")]
+[node name="R" parent="AbilityPointers" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("10_v1yr6")]
+mesh_instance = NodePath("../Q/MeshInstance3D")

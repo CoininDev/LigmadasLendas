@@ -3,7 +3,8 @@ class_name NavigationComponent
 
 @export var speed = 500
 @export var action = "mright"
-@export var desired_distance:float = 1
+@export var desired_distance:float = 1 
+@export var hero:HeroBase
 var blocked:bool = false
 
 func _process(delta):
@@ -17,13 +18,13 @@ func select_destiny(position:Vector3, desired_distance:float):
 	target_position = position
 
 func ditch_destiny():
-	target_position = get_parent().position
+	target_position = hero.position
 
 func move(delta):
 	if not blocked:
-		var current_pos = Vector3(get_parent().global_position.x, 1, get_parent().global_position.z)
+		var current_pos = Vector3(hero.global_position.x, 1, hero.global_position.z)
 		var next_path_pos = Vector3(get_next_path_position().x, 1, get_next_path_position().z)
-		get_parent().velocity = current_pos.direction_to(next_path_pos) * speed * delta
-		get_parent().move_and_slide()
+		hero.velocity = current_pos.direction_to(next_path_pos) * speed * delta
+		hero.move_and_slide()
 		
-		get_parent().look_at(next_path_pos, Vector3.UP)#olhar para a direção certa
+		hero.look_at(next_path_pos, Vector3.UP)#olhar para a direção certa
