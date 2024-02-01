@@ -16,13 +16,9 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vhjqo"]
 material = ExtResource("1_14yie")
 
-[node name="SacoDePancada" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "q_p", "w_p", "e_p", "r_p")]
+[node name="SacoDePancada" type="CharacterBody3D" node_paths=PackedStringArray("dmgr")]
 script = ExtResource("1_1r62l")
 dmgr = NodePath("DamageMgrComponent")
-q_p = NodePath("")
-w_p = NodePath("")
-e_p = NodePath("")
-r_p = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_vra3a")

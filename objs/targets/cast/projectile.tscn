@@ -1,21 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://1jcmuymd6mth"]
+[gd_scene load_steps=6 format=3 uid="uid://1jcmuymd6mth"]
 
 [ext_resource type="Script" path="res://objs/targets/cast/Projectile.gd" id="1_34mhc"]
 [ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/casd.tres" id="2_0hdfs"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_e1dgp"]
-material = ExtResource("2_0hdfs")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j4lej"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_wwqp4"]
 material = ExtResource("2_0hdfs")
+radius = 0.1
+height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0svcd"]
 
 [node name="Projectile" type="Node3D"]
 script = ExtResource("1_34mhc")
-graphics = SubResource("SphereMesh_e1dgp")
 
 [node name="bullet" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.02859)

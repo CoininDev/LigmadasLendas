@@ -9,6 +9,7 @@ extends Node3D
 func _ready():
 	$Area3D/CollisionShape3D.shape.radius = radius
 	$Area3D/MeshInstance3D.mesh.radius = radius
+	$Area3D/MeshInstance3D.mesh.height = radius
 	start()
 
 func start():

@@ -81,10 +81,16 @@ sanity_comp = NodePath("../SanityComponent")
 [node name="Abilities" type="Node3D" parent="."]
 
 [node name="Q" parent="Abilities" instance=ExtResource("11_a5veo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
 
 [node name="W" parent="Abilities" instance=ExtResource("10_dmd1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+radius = 3.0
 
 [node name="E" parent="Abilities" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("11_a5veo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
 mesh_instance = NodePath("../Q/MeshInstance3D")
 
 [node name="UltTimer" type="Timer" parent="."]

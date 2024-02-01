@@ -1,8 +1,12 @@
 extends HeroBase
 
+var q_dano = 100
+var w_dano = 80
+var e_dano = 40
+
 var ultada = false
-var ult_buff:float = 0
-var dano_cont:float = 2
+var ult_buff:float = 0.3
+var dano_cont:float = 3
 
 func _ready():
 	q.atk = Attack.new()
@@ -11,27 +15,70 @@ func _ready():
 	q.range = 15
 	w.range = 15
 	e.range = 15
+	q.atk.caster = self
+	w.atk.caster = self
+	e.atk.caster = self
 
 func _process(delta):
-	q.atk.physic_damage = 15 + (15 * ult_buff)
+	q.atk.physic_damage = q_dano + (q_dano * ult_buff)
 	q.atk.magic_continuous_damage = dano_cont
+	q.atk.continuous_damage_time = 5
 	q.target_direction = q_p.global_rotation
 	
-	w.atk.physic_damage = 10 + (10 * ult_buff)
+	w.atk.physic_damage = w_dano + (w_dano * ult_buff)
 	w.atk.magic_continuous_damage = dano_cont
-	w.target_position = w_p.global_position
+	w.atk.continuous_damage_time = 5
+	w.target_position = w_p.mark_pos
 	
-	e.atk.physic_damage = 8 + (8 * ult_buff)
+	e.atk.physic_damage = e_dano + (e_dano * ult_buff)
 	e.atk.magic_continuous_damage = dano_cont
-	e.target_direction = q_p.global_rotation
+	e.target_direction = e_p.global_rotation
+	e.atk.continuous_damage_time = 5
+	print(e_p.global_rotation)
 
 func q_preview():
+	q_p.mesh_instance.position.z = -q.range / 2
+	q_p.mesh_instance.scale.z = q.range
 	q_p.visible = true
 
 func q_cast():
 	var t = load("res://objs/targets/cast/projectile.tscn").instantiate()
 	t.atk = q.atk
 	t.distance = q.range
+	t.radius = 0.25
 	t.collide = true
 	t.global_rotation = q.target_direction
 	ability_box.add_child(t)
+	t.global_position = global_position
+	q_p.visible = false
+
+func w_preview():
+	w_p.visible = true
+
+func w_cast():
+	var t = load("res://objs/targets/cast/circular_area.tscn").instantiate()
+	t.atk = w.atk
+	t.delay = 0.1
+	t.radius = 3
+	ability_box.add_child(t)
+	t.global_position = w.target_position
+	w_p.visible = false
+
+func e_preview():
+	e_p.mesh_instance.position.z = -e.range / 2
+	e_p.mesh_instance.scale.z = e.range
+	e_p.visible = true
+
+func e_cast():
+	var offset = -0.1
+	for i in 3:
+		var t = load("res://objs/targets/cast/projectile.tscn").instantiate()
+		t.atk = q.atk
+		t.distance = q.range
+		t.radius = 0.25
+		t.collide = true
+		t.global_rotation = q.target_direction - Vector3(0,offset,0)
+		ability_box.add_child(t)
+		t.global_position = global_position
+		offset += 0.1
+	e_p.visible = false

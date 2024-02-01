@@ -4,3 +4,4 @@
 
 [node name="HealthComponent" type="Node3D"]
 script = ExtResource("1_3liw7")
+MAX_HEALTH = 800.0

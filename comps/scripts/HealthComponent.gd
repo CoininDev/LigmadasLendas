@@ -26,6 +26,20 @@ func damage(atk: Attack):
 		died.emit()
 		get_parent().queue_free()
 
+func damage_continuous(atk: Attack):
+	atk.physic_continuous_damage -= physical_resistance
+	atk.magic_continuous_damage -= magical_resistance
+	
+	health -= atk.physic_continuous_damage
+	health -= atk.magic_continuous_damage
+	damaged.emit()
+	
+	if health <= 0:
+		if atk.caster.has_method("cancel"):
+			died.connect(atk.caster.cancel)
+		died.emit()
+		get_parent().queue_free()
+
 func heal(healing:float):
 	if health < MAX_HEALTH:
 		health += healing

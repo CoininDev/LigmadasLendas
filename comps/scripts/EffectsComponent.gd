@@ -7,10 +7,15 @@ class_name EffectsComponent
 @export var health_comp:HealthComponent
 @export var sanity_comp:SanityComponent
 
+var continuous_damage_atk:Attack
+
 @onready var stun_timer = $StunTimer
 @onready var root_timer = $RootTimer
 @onready var silence_timer = $SilenceTimer
 @onready var fear_timer = $FearTimer
+@onready var continuous_damage_timer = $ContinuousDamageTimer
+@onready var continuous_damage_pulse = $ContinuousDamagePulse
+
 
 func apply(atk:Attack):
 	if atk.stun_time > 0:
@@ -32,6 +37,11 @@ func apply(atk:Attack):
 		fear_timer.start(atk.fear_time)
 		nav_comp.select_destiny(atk.caster.position, nav_comp.desired_distance)
 		#print("cu")
+	
+	if atk.continuous_damage_time > 0 :
+		continuous_damage_timer.start(atk.continuous_damage_time)
+		continuous_damage_pulse.start()
+		continuous_damage_atk = atk
 
 
 func _on_stun_timer_timeout():
@@ -46,3 +56,9 @@ func _on_silence_timer_timeout():
 
 func _on_fear_timer_timeout():
 	nav_comp.ditch_destiny()
+
+func _on_continuous_damage_timer_timeout():
+	continuous_damage_pulse.stop()
+
+func _on_continuous_damage_pulse_timeout():
+	health_comp.damage_continuous(continuous_damage_atk)
