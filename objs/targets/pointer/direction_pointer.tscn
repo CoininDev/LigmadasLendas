@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://bb82m0a0q1pso"]
 
-[ext_resource type="Script" path="res://objs/targets/pointer/DirectionPointer.gd" id="1_cb01i"]
-[ext_resource type="Texture2D" uid="uid://boia5wfdh8g3d" path="res://graphics/iconmonstr-arrow-up-thin.svg" id="2_lynvm"]
+[ext_resource type="Script" path="res://objs/targets/pointer/DirectionPointer.gd" id="1_637wa"]
+[ext_resource type="Texture2D" uid="uid://boia5wfdh8g3d" path="res://graphics/iconmonstr-arrow-up-thin.svg" id="2_40ho5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3isd"]
 transparency = 1
-albedo_texture = ExtResource("2_lynvm")
+albedo_texture = ExtResource("2_40ho5")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gw8oa"]
 material = SubResource("StandardMaterial3D_o3isd")
@@ -13,7 +13,7 @@ size = Vector2(1, 1)
 
 [node name="DirectionPointer" type="Node3D" node_paths=PackedStringArray("mesh_instance")]
 visible = false
-script = ExtResource("1_cb01i")
+script = ExtResource("1_637wa")
 mesh_instance = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
