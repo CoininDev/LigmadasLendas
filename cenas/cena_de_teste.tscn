@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dvmj1414akb08"]
 
 [ext_resource type="PackedScene" uid="uid://c1xp1m6kdpsgk" path="res://objs/camera_man.tscn" id="1_kqkdf"]
-[ext_resource type="PackedScene" uid="uid://bj8w60mbxu343" path="res://heroes/hero_1.tscn" id="2_5g5id"]
+[ext_resource type="PackedScene" uid="uid://cgc65hb2jo1u7" path="res://heroes/scenes/dra_lixo.tscn" id="3_7rx6m"]
 [ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://heroes/saco_de_pancada.tscn" id="3_73l0t"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h4w6h"]
@@ -32,13 +32,16 @@ sky_material = SubResource("ProceduralSkyMaterial_h1w24")
 [sub_resource type="Environment" id="Environment_h6fdy"]
 background_mode = 2
 sky = SubResource("Sky_usmbq")
-ssao_enabled = true
+ssr_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
 
 [node name="Cena de teste" type="Node3D"]
 
 [node name="CameraMan" parent="." node_paths=PackedStringArray("point") instance=ExtResource("1_kqkdf")]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 15, 28.3142)
-point = NodePath("../Hero1")
+point = NodePath("../DraLixo")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -69,9 +72,6 @@ environment = SubResource("Environment_h6fdy")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.36291, 0.931824, 0, -0.931824, 0.36291, 0, 8, 0)
 
-[node name="Hero1" parent="." instance=ExtResource("2_5g5id")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.292, 1, 22.125)
-
 [node name="SacoDePancada" parent="." instance=ExtResource("3_73l0t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 12.548)
 
@@ -87,6 +87,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45056, 1, 12.4529)
 [node name="SacoDePancada3" parent="." instance=ExtResource("3_73l0t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3988, 1, 12.4529)
 
+[node name="DraLixo" parent="." node_paths=PackedStringArray("ability_box") instance=ExtResource("3_7rx6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0614, 0.756984, 17.3639)
+ability_box = NodePath("../AbilityBox")
+
+[node name="AbilityBox" type="Node3D" parent="."]
+
 [editable path="CameraMan"]
-[editable path="Hero1"]
 [editable path="SacoDePancada"]

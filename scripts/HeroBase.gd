@@ -1,6 +1,7 @@
 extends Node3D
 class_name HeroBase
 @export var dmgr: DamageMgrComponent
+@export var ability_box: Node3D
 @export var q_p: Pointer
 @export var w_p: Pointer
 @export var e_p: Pointer

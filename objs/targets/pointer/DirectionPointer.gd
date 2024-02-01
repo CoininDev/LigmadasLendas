@@ -1,5 +1,4 @@
 extends Pointer
-class_name DirectionPointer
 
 @export var mesh_instance:MeshInstance3D
 
