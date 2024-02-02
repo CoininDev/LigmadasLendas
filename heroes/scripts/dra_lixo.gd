@@ -82,7 +82,7 @@ func e_cast():
 		t.distance = e.range
 		t.speed = 15
 		t.radius = 0.25
-		t.collide = false
+		t.collide = true
 		t.global_rotation = e.target_direction - Vector3(0,offset,0)
 		ability_box.add_child(t)
 		t.global_position = global_position
