@@ -13,8 +13,10 @@ func _ready():
 	health = MAX_HEALTH
 
 func damage(atk: Attack):
-	atk.physic_damage -= physical_resistance
-	atk.magic_damage -= magical_resistance
+	print(atk.physic_damage)
+	atk.physic_damage -= atk.physic_damage * physical_resistance
+	atk.magic_damage -= atk.physic_damage * magical_resistance
+	print(atk.physic_damage)
 	
 	health -= atk.physic_damage
 	health -= atk.magic_damage

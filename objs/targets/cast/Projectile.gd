@@ -6,6 +6,7 @@ extends Node3D
 @export var distance:float = 2
 @export var speed:float = 10
 @export var collide:bool = false
+@export var gfx:Material
 
 var obsolete:Array = []
 var running = false
@@ -13,6 +14,8 @@ var running = false
 @onready var bullet = $bullet
 
 func _ready():
+	if gfx:
+		$bullet/MeshInstance3D.mesh.material = gfx
 	$bullet/CollisionShape3D.shape.radius = radius
 	$bullet/MeshInstance3D.mesh.radius = radius
 	$bullet/MeshInstance3D.mesh.height = radius*2

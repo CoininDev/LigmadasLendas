@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://comps/scripts/DamageMgrComponent.gd" id="1_egrcn"]
 
-[node name="HitboxComponent" type="Node3D"]
+[node name="DmgrComponent" type="Node3D"]
 script = ExtResource("1_egrcn")

@@ -7,6 +7,8 @@ class_name HeroBase
 @export var e_p: Pointer
 @export var r_p: Pointer
 
+var buff:float = 1
+
 var q = Ability.new()
 var w = Ability.new()
 var e = Ability.new()

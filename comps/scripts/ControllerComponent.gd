@@ -45,6 +45,7 @@ func walk():
 		var to = from + camera.project_ray_normal(mousepos) * raylen
 		var space = get_parent().get_world_3d().direct_space_state
 		var rayquery = PhysicsRayQueryParameters3D.new()
+		rayquery.collision_mask = 1
 		rayquery.from = from
 		rayquery.to = to
 		var result = space.intersect_ray(rayquery)
