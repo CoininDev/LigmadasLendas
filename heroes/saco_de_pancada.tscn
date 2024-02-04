@@ -33,9 +33,10 @@ shape = SubResource("CylinderShape3D_vra3a")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_vhjqo")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_w8m13")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("2_w8m13")]
 physical_resistance = 0.01
 magical_resistance = 0.01
+hero = NodePath("..")
 
 [node name="DamageMgrComponent" parent="." node_paths=PackedStringArray("health_component", "effects_component") instance=ExtResource("3_mautj")]
 health_component = NodePath("../HealthComponent")
@@ -73,6 +74,7 @@ nav_comp = NodePath("../NavigationComponent")
 nav = NodePath("../NavigationComponent")
 battack = NodePath("../BAttackComponent")
 walk_action = "tab"
+attack_action = "a"
 hero = NodePath("..")
 
 [node name="AbilityPointers" type="Node3D" parent="."]

@@ -6,10 +6,12 @@ extends Node3D
 @export var attack_action = "mleft"
 @export var hero: HeroBase
 
+var attacking:bool = false
+
 func _input(event):
 	abilities()
-	walk()
 	attack()
+	walk()
 
 func abilities():
 	if Input.is_action_just_pressed("q"):
@@ -42,7 +44,7 @@ func walk():
 
 func attack():
 	if Input.is_action_just_pressed(attack_action):
-		var result = GeneralFuncs.mouse_raycast()
+		var result = GeneralFuncs.mouse_raycast_all()
 		if result:
-			if get_parent() != result.collider && result.collider.is_in_group("hitbox_owner"):
+			if get_parent() != result.collider && result.collider:
 				battack.select_target(result.collider)

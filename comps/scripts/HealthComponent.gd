@@ -7,6 +7,7 @@ signal damaged
 @export var MAX_HEALTH:float = 100
 @export var physical_resistance:float = 0
 @export var magical_resistance:float = 0
+@export var hero:HeroBase
 var health:float
 
 func _ready():
@@ -40,7 +41,7 @@ func damage_continuous(atk: Attack):
 		if atk.caster.has_method("cancel"):
 			died.connect(atk.caster.cancel)
 		died.emit()
-		get_parent().queue_free()
+		hero.queue_free()
 
 func heal(healing:float):
 	if health < MAX_HEALTH:

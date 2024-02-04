@@ -12,6 +12,7 @@ material = SubResource("StandardMaterial3D_o3isd")
 size = Vector2(1, 1)
 
 [node name="DirectionPointer" type="Node3D" node_paths=PackedStringArray("mesh_instance")]
+visible = false
 script = ExtResource("1_hbw3s")
 mesh_instance = NodePath("MeshInstance3D")
 

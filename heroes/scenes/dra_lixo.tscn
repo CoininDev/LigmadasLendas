@@ -31,14 +31,10 @@ material = ExtResource("11_xlmjt")
 radius = 0.2
 height = 0.4
 
-[node name="DraLixo" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "q_p", "w_p", "e_p")]
+[node name="DraLixo" type="CharacterBody3D"]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_02i8v")
-dmgr = NodePath("Comps/DmgrComponent")
-q_p = NodePath("Abilities/Q")
-w_p = NodePath("Abilities/W")
-e_p = NodePath("Abilities/E")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_gn32f")
@@ -48,9 +44,10 @@ mesh = SubResource("CapsuleMesh_y0sgh")
 
 [node name="Comps" type="Node3D" parent="."]
 
-[node name="HealthComponent" parent="Comps" instance=ExtResource("2_k0dsn")]
+[node name="HealthComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("2_k0dsn")]
 physical_resistance = 100.0
 magical_resistance = 100.0
+hero = NodePath("../..")
 
 [node name="SanityComponent" parent="Comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("3_b8par")]
 health_comp = NodePath("../HealthComponent")
@@ -92,7 +89,6 @@ nav_comp = NodePath("../NavigationComponent")
 
 [node name="Q" parent="Abilities" instance=ExtResource("11_a5veo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-visible = false
 
 [node name="W" parent="Abilities" instance=ExtResource("10_dmd1t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -100,7 +96,16 @@ radius = 3.0
 
 [node name="E" parent="Abilities" instance=ExtResource("11_a5veo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-visible = false
+
+[node name="AbilityCooldown" type="Node3D" parent="."]
+
+[node name="QTimer" type="Timer" parent="AbilityCooldown"]
+
+[node name="WTimer" type="Timer" parent="AbilityCooldown"]
+
+[node name="ETimer" type="Timer" parent="AbilityCooldown"]
+
+[node name="RTimer" type="Timer" parent="AbilityCooldown"]
 
 [node name="UltTimer" type="Timer" parent="."]
 wait_time = 15.0

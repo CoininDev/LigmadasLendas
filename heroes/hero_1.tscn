@@ -16,13 +16,17 @@ material = ExtResource("1_25tss")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ey8t6"]
 
-[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "q_p", "w_p", "e_p", "r_p")]
+[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "q_p", "w_p", "e_p", "r_p", "q_cooldown", "w_cooldown", "e_cooldown", "r_cooldown")]
 script = ExtResource("1_ofmxg")
 dmgr = NodePath("comps/DamageMgrComponent")
-q_p = NodePath("AbilityCasters/Q")
-w_p = NodePath("AbilityCasters/W")
-e_p = NodePath("AbilityCasters/E")
-r_p = NodePath("AbilityCasters/R")
+q_p = NodePath("AbilityPointers/Q")
+w_p = NodePath("AbilityPointers/W")
+e_p = NodePath("AbilityPointers/E")
+r_p = NodePath("AbilityPointers/R")
+q_cooldown = NodePath("AbilityCooldown/QTimer")
+w_cooldown = NodePath("AbilityCooldown/WTimer")
+e_cooldown = NodePath("AbilityCooldown/ETimer")
+r_cooldown = NodePath("AbilityCooldown/RTimer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_wvo1n")
@@ -35,7 +39,8 @@ shape = SubResource("CylinderShape3D_ey8t6")
 [node name="DamageMgrComponent" parent="comps" node_paths=PackedStringArray("health_component") instance=ExtResource("2_qs483")]
 health_component = NodePath("../HealthComponent")
 
-[node name="HealthComponent" parent="comps" instance=ExtResource("1_jp1t4")]
+[node name="HealthComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("1_jp1t4")]
+hero = NodePath("../..")
 
 [node name="BAttackComponent" parent="comps" node_paths=PackedStringArray("nav_comp") instance=ExtResource("3_uakab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -64,16 +69,26 @@ sanity_comp = NodePath("../SanityComponent")
 [node name="SanityComponent" parent="comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("10_8gc1h")]
 health_comp = NodePath("../HealthComponent")
 
-[node name="AbilityCasters" type="Node3D" parent="."]
+[node name="AbilityPointers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Q" parent="AbilityCasters" instance=ExtResource("10_oxwnv")]
+[node name="Q" parent="AbilityPointers" instance=ExtResource("10_oxwnv")]
 
-[node name="W" parent="AbilityCasters" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("10_oxwnv")]
+[node name="W" parent="AbilityPointers" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("10_oxwnv")]
 mesh_instance = NodePath("../Q/MeshInstance3D")
 
-[node name="E" parent="AbilityCasters" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("10_oxwnv")]
+[node name="E" parent="AbilityPointers" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("10_oxwnv")]
 mesh_instance = NodePath("../Q/MeshInstance3D")
 
-[node name="R" parent="AbilityCasters" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("10_oxwnv")]
+[node name="R" parent="AbilityPointers" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("10_oxwnv")]
 mesh_instance = NodePath("../Q/MeshInstance3D")
+
+[node name="AbilityCooldown" type="Node3D" parent="."]
+
+[node name="QTimer" type="Timer" parent="AbilityCooldown"]
+
+[node name="WTimer" type="Timer" parent="AbilityCooldown"]
+
+[node name="ETimer" type="Timer" parent="AbilityCooldown"]
+
+[node name="RTimer" type="Timer" parent="AbilityCooldown"]
