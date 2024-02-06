@@ -30,7 +30,7 @@ func start():
 
 func run(delta):
 	$bullet.translate(Vector3(0,0,-1) * speed * delta)
-	position.y = 0
+	position.y = 0.5 
 
 
 

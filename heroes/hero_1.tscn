@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bj8w60mbxu343"]
+[gd_scene load_steps=14 format=3 uid="uid://bj8w60mbxu343"]
 
 [ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/arerer.tres" id="1_25tss"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="1_jp1t4"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://5fpdn8fr4h7o" path="res://comps/scenes/controller_component.tscn" id="8_npv3n"]
 [ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="9_q2u5u"]
 [ext_resource type="PackedScene" uid="uid://bfx1wxpmwujue" path="res://comps/scenes/sanity_component.tscn" id="10_8gc1h"]
+[ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="10_ks4ue"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/targets/pointer/direction_pointer.tscn" id="10_oxwnv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wvo1n"]
@@ -16,25 +17,25 @@ material = ExtResource("1_25tss")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ey8t6"]
 
-[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "q_p", "w_p", "e_p", "r_p", "q_cooldown", "w_cooldown", "e_cooldown", "r_cooldown")]
+[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "q_p", "w_p", "e_p", "r_p")]
 script = ExtResource("1_ofmxg")
 dmgr = NodePath("comps/DamageMgrComponent")
+xp_comp = NodePath("comps/XPComponent")
 q_p = NodePath("AbilityPointers/Q")
 w_p = NodePath("AbilityPointers/W")
 e_p = NodePath("AbilityPointers/E")
 r_p = NodePath("AbilityPointers/R")
-q_cooldown = NodePath("AbilityCooldown/QTimer")
-w_cooldown = NodePath("AbilityCooldown/WTimer")
-e_cooldown = NodePath("AbilityCooldown/ETimer")
-r_cooldown = NodePath("AbilityCooldown/RTimer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_wvo1n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_ey8t6")
 
 [node name="comps" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="DamageMgrComponent" parent="comps" node_paths=PackedStringArray("health_component") instance=ExtResource("2_qs483")]
 health_component = NodePath("../HealthComponent")
@@ -69,8 +70,10 @@ sanity_comp = NodePath("../SanityComponent")
 [node name="SanityComponent" parent="comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("10_8gc1h")]
 health_comp = NodePath("../HealthComponent")
 
+[node name="XPComponent" parent="comps" instance=ExtResource("10_ks4ue")]
+
 [node name="AbilityPointers" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Q" parent="AbilityPointers" instance=ExtResource("10_oxwnv")]
 
@@ -82,13 +85,3 @@ mesh_instance = NodePath("../Q/MeshInstance3D")
 
 [node name="R" parent="AbilityPointers" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("10_oxwnv")]
 mesh_instance = NodePath("../Q/MeshInstance3D")
-
-[node name="AbilityCooldown" type="Node3D" parent="."]
-
-[node name="QTimer" type="Timer" parent="AbilityCooldown"]
-
-[node name="WTimer" type="Timer" parent="AbilityCooldown"]
-
-[node name="ETimer" type="Timer" parent="AbilityCooldown"]
-
-[node name="RTimer" type="Timer" parent="AbilityCooldown"]

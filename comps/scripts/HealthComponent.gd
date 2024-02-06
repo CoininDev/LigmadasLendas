@@ -14,20 +14,14 @@ func _ready():
 	health = MAX_HEALTH
 
 func damage(atk: Attack):
-	print(atk.physic_damage)
 	atk.physic_damage -= atk.physic_damage * physical_resistance
 	atk.magic_damage -= atk.physic_damage * magical_resistance
-	print(atk.physic_damage)
 	
 	health -= atk.physic_damage
 	health -= atk.magic_damage
 	damaged.emit()
 	
-	if health <= 0:
-		if atk.caster.has_method("cancel"):
-			died.connect(atk.caster.cancel)
-		died.emit()
-		get_parent().queue_free()
+	handle_death(atk)
 
 func damage_continuous(atk: Attack):
 	atk.physic_continuous_damage -= physical_resistance
@@ -37,12 +31,16 @@ func damage_continuous(atk: Attack):
 	health -= atk.magic_continuous_damage
 	damaged.emit()
 	
-	if health <= 0:
-		if atk.caster.has_method("cancel"):
-			died.connect(atk.caster.cancel)
-		died.emit()
-		hero.queue_free()
+	handle_death(atk)
 
 func heal(healing:float):
 	if health < MAX_HEALTH:
 		health += healing
+
+func handle_death(atk):
+	if health <= 0:
+		if atk.caster.has_method("cancel"):
+			atk.caster.cancel()
+		if atk.caster.has_method("add_xp"):
+			atk.caster.add_xp(100)
+		hero.queue_free()

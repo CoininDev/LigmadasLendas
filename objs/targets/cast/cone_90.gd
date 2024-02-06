@@ -33,7 +33,7 @@ func run(delta):
 	$bullet.scale.x += 0.15 * (speed/10)
 	$bullet.scale.z += 0.1 * (speed/10)
 	$bullet.translate(Vector3(0,0,-1) * (speed/10) * delta)
-	position.y = 0
+	position.y = 0.5
 
 
 

@@ -11,9 +11,10 @@ albedo_texture = ExtResource("2_lhoxp")
 material = SubResource("StandardMaterial3D_u6wj8")
 size = Vector2(1, 1)
 
-[node name="TargetPointer" type="Node3D"]
+[node name="TargetPointer" type="Node3D" node_paths=PackedStringArray("mesh_instance")]
 visible = false
 script = ExtResource("1_03phh")
+mesh_instance = NodePath("Marker3D/MeshInstance3D")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 

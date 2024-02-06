@@ -21,7 +21,7 @@ func _ready():
 
 func _process(delta):
 	if lock_camera:
-		global_position = lerp(global_position, point.global_position + point_offset, smooth_speed * delta)
+			global_position = lerp(global_position, point.global_position + point_offset, smooth_speed * delta)
 	else:
 		move()
 

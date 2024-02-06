@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://denx8hjuuvnab"]
+[gd_scene load_steps=16 format=3 uid="uid://denx8hjuuvnab"]
 
 [ext_resource type="PackedScene" uid="uid://5fpdn8fr4h7o" path="res://comps/scenes/controller_component.tscn" id="1_6j33j"]
 [ext_resource type="Script" path="res://heroes/scripts/chuu.gd" id="1_122ex"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="8_petpy"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/targets/pointer/direction_pointer.tscn" id="9_1wcgu"]
 [ext_resource type="PackedScene" uid="uid://bt3p7cj7om1ne" path="res://objs/targets/pointer/target_pointer.tscn" id="11_3pscn"]
+[ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="11_p83qg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dufe5"]
 radius = 0.35
@@ -22,24 +23,28 @@ material = ExtResource("2_h3sbd")
 radius = 0.35
 height = 1.2
 
-[node name="Chuu" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "q_p", "w_p", "e_p", "q_cooldown", "w_cooldown", "e_cooldown", "r_cooldown")]
+[node name="Chuu" type="CharacterBody3D" node_paths=PackedStringArray("nav", "dmgr", "xp_comp", "batk_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_122ex")
+nav = NodePath("Comps/NavigationComponent")
 dmgr = NodePath("Comps/DmgrComponent")
+xp_comp = NodePath("Comps/XPComponent")
+batk_comp = NodePath("Comps/BAttackComponent")
 q_p = NodePath("Abilities/Q")
 w_p = NodePath("Abilities/W")
 e_p = NodePath("Abilities/E")
-q_cooldown = NodePath("AbilityCooldown/QTimer")
-w_cooldown = NodePath("AbilityCooldown/WTimer")
-e_cooldown = NodePath("AbilityCooldown/ETimer")
-r_cooldown = NodePath("AbilityCooldown/RTimer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 shape = SubResource("CapsuleShape3D_dufe5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 mesh = SubResource("CapsuleMesh_wo8sv")
 
 [node name="Comps" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
 [node name="ControllerComponent" parent="Comps" node_paths=PackedStringArray("nav", "battack", "hero") instance=ExtResource("1_6j33j")]
 nav = NodePath("../NavigationComponent")
@@ -47,6 +52,7 @@ battack = NodePath("../BAttackComponent")
 hero = NodePath("../..")
 
 [node name="NavigationComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("2_rbyj7")]
+speed = 300
 hero = NodePath("../..")
 
 [node name="BAttackComponent" parent="Comps" node_paths=PackedStringArray("nav_comp") instance=ExtResource("3_aalfp")]
@@ -55,8 +61,9 @@ atk_cooldown = 1.0
 range = 3.0
 nav_comp = NodePath("../NavigationComponent")
 
-[node name="DmgrComponent" parent="Comps" node_paths=PackedStringArray("health_component") instance=ExtResource("4_6epna")]
+[node name="DmgrComponent" parent="Comps" node_paths=PackedStringArray("health_component", "effects_component") instance=ExtResource("4_6epna")]
 health_component = NodePath("../HealthComponent")
+effects_component = NodePath("../EffectsComponent")
 
 [node name="HealthComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("5_qcbcy")]
 hero = NodePath("../..")
@@ -76,7 +83,10 @@ health_comp = NodePath("../HealthComponent")
 has_sanity = true
 sanity_comp = NodePath("../SanityComponent")
 
+[node name="XPComponent" parent="Comps" instance=ExtResource("11_p83qg")]
+
 [node name="Abilities" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="Q" parent="Abilities" instance=ExtResource("9_1wcgu")]
 
@@ -84,13 +94,3 @@ sanity_comp = NodePath("../SanityComponent")
 
 [node name="E" parent="Abilities" instance=ExtResource("9_1wcgu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.589959, 0)
-
-[node name="AbilityCooldown" type="Node3D" parent="."]
-
-[node name="QTimer" type="Timer" parent="AbilityCooldown"]
-
-[node name="WTimer" type="Timer" parent="AbilityCooldown"]
-
-[node name="ETimer" type="Timer" parent="AbilityCooldown"]
-
-[node name="RTimer" type="Timer" parent="AbilityCooldown"]

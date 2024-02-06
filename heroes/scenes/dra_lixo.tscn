@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cgc65hb2jo1u7"]
+[gd_scene load_steps=19 format=3 uid="uid://cgc65hb2jo1u7"]
 
 [ext_resource type="Script" path="res://heroes/scripts/dra_lixo.gd" id="1_02i8v"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="2_k0dsn"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://df4c8oi2h37jp" path="res://objs/targets/pointer/spot_pointer.tscn" id="10_dmd1t"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/targets/pointer/direction_pointer.tscn" id="11_a5veo"]
 [ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/arerer.tres" id="11_xlmjt"]
+[ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="12_g21sh"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gn32f"]
 height = 1.7
@@ -31,39 +32,47 @@ material = ExtResource("11_xlmjt")
 radius = 0.2
 height = 0.4
 
-[node name="DraLixo" type="CharacterBody3D"]
+[node name="DraLixo" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_02i8v")
+dmgr = NodePath("Comps/DmgrComponent")
+xp_comp = NodePath("Comps/XPComponent")
+batk_comp = NodePath("Comps/RangedBAttackComponent")
+q_p = NodePath("Abilities/Q")
+w_p = NodePath("Abilities/W")
+e_p = NodePath("Abilities/E")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_gn32f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_y0sgh")
 
 [node name="Comps" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ControllerComponent" parent="Comps" node_paths=PackedStringArray("nav", "battack", "hero") instance=ExtResource("7_babr1")]
+nav = NodePath("../NavigationComponent")
+battack = NodePath("../RangedBAttackComponent")
+hero = NodePath("../..")
 
 [node name="HealthComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("2_k0dsn")]
-physical_resistance = 100.0
-magical_resistance = 100.0
 hero = NodePath("../..")
 
 [node name="SanityComponent" parent="Comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("3_b8par")]
 health_comp = NodePath("../HealthComponent")
 
-[node name="EffectsComponent" parent="Comps" node_paths=PackedStringArray("nav_comp", "health_comp", "sanity_comp") instance=ExtResource("4_3sbss")]
+[node name="EffectsComponent" parent="Comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp") instance=ExtResource("4_3sbss")]
+battack_comp = NodePath("../RangedBAttackComponent")
 nav_comp = NodePath("../NavigationComponent")
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
 
 [node name="NavigationComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_flg0h")]
 speed = 300
-hero = NodePath("../..")
-
-[node name="ControllerComponent" parent="Comps" node_paths=PackedStringArray("nav", "battack", "hero") instance=ExtResource("7_babr1")]
-nav = NodePath("../NavigationComponent")
-battack = NodePath("../RangedBAttackComponent")
 hero = NodePath("../..")
 
 [node name="DmgrComponent" parent="Comps" node_paths=PackedStringArray("health_component", "effects_component") instance=ExtResource("8_fqqi0")]
@@ -85,19 +94,20 @@ atk_cooldown = 0.5
 range = 10.0
 nav_comp = NodePath("../NavigationComponent")
 
+[node name="XPComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("12_g21sh")]
+hero = NodePath("../..")
+
 [node name="Abilities" type="Node3D" parent="."]
 
 [node name="Q" parent="Abilities" instance=ExtResource("11_a5veo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="W" parent="Abilities" instance=ExtResource("10_dmd1t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 radius = 3.0
 
 [node name="E" parent="Abilities" instance=ExtResource("11_a5veo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="AbilityCooldown" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="QTimer" type="Timer" parent="AbilityCooldown"]
 
@@ -111,5 +121,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 wait_time = 15.0
 
 [connection signal="timeout" from="UltTimer" to="." method="_on_ult_timer_timeout"]
-
-[editable path="Abilities/E"]

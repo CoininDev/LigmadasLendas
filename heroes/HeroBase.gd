@@ -1,19 +1,21 @@
 extends Node3D
 class_name HeroBase
 @export var dmgr: DamageMgrComponent
+@export var xp_comp:XPComponent
+@export var batk_comp:BAttackComponent
 @export var ability_box: Node3D
 @export var q_p:Pointer
 @export var w_p:Pointer
 @export var e_p:Pointer
 @export var r_p:Pointer
-@export var q_cooldown:Timer
-@export var w_cooldown:Timer
-@export var e_cooldown:Timer
-@export var r_cooldown:Timer
-var q_block = false
-var w_block = false
-var e_block = false
-var r_block = false
+var q_cooldown = Timer.new()
+var w_cooldown = Timer.new()
+var e_cooldown = Timer.new()
+var r_cooldown = Timer.new()
+var q_cooldown_block = false
+var w_cooldown_block = false
+var e_cooldown_block = false
+var r_cooldown_block = false
 
 
 var buff:float = 1
@@ -29,8 +31,11 @@ var r = Ability.new()
 func damage(atk: Attack):
 	dmgr.damage(atk)
 
-func _ready():
-	pass
+func _ready_base():
+	q_cooldown.timeout.connect(_on_q_cooldown_timeout)
+	w_cooldown.timeout.connect(_on_w_cooldown_timeout)
+	e_cooldown.timeout.connect(_on_e_cooldown_timeout)
+	r_cooldown.timeout.connect(_on_r_cooldown_timeout)
 
 func _process(delta):
 	pass
@@ -50,7 +55,8 @@ func r_preview():
 func a_preview():
 	pass
 
-
+func s_preview():
+	pass
 
 func q_cast():
 	pass
@@ -66,3 +72,25 @@ func r_cast():
 
 func a_cast():
 	pass
+
+func s_cast():
+	pass
+
+func _on_q_cooldown_timeout():
+	print("cu")
+	q_cooldown_block = false
+
+func _on_w_cooldown_timeout():
+	w_cooldown_block = false
+
+func _on_e_cooldown_timeout():
+	e_cooldown_block = false
+
+func _on_r_cooldown_timeout():
+	r_cooldown_block = false
+
+func add_xp(xp):
+	xp_comp.add_xp(xp)
+
+func cancel():
+	batk_comp.cancel() 
