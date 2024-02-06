@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://comps/scripts/XPComponent.gd" id="1_m1o2y"]
 
-[node name="XPComponent" type="Node3D"]
+[node name="XPComponent" type="Node"]
 script = ExtResource("1_m1o2y")

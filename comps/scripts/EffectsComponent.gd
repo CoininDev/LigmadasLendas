@@ -34,9 +34,10 @@ func apply(atk:Attack):
 		battack_comp.blocked = true
 
 	if atk.fear_time > 0:
+		var direction = position.direction_to(atk.caster.position)
+		var distance = 1500
 		fear_timer.start(atk.fear_time)
-		nav_comp.select_destiny(atk.caster.position, nav_comp.desired_distance)
-		#print("cu")
+		nav_comp.select_destiny(-direction * distance, nav_comp.desired_distance)
 	
 	if atk.continuous_damage_time > 0 :
 		continuous_damage_timer.start(atk.continuous_damage_time)

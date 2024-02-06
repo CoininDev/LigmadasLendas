@@ -30,7 +30,6 @@ func _process(delta):
 	else:
 		timer.stop()
 func _input(event):
-	show_range_handler()
 	for cancelling_action in cancelling_actions:
 		if Input.is_action_just_pressed(cancelling_action) or Input.is_action_just_released(cancelling_action):
 			cancel()
@@ -51,11 +50,7 @@ func timeout():
 		attack()
 	
 
-func show_range_handler():
-	if Input.is_action_just_pressed("show_range"):
-		range_show.visible = true
-	if Input.is_action_just_released("show_range"):
-		range_show.visible = false
+
 
 func cancel():
 	target = null

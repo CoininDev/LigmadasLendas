@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/circle.svg" id="2_4ck7i"]
 
 [node name="BAttackComponent" type="Node3D"]
+visible = false
 script = ExtResource("1_vrdmx")
 
 [node name="range_show" type="Sprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 0.4, 0, 0, 0)
-visible = false
 cast_shadow = 0
 axis = 1
 texture = ExtResource("2_4ck7i")

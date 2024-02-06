@@ -29,13 +29,12 @@ func _physics_process(delta):
 		timer.stop()
 
 func _input(event):
-	show_range_handler()
 	for cancelling_action in cancelling_actions:
 		if Input.is_action_just_pressed(cancelling_action) or Input.is_action_just_released(cancelling_action):
 			cancel()
 
-func walk():
-	nav_comp.select_destiny(target.position, range-0.2)
+#func walk():
+	#nav_comp.select_destiny(target.position, range-0.2)
 
  
 func attack():
@@ -51,17 +50,17 @@ func attack():
 	cancel_bullet.connect(bul.cancel)
 	get_tree().root.add_child(bul)
 	#add_child(bul)
+#
+#func timeout():
+	#timer.wait_time = atk_cooldown
+	#var distance = target.global_position.distance_to(global_position)
+	#if distance <= range:
+		#attack()
 
-func timeout():
-	timer.wait_time = atk_cooldown
-	var distance = target.global_position.distance_to(global_position)
-	if distance <= range:
-		attack()
-
-func select_target(x:Node3D):
-	#bullet.queue_free()
-	if !blocked:
-		target = x
+#func select_target(x:Node3D):
+	##bullet.queue_free()
+	#if !blocked:
+		#target = x
 
 func cancel():
 	cancel_bullet.emit()

@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 class_name DamageMgrComponent
 
 @export var health_component: HealthComponent

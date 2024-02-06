@@ -26,6 +26,7 @@ shape = SubResource("BoxShape3D_u1rgv")
 disabled = true
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["camera"]]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
 environment = SubResource("Environment_i6cj1")
 
 [node name="Cantos" type="Control" parent="Camera3D"]
@@ -143,7 +144,7 @@ grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="HUD" type="Control" parent="Camera3D" node_paths=PackedStringArray("camera")]
+[node name="testingHUD" type="Control" parent="Camera3D" node_paths=PackedStringArray("camera")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 113.0
@@ -153,7 +154,7 @@ offset_bottom = 60.0
 script = ExtResource("2_gm4td")
 camera = NodePath("..")
 
-[node name="Label" type="Label" parent="Camera3D/HUD"]
+[node name="Label" type="Label" parent="Camera3D/testingHUD"]
 layout_mode = 0
 offset_left = -106.0
 offset_top = -57.0
@@ -162,7 +163,7 @@ offset_bottom = 15.0
 theme_override_font_sizes/font_size = 30
 text = "Key"
 
-[node name="Label2" type="Label" parent="Camera3D/HUD"]
+[node name="Label2" type="Label" parent="Camera3D/testingHUD"]
 layout_mode = 0
 offset_left = -106.0
 offset_top = -25.0

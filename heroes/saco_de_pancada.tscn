@@ -39,13 +39,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_vhjqo")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("2_w8m13")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 physical_resistance = 0.01
 magical_resistance = 0.01
 hero = NodePath("..")
 
 [node name="DamageMgrComponent" parent="." node_paths=PackedStringArray("health_component", "effects_component") instance=ExtResource("3_mautj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 health_component = NodePath("../HealthComponent")
 effects_component = NodePath("../EffectsComponent")
 
@@ -56,7 +54,6 @@ has_sanity = true
 sanity_comp = NodePath("../SanityComponent")
 
 [node name="SanityComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("6_0472j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 health_comp = NodePath("../HealthComponent")
 
 [node name="NavigationComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("7_r5h44")]
@@ -65,7 +62,6 @@ desired_distance = 1.2
 hero = NodePath("..")
 
 [node name="EffectsComponent" parent="." node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp") instance=ExtResource("8_xgmrb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 battack_comp = NodePath("../BAttackComponent")
 nav_comp = NodePath("../NavigationComponent")
 health_comp = NodePath("../HealthComponent")
@@ -81,7 +77,6 @@ range = 5.0
 nav_comp = NodePath("../NavigationComponent")
 
 [node name="ControllerComponent" parent="." node_paths=PackedStringArray("nav", "battack", "hero") instance=ExtResource("10_njmc3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 nav = NodePath("../NavigationComponent")
 battack = NodePath("../BAttackComponent")
 walk_action = "tab"

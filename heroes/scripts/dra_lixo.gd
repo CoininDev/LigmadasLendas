@@ -90,6 +90,7 @@ func e_cast():
 		t.global_position = global_position
 		offset += 0.1
 	e_p.visible = false
+	
 
 func r_cast():
 	ultada = true

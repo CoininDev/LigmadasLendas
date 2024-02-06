@@ -1,9 +1,10 @@
-extends Node3D
+extends Node
 
 @export var nav: NavigationComponent
 @export var battack: BAttackComponent
 @export var walk_action = "mright"
 @export var attack_action = "mleft"
+@export var show_attack_range_action = "show_range"
 @export var ability1_action = "q"
 @export var ability2_action = "w"
 @export var ability3_action = "e"
@@ -53,6 +54,10 @@ func walk():
 			nav.select_destiny(result.position, nav.desired_distance)
 
 func attack():
+	if Input.is_action_just_pressed(show_attack_range_action):
+		battack.visible = true
+	if Input.is_action_just_released(show_attack_range_action):
+		battack.visible = false
 	if Input.is_action_just_pressed(attack_action):
 		var result = GeneralFuncs.mouse_raycast_all()
 		if result:

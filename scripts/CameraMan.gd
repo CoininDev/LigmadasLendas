@@ -4,7 +4,7 @@ const JUMP_VELOCITY = 4.5
 @onready var camera = $Camera3D
 
 
-@export var point:Node3D
+@export var point:HeroBase
 var point_offset = Vector3(0,15,5)
 var smooth_speed = 20
 var lock_camera = false

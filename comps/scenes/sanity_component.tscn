@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://comps/scripts/SanityComponent.gd" id="1_bp31j"]
 
-[node name="SanityComponent" type="Node3D"]
+[node name="SanityComponent" type="Node"]
 script = ExtResource("1_bp31j")
 MAX_SANITY = 50.0
 
