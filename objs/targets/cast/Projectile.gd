@@ -39,7 +39,7 @@ func _on_bullet_body_entered(body):
 		for group in apply_to:
 			if body.is_in_group(group):
 				if !obsolete.has(body):
-					body.damage(atk)
+					body.dmgr.damage(atk)
 					obsolete.append(body)
 					if collide:
 						queue_free()

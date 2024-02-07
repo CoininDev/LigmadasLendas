@@ -23,5 +23,5 @@ func attack():
 	for body in area.get_overlapping_bodies():
 		for x in apply_to:
 			if body.is_in_group(x) && !body == atk.caster:
-				body.damage(atk)
+				body.dmgr.damage(atk)
 	queue_free()

@@ -53,8 +53,8 @@ func q_cast():
 	t.radius = 0.25
 	t.speed = 30
 	t.collide = true
-	t.global_rotation = q.target_direction
 	ability_box.add_child(t)
+	t.global_rotation = q.target_direction
 	t.global_position = global_position
 	q_p.visible = false
 
@@ -85,8 +85,8 @@ func e_cast():
 		t.speed = 15
 		t.radius = 0.25
 		t.collide = true
-		t.global_rotation = e.target_direction - Vector3(0,offset,0)
 		ability_box.add_child(t)
+		t.global_rotation = e.target_direction - Vector3(0,offset,0)
 		t.global_position = global_position
 		offset += 0.1
 	e_p.visible = false

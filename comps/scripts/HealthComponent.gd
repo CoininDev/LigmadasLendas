@@ -39,8 +39,9 @@ func heal(healing:float):
 
 func handle_death(atk):
 	if health <= 0:
-		if atk.caster.has_method("cancel"):
-			atk.caster.cancel()
-		if atk.caster.has_method("add_xp"):
-			atk.caster.add_xp(100)
+		if atk.caster:
+			if atk.caster.has_method("cancel"):
+				atk.caster.cancel()
+			if atk.caster.has_method("add_xp"):
+				atk.caster.add_xp(100)
 		hero.queue_free()
