@@ -26,11 +26,6 @@ var w = Ability.new()
 var e = Ability.new()
 var r = Ability.new()
 
-
-
-func damage(atk: Attack):
-	dmgr.damage(atk)
-
 func _ready_base():
 	q_cooldown.timeout.connect(_on_q_cooldown_timeout)
 	w_cooldown.timeout.connect(_on_w_cooldown_timeout)
@@ -77,7 +72,6 @@ func s_cast():
 	pass
 
 func _on_q_cooldown_timeout():
-	print("cu")
 	q_cooldown_block = false
 
 func _on_w_cooldown_timeout():

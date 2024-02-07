@@ -43,6 +43,12 @@ volumetric_fog_density = 0.02
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 15, 28.3142)
 point = NodePath("../DraLixo")
 
+[node name="Label" parent="CameraMan/Camera3D/testingHUD" index="0"]
+offset_left = -104.0
+offset_top = -61.0
+offset_right = -19.0
+offset_bottom = -19.0
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 navigation_mesh = SubResource("NavigationMesh_h4w6h")
