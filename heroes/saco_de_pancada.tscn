@@ -67,7 +67,8 @@ nav_comp = NodePath("../NavigationComponent")
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
 
-[node name="XPComponent" parent="." instance=ExtResource("9_3sdxv")]
+[node name="XPComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("9_3sdxv")]
+hero = NodePath("..")
 
 [node name="BAttackComponent" parent="." node_paths=PackedStringArray("nav_comp") instance=ExtResource("9_lc4gq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -76,12 +77,14 @@ atk_cooldown = 0.5
 range = 5.0
 nav_comp = NodePath("../NavigationComponent")
 
-[node name="ControllerComponent" parent="." node_paths=PackedStringArray("nav", "battack", "hero") instance=ExtResource("10_njmc3")]
+[node name="ControllerComponent" parent="." node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero") instance=ExtResource("10_njmc3")]
 nav = NodePath("../NavigationComponent")
 battack = NodePath("../BAttackComponent")
+xp_comp = NodePath("../XPComponent")
+hero = NodePath("..")
+control = false
 walk_action = "tab"
 attack_action = "a"
-hero = NodePath("..")
 
 [node name="AbilityPointers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

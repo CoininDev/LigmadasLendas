@@ -27,10 +27,7 @@ var e = Ability.new()
 var r = Ability.new()
 
 func _ready_base():
-	q_cooldown.timeout.connect(_on_q_cooldown_timeout)
-	w_cooldown.timeout.connect(_on_w_cooldown_timeout)
-	e_cooldown.timeout.connect(_on_e_cooldown_timeout)
-	r_cooldown.timeout.connect(_on_r_cooldown_timeout)
+	xp_comp.add_xp(100)
 
 func _process(delta):
 	pass

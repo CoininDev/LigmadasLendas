@@ -54,9 +54,10 @@ mesh = SubResource("CapsuleMesh_y0sgh")
 [node name="Comps" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="ControllerComponent" parent="Comps" node_paths=PackedStringArray("nav", "battack", "hero") instance=ExtResource("7_babr1")]
+[node name="ControllerComponent" parent="Comps" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero") instance=ExtResource("7_babr1")]
 nav = NodePath("../NavigationComponent")
 battack = NodePath("../RangedBAttackComponent")
+xp_comp = NodePath("../XPComponent")
 hero = NodePath("../..")
 
 [node name="HealthComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("2_k0dsn")]
@@ -95,6 +96,18 @@ range = 10.0
 nav_comp = NodePath("../NavigationComponent")
 
 [node name="XPComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("12_g21sh")]
+ability1_upgradable_atributes = {
+"q_dano": [0.0, 100.0, 150.0, 250.0, 300.0, 350.0]
+}
+ability2_upgradable_atributes = {
+"w_dano": [0.0, 80.0, 100.0, 120.0, 140.0, 160.0]
+}
+ability3_upgradable_atributes = {
+"e_dano": [0.0, 60.0, 90.0, 120.0, 150.0, 180.0]
+}
+ultimate_upgradable_atributes = {
+"ult_buff_set": [0.0, 0.3, 0.4, 0.5]
+}
 hero = NodePath("../..")
 
 [node name="Abilities" type="Node3D" parent="."]

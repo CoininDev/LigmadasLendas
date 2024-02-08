@@ -3,12 +3,14 @@ extends HeroBase
 var q_dano = 100
 var w_dano = 80
 var e_dano = 60
-
+var ult_buff_set = 0.3
 var ultada = false
-var ult_buff:float = 0.3
+
+var ult_buff:float = 0
 var dano_cont:float = 10
 
 func _ready():
+	_ready_base()
 	q.atk = Attack.new()
 	w.atk = Attack.new()
 	e.atk = Attack.new()
@@ -21,7 +23,7 @@ func _ready():
 
 func _process(delta):
 	if ultada:
-		ult_buff = 0.3
+		ult_buff = ult_buff_set
 	else:
 		ult_buff = 0
 	
