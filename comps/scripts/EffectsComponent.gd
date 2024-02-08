@@ -17,6 +17,20 @@ var continuous_damage_atk:Attack
 @onready var continuous_damage_pulse = $ContinuousDamagePulse
 
 
+#maximo 5
+var marks = []
+var marktimers = []
+
+func _ready():
+	for i in range(5):
+		marks.append("")
+		marktimers.append(get_node("MarkTimer" + str(i+1)))
+
+func _process(delta):
+	for i in range(5):
+		if marktimers[i].time_left <= 0:
+			marks[i] = ""
+
 func apply(atk:Attack):
 	if atk.stun_time > 0:
 		stun_timer.start(atk.stun_time)
@@ -39,10 +53,18 @@ func apply(atk:Attack):
 		fear_timer.start(atk.fear_time)
 		nav_comp.select_destiny(-direction * distance, nav_comp.desired_distance)
 	
-	if atk.continuous_damage_time > 0 :
+	if atk.continuous_damage_time > 0:
 		continuous_damage_timer.start(atk.continuous_damage_time)
 		continuous_damage_pulse.start()
 		continuous_damage_atk = atk
+	
+	if atk.mark_time > 0:
+		for i in range(5):
+			if marks[i] == "":
+				marks[i] = atk.mark
+				marktimers[i].start(atk.mark_time)
+				break
+
 
 
 func _on_stun_timer_timeout():

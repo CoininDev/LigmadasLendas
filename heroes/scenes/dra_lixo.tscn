@@ -32,13 +32,14 @@ material = ExtResource("11_xlmjt")
 radius = 0.2
 height = 0.4
 
-[node name="DraLixo" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
+[node name="DraLixo" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
 collision_layer = 3
 collision_mask = 7
 script = ExtResource("1_02i8v")
 dmgr = NodePath("Comps/DmgrComponent")
 xp_comp = NodePath("Comps/XPComponent")
 batk_comp = NodePath("Comps/RangedBAttackComponent")
+fx_comp = NodePath("Comps/EffectsComponent")
 q_p = NodePath("Abilities/Q")
 w_p = NodePath("Abilities/W")
 e_p = NodePath("Abilities/E")
