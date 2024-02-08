@@ -1,8 +1,8 @@
 extends HeroBase
 
-var q_dano = 100
-var w_dano = 80
-var e_dano = 60
+var q_dano = 0
+var w_dano = 0
+var e_dano = 0
 var ult_buff_set = 0.3
 var ultada = false
 
