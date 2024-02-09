@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://dvmj1414akb08"]
 
 [ext_resource type="PackedScene" uid="uid://c1xp1m6kdpsgk" path="res://objs/camera_man.tscn" id="1_kqkdf"]
-[ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://heroes/saco_de_pancada.tscn" id="3_7hwwl"]
-[ext_resource type="PackedScene" uid="uid://denx8hjuuvnab" path="res://heroes/scenes/chuu.tscn" id="3_tqa2n"]
+[ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://objs/saco_de_pancada.tscn" id="3_7hwwl"]
+[ext_resource type="PackedScene" uid="uid://c3tywn6og5g45" path="res://heroes/scenes/corelio.tscn" id="3_43646"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h4w6h"]
 vertices = PackedVector3Array(-49.5, 1, 6.75, -5.25, 1, 6.75, -5.25, 1, 5.5, -49.5, 1, 6.75, -5.25, 1, 5.5, -4, 1, 3.75, -49.5, 1, 6.75, -4, 1, 3.75, -1.5, 1, 3.25, -1.5, 1, -49.5, -49.5, 1, -49.5, 1.75, 1, 5, 2, 1, 6.75, 49.5, 1, 6.75, 0.75, 1, 3.75, 1.75, 1, 5, 49.5, 1, 6.75, -1.5, 1, 3.25, 0.75, 1, 3.75, 49.5, 1, 6.75, 49.5, 1, -49.5, -1.5, 1, -49.5, -3.25, 3.25, 5, -4, 3.25, 6.5, -2.75, 3.25, 6.25, -2, 3.25, 5.5, -1.25, 3.25, 4.5, -2.5, 3.25, 9, -0.75, 3.25, 9, -1.25, 3.25, 8, -2.5, 3.25, 7.75, -3.5, 3.25, 8.25, -0.75, 3.25, 9, 0.5, 3.25, 7.75, -0.5, 3.25, 7.5, -1.25, 3.25, 8, -1.25, 3.25, 4.5, -2, 3.25, 5.5, -1.25, 3.25, 5.5, 0.5, 3.25, 5.75, -1.25, 3.25, 4.5, -1.25, 3.25, 5.5, -0.5, 3.25, 6.25, -4, 3.25, 6.5, -3.5, 3.25, 8.25, -2.5, 3.25, 7.75, -2.75, 3.25, 6.25, 0.5, 3.25, 7.75, 0.5, 3.25, 5.75, -0.5, 3.25, 6.25, -0.5, 3.25, 7.5, -3, 1, 5.75, -3, 1, 5.25, -3.75, 1, 6.75, -3, 1, 7.75, -3, 1, 5.75, -3.75, 1, 6.75, -3.5, 1, 7.75, 0.25, 1, 6, -1.25, 1, 4.75, -1, 1, 5.25, -0.25, 1, 6, -2.5, 1, 8.25, -3, 1, 7.75, -3.5, 1, 7.75, -2.25, 1, 8.75, -0.25, 1, 6, -0.25, 1, 7.75, 0.25, 1, 7.5, 0.25, 1, 6, -0.75, 1, 8.25, -2.5, 1, 8.25, -2.25, 1, 8.75, -1, 1, 8.75, -3, 1, 5.25, -3, 1, 5.75, -1, 1, 5.25, -1.25, 1, 4.75, -0.25, 1, 7.75, -0.75, 1, 8.25, -1, 1, 8.75, 0.25, 1, 7.5, -1.5, 1, 49.5, -1.5, 1, 10.5, -3.75, 1, 10, -1.5, 1, 49.5, -3.75, 1, 10, -5, 1, 8.75, -1.5, 1, 49.5, -5, 1, 8.75, -5.25, 1, 6.75, -49.5, 1, 6.75, -49.5, 1, 49.5, 0, 1, 10.25, -1.5, 1, 10.5, -1.5, 1, 49.5, 1.5, 1, 9, 0, 1, 10.25, -1.5, 1, 49.5, 2, 1, 6.75, 1.5, 1, 9, -1.5, 1, 49.5, 49.5, 1, 49.5, 49.5, 1, 6.75)
@@ -41,7 +41,7 @@ volumetric_fog_density = 0.02
 
 [node name="CameraMan" parent="." node_paths=PackedStringArray("point") instance=ExtResource("1_kqkdf")]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 15, 28.3142)
-point = NodePath("../Chuu")
+point = NodePath("../corelio")
 
 [node name="Label" parent="CameraMan/Camera3D/testingHUD" index="0"]
 offset_left = -104.0
@@ -93,8 +93,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.253082, -0.1, 15.004)
 [node name="SacoDePancada3" parent="." instance=ExtResource("3_7hwwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62641, -0.1, 13.8181)
 
-[node name="Chuu" parent="." node_paths=PackedStringArray("ability_box") instance=ExtResource("3_tqa2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.5379)
+[node name="SacoDePancada4" parent="." node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p") instance=ExtResource("3_7hwwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5603, -0.1, 13.8181)
+dmgr = NodePath("../SacoDePancada3/DamageMgrComponent")
+xp_comp = NodePath("../SacoDePancada3/XPComponent")
+batk_comp = NodePath("../SacoDePancada3/BAttackComponent")
+fx_comp = NodePath("../SacoDePancada3/EffectsComponent")
+q_p = NodePath("../SacoDePancada3/AbilityPointers/Q")
+w_p = NodePath("../SacoDePancada3/AbilityPointers/W")
+e_p = NodePath("../SacoDePancada3/AbilityPointers/E")
+r_p = NodePath("../SacoDePancada3/AbilityPointers/R")
+
+[node name="SacoDePancada5" parent="." node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p") instance=ExtResource("3_7hwwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.18843, -0.1, 13.8181)
+dmgr = NodePath("../SacoDePancada3/DamageMgrComponent")
+xp_comp = NodePath("../SacoDePancada3/XPComponent")
+batk_comp = NodePath("../SacoDePancada3/BAttackComponent")
+fx_comp = NodePath("../SacoDePancada3/EffectsComponent")
+q_p = NodePath("../SacoDePancada3/AbilityPointers/Q")
+w_p = NodePath("../SacoDePancada3/AbilityPointers/W")
+e_p = NodePath("../SacoDePancada3/AbilityPointers/E")
+r_p = NodePath("../SacoDePancada3/AbilityPointers/R")
+
+[node name="corelio" parent="." node_paths=PackedStringArray("ability_box") instance=ExtResource("3_43646")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.6603)
 ability_box = NodePath("../AbilityBox")
 
 [editable path="CameraMan"]

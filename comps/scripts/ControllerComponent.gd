@@ -18,9 +18,11 @@ extends Node
 @export var upgrade_ultimate_action = "ctrl_r"
 @export var opt_ability1_action = "a"
 @export var opt_ability2_action = "s"
-
+@export var healthcomponente:HealthComponent
 func _input(event):
 	if control:
+		if Input.is_action_just_pressed("p"):
+			healthcomponente.SimpleEffectDamage(20)
 		upgrade_abilities()
 		abilities()
 		attack()

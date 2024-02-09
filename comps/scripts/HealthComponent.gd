@@ -46,3 +46,9 @@ func handle_death(atk):
 			if atk.caster.has_method("add_xp"):
 				atk.caster.add_xp(death_xp)
 		hero.queue_free()
+		
+func SimpleEffectDamage(damage:float):
+	var atk:Attack 
+	health -= damage
+	damaged.emit()
+	handle_death(atk)

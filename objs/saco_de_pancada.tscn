@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bi4vcv41hoy0q"]
+[gd_scene load_steps=16 format=3 uid="uid://bi4vcv41hoy0q"]
 
-[ext_resource type="Script" path="res://heroes/HeroBase.gd" id="1_1r62l"]
-[ext_resource type="Material" uid="uid://tdbycpp30oep" path="res://graphics/gold.tres" id="1_14yie"]
+[ext_resource type="Script" path="res://heroes/base/HeroBase.gd" id="1_sq7xi"]
+[ext_resource type="Material" uid="uid://tdbycpp30oep" path="res://graphics/materials/gold.tres" id="2_5pqg1"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="2_w8m13"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_mautj"]
 [ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="5_vnvt4"]
@@ -12,16 +12,17 @@
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="9_lc4gq"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/direction_pointer.tscn" id="10_akldm"]
 [ext_resource type="PackedScene" uid="uid://5fpdn8fr4h7o" path="res://comps/scenes/controller_component.tscn" id="10_njmc3"]
+[ext_resource type="PackedScene" uid="uid://7jpo0gk6b183" path="res://comps/scenes/show_effect.tscn" id="12_n05nj"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vra3a"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vhjqo"]
-material = ExtResource("1_14yie")
+material = ExtResource("2_5pqg1")
 
 [node name="SacoDePancada" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p") groups=["hitbox_owner"]]
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_1r62l")
+script = ExtResource("1_sq7xi")
 dmgr = NodePath("DamageMgrComponent")
 xp_comp = NodePath("XPComponent")
 batk_comp = NodePath("BAttackComponent")
@@ -62,11 +63,13 @@ speed = 300
 desired_distance = 1.2
 hero = NodePath("..")
 
-[node name="EffectsComponent" parent="." node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp") instance=ExtResource("8_xgmrb")]
+[node name="EffectsComponent" parent="." node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp", "hero", "show_effect") instance=ExtResource("8_xgmrb")]
 battack_comp = NodePath("../BAttackComponent")
 nav_comp = NodePath("../NavigationComponent")
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
+hero = NodePath("..")
+show_effect = NodePath("../ShowEffect")
 
 [node name="XPComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("9_3sdxv")]
 hero = NodePath("..")
@@ -86,6 +89,9 @@ hero = NodePath("..")
 control = false
 walk_action = "tab"
 attack_action = "a"
+
+[node name="ShowEffect" parent="." instance=ExtResource("12_n05nj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25695, 0)
 
 [node name="AbilityPointers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

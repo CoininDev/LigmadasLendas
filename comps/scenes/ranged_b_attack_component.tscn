@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dihqxk54qchm4"]
 
 [ext_resource type="Script" path="res://comps/scripts/RangedBAttackComponent.gd" id="1_2gljs"]
-[ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/circle.svg" id="2_1sdhc"]
-[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/casd.tres" id="2_1287g"]
+[ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/sprites/circle.svg" id="2_1sdhc"]
+[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/materials/cast_generico.tres" id="2_1287g"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5ylm1"]
 radius = 0.1

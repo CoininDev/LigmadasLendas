@@ -4,6 +4,7 @@ class_name DamageMgrComponent
 @export var health_component: HealthComponent
 @export var effects_component: EffectsComponent
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_parent().add_to_group("hitbox_owner")

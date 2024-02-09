@@ -24,4 +24,5 @@ func attack():
 		for x in apply_to:
 			if body.is_in_group(x) && !body == atk.caster:
 				body.dmgr.damage(atk)
+				atk.caster.ultimoAtaque = body
 	queue_free()

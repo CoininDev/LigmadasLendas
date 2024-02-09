@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bmtnes2s36u1s"
+path="res://.godot/imported/arco_generico.obj-df07baa4b873d75b31cf692d811f3ed9.mesh"
+
+[deps]
+
+files=["res://.godot/imported/arco_generico.obj-df07baa4b873d75b31cf692d811f3ed9.mesh"]
+
+source_file="res://graphics/3d models/arco_generico.obj"
+dest_files=["res://.godot/imported/arco_generico.obj-df07baa4b873d75b31cf692d811f3ed9.mesh", "res://.godot/imported/arco_generico.obj-df07baa4b873d75b31cf692d811f3ed9.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

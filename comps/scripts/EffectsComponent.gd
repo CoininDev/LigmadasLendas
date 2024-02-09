@@ -6,7 +6,8 @@ class_name EffectsComponent
 @export var nav_comp:NavigationComponent
 @export var health_comp:HealthComponent
 @export var sanity_comp:SanityComponent
-
+@export var hero:HeroBase
+@export var show_effect:ShowEffect
 var continuous_damage_atk:Attack
 
 @onready var stun_timer = $StunTimer
@@ -15,8 +16,9 @@ var continuous_damage_atk:Attack
 @onready var fear_timer = $FearTimer
 @onready var continuous_damage_timer = $ContinuousDamageTimer
 @onready var continuous_damage_pulse = $ContinuousDamagePulse
+@onready var devendo_timer = $DevendoTimer
 
-
+var pagar = false
 #maximo 5
 var marks = []
 var marktimers = []
@@ -27,11 +29,24 @@ func _ready():
 		marktimers.append(get_node("MarkTimer" + str(i+1)))
 
 func _process(delta):
+
+	if pagar == true:
+		print(hero.divida)
+		show_effect.pagar()
+		health_comp.SimpleEffectDamage(hero.divida)
+		pagar = false
+
 	for i in range(5):
 		if marktimers[i].time_left <= 0:
 			marks[i] = ""
 
 func apply(atk:Attack):
+	
+	if atk.devendo_time > 0:
+		show_effect.dividendo = true
+		devendo_timer.start(atk.devendo_time)
+		hero.devendo_efeito = true
+
 	if atk.stun_time > 0:
 		stun_timer.start(atk.stun_time)
 		nav_comp.blocked = true
@@ -85,3 +100,8 @@ func _on_continuous_damage_timer_timeout():
 
 func _on_continuous_damage_pulse_timeout():
 	health_comp.damage_continuous(continuous_damage_atk)
+
+func _on_devendo_timer_timeout():
+	show_effect.dividendo = false
+	pagar = true
+	hero.devendo_efeito = false

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://heroes/scripts/dra_lixo.gd" id="1_02i8v"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="2_k0dsn"]
-[ext_resource type="Material" uid="uid://dlm42ehmxi6me" path="res://graphics/dra_lixo.tres" id="2_wwf0o"]
+[ext_resource type="Material" uid="uid://dlm42ehmxi6me" path="res://graphics/materials/dra_lixo.tres" id="2_wwf0o"]
 [ext_resource type="PackedScene" uid="uid://bfx1wxpmwujue" path="res://comps/scenes/sanity_component.tscn" id="3_b8par"]
 [ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="4_3sbss"]
 [ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="6_flg0h"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dihqxk54qchm4" path="res://comps/scenes/ranged_b_attack_component.tscn" id="10_c0o3h"]
 [ext_resource type="PackedScene" uid="uid://df4c8oi2h37jp" path="res://objs/pointer/spot_pointer.tscn" id="10_dmd1t"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/direction_pointer.tscn" id="11_a5veo"]
-[ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/arerer.tres" id="11_xlmjt"]
+[ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/materials/arer_generico.tres" id="11_xlmjt"]
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="12_g21sh"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gn32f"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://bj8w60mbxu343"]
 
-[ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/arerer.tres" id="1_25tss"]
+[ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/materials/arer_generico.tres" id="1_25tss"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="1_jp1t4"]
-[ext_resource type="Script" path="res://heroes/HeroBase.gd" id="1_ofmxg"]
+[ext_resource type="Script" path="res://heroes/base/HeroBase.gd" id="1_ofmxg"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="2_qs483"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="3_uakab"]
 [ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="5_2h5n0"]

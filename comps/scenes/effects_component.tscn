@@ -33,9 +33,12 @@ wait_time = 0.5
 
 [node name="MarkTimer5" type="Timer" parent="."]
 
+[node name="DevendoTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="RootTimer" to="." method="_on_root_timer_timeout"]
 [connection signal="timeout" from="SilenceTimer" to="." method="_on_silence_timer_timeout"]
 [connection signal="timeout" from="FearTimer" to="." method="_on_fear_timer_timeout"]
 [connection signal="timeout" from="ContinuousDamageTimer" to="." method="_on_continuous_damage_timer_timeout"]
 [connection signal="timeout" from="ContinuousDamagePulse" to="." method="_on_continuous_damage_pulse_timeout"]
+[connection signal="timeout" from="DevendoTimer" to="." method="_on_devendo_timer_timeout"]

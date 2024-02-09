@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boia5wfdh8g3d"
-path.s3tc="res://.godot/imported/iconmonstr-arrow-up-thin.svg-712b8561943469888796d0d9f3bfc112.s3tc.ctex"
-path.etc2="res://.godot/imported/iconmonstr-arrow-up-thin.svg-712b8561943469888796d0d9f3bfc112.etc2.ctex"
+path.s3tc="res://.godot/imported/iconmonstr-arrow-up-thin.svg-2384fa8d8779dd7d596500b27944b22b.s3tc.ctex"
+path.etc2="res://.godot/imported/iconmonstr-arrow-up-thin.svg-2384fa8d8779dd7d596500b27944b22b.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://graphics/iconmonstr-arrow-up-thin.svg"
-dest_files=["res://.godot/imported/iconmonstr-arrow-up-thin.svg-712b8561943469888796d0d9f3bfc112.s3tc.ctex", "res://.godot/imported/iconmonstr-arrow-up-thin.svg-712b8561943469888796d0d9f3bfc112.etc2.ctex"]
+source_file="res://graphics/sprites/iconmonstr-arrow-up-thin.svg"
+dest_files=["res://.godot/imported/iconmonstr-arrow-up-thin.svg-2384fa8d8779dd7d596500b27944b22b.s3tc.ctex", "res://.godot/imported/iconmonstr-arrow-up-thin.svg-2384fa8d8779dd7d596500b27944b22b.etc2.ctex"]
 
 [params]
 

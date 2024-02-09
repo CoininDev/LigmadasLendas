@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://5fpdn8fr4h7o" path="res://comps/scenes/controller_component.tscn" id="1_6j33j"]
 [ext_resource type="Script" path="res://heroes/scripts/chuu.gd" id="1_122ex"]
-[ext_resource type="Material" uid="uid://cj5vmy4bop28e" path="res://graphics/chuu.tres" id="2_h3sbd"]
+[ext_resource type="Material" uid="uid://cj5vmy4bop28e" path="res://graphics/materials/chuu.tres" id="2_h3sbd"]
 [ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="2_rbyj7"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="3_aalfp"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="4_6epna"]
