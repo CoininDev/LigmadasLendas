@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://trp7xhom42y"]
 
-[ext_resource type="Script" path="res://objs/pointer/mouse_mostrar.gd" id="1_vlq88"]
+[ext_resource type="Script" path="res://objs/pointer/scripts/mouse_mostrar.gd" id="1_vlq88"]
 [ext_resource type="Texture2D" uid="uid://fu0x2c50e86n" path="res://graphics/sprites/mouse.png" id="2_m5wpw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0nus4"]

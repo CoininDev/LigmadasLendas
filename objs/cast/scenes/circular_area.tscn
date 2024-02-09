@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4v0u0grly21r"]
+
+[ext_resource type="Script" path="res://objs/cast/scripts/CircularArea.gd" id="1_6paqy"]
+[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/materials/cast_generico.tres" id="2_7dysp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oammc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fclba"]
+material = ExtResource("2_7dysp")
+radius = 2.0
+height = 2.0
+is_hemisphere = true
+
+[node name="CircularArea" type="Node3D"]
+script = ExtResource("1_6paqy")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_oammc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("SphereMesh_fclba")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5bb8ahtv4x7d"]
+
+[ext_resource type="Script" path="res://objs/cast/scripts/RectArea.gd" id="1_tbreh"]
+[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/materials/cast_generico.tres" id="2_185hl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jv48"]
+size = Vector3(1, 0.5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_blvdy"]
+material = ExtResource("2_185hl")
+size = Vector3(1, 0.5, 5)
+
+[node name="RectArea" type="Node3D"]
+script = ExtResource("1_tbreh")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_4jv48")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_blvdy")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

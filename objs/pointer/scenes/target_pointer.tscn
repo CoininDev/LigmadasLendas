@@ -1,19 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://df4c8oi2h37jp"]
+[gd_scene load_steps=5 format=3 uid="uid://bt3p7cj7om1ne"]
 
-[ext_resource type="Script" path="res://objs/pointer/SpotPointer.gd" id="1_nvov1"]
-[ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/sprites/circle.svg" id="2_ll0xn"]
+[ext_resource type="Script" path="res://objs/pointer/scripts/TargetPointer.gd" id="1_03phh"]
+[ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/sprites/circle.svg" id="2_lhoxp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6wj8"]
 transparency = 1
-albedo_texture = ExtResource("2_ll0xn")
+albedo_texture = ExtResource("2_lhoxp")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6f1dq"]
 material = SubResource("StandardMaterial3D_u6wj8")
 size = Vector2(1, 1)
 
-[node name="SpotPointer" type="Node3D" node_paths=PackedStringArray("mesh_instance")]
+[node name="TargetPointer" type="Node3D" node_paths=PackedStringArray("mesh_instance")]
 visible = false
-script = ExtResource("1_nvov1")
+script = ExtResource("1_03phh")
 mesh_instance = NodePath("Marker3D/MeshInstance3D")
 
 [node name="Marker3D" type="Marker3D" parent="."]

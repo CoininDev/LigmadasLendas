@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4v0u0grly21r"]
+[gd_scene load_steps=5 format=3 uid="uid://cgi1jsu0cv2xa"]
 
-[ext_resource type="Script" path="res://objs/cast/CircularArea.gd" id="1_6paqy"]
-[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/materials/cast_generico.tres" id="2_7dysp"]
+[ext_resource type="Script" path="res://objs/cast/scripts/ContinuousCircularArea.gd" id="1_4tsje"]
+[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/materials/cast_generico.tres" id="2_21kt1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oammc"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_fclba"]
-material = ExtResource("2_7dysp")
+material = ExtResource("2_21kt1")
 radius = 2.0
 height = 2.0
 is_hemisphere = true
 
-[node name="CircularArea" type="Node3D"]
-script = ExtResource("1_6paqy")
+[node name="ContinuousCircularArea" type="Node3D"]
+script = ExtResource("1_4tsje")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -24,4 +24,7 @@ mesh = SubResource("SphereMesh_fclba")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="DelayTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]

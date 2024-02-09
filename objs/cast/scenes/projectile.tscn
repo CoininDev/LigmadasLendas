@@ -1,29 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://be64oqngjod2a"]
+[gd_scene load_steps=6 format=3 uid="uid://1jcmuymd6mth"]
 
-[ext_resource type="Script" path="res://objs/cast/moeda_corelio.gd" id="1_enkb4"]
-[ext_resource type="Texture2D" uid="uid://bxo2ej8oclod5" path="res://graphics/sprites/moeda_corelio.png" id="2_ag4sy"]
-[ext_resource type="ArrayMesh" uid="uid://j4l32hfymlkn" path="res://graphics/3d models/moeda_corelio.obj" id="3_wl0gl"]
+[ext_resource type="Script" path="res://objs/cast/scripts/Projectile.gd" id="1_34mhc"]
+[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/materials/cast_generico.tres" id="2_0hdfs"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j4lej"]
-radius = 0.183322
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5q8p"]
-albedo_texture = ExtResource("2_ag4sy")
+[sub_resource type="SphereMesh" id="SphereMesh_wwqp4"]
+material = ExtResource("2_0hdfs")
+radius = 0.1
+height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0svcd"]
 
-[node name="moeda_corelio" type="Node3D"]
-script = ExtResource("1_enkb4")
+[node name="Projectile" type="Node3D"]
+script = ExtResource("1_34mhc")
 
 [node name="bullet" type="Area3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -1.02859)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.02859)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bullet"]
 shape = SubResource("SphereShape3D_j4lej")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="bullet"]
-material_override = SubResource("StandardMaterial3D_f5q8p")
-mesh = ExtResource("3_wl0gl")
+mesh = SubResource("SphereMesh_wwqp4")
 
 [node name="end" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.43812)

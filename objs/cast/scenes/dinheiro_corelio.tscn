@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://8015cwldqhck"]
 
-[ext_resource type="Script" path="res://objs/cast/dinheiro_corelio.gd" id="1_vqs0h"]
+[ext_resource type="Script" path="res://objs/cast/scripts/dinheiro_corelio.gd" id="1_vqs0h"]
 [ext_resource type="ArrayMesh" uid="uid://b4ta05nbm682n" path="res://graphics/3d models/dinheiro.obj" id="2_o3vta"]
 [ext_resource type="Texture2D" uid="uid://blx7j2pr8h817" path="res://graphics/sprites/dinheiro.png" id="3_msbx4"]
 

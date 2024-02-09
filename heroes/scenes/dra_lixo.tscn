@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="8_fqqi0"]
 [ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="9_5lmth"]
 [ext_resource type="PackedScene" uid="uid://dihqxk54qchm4" path="res://comps/scenes/ranged_b_attack_component.tscn" id="10_c0o3h"]
-[ext_resource type="PackedScene" uid="uid://df4c8oi2h37jp" path="res://objs/pointer/spot_pointer.tscn" id="10_dmd1t"]
-[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/direction_pointer.tscn" id="11_a5veo"]
+[ext_resource type="PackedScene" uid="uid://df4c8oi2h37jp" path="res://objs/pointer/scenes/spot_pointer.tscn" id="10_dmd1t"]
+[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/scenes/direction_pointer.tscn" id="11_a5veo"]
 [ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/materials/arer_generico.tres" id="11_xlmjt"]
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="12_g21sh"]
 
