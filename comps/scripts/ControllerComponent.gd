@@ -2,6 +2,9 @@ extends Node
 
 @export var nav: NavigationComponent
 @export var battack: BAttackComponent
+@export var xp_comp: XPComponent
+@export var hero: HeroBase
+@export var control: bool = true
 @export var walk_action = "mright"
 @export var attack_action = "mleft"
 @export var show_attack_range_action = "show_range"
@@ -9,18 +12,35 @@ extends Node
 @export var ability2_action = "w"
 @export var ability3_action = "e"
 @export var ultimate_action = "r"
+@export var upgrade_ability1_action = "ctrl_q"
+@export var upgrade_ability2_action = "ctrl_w"
+@export var upgrade_ability3_action = "ctrl_e"
+@export var upgrade_ultimate_action = "ctrl_r"
 @export var opt_ability1_action = "a"
 @export var opt_ability2_action = "s"
-@export var hero: HeroBase
-
-var attacking:bool = false
 
 func _input(event):
-	abilities()
-	attack()
-	walk()
+	if control:
+		upgrade_abilities()
+		abilities()
+		attack()
+		walk()
+
+func upgrade_abilities():
+	if Input.is_action_just_pressed(upgrade_ability1_action):
+		xp_comp.ability1_lvl_up()
+	if Input.is_action_just_pressed(upgrade_ability2_action):
+		xp_comp.ability2_lvl_up()
+	if Input.is_action_just_pressed(upgrade_ability3_action):
+		xp_comp.ability3_lvl_up()
+	if Input.is_action_just_pressed(upgrade_ultimate_action):
+		xp_comp.ultimate_lvl_up()
+
 
 func abilities():
+	if Input.is_action_pressed("ctrl"):
+		return
+	
 	if Input.is_action_just_pressed(ability1_action):
 		hero.q_preview()
 	if Input.is_action_just_pressed(ability2_action):

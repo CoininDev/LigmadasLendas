@@ -11,7 +11,6 @@ extends Node3D
 @onready var bar_sprite = $Sprite3D
 @onready var sanity_bar = $SubViewport/SanityBar
 @onready var sanity_label = $SubViewport/SanityBar/SanityLabel
-
 func _ready():
 	health_bar.max_value = health_comp.MAX_HEALTH
 	health_bar.value = health_comp.health

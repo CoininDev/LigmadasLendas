@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ek5hq7khlfdc"]
 
 [ext_resource type="Script" path="res://comps/scripts/BAttackComponent.gd" id="1_vrdmx"]
-[ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/sprites/circle_generico.svg" id="2_4ck7i"]
+[ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/circle.svg" id="2_4ck7i"]
 
 [node name="BAttackComponent" type="Node3D"]
 visible = false

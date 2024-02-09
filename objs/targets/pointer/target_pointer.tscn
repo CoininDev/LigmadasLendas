@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bt3p7cj7om1ne"]
 
 [ext_resource type="Script" path="res://objs/targets/pointer/TargetPointer.gd" id="1_03phh"]
-[ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/sprites/circle_generico.svg" id="2_lhoxp"]
+[ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/circle.svg" id="2_lhoxp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6wj8"]
 transparency = 1

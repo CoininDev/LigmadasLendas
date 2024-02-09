@@ -4,6 +4,7 @@ class_name BAttackComponent
 @export var atk_cooldown: float
 @export var range: float
 @export var nav_comp: NavigationComponent
+@export var hero:HeroBase
 var cancelling_actions = ["mright"]
 var target: Node3D
 var blocked:bool = false
@@ -40,8 +41,8 @@ func walk():
 func attack():
 	var atk = Attack.new()
 	atk.physic_damage = atk_damage
-	atk.caster = self
-	target.damage(atk)
+	atk.caster = hero
+	target.dmgr.damage(atk)
 
 func timeout():
 	timer.wait_time = atk_cooldown

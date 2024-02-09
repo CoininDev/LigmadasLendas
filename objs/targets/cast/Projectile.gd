@@ -4,7 +4,7 @@ extends Node3D
 @export var apply_to:Array = ["hitbox_owner"]
 @export var radius:float = 0.5
 @export var distance:float = 2
-@export var speed:float = 5
+@export var speed:float = 10
 @export var collide:bool = false
 @export var gfx:Material
 
@@ -12,20 +12,16 @@ var obsolete:Array = []
 var running = false
 @onready var end = $end
 @onready var bullet = $bullet
-var rng = RandomNumberGenerator.new()
-var girar = 0
 
 func _ready():
-	girar = rng.randf_range(-5, 5)
-	girar = girar/10
 	if gfx:
 		$bullet/MeshInstance3D.mesh.material = gfx
+	$bullet/CollisionShape3D.shape.radius = radius
+	$bullet/MeshInstance3D.mesh.radius = radius
+	$bullet/MeshInstance3D.mesh.height = radius*2
 	$end.position.z = -distance
 	start()
-	
 func _process(delta):
-	
-	$bullet/MeshInstance3D.rotation.x += girar
 	if running:
 		run(delta)
 
@@ -33,8 +29,7 @@ func start():
 	running = true
 
 func run(delta):
-	
-	$bullet.translate(Vector3(0,0,-1) * (speed/5) * delta)
+	$bullet.translate(Vector3(0,0,-1) * speed * delta)
 	position.y = 0.5 
 
 
@@ -44,7 +39,7 @@ func _on_bullet_body_entered(body):
 		for group in apply_to:
 			if body.is_in_group(group):
 				if !obsolete.has(body):
-					body.damage(atk) 
+					body.dmgr.damage(atk)
 					obsolete.append(body)
 					if collide:
 						queue_free()

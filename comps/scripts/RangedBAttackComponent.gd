@@ -46,7 +46,7 @@ func attack():
 	bul.global_position = global_position
 	bul.atk = Attack.new()
 	bul.atk.physic_damage = atk_damage
-	bul.atk.caster = self
+	bul.atk.caster = hero
 	cancel_bullet.connect(bul.cancel)
 	get_tree().root.add_child(bul)
 	#add_child(bul)

@@ -23,7 +23,15 @@ one_shot = true
 [node name="ContinuousDamagePulse" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="DividendoTimer" type="Timer" parent="."]
+[node name="MarkTimer1" type="Timer" parent="."]
+
+[node name="MarkTimer2" type="Timer" parent="."]
+
+[node name="MarkTimer3" type="Timer" parent="."]
+
+[node name="MarkTimer4" type="Timer" parent="."]
+
+[node name="MarkTimer5" type="Timer" parent="."]
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="RootTimer" to="." method="_on_root_timer_timeout"]
@@ -31,4 +39,3 @@ wait_time = 0.5
 [connection signal="timeout" from="FearTimer" to="." method="_on_fear_timer_timeout"]
 [connection signal="timeout" from="ContinuousDamageTimer" to="." method="_on_continuous_damage_timer_timeout"]
 [connection signal="timeout" from="ContinuousDamagePulse" to="." method="_on_continuous_damage_pulse_timeout"]
-[connection signal="timeout" from="DividendoTimer" to="." method="_on_dividendo_timer_timeout"]
