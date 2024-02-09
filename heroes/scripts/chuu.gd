@@ -41,7 +41,7 @@ func q_preview():
 func q_cast():
 	if q_cooldown_block:
 		return
-	var t = load("res://objs/targets/cast/cone_90.tscn").instantiate()
+	var t = load("res://objs/cast/cone_90.tscn").instantiate()
 	t.atk = q.atk
 	t.distance = q.range
 	t.speed = 10
@@ -63,5 +63,5 @@ func w_cast():
 	var result = GeneralFuncs.mouse_raycast_entity()
 	if result:
 		if result.collider.position.distance_to(position) <= w.range && result.collider != self:
-			result.collider.damage(w.atk)
+			result.collider.dmgr.damage(w.atk)
 	w_p.visible = false

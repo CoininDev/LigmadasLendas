@@ -23,7 +23,7 @@ material = ExtResource("2_h3sbd")
 radius = 0.35
 height = 1.2
 
-[node name="Chuu" type="CharacterBody3D" node_paths=PackedStringArray("nav", "dmgr", "xp_comp", "batk_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
+[node name="Chuu" type="CharacterBody3D" node_paths=PackedStringArray("nav", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_122ex")
@@ -31,6 +31,7 @@ nav = NodePath("Comps/NavigationComponent")
 dmgr = NodePath("Comps/DmgrComponent")
 xp_comp = NodePath("Comps/XPComponent")
 batk_comp = NodePath("Comps/BAttackComponent")
+fx_comp = NodePath("Comps/EffectsComponent")
 q_p = NodePath("Abilities/Q")
 w_p = NodePath("Abilities/W")
 e_p = NodePath("Abilities/E")
@@ -58,7 +59,7 @@ hero = NodePath("../..")
 [node name="BAttackComponent" parent="Comps" node_paths=PackedStringArray("nav_comp") instance=ExtResource("3_aalfp")]
 atk_damage = 10.0
 atk_cooldown = 1.0
-range = 3.0
+range = 1.5
 nav_comp = NodePath("../NavigationComponent")
 
 [node name="DmgrComponent" parent="Comps" node_paths=PackedStringArray("health_component", "effects_component") instance=ExtResource("4_6epna")]
@@ -83,7 +84,8 @@ health_comp = NodePath("../HealthComponent")
 has_sanity = true
 sanity_comp = NodePath("../SanityComponent")
 
-[node name="XPComponent" parent="Comps" instance=ExtResource("11_p83qg")]
+[node name="XPComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("11_p83qg")]
+hero = NodePath("../..")
 
 [node name="Abilities" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
