@@ -101,28 +101,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.253082, -0.1, 15.004)
 [node name="SacoDePancada3" parent="." instance=ExtResource("3_7hwwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62641, -0.1, 13.8181)
 
-[node name="SacoDePancada4" parent="." node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p") instance=ExtResource("3_7hwwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5603, -0.1, 13.8181)
-dmgr = NodePath("../SacoDePancada3/DamageMgrComponent")
-xp_comp = NodePath("../SacoDePancada3/XPComponent")
-batk_comp = NodePath("../SacoDePancada3/BAttackComponent")
-fx_comp = NodePath("../SacoDePancada3/EffectsComponent")
-q_p = NodePath("../SacoDePancada3/AbilityPointers/Q")
-w_p = NodePath("../SacoDePancada3/AbilityPointers/W")
-e_p = NodePath("../SacoDePancada3/AbilityPointers/E")
-r_p = NodePath("../SacoDePancada3/AbilityPointers/R")
-
-[node name="SacoDePancada5" parent="." node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p") instance=ExtResource("3_7hwwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.18843, -0.1, 13.8181)
-dmgr = NodePath("../SacoDePancada3/DamageMgrComponent")
-xp_comp = NodePath("../SacoDePancada3/XPComponent")
-batk_comp = NodePath("../SacoDePancada3/BAttackComponent")
-fx_comp = NodePath("../SacoDePancada3/EffectsComponent")
-q_p = NodePath("../SacoDePancada3/AbilityPointers/Q")
-w_p = NodePath("../SacoDePancada3/AbilityPointers/W")
-e_p = NodePath("../SacoDePancada3/AbilityPointers/E")
-r_p = NodePath("../SacoDePancada3/AbilityPointers/R")
-
 [node name="corelio" parent="." node_paths=PackedStringArray("ability_box") instance=ExtResource("3_43646")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.6603)
 ability_box = NodePath("../AbilityBox")

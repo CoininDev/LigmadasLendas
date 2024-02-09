@@ -47,8 +47,8 @@ func handle_death(atk):
 				atk.caster.add_xp(death_xp)
 		hero.queue_free()
 		
-func SimpleEffectDamage(damage:float):
-	var atk:Attack 
-	health -= damage
+func ignore_resistance_damage(atk:Attack):
+	health -= atk.physic_damage
+	health -= atk.magic_damage
 	damaged.emit()
 	handle_death(atk)

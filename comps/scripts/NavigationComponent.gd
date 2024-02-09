@@ -5,17 +5,19 @@ class_name NavigationComponent
 @export var desired_distance:float = 1 
 @export var hero:HeroBase
 var blocked:bool = false
+@export var mouse_mostrar:Node3D
 
 func _process(delta):
-	#print(target_position)
+	mouse_mostrar.global_position = target_position
 	if is_navigation_finished():
+		mouse_mostrar.visible = false 
 		return
 	move(delta)
 
 func select_destiny(position:Vector3, desired_distance:float):
 	path_desired_distance = desired_distance
 	target_position = position
-	
+	mouse_mostrar.visible = true
 
 func ditch_destiny():
 	target_position = hero.position

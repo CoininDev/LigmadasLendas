@@ -18,17 +18,17 @@ extends Node
 @export var upgrade_ultimate_action = "ctrl_r"
 @export var opt_ability1_action = "a"
 @export var opt_ability2_action = "s"
-@export var healthcomponente:HealthComponent
+@export var health_comp:HealthComponent
 func _input(event):
 	if control:
 		if Input.is_action_just_pressed(walk_action):
 			var result = GeneralFuncs.mouse_raycast()
-			var t = load("res://objs/pointer/mouse_mostrar.tscn").instantiate()
-			add_child(t)
-			t.global_position = result.position
 		
 		if Input.is_action_just_pressed("p"):
-			healthcomponente.SimpleEffectDamage(20)
+			var atk = Attack.new()
+			atk.physic_damage = 20
+			atk.caster = hero
+			health_comp.ignore_resistance_damage(atk)
 		upgrade_abilities()
 		abilities()
 		attack()
