@@ -16,7 +16,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body == target:
-		target.dmgr.damage(atk)
+		target.damage(atk)
 		queue_free()
 
 func cancel():

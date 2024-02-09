@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bb82m0a0q1pso"]
 
 [ext_resource type="Script" path="res://objs/targets/pointer/DirectionPointer.gd" id="1_hbw3s"]
-[ext_resource type="Texture2D" uid="uid://boia5wfdh8g3d" path="res://graphics/iconmonstr-arrow-up-thin.svg" id="2_7r6ln"]
+[ext_resource type="Texture2D" uid="uid://boia5wfdh8g3d" path="res://graphics/sprites/seta_generico.svg" id="2_7r6ln"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3isd"]
 transparency = 1

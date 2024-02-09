@@ -16,11 +16,10 @@ var running = false
 func _ready():
 	if gfx:
 		$bullet/MeshInstance3D.mesh.material = gfx
-	#$bullet/CollisionShape3D.shape.radius = radius
-	#$bullet/MeshInstance3D.mesh.radius = radius
-	#$bullet/MeshInstance3D.mesh.height = radius*2
+	$bullet/CollisionShape3D.shape.radius = radius
+	$bullet/MeshInstance3D.mesh.radius = radius
+	$bullet/MeshInstance3D.mesh.height = radius*2
 	$end.position.z = -distance
-	$end.position.z += 0.5
 	start()
 func _process(delta):
 	if running:
@@ -30,10 +29,9 @@ func start():
 	running = true
 
 func run(delta):
-	$bullet.scale.x += 0.15 * (speed/10)
-	$bullet.scale.z += 0.1 * (speed/10)
-	$bullet.translate(Vector3(0,0,-1) * (speed/10) * delta)
-	position.y = 0.5
+
+	$bullet.translate(Vector3(0,0,-1) * speed * delta)
+	position.y = 0.5 
 
 
 
@@ -42,7 +40,7 @@ func _on_bullet_body_entered(body):
 		for group in apply_to:
 			if body.is_in_group(group):
 				if !obsolete.has(body):
-					body.dmgr            .damage(atk)
+					body.damage(atk)
 					obsolete.append(body)
 					if collide:
 						queue_free()

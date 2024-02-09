@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4v0u0grly21r"]
 
-[ext_resource type="Script" path="res://objs/targets/cast/CircularArea.gd" id="1_6paqy"]
-[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/casd.tres" id="2_7dysp"]
+[ext_resource type="Script" path="res://objs/targets/cast/codigo/CircularArea.gd" id="1_6paqy"]
+[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/modelos 3d/cast_generico.tres" id="2_7dysp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oammc"]
 

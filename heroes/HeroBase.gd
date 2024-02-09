@@ -3,7 +3,6 @@ class_name HeroBase
 @export var dmgr: DamageMgrComponent
 @export var xp_comp:XPComponent
 @export var batk_comp:BAttackComponent
-@export var fx_comp:EffectsComponent
 @export var ability_box: Node3D
 @export var q_p:Pointer
 @export var w_p:Pointer
@@ -27,8 +26,16 @@ var w = Ability.new()
 var e = Ability.new()
 var r = Ability.new()
 
+
+
+func damage(atk: Attack):
+	dmgr.damage(atk)
+
 func _ready_base():
-	xp_comp.add_xp(100)
+	q_cooldown.timeout.connect(_on_q_cooldown_timeout)
+	w_cooldown.timeout.connect(_on_w_cooldown_timeout)
+	e_cooldown.timeout.connect(_on_e_cooldown_timeout)
+	r_cooldown.timeout.connect(_on_r_cooldown_timeout)
 
 func _process(delta):
 	pass
@@ -70,6 +77,7 @@ func s_cast():
 	pass
 
 func _on_q_cooldown_timeout():
+	print("cu")
 	q_cooldown_block = false
 
 func _on_w_cooldown_timeout():

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdnp26j46juw8"]
+
+[ext_resource type="Script" path="res://comps/scripts/mostrarEfeitoNoPersonagem.gd" id="1_mxois"]
+[ext_resource type="Texture2D" uid="uid://dqloesgb51lc6" path="res://graphics/sprites/dividendo_efeito.png" id="2_hwr63"]
+
+[node name="MostrarEfeitoNoPersonagem" type="Node3D"]
+script = ExtResource("1_mxois")
+
+[node name="dividendo_sprite" type="Sprite3D" parent="."]
+visible = false
+billboard = 1
+texture = ExtResource("2_hwr63")

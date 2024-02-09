@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dfa1x3lursqi6"]
 
-[ext_resource type="Script" path="res://objs/targets/cast/cone_90.gd" id="1_snemv"]
-[ext_resource type="ArrayMesh" uid="uid://bmtnes2s36u1s" path="res://graphics/arco.obj" id="2_hn5h6"]
+[ext_resource type="Script" path="res://objs/targets/cast/codigo/cone_90.gd" id="1_snemv"]
+[ext_resource type="ArrayMesh" uid="uid://bmtnes2s36u1s" path="res://graphics/modelos 3d/AtaqueArco_generico.obj" id="2_hn5h6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_evfse"]
 size = Vector3(0.5, 0.1, 0.1)

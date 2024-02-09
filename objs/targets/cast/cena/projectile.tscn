@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://1jcmuymd6mth"]
+
+[ext_resource type="Script" path="res://objs/targets/cast/codigo/Projectile.gd" id="1_5yx4x"]
+[ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/modelos 3d/cast_generico.tres" id="2_4kr0p"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j4lej"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_wwqp4"]
+material = ExtResource("2_4kr0p")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0svcd"]
+
+[node name="Projectile" type="Node3D"]
+script = ExtResource("1_5yx4x")
+
+[node name="bullet" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.02859)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bullet"]
+shape = SubResource("SphereShape3D_j4lej")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bullet"]
+mesh = SubResource("SphereMesh_wwqp4")
+
+[node name="end" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.43812)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="end"]
+shape = SubResource("BoxShape3D_0svcd")
+
+[connection signal="area_entered" from="bullet" to="." method="_on_bullet_area_entered"]
+[connection signal="body_entered" from="bullet" to="." method="_on_bullet_body_entered"]

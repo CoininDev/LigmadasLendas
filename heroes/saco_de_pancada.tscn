@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bi4vcv41hoy0q"]
+[gd_scene load_steps=16 format=3 uid="uid://bi4vcv41hoy0q"]
 
 [ext_resource type="Script" path="res://heroes/HeroBase.gd" id="1_1r62l"]
-[ext_resource type="Material" uid="uid://tdbycpp30oep" path="res://graphics/gold.tres" id="1_14yie"]
+[ext_resource type="Material" uid="uid://tdbycpp30oep" path="res://graphics/modelos 3d/gold_generico.tres" id="1_14yie"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="2_w8m13"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_mautj"]
 [ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="5_vnvt4"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="8_xgmrb"]
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="9_3sdxv"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="9_lc4gq"]
+[ext_resource type="PackedScene" uid="uid://cdnp26j46juw8" path="res://comps/scenes/mostrarEfeitoNoPersonagem.tscn" id="9_mjc82"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/targets/pointer/direction_pointer.tscn" id="10_akldm"]
 [ext_resource type="PackedScene" uid="uid://5fpdn8fr4h7o" path="res://comps/scenes/controller_component.tscn" id="10_njmc3"]
 
@@ -18,14 +19,13 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vhjqo"]
 material = ExtResource("1_14yie")
 
-[node name="SacoDePancada" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p") groups=["hitbox_owner"]]
+[node name="SacoDePancada" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "q_p", "w_p", "e_p", "r_p") groups=["hitbox_owner"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_1r62l")
 dmgr = NodePath("DamageMgrComponent")
 xp_comp = NodePath("XPComponent")
 batk_comp = NodePath("BAttackComponent")
-fx_comp = NodePath("EffectsComponent")
 q_p = NodePath("AbilityPointers/Q")
 w_p = NodePath("AbilityPointers/W")
 e_p = NodePath("AbilityPointers/E")
@@ -62,30 +62,27 @@ speed = 300
 desired_distance = 1.2
 hero = NodePath("..")
 
-[node name="EffectsComponent" parent="." node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp") instance=ExtResource("8_xgmrb")]
-battack_comp = NodePath("../BAttackComponent")
-nav_comp = NodePath("../NavigationComponent")
-health_comp = NodePath("../HealthComponent")
-sanity_comp = NodePath("../SanityComponent")
+[node name="EffectsComponent" parent="." instance=ExtResource("8_xgmrb")]
 
-[node name="XPComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("9_3sdxv")]
-hero = NodePath("..")
+[node name="MostrarEfeitoNoPersonagem" parent="." node_paths=PackedStringArray("fx_comp") instance=ExtResource("9_mjc82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29527, 0)
+fx_comp = NodePath("../EffectsComponent")
+
+[node name="XPComponent" parent="." instance=ExtResource("9_3sdxv")]
 
 [node name="BAttackComponent" parent="." node_paths=PackedStringArray("nav_comp") instance=ExtResource("9_lc4gq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1.00186, 0, 0, 0, 1.03465, 0, 0, 0, 1.00186, 0, 1, 0)
 atk_damage = 15.0
 atk_cooldown = 0.5
 range = 5.0
 nav_comp = NodePath("../NavigationComponent")
 
-[node name="ControllerComponent" parent="." node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero") instance=ExtResource("10_njmc3")]
+[node name="ControllerComponent" parent="." node_paths=PackedStringArray("nav", "battack", "hero") instance=ExtResource("10_njmc3")]
 nav = NodePath("../NavigationComponent")
 battack = NodePath("../BAttackComponent")
-xp_comp = NodePath("../XPComponent")
-hero = NodePath("..")
-control = false
 walk_action = "tab"
 attack_action = "a"
+hero = NodePath("..")
 
 [node name="AbilityPointers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

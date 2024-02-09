@@ -1,16 +1,14 @@
 extends HeroBase
 
-var q_dano = 0
-var w_dano = 0
-var e_dano = 0
-var ult_buff_set = 0.3
-var ultada = false
+var q_dano = 100
+var w_dano = 80
+var e_dano = 60
 
-var ult_buff:float = 0
+var ultada = false
+var ult_buff:float = 0.3
 var dano_cont:float = 10
 
 func _ready():
-	_ready_base()
 	q.atk = Attack.new()
 	w.atk = Attack.new()
 	e.atk = Attack.new()
@@ -23,7 +21,7 @@ func _ready():
 
 func _process(delta):
 	if ultada:
-		ult_buff = ult_buff_set
+		ult_buff = 0.3
 	else:
 		ult_buff = 0
 	
@@ -55,8 +53,8 @@ func q_cast():
 	t.radius = 0.25
 	t.speed = 30
 	t.collide = true
-	ability_box.add_child(t)
 	t.global_rotation = q.target_direction
+	ability_box.add_child(t)
 	t.global_position = global_position
 	q_p.visible = false
 
@@ -87,8 +85,8 @@ func e_cast():
 		t.speed = 15
 		t.radius = 0.25
 		t.collide = true
-		ability_box.add_child(t)
 		t.global_rotation = e.target_direction - Vector3(0,offset,0)
+		ability_box.add_child(t)
 		t.global_position = global_position
 		offset += 0.1
 	e_p.visible = false

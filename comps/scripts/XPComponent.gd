@@ -39,42 +39,54 @@ func level_up():
 		level +=1
 		upgrade_tokens +=1
 		ultimate_upgrade_tokens +=1
-		for upgradable in general_upgradable_atributes:
-			hero.set(upgradable, general_upgradable_atributes[upgradable][level])
+	for upgradable in general_upgradable_atributes:
+		print(level)
+		print(upgradable)
+		print(general_upgradable_atributes)
+		print(general_upgradable_atributes[upgradable][level])
+		hero.set(upgradable, general_upgradable_atributes[upgradable][level])
 
 	
 func ability1_lvl_up():
-	if upgrade_tokens < 1:
-		return
 	upgrade_tokens -=1
 	if ability1_lvl < ability1_lvl_max:
 		ability1_lvl +=1
-		for upgradable in ability1_upgradable_atributes:
-			hero.set(upgradable, ability1_upgradable_atributes[upgradable][ability1_lvl])
+	for upgradable in ability1_upgradable_atributes:
+		print(level)
+		print(upgradable)
+		print(ability1_upgradable_atributes)
+		print(ability1_upgradable_atributes[upgradable][level])
+		hero.set(upgradable, ability1_upgradable_atributes[upgradable][level])
 
 func ability2_lvl_up():
-	if upgrade_tokens < 1:
-		return
 	upgrade_tokens -=1
 	if ability2_lvl < ability2_lvl_max:
 		ability2_lvl +=1
-		for upgradable in ability2_upgradable_atributes:
-			hero.set(upgradable, ability2_upgradable_atributes[upgradable][ability2_lvl])
+	for upgradable in ability2_upgradable_atributes:
+		print(level)
+		print(upgradable)
+		print(ability2_upgradable_atributes)
+		print(ability2_upgradable_atributes[upgradable][level])
+		hero.set(upgradable, ability2_upgradable_atributes[upgradable][level])
 
 func ability3_lvl_up():
-	if upgrade_tokens < 1:
-		return
 	upgrade_tokens -=1
 	if ability3_lvl < ability3_lvl_max:
 		ability3_lvl +=1
-		for upgradable in ability3_upgradable_atributes:
-			hero.set(upgradable, ability3_upgradable_atributes[upgradable][ability3_lvl])
+	for upgradable in ability3_upgradable_atributes:
+		print(level)
+		print(upgradable)
+		print(ability3_upgradable_atributes)
+		print(ability3_upgradable_atributes[upgradable][level])
+		hero.set(upgradable, ability3_upgradable_atributes[upgradable][level])
 
 func ultimate_lvl_up():
-	if ultimate_upgrade_tokens < 6:
-		return
 	ultimate_upgrade_tokens -= 6
 	if ultimate_lvl < ultimate_lvl_max:
 		ultimate_lvl +=1
-		for upgradable in ultimate_upgradable_atributes:
-			hero.set(upgradable, ultimate_upgradable_atributes[upgradable][ultimate_lvl])
+	for upgradable in ultimate_upgradable_atributes:
+		print(level)
+		print(upgradable)
+		print(ultimate_upgradable_atributes)
+		print(ultimate_upgradable_atributes[upgradable][level])
+		hero.set(upgradable, ultimate_upgradable_atributes[upgradable][level])
