@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bfx1wxpmwujue" path="res://comps/scenes/sanity_component.tscn" id="6_c53f5"]
 [ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="7_b0iy7"]
 [ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="8_petpy"]
-[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/targets/pointer/direction_pointer.tscn" id="9_1wcgu"]
-[ext_resource type="PackedScene" uid="uid://bt3p7cj7om1ne" path="res://objs/targets/pointer/target_pointer.tscn" id="11_3pscn"]
+[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/direction_pointer.tscn" id="9_1wcgu"]
+[ext_resource type="PackedScene" uid="uid://bt3p7cj7om1ne" path="res://objs/pointer/target_pointer.tscn" id="11_3pscn"]
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="11_p83qg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dufe5"]

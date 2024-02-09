@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://1jcmuymd6mth"]
 
-[ext_resource type="Script" path="res://objs/targets/cast/Projectile.gd" id="1_34mhc"]
+[ext_resource type="Script" path="res://objs/cast/Projectile.gd" id="1_34mhc"]
 [ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/casd.tres" id="2_0hdfs"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j4lej"]

@@ -7,7 +7,8 @@ signal damaged
 @export var MAX_HEALTH:float = 100
 @export var physical_resistance:float = 0
 @export var magical_resistance:float = 0
-@export var hero:HeroBase
+@export var death_xp:float = 100
+@export var hero:Node3D
 var health:float
 
 func _ready():
@@ -43,5 +44,5 @@ func handle_death(atk):
 			if atk.caster.has_method("cancel"):
 				atk.caster.cancel()
 			if atk.caster.has_method("add_xp"):
-				atk.caster.add_xp(100)
+				atk.caster.add_xp(death_xp)
 		hero.queue_free()

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://rusremqag208"]
+
+[ext_resource type="PackedScene" uid="uid://bx2r6wa0ijta1" path="res://comps/scenes/hit_count_health_component.tscn" id="1_mq6hj"]
+
+[node name="Totem" type="Node3D"]
+
+[node name="comps" type="Node" parent="."]
+
+[node name="HitCountHealthComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("1_mq6hj")]
+MAX_HEALTH = 5.0
+hero = NodePath("../..")

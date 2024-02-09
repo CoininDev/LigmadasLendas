@@ -14,7 +14,7 @@ config/name="LigmadasLendas"
 run/main_scene="res://cenas/cena_de_teste.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/fullsize=false
-config/icon="res://icon.svg"
+config/icon="res://Chuu.png"
 
 [autoload]
 

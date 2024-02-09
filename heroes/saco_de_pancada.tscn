@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="8_xgmrb"]
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="9_3sdxv"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="9_lc4gq"]
-[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/targets/pointer/direction_pointer.tscn" id="10_akldm"]
+[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/direction_pointer.tscn" id="10_akldm"]
 [ext_resource type="PackedScene" uid="uid://5fpdn8fr4h7o" path="res://comps/scenes/controller_component.tscn" id="10_njmc3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vra3a"]

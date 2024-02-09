@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx2r6wa0ijta1"]
+
+[ext_resource type="Script" path="res://comps/scripts/HitCountHealthComponent.gd" id="1_gehe7"]
+
+[node name="HitCountHealthComponent" type="Node"]
+script = ExtResource("1_gehe7")
+death_xp = 20.0

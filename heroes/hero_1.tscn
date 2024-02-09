@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="9_q2u5u"]
 [ext_resource type="PackedScene" uid="uid://bfx1wxpmwujue" path="res://comps/scenes/sanity_component.tscn" id="10_8gc1h"]
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="10_ks4ue"]
-[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/targets/pointer/direction_pointer.tscn" id="10_oxwnv"]
+[ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/direction_pointer.tscn" id="10_oxwnv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wvo1n"]
 material = ExtResource("1_25tss")
