@@ -19,9 +19,7 @@ var e_cooldown_block = false
 var r_cooldown_block = false
 
 
-var ultimoAtaque:Node
-var divida:float = 0
-var devendo_efeito = false
+var ultimoAlvo:Node3D
 
 var buff:float = 1
 var ability_power:float = 0

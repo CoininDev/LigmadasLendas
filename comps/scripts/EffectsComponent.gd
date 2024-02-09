@@ -18,7 +18,10 @@ var continuous_damage_atk:Attack
 @onready var continuous_damage_pulse = $ContinuousDamagePulse
 @onready var devendo_timer = $DevendoTimer
 
+var caster_divida:HeroBase
 var pagar = false
+var divida = 0.0
+var devendo_efeito = false
 #maximo 5
 var marks = []
 var marktimers = []
@@ -31,9 +34,12 @@ func _ready():
 func _process(delta):
 
 	if pagar == true:
-		print(hero.divida)
+		print(divida)
 		show_effect.pagar()
-		health_comp.SimpleEffectDamage(hero.divida)
+		var atk = Attack.new()
+		atk.magic_damage = 20
+		atk.caster = caster_divida
+		health_comp.ignore_resistance_damage(atk)
 		pagar = false
 
 	for i in range(5):
@@ -45,7 +51,7 @@ func apply(atk:Attack):
 	if atk.devendo_time > 0:
 		show_effect.dividendo = true
 		devendo_timer.start(atk.devendo_time)
-		hero.devendo_efeito = true
+		devendo_efeito = true
 
 	if atk.stun_time > 0:
 		stun_timer.start(atk.stun_time)
@@ -104,4 +110,4 @@ func _on_continuous_damage_pulse_timeout():
 func _on_devendo_timer_timeout():
 	show_effect.dividendo = false
 	pagar = true
-	hero.devendo_efeito = false
+	devendo_efeito = false

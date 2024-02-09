@@ -123,23 +123,23 @@ func endividar(quanto:float):
 		print("divida m5")
 
 func verificar_dividas():
-	if  marcado1 != null && marcado1.devendo_efeito == false:
+	if  marcado1 != null && marcado1.fx_comp.devendo_efeito == false:
 		marcado1 = null
 		print("m1 acabou o efeito")
 		
-	if  marcado2 != null && marcado2.devendo_efeito == false:
+	if  marcado2 != null && marcado2.fx_comp.devendo_efeito == false:
 		marcado2 = null
 		print("m2 acabou o efeito")
 		
-	if  marcado3 != null && marcado3.devendo_efeito == false:
+	if  marcado3 != null && marcado3.fx_comp.devendo_efeito == false:
 		marcado3 = null
 		print("m3 acabou o efeito")
 		
-	if  marcado4 != null && marcado4.devendo_efeito == false:
+	if  marcado4 != null && marcado4.fx_comp.devendo_efeito == false:
 		marcado4 = null
 		print("m4 acabou o efeito")
 		
-	if  marcado5 != null && marcado5.devendo_efeito == false:
+	if  marcado5 != null && marcado5.fx_comp.devendo_efeito == false:
 		marcado5 = null
 		print("m5 acabou o efeito")
 
