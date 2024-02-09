@@ -5,6 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://j4l32hfymlkn" path="res://graphics/3d models/moeda_corelio.obj" id="3_wl0gl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j4lej"]
+radius = 0.183322
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5q8p"]
 albedo_texture = ExtResource("2_ag4sy")

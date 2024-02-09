@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwhihpdu5pw3h"]
+[gd_scene load_steps=10 format=3 uid="uid://cwhihpdu5pw3h"]
 
 [ext_resource type="Script" path="res://comps/scripts/GUIComponent.gd" id="1_k14il"]
+[ext_resource type="Texture2D" uid="uid://6r4132ur6tgw" path="res://graphics/sprites/dividendo.png" id="2_7rj3s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gyqtx"]
 
@@ -27,12 +28,14 @@ script = ExtResource("1_k14il")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(199, 33)
+size = Vector2i(200, 200)
 
 [node name="HealthBar" type="ProgressBar" parent="SubViewport"]
 z_index = 1
-offset_right = 200.0
-offset_bottom = 23.0
+offset_left = -1.0
+offset_top = 42.0
+offset_right = 199.0
+offset_bottom = 65.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_gyqtx")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4l8cf")
 value = 100.0
@@ -53,9 +56,10 @@ one_shot = true
 
 [node name="SanityBar" type="ProgressBar" parent="SubViewport"]
 z_index = 2
-offset_top = 23.0
-offset_right = 200.0
-offset_bottom = 34.0
+offset_left = -1.0
+offset_top = 65.0
+offset_right = 199.0
+offset_bottom = 76.0
 theme_override_styles/background = SubResource("StyleBoxFlat_d5hd3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_eo3du")
 value = 80.0
@@ -70,8 +74,28 @@ offset_right = 109.0
 offset_bottom = 12.0
 theme_override_font_sizes/font_size = 10
 
+[node name="EffectImage" type="TextureRect" parent="SubViewport"]
+offset_top = 1.0
+offset_right = 42.0
+offset_bottom = 42.0
+texture = ExtResource("2_7rj3s")
+expand_mode = 1
+
+[node name="EffectLabel" type="Label" parent="SubViewport"]
+offset_left = 45.0
+offset_top = 10.0
+offset_right = 196.0
+offset_bottom = 33.0
+text = "penis"
+
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
 texture = SubResource("ViewportTexture_qvrbv")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="timeout" from="SubViewport/HealthBar/DamageBar/Timer" to="." method="_on_timer_timeout"]

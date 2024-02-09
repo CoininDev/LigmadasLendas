@@ -87,53 +87,40 @@ func marcar(pessoa):
 	if pessoa != null && pessoa != marcado1 && pessoa != marcado2 && pessoa != marcado3 && pessoa != marcado4 && pessoa != marcado5:
 		if  marcado1 == null:
 			marcado1 = pessoa
-			print("m1")
 			
 		elif marcado2 == null:
 			marcado2 = pessoa
-			print("m2")
 			
 		elif marcado3 == null:
 			marcado3 = pessoa
-			print("m3")
 			
 		elif marcado4 == null:
 			marcado4 = pessoa
-			print("m4")
 			
 		elif marcado5 == null:
 			marcado5 = pessoa
-			print("m5")
 
 func endividar(quanto:float):
 	if marcado1 != null:
 		marcado1.divida += quanto
-		print("divida m1")
 	if marcado2 != null:
 		marcado2.divida += quanto
-		print("divida m2")
 	if marcado3 != null:
 		marcado3.divida += quanto
-		print("divida m3")
 	if marcado4 != null:
 		marcado4.divida += quanto
-		print("divida m4")
 	if marcado5 != null:
 		marcado5.divida += quanto
-		print("divida m5")
 
 func verificar_dividas():
 	if  marcado1 != null && marcado1.fx_comp.devendo_efeito == false:
 		marcado1 = null
-		print("m1 acabou o efeito")
 		
 	if  marcado2 != null && marcado2.fx_comp.devendo_efeito == false:
 		marcado2 = null
-		print("m2 acabou o efeito")
 		
 	if  marcado3 != null && marcado3.fx_comp.devendo_efeito == false:
 		marcado3 = null
-		print("m3 acabou o efeito")
 		
 	if  marcado4 != null && marcado4.fx_comp.devendo_efeito == false:
 		marcado4 = null
@@ -141,7 +128,6 @@ func verificar_dividas():
 		
 	if  marcado5 != null && marcado5.fx_comp.devendo_efeito == false:
 		marcado5 = null
-		print("m5 acabou o efeito")
 
 
 func _on_p_timer_timeout():

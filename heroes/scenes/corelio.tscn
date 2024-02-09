@@ -73,11 +73,11 @@ battack = NodePath("../RangedBAttackComponent")
 xp_comp = NodePath("../XPComponent")
 hero = NodePath("../..")
 
-[node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp") instance=ExtResource("8_083vp")]
+[node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp") instance=ExtResource("8_083vp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73506, 0)
 health_comp = NodePath("../HealthComponent")
-has_sanity = true
 sanity_comp = NodePath("../SanityComponent")
+fx_comp = NodePath("../EffectsComponent")
 
 [node name="SanityComponent" parent="comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("9_s21jk")]
 health_comp = NodePath("../HealthComponent")

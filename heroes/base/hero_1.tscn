@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bj8w60mbxu343"]
+[gd_scene load_steps=16 format=3 uid="uid://bj8w60mbxu343"]
 
 [ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/materials/arer_generico.tres" id="1_25tss"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="1_jp1t4"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="10_ks4ue"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/direction_pointer.tscn" id="10_oxwnv"]
 [ext_resource type="PackedScene" uid="uid://trp7xhom42y" path="res://objs/pointer/mouse_mostrar.tscn" id="11_76uwf"]
+[ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="12_4xb0n"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wvo1n"]
 material = ExtResource("1_25tss")
@@ -75,6 +76,13 @@ health_comp = NodePath("../HealthComponent")
 [node name="XPComponent" parent="comps" instance=ExtResource("10_ks4ue")]
 
 [node name="MouseMostrar" parent="comps" instance=ExtResource("11_76uwf")]
+
+[node name="EffectsComponent" parent="comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp", "hero") instance=ExtResource("12_4xb0n")]
+battack_comp = NodePath("../BAttackComponent")
+nav_comp = NodePath("../NavComponent")
+health_comp = NodePath("../HealthComponent")
+sanity_comp = NodePath("../SanityComponent")
+hero = NodePath("../..")
 
 [node name="AbilityPointers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

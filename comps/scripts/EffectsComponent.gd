@@ -1,6 +1,5 @@
 extends Node3D
 class_name EffectsComponent
-
 #atordoo, silencio:BAttack;Hero, raiz:Nav, dano continuo:Health, reduç. sanidade:Sanity
 @export var battack_comp:BAttackComponent
 @export var nav_comp:NavigationComponent
@@ -9,6 +8,8 @@ class_name EffectsComponent
 @export var hero:HeroBase
 @export var show_effect:ShowEffect
 var continuous_damage_atk:Attack
+var current_effect:String = ""
+
 
 @onready var stun_timer = $StunTimer
 @onready var root_timer = $RootTimer
@@ -32,15 +33,15 @@ func _ready():
 		marktimers.append(get_node("MarkTimer" + str(i+1)))
 
 func _process(delta):
-
 	if pagar == true:
+		current_effect = "pagar"
 		print(divida)
-		show_effect.pagar()
 		var atk = Attack.new()
-		atk.magic_damage = 20
+		atk.magic_damage = 50
 		atk.caster = caster_divida
 		health_comp.ignore_resistance_damage(atk)
 		pagar = false
+
 
 	for i in range(5):
 		if marktimers[i].time_left <= 0:
@@ -49,15 +50,16 @@ func _process(delta):
 func apply(atk:Attack):
 	
 	if atk.devendo_time > 0:
-		show_effect.dividendo = true
 		devendo_timer.start(atk.devendo_time)
 		devendo_efeito = true
+		current_effect = "devendo"
 
 	if atk.stun_time > 0:
 		stun_timer.start(atk.stun_time)
 		nav_comp.blocked = true
 		battack_comp.cancel()
 		battack_comp.blocked = true
+		current_effect = "atordoado"
 
 	if atk.root_time > 0:
 		root_timer.start(atk.root_time)
@@ -67,12 +69,14 @@ func apply(atk:Attack):
 		silence_timer.start(atk.silence_time)
 		battack_comp.cancel()
 		battack_comp.blocked = true
+		current_effect = "silenciado"
 
 	if atk.fear_time > 0:
 		var direction = position.direction_to(atk.caster.position)
 		var distance = 1500
 		fear_timer.start(atk.fear_time)
 		nav_comp.select_destiny(-direction * distance, nav_comp.desired_distance)
+		current_effect = "amedrontado"
 	
 	if atk.continuous_damage_time > 0:
 		continuous_damage_timer.start(atk.continuous_damage_time)
@@ -85,29 +89,36 @@ func apply(atk:Attack):
 				marks[i] = atk.mark
 				marktimers[i].start(atk.mark_time)
 				break
+				current_effect = marks[i]
 
 
 
 func _on_stun_timer_timeout():
 	nav_comp.blocked = false
 	battack_comp.blocked = false
+	current_effect = ""
 
 func _on_root_timer_timeout():
 	nav_comp.blocked = false
+	current_effect = ""
 
 func _on_silence_timer_timeout():
 	battack_comp.blocked = false
+	current_effect = ""
 
 func _on_fear_timer_timeout():
 	nav_comp.ditch_destiny()
+	current_effect = ""
 
 func _on_continuous_damage_timer_timeout():
 	continuous_damage_pulse.stop()
+	current_effect = ""
 
 func _on_continuous_damage_pulse_timeout():
 	health_comp.damage_continuous(continuous_damage_atk)
+	current_effect = ""
 
 func _on_devendo_timer_timeout():
-	show_effect.dividendo = false
 	pagar = true
 	devendo_efeito = false
+	current_effect = ""
