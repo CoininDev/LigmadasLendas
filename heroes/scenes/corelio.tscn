@@ -67,11 +67,12 @@ speed = 300
 hero = NodePath("../..")
 mouse_mostrar = NodePath("../MouseMostrar")
 
-[node name="ControllerComponent" parent="comps" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero") instance=ExtResource("7_npwxn")]
+[node name="ControllerComponent" parent="comps" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero", "health_comp") instance=ExtResource("7_npwxn")]
 nav = NodePath("../NavComponent")
 battack = NodePath("../RangedBAttackComponent")
 xp_comp = NodePath("../XPComponent")
 hero = NodePath("../..")
+health_comp = NodePath("../HealthComponent")
 
 [node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp") instance=ExtResource("8_083vp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73506, 0)

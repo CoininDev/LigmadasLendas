@@ -72,7 +72,7 @@ func q_preview():
 	q_p.visible = true
 
 func q_cast():
-	var t = load("res://objs/cast/moeda_corelio.tscn").instantiate()
+	var t = load("res://objs/cast/scenes/moeda_corelio.tscn").instantiate()
 	t.atk = q.atk
 	t.distance = q.range
 	t.speed = 30
@@ -102,15 +102,15 @@ func marcar(pessoa):
 
 func endividar(quanto:float):
 	if marcado1 != null:
-		marcado1.divida += quanto
+		marcado1.fx_comp.divida += quanto
 	if marcado2 != null:
-		marcado2.divida += quanto
+		marcado2.fx_comp.divida += quanto
 	if marcado3 != null:
-		marcado3.divida += quanto
+		marcado3.fx_comp.divida += quanto
 	if marcado4 != null:
-		marcado4.divida += quanto
+		marcado4.fx_comp.divida += quanto
 	if marcado5 != null:
-		marcado5.divida += quanto
+		marcado5.fx_comp.divida += quanto
 
 func verificar_dividas():
 	if  marcado1 != null && marcado1.fx_comp.devendo_efeito == false:
@@ -132,7 +132,7 @@ func verificar_dividas():
 
 func _on_p_timer_timeout():
 	passiva_timer.start(p_tempo)
-	var t = load("res://objs/cast/dinheiro_corelio.tscn").instantiate()
+	var t = load("res://objs/cast/scenes/dinheiro_corelio.tscn").instantiate()
 	t.atk = p.atk
 	t.dinheiro = 20
 	ability_box.add_child(t)

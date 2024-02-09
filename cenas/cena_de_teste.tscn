@@ -102,7 +102,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.253082, -0.1, 15.004)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62641, -0.1, 13.8181)
 
 [node name="corelio" parent="." node_paths=PackedStringArray("ability_box") instance=ExtResource("3_uecva")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 20.8787)
 ability_box = NodePath("../AbilityBox")
 
 [editable path="CameraMan"]

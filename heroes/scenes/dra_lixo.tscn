@@ -84,7 +84,6 @@ effects_component = NodePath("../EffectsComponent")
 [node name="GUIComponent" parent="Comps" node_paths=PackedStringArray("health_comp", "sanity_comp") instance=ExtResource("9_5lmth")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2007, 0)
 health_comp = NodePath("../HealthComponent")
-has_sanity = true
 sanity_comp = NodePath("../SanityComponent")
 
 [node name="RangedBAttackComponent" parent="Comps" node_paths=PackedStringArray("nav_comp") instance=ExtResource("10_c0o3h")]
