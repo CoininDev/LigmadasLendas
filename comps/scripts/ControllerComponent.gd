@@ -21,6 +21,12 @@ extends Node
 @export var healthcomponente:HealthComponent
 func _input(event):
 	if control:
+		if Input.is_action_just_pressed(walk_action):
+			var result = GeneralFuncs.mouse_raycast()
+			var t = load("res://objs/pointer/mouse_mostrar.tscn").instantiate()
+			add_child(t)
+			t.global_position = result.position
+		
 		if Input.is_action_just_pressed("p"):
 			healthcomponente.SimpleEffectDamage(20)
 		upgrade_abilities()
@@ -74,6 +80,7 @@ func walk():
 		var result = GeneralFuncs.mouse_raycast()
 		if result:
 			nav.select_destiny(result.position, nav.desired_distance)
+			
 
 func attack():
 	if Input.is_action_just_pressed(show_attack_range_action):

@@ -21,7 +21,6 @@ func _ready():
 func _process(delta):
 	if target:
 		if target.is_in_group("hitbox_owner"):
-			self.ultimoAtaque = target
 			var distance = target.global_position.distance_to(global_position)
 			if distance > range:
 				walk()

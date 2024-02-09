@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://trp7xhom42y"]
+
+[ext_resource type="Script" path="res://objs/pointer/mouse_mostrar.gd" id="1_vlq88"]
+[ext_resource type="Texture2D" uid="uid://fu0x2c50e86n" path="res://graphics/sprites/mouse.png" id="2_m5wpw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0nus4"]
+transparency = 1
+albedo_texture = ExtResource("2_m5wpw")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pqhi7"]
+material = SubResource("StandardMaterial3D_0nus4")
+size = Vector2(1, 1)
+
+[node name="MouseMostrar" type="Node3D"]
+script = ExtResource("1_vlq88")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12749, 0)
+mesh = SubResource("PlaneMesh_pqhi7")
+
+[node name="tempo" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="tempo" to="." method="_on_tempo_timeout"]

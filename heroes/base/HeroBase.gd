@@ -30,6 +30,8 @@ var q = Ability.new()
 var w = Ability.new()
 var e = Ability.new()
 var r = Ability.new()
+var p = Ability.new()
+
 
 func _ready_base():
 	xp_comp.add_xp(100)
