@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5jd107vangn5"
-path="res://.godot/imported/BaseColor (Alyssa).png-8ec5996d2780d1fae52c005d36bf91e7.ctex"
+path="res://.godot/imported/BaseColor (Alyssa).png-062c87d57894705435cb77164bc3079f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/3d models/textures/BaseColor (Alyssa).png"
-dest_files=["res://.godot/imported/BaseColor (Alyssa).png-8ec5996d2780d1fae52c005d36bf91e7.ctex"]
+source_file="res://graphics/sprites/BaseColor (Alyssa).png"
+dest_files=["res://.godot/imported/BaseColor (Alyssa).png-062c87d57894705435cb77164bc3079f.ctex"]
 
 [params]
 

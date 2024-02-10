@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3tywn6og5g45"]
+[gd_scene load_steps=15 format=3 uid="uid://c3tywn6og5g45"]
 
 [ext_resource type="Script" path="res://heroes/scripts/corelio.gd" id="1_sr7n3"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_wdr0m"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="10_yik6h"]
 [ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="11_8wv05"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/scenes/direction_pointer.tscn" id="11_ded72"]
-[ext_resource type="PackedScene" uid="uid://trp7xhom42y" path="res://objs/pointer/scenes/mouse_mostrar.tscn" id="11_hde8x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rv5s"]
 albedo_color = Color(0, 0.447059, 0, 1)
@@ -60,12 +59,11 @@ range = 6.0
 nav_comp = NodePath("../NavComponent")
 hero = NodePath("../..")
 
-[node name="NavComponent" parent="comps" node_paths=PackedStringArray("hero", "mouse_mostrar") instance=ExtResource("6_iryle")]
+[node name="NavComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_iryle")]
 target_desired_distance = 0.1
 path_height_offset = -0.25
 speed = 300
 hero = NodePath("../..")
-mouse_mostrar = NodePath("../MouseMostrar")
 
 [node name="ControllerComponent" parent="comps" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero", "health_comp") instance=ExtResource("7_npwxn")]
 nav = NodePath("../NavComponent")
@@ -87,9 +85,6 @@ health_comp = NodePath("../HealthComponent")
 hero = NodePath("../..")
 
 [node name="EffectsComponent" parent="comps" instance=ExtResource("11_8wv05")]
-
-[node name="MouseMostrar" parent="comps" instance=ExtResource("11_hde8x")]
-visible = false
 
 [node name="AbilityPointers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)

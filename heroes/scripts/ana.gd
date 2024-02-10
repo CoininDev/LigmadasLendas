@@ -46,12 +46,13 @@ func q_preview():
 func q_cast():
 	#projetil
 	var projetil = load("res://objs/cast/scenes/projectile.tscn").instantiate()
+	projetil.speed = 5
 	ability_box.add_child(projetil)
 	projetil.global_rotation = q.target_direction
 	projetil.global_position = global_position
 	#rastro
-	var rastro = load("res://objs/cast/scenes/continuous_rect_area.tscn").instantiate()
-	ability_box.add_child(rastro)
-	rastro.global_rotation = q.target_direction
-	rastro.global_position = global_position
-	rastro.area.position.z = -q.range/2
+	#var rastro = load("res://objs/cast/scenes/continuous_rect_area.tscn").instantiate()
+	#ability_box.add_child(rastro)
+	#rastro.global_rotation = q.target_direction
+	#rastro.global_position = global_position
+	#rastro.area.position.z = -q.range/2

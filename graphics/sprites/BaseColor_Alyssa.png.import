@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kyl1sfwylj7u"
-path.s3tc="res://.godot/imported/BaseColor_Alyssa.png-55d1374c6ec27da494f5f64a2132534d.s3tc.ctex"
-path.etc2="res://.godot/imported/BaseColor_Alyssa.png-55d1374c6ec27da494f5f64a2132534d.etc2.ctex"
+path.s3tc="res://.godot/imported/BaseColor_Alyssa.png-016c96822fd0d2505b1f89ca90c4f864.s3tc.ctex"
+path.etc2="res://.godot/imported/BaseColor_Alyssa.png-016c96822fd0d2505b1f89ca90c4f864.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://graphics/3d models/textures/BaseColor_Alyssa.png"
-dest_files=["res://.godot/imported/BaseColor_Alyssa.png-55d1374c6ec27da494f5f64a2132534d.s3tc.ctex", "res://.godot/imported/BaseColor_Alyssa.png-55d1374c6ec27da494f5f64a2132534d.etc2.ctex"]
+source_file="res://graphics/sprites/BaseColor_Alyssa.png"
+dest_files=["res://.godot/imported/BaseColor_Alyssa.png-016c96822fd0d2505b1f89ca90c4f864.s3tc.ctex", "res://.godot/imported/BaseColor_Alyssa.png-016c96822fd0d2505b1f89ca90c4f864.etc2.ctex"]
 
 [params]
 
