@@ -40,7 +40,7 @@ func _on_bullet_body_entered(body):
 			if body.is_in_group(group):
 				if !obsolete.has(body):
 					body.dmgr.damage(atk)
-					atk.caster.ultimoAtaque = body
+					atk.caster.ultimoAlvo = body
 					obsolete.append(body)
 					if collide:
 						queue_free()

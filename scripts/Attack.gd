@@ -7,6 +7,7 @@ var heal:float=0
 var root_time:float=0
 var stun_time:float=0
 var fear_time:float=0
+var slow_time:float=0
 var silence_time:float=0
 var mark:String = ""
 var mark_time:float = 0
