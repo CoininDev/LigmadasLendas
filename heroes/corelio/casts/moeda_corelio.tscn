@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://be64oqngjod2a"]
 
-[ext_resource type="Script" path="res://objs/cast/scripts/moeda_corelio.gd" id="1_enkb4"]
+[ext_resource type="Script" path="res://heroes/corelio/casts/moeda_corelio.gd" id="1_enkb4"]
 [ext_resource type="Texture2D" uid="uid://bxo2ej8oclod5" path="res://graphics/sprites/moeda_corelio.png" id="2_ag4sy"]
 [ext_resource type="ArrayMesh" uid="uid://j4l32hfymlkn" path="res://graphics/3d models/moeda_corelio.obj" id="3_wl0gl"]
 

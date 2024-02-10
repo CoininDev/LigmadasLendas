@@ -7,8 +7,8 @@ var mouse_pos:Vector3 = Vector3.ZERO
 var mark_pos:Vector3
 
 func _ready():
-	$Marker3D/MeshInstance3D.mesh.size.x = radius *2
-	$Marker3D/MeshInstance3D.mesh.size.y = radius *2
+	$Marker3D/RangeShow.mesh.size.x = radius *2
+	$Marker3D/RangeShow.mesh.size.y = radius *2
 
 func _process(delta):
 	mouse_pos_processing()

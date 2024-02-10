@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://c3tywn6og5g45"]
 
-[ext_resource type="Script" path="res://heroes/scripts/corelio.gd" id="1_sr7n3"]
+[ext_resource type="Script" path="res://heroes/corelio/corelio.gd" id="1_sr7n3"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_wdr0m"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="4_r40dm"]
 [ext_resource type="PackedScene" uid="uid://dihqxk54qchm4" path="res://comps/scenes/ranged_b_attack_component.tscn" id="5_7e7gm"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://qbwvclqi7exn"]
 
 [ext_resource type="PackedScene" uid="uid://c1xp1m6kdpsgk" path="res://objs/camera_man.tscn" id="1_4jgqi"]
-[ext_resource type="PackedScene" uid="uid://c3tywn6og5g45" path="res://heroes/scenes/corelio.tscn" id="2_mf7bl"]
+[ext_resource type="PackedScene" uid="uid://c3tywn6og5g45" path="res://heroes/corelio/corelio.tscn" id="2_mf7bl"]
 [ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://objs/saco_de_pancada.tscn" id="3_bqxcg"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h4w6h"]
