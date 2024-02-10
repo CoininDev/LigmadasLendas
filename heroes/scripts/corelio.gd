@@ -102,15 +102,15 @@ func marcar(pessoa):
 
 func endividar(quanto:float):
 	if marcado1 != null:
-		marcado1.divida += quanto
+		marcado1.fx_comp.divida += quanto
 	if marcado2 != null:
-		marcado2.divida += quanto
+		marcado2.fx_comp.divida += quanto
 	if marcado3 != null:
-		marcado3.divida += quanto
+		marcado3.fx_comp.divida += quanto
 	if marcado4 != null:
-		marcado4.divida += quanto
+		marcado4.fx_comp.divida += quanto
 	if marcado5 != null:
-		marcado5.divida += quanto
+		marcado5.fx_comp.divida += quanto
 
 func verificar_dividas():
 	if  marcado1 != null && marcado1.fx_comp.devendo_efeito == false:
