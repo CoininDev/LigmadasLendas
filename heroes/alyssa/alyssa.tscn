@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://dctjqnt85jp8c"]
 
-[ext_resource type="Script" path="res://heroes/scripts/ana.gd" id="1_h8uc8"]
+[ext_resource type="Script" path="res://heroes/alyssa/alyssa.gd" id="1_h8uc8"]
 [ext_resource type="PackedScene" uid="uid://dhkimb8cguqd3" path="res://graphics/3d models/Alyssa.blend" id="2_28evr"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_57ypq"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="4_wyq3f"]

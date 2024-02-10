@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dvmj1414akb08"]
 
 [ext_resource type="PackedScene" uid="uid://c1xp1m6kdpsgk" path="res://objs/camera_man.tscn" id="1_kqkdf"]
-[ext_resource type="PackedScene" uid="uid://dctjqnt85jp8c" path="res://heroes/scenes/ana.tscn" id="2_khl8g"]
+[ext_resource type="PackedScene" uid="uid://dctjqnt85jp8c" path="res://heroes/alyssa/alyssa.tscn" id="2_khl8g"]
 [ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://objs/saco_de_pancada.tscn" id="3_7hwwl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h4w6h"]
