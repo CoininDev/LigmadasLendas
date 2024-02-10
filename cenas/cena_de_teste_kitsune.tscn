@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://qbwvclqi7exn"]
 
 [ext_resource type="PackedScene" uid="uid://c1xp1m6kdpsgk" path="res://objs/camera_man.tscn" id="1_4jgqi"]
-[ext_resource type="PackedScene" uid="uid://dctjqnt85jp8c" path="res://heroes/scenes/ana.tscn" id="2_qyw1n"]
+[ext_resource type="PackedScene" uid="uid://c3tywn6og5g45" path="res://heroes/scenes/corelio.tscn" id="2_mf7bl"]
 [ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://objs/saco_de_pancada.tscn" id="3_bqxcg"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h4w6h"]
@@ -37,11 +37,11 @@ glow_enabled = true
 glow_normalized = true
 volumetric_fog_density = 0.02
 
-[node name="Cena de teste" type="Node3D"]
+[node name="Cena de teste kitsune" type="Node3D"]
 
 [node name="CameraMan" parent="." node_paths=PackedStringArray("point") instance=ExtResource("1_4jgqi")]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 15, 28.3142)
-point = NodePath("../Ana")
+point = NodePath("../corelio")
 
 [node name="testingHUD" parent="CameraMan/Camera3D" index="1"]
 anchors_preset = 15
@@ -95,10 +95,6 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/obstáculo/StaticBody3D"]
 shape = SubResource("CylinderShape3D_i1l3h")
 
-[node name="Ana" parent="." node_paths=PackedStringArray("ability_box") instance=ExtResource("2_qyw1n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.2141)
-ability_box = NodePath("../AbilityBox")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h6fdy")
 
@@ -106,6 +102,10 @@ environment = SubResource("Environment_h6fdy")
 transform = Transform3D(1, 0, 0, 0, -0.564463, 0.825459, 0, -0.825459, -0.564463, 0, 8, 0)
 
 [node name="AbilityBox" type="Node3D" parent="."]
+
+[node name="corelio" parent="." node_paths=PackedStringArray("ability_box") instance=ExtResource("2_mf7bl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.9193)
+ability_box = NodePath("../AbilityBox")
 
 [node name="SacoDePancada" parent="." instance=ExtResource("3_bqxcg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.543, -0.1, 16.5185)

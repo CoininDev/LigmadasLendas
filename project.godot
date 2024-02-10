@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LigmadasLendas"
-run/main_scene="res://cenas/cena_de_teste_gaybe.tscn"
+run/main_scene="res://cenas/cena_de_teste_kitsune.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/fullsize=false
 config/icon="res://Chuu.png"
