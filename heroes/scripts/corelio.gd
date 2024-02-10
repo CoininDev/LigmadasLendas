@@ -82,6 +82,9 @@ func q_cast():
 	t.global_position = global_position
 	q_p.visible = false
 
+func w_preview():
+	w_p.visible = true
+
 func marcar(pessoa):
 	print(pessoa)
 	if pessoa != null && pessoa != marcado1 && pessoa != marcado2 && pessoa != marcado3 && pessoa != marcado4 && pessoa != marcado5:
