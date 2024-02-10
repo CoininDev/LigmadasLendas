@@ -24,7 +24,7 @@ var ultimoAlvo:Node3D
 var buff:float = 1
 var ability_power:float = 0
 
-var q = Ability.new()
+var q = Ability.new() 
 var w = Ability.new()
 var e = Ability.new()
 var r = Ability.new()

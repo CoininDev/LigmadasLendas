@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwhihpdu5pw3h"]
+[gd_scene load_steps=9 format=3 uid="uid://cwhihpdu5pw3h"]
 
 [ext_resource type="Script" path="res://comps/scripts/GUIComponent.gd" id="1_k14il"]
-[ext_resource type="Texture2D" uid="uid://6r4132ur6tgw" path="res://graphics/sprites/dividendo.png" id="2_7rj3s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gyqtx"]
 
@@ -28,7 +27,7 @@ script = ExtResource("1_k14il")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(200, 200)
+size = Vector2i(200, 80)
 
 [node name="HealthBar" type="ProgressBar" parent="SubViewport"]
 z_index = 1
@@ -78,7 +77,6 @@ theme_override_font_sizes/font_size = 10
 offset_top = 1.0
 offset_right = 42.0
 offset_bottom = 42.0
-texture = ExtResource("2_7rj3s")
 expand_mode = 1
 
 [node name="EffectLabel" type="Label" parent="SubViewport"]
@@ -86,7 +84,6 @@ offset_left = 45.0
 offset_top = 10.0
 offset_right = 196.0
 offset_bottom = 33.0
-text = "penis"
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1

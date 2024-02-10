@@ -19,10 +19,12 @@ material = ExtResource("1_25tss")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ey8t6"]
 
-[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "q_p", "w_p", "e_p", "r_p")]
+[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p")]
 script = ExtResource("1_ofmxg")
 dmgr = NodePath("comps/DamageMgrComponent")
 xp_comp = NodePath("comps/XPComponent")
+batk_comp = NodePath("comps/BAttackComponent")
+fx_comp = NodePath("comps/EffectsComponent")
 q_p = NodePath("AbilityPointers/Q")
 w_p = NodePath("AbilityPointers/W")
 e_p = NodePath("AbilityPointers/E")
@@ -37,7 +39,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_ey8t6")
 
 [node name="comps" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="DamageMgrComponent" parent="comps" node_paths=PackedStringArray("health_component") instance=ExtResource("2_qs483")]
 health_component = NodePath("../HealthComponent")
@@ -59,20 +61,24 @@ speed = 300
 hero = NodePath("../..")
 mouse_mostrar = NodePath("../MouseMostrar")
 
-[node name="ControllerComponent" parent="comps" node_paths=PackedStringArray("nav", "battack", "hero") instance=ExtResource("8_npv3n")]
+[node name="ControllerComponent" parent="comps" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero", "health_comp") instance=ExtResource("8_npv3n")]
 nav = NodePath("../NavComponent")
 battack = NodePath("../BAttackComponent")
+xp_comp = NodePath("../XPComponent")
 hero = NodePath("../..")
+health_comp = NodePath("../HealthComponent")
 
-[node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp") instance=ExtResource("9_q2u5u")]
+[node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp") instance=ExtResource("9_q2u5u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73506, 0)
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
+fx_comp = NodePath("../EffectsComponent")
 
 [node name="SanityComponent" parent="comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("10_8gc1h")]
 health_comp = NodePath("../HealthComponent")
 
-[node name="XPComponent" parent="comps" instance=ExtResource("10_ks4ue")]
+[node name="XPComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("10_ks4ue")]
+hero = NodePath("../..")
 
 [node name="MouseMostrar" parent="comps" instance=ExtResource("11_76uwf")]
 

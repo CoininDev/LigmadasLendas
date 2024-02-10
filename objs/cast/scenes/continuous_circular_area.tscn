@@ -23,8 +23,13 @@ shape = SubResource("SphereShape3D_oammc")
 mesh = SubResource("SphereMesh_fclba")
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="DelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Pulse" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjpuelxiseiff"]
 
-[ext_resource type="Script" path="res://objs/cast/scripts/ContinuousCircularArea.gd" id="1_ugy74"]
+[ext_resource type="Script" path="res://objs/cast/scripts/ContinuousRectArea.gd" id="1_ugy74"]
 [ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/materials/cast_generico.tres" id="2_d87n5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jgbkq"]
