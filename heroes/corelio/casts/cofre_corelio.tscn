@@ -12,8 +12,9 @@ transparency = 1
 blend_mode = 1
 albedo_color = Color(0, 1, 0, 1)
 
-[node name="cofre_corelio" type="StaticBody3D"]
+[node name="cofre_corelio" type="StaticBody3D" node_paths=PackedStringArray("dmgr")]
 script = ExtResource("1_twq14")
+dmgr = NodePath("DmgrComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.35, 0)
@@ -31,6 +32,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_espmt")
 health_component = NodePath("../WardHealthComponent")
 
 [node name="WardHealthComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("4_v0xxy")]
+MAX_HEALTH = 1.0
 hero = NodePath("..")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

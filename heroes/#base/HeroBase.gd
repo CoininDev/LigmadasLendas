@@ -18,7 +18,7 @@ var w_cooldown_block = false
 var e_cooldown_block = false
 var r_cooldown_block = false
 
-
+var type = "hero"
 var ultimoAlvo:Node3D
 
 var buff:float = 1

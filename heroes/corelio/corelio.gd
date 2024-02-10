@@ -16,7 +16,7 @@ var q_tempo = 10
 var q_dano = 10
 
 #W
-var w_dano = 0
+var w_dano = 10
 
 #E
 var e_dano = 0
@@ -69,7 +69,8 @@ func _process(delta):
 	q.atk.devendo_time = q_tempo
 	
 	#propriedades do W
-	w.atk.physic_damage = w_dano 
+	w.atk.physic_damage = w_dano + (w_dano * (ability_power * 0.75)) + (q_dano * buff)
+	w.target_position = w_p.mark_pos
 	
 	#propriedades do E
 	e.atk.physic_damage = e_dano 
@@ -96,14 +97,21 @@ func w_preview():
 	w_p.mesh_instance.get_mesh().surface_set_material(0,load("res://graphics/materials/visualizar.tres"))
 	w_p.mesh_instance.rotation_degrees.y = -90
 	w_p.mesh_instance.scale = Vector3(0.5, 0.5, 0.5)
+	w_p.radius = 3
 	w_p.visible = true
 
 func w_cast():
-	pass
+	var t = load("res://heroes/corelio/casts/cofre_corelio.tscn").instantiate()
+	t.atk = w.atk
+	t.delay = 20
+	t.radius = 3
+	ability_box.add_child(t)
+	t.global_position = w.target_position
+	w_p.visible = false
 
 func marcar(pessoa):
 	print(pessoa)
-	if pessoa != null && pessoa != marcado1 && pessoa != marcado2 && pessoa != marcado3 && pessoa != marcado4 && pessoa != marcado5:
+	if pessoa.type == "hero" && pessoa != null && pessoa != marcado1 && pessoa != marcado2 && pessoa != marcado3 && pessoa != marcado4 && pessoa != marcado5:
 		if  marcado1 == null:
 			marcado1 = pessoa
 			
@@ -118,7 +126,7 @@ func marcar(pessoa):
 			
 		elif marcado5 == null:
 			marcado5 = pessoa
-	else:
+	elif pessoa.type == "hero":
 		pessoa.fx_comp.divida += 50
 
 func endividar(quanto:float):
