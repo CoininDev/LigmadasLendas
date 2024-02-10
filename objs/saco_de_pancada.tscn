@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://bi4vcv41hoy0q"]
 
-[ext_resource type="Script" path="res://heroes/base/HeroBase.gd" id="1_sq7xi"]
+[ext_resource type="Script" path="res://heroes/#base/HeroBase.gd" id="1_sq7xi"]
 [ext_resource type="Material" uid="uid://tdbycpp30oep" path="res://graphics/materials/gold.tres" id="2_5pqg1"]
 [ext_resource type="PackedScene" uid="uid://trp7xhom42y" path="res://objs/pointer/scenes/mouse_mostrar.tscn" id="2_bxvmy"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="2_w8m13"]
