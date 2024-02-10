@@ -14,7 +14,7 @@ func _process(delta):
 	mouse_pos_processing()
 	positioning()
 	mark_pos = $Marker3D.global_position
-	$Marker3D.global_rotation = Vector3(0,0,0)
+	#$Marker3D.global_rotation = Vector3(0,0,0)
 
 func mouse_pos_processing():
 	var result = GeneralFuncs.mouse_raycast()
