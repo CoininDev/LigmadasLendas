@@ -83,6 +83,10 @@ func q_cast():
 	q_p.visible = false
 
 func w_preview():
+	w_p.mesh_instance.mesh = load("res://graphics/3d models/cofre.obj")
+	w_p.mesh_instance.get_mesh().surface_set_material(0,load("res://graphics/materials/cast_generico.tres"))
+	w_p.mesh_instance.global_rotation_degrees.y = -90
+	w_p.mesh_instance.scale = Vector3(0.5, 0.5, 0.5)
 	w_p.visible = true
 
 func marcar(pessoa):
