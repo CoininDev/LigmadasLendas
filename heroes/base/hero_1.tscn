@@ -67,7 +67,6 @@ hero = NodePath("../..")
 [node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp") instance=ExtResource("9_q2u5u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73506, 0)
 health_comp = NodePath("../HealthComponent")
-has_sanity = true
 sanity_comp = NodePath("../SanityComponent")
 
 [node name="SanityComponent" parent="comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("10_8gc1h")]

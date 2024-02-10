@@ -72,7 +72,7 @@ func q_preview():
 	q_p.visible = true
 
 func q_cast():
-	var t = load("res://objs/cast/moeda_corelio.tscn").instantiate()
+	var t = load("res://objs/cast/scenes/moeda_corelio.tscn").instantiate()
 	t.atk = q.atk
 	t.distance = q.range
 	t.speed = 30
@@ -124,7 +124,6 @@ func verificar_dividas():
 		
 	if  marcado4 != null && marcado4.fx_comp.devendo_efeito == false:
 		marcado4 = null
-		print("m4 acabou o efeito")
 		
 	if  marcado5 != null && marcado5.fx_comp.devendo_efeito == false:
 		marcado5 = null
@@ -132,7 +131,7 @@ func verificar_dividas():
 
 func _on_p_timer_timeout():
 	passiva_timer.start(p_tempo)
-	var t = load("res://objs/cast/dinheiro_corelio.tscn").instantiate()
+	var t = load("res://objs/cast/scenes/dinheiro_corelio.tscn").instantiate()
 	t.atk = p.atk
 	t.dinheiro = 20
 	ability_box.add_child(t)

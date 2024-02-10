@@ -8,9 +8,6 @@ extends Node3D
 @onready var area = $Area3D
 
 func _ready():
-	start()
-
-func start():
 	$Timer.start(delay)
 
 

@@ -6,7 +6,6 @@ class_name EffectsComponent
 @export var health_comp:HealthComponent
 @export var sanity_comp:SanityComponent
 @export var hero:HeroBase
-@export var show_effect:ShowEffect
 var continuous_damage_atk:Attack
 var current_effect:String = ""
 
