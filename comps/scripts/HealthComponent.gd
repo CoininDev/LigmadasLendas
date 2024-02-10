@@ -45,7 +45,8 @@ func handle_death(atk):
 				atk.caster.cancel()
 			if atk.caster.has_method("add_xp"):
 				atk.caster.add_xp(death_xp)
-		hero.queue_free()
+		died.connect(hero.die)
+		died.emit()
 		
 func ignore_resistance_damage(atk:Attack):
 	health -= atk.physic_damage

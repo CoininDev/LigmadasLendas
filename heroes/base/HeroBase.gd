@@ -90,3 +90,6 @@ func add_xp(xp):
 
 func cancel():
 	batk_comp.cancel() 
+
+func die():
+	queue_free()

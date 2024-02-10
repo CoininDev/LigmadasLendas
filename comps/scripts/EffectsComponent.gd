@@ -36,7 +36,7 @@ func _process(delta):
 		current_effect = "pagar"
 		print(divida)
 		var atk = Attack.new()
-		atk.magic_damage = 50
+		atk.magic_damage = divida
 		atk.caster = caster_divida
 		health_comp.ignore_resistance_damage(atk)
 		pagar = false

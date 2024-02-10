@@ -43,8 +43,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_vhjqo")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("2_w8m13")]
-physical_resistance = 0.01
-magical_resistance = 0.01
 hero = NodePath("..")
 
 [node name="DamageMgrComponent" parent="." node_paths=PackedStringArray("health_component", "effects_component") instance=ExtResource("3_mautj")]

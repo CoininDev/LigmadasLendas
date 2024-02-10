@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce4k7x5smkxtl"]
+
+[ext_resource type="Script" path="res://heroes/corelio/casts/cofre_corelio.gd" id="1_twq14"]
+[ext_resource type="ArrayMesh" uid="uid://bwvc43hfrdtsr" path="res://graphics/3d models/cofre.obj" id="2_ua0nu"]
+[ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_vdofa"]
+[ext_resource type="PackedScene" uid="uid://c41ghwyaavow6" path="res://comps/scenes/ward_health_component.tscn" id="4_v0xxy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p7tkh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_espmt"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="cofre_corelio" type="StaticBody3D"]
+script = ExtResource("1_twq14")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.35, 0)
+shape = SubResource("BoxShape3D_p7tkh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+mesh = ExtResource("2_ua0nu")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_espmt")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="DmgrComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_vdofa")]
+health_component = NodePath("../WardHealthComponent")
+
+[node name="WardHealthComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("4_v0xxy")]
+hero = NodePath("..")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

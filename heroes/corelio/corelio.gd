@@ -1,5 +1,13 @@
 extends HeroBase
 
+#Q parcelado: o coelho joga uma moeda, se acertar um campeão inimigo ele recebe 10/25/50/65/100 (+ 120% do dano magico) de dano magico, ele fica marcado como dividendo por 10s/20s/25s/30s/40s, caso o coelho receba dano dentro desse tempo, o campeão acumula 30% do dano causado em sua divida.  apos o efeito acabar ou o coelho morrer o campeão recebe o efeito de pagando divida recebendo dano continuo até acabar todo o dano acumulado na divida.
+#
+#W cofre: o coelho coloca um cofre no chão e quando acertado com um auto ataque ou com uma habilidade o cofre explode espalhando notas de dinheiro pelo chao a uma distancia de até 40, e causando uma explosão no raio de 10, causando 100/150/200/250/300 (+ 75% do dano magico) de dano magico.
+#
+#E cobrança: caso um campeão inimigo estiver marcado como dividendo estiver em uma area de 50 do coelho e estiver visivel, o coelho cobra o total do da divida mais juros de 10%/20%/40%/80%/100% (+ 20% de dano magico) da divida do inimigo sua divida de uma vez como dano magico.
+#
+#R o verdadeiro poder da riqueza: o campeão absorve a aura e expele ela para a frente, causando 200% do dano magico. o campeão fica atordoado por 0.5s e fica sem sua aura por 60s/40s/20s não podendo utilizar suas habilidades.
+
 @export var health_Comp:HealthComponent
 @onready var passiva_timer = $AbilityPointers/PTimer
 
@@ -16,9 +24,6 @@ var e_dano = 0
 #passiva
 var p_distancia_max = 5
 var p_tempo = 10
-
-
-
 
 var random = RandomNumberGenerator.new()
 
@@ -54,15 +59,19 @@ func _process(delta):
 	
 	#caso receba dano aumenta a divida de quem esta marcado
 	if health_Comp.health < ultimavida:
-		endividar((ultimavida - health_Comp.health) * 30/100)
-		print((ultimavida - health_Comp.health) * 30/100)
+		endividar((ultimavida - health_Comp.health) * 0.3)
+		print((ultimavida - health_Comp.health) * 0.3)
 		ultimavida = health_Comp.health
-	q.atk.physic_damage = q_dano 
+	
+	#propriedades do Q
+	q.atk.physic_damage = q_dano + (q_dano * (ability_power * 0.3)) + (q_dano * buff)
 	q.target_direction = q_p.global_rotation
 	q.atk.devendo_time = q_tempo
 	
+	#propriedades do W
 	w.atk.physic_damage = w_dano 
 	
+	#propriedades do E
 	e.atk.physic_damage = e_dano 
 	e.target_direction = e_p.global_rotation
 
@@ -72,7 +81,7 @@ func q_preview():
 	q_p.visible = true
 
 func q_cast():
-	var t = load("res://objs/cast/scenes/moeda_corelio.tscn").instantiate()
+	var t = load("res://heroes/corelio/casts/moeda_corelio.tscn").instantiate()
 	t.atk = q.atk
 	t.distance = q.range
 	t.speed = 30
@@ -88,6 +97,9 @@ func w_preview():
 	w_p.mesh_instance.rotation_degrees.y = -90
 	w_p.mesh_instance.scale = Vector3(0.5, 0.5, 0.5)
 	w_p.visible = true
+
+func w_cast():
+	pass
 
 func marcar(pessoa):
 	print(pessoa)
@@ -106,6 +118,8 @@ func marcar(pessoa):
 			
 		elif marcado5 == null:
 			marcado5 = pessoa
+	else:
+		pessoa.fx_comp.divida += 50
 
 func endividar(quanto:float):
 	if marcado1 != null:
@@ -138,7 +152,7 @@ func verificar_dividas():
 
 func _on_p_timer_timeout():
 	passiva_timer.start(p_tempo)
-	var t = load("res://objs/cast/scenes/dinheiro_corelio.tscn").instantiate()
+	var t = load("res://heroes/corelio/casts/dinheiro_corelio.tscn").instantiate()
 	t.atk = p.atk
 	t.dinheiro = 20
 	ability_box.add_child(t)
