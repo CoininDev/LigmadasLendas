@@ -31,12 +31,8 @@ albedo_color = Color(0, 0.447059, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wvo1n"]
 material = SubResource("StandardMaterial3D_4rv5s")
-radius = 0.4
-height = 1.8
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_jm1xw"]
-height = 1.8
-radius = 0.35
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ts1b0"]
 
 [node name="corelio" type="CharacterBody3D" node_paths=PackedStringArray("health_Comp", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
@@ -67,7 +63,7 @@ mesh = SubResource("CapsuleMesh_wvo1n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("CylinderShape3D_jm1xw")
+shape = SubResource("CapsuleShape3D_ts1b0")
 
 [node name="comps" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -87,7 +83,6 @@ nav_comp = NodePath("../NavComponent")
 hero = NodePath("../..")
 
 [node name="NavComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_iryle")]
-path_desired_distance = 0.5
 speed = 300
 hero = NodePath("../..")
 
