@@ -6,6 +6,7 @@
 script = ExtResource("1_382xm")
 
 [node name="DevendoTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="StunTimer" type="Timer" parent="."]
 one_shot = true
@@ -25,6 +26,10 @@ one_shot = true
 [node name="ContinuousDamagePulse" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="ResetEfects" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [node name="MarkTimer1" type="Timer" parent="."]
 
 [node name="MarkTimer2" type="Timer" parent="."]
@@ -42,3 +47,4 @@ wait_time = 0.5
 [connection signal="timeout" from="FearTimer" to="." method="_on_fear_timer_timeout"]
 [connection signal="timeout" from="ContinuousDamageTimer" to="." method="_on_continuous_damage_timer_timeout"]
 [connection signal="timeout" from="ContinuousDamagePulse" to="." method="_on_continuous_damage_pulse_timeout"]
+[connection signal="timeout" from="ResetEfects" to="." method="_on_reset_efects_timeout"]

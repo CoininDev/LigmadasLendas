@@ -48,7 +48,7 @@ func _ready():
 	e.atk = Attack.new()
 	p.atk = Attack.new()
 	q.range = 10
-	w.range = 15
+	w.range = 5
 	e.range = 15
 	q.atk.caster = self
 	w.atk.caster = self
@@ -109,25 +109,32 @@ func w_cast():
 	t.global_position = w.target_position
 	w_p.visible = false
 
-func marcar(pessoa):
-	print(pessoa)
-	if pessoa.type == "hero" && pessoa != null && pessoa != marcado1 && pessoa != marcado2 && pessoa != marcado3 && pessoa != marcado4 && pessoa != marcado5:
-		if  marcado1 == null:
-			marcado1 = pessoa
-			
-		elif marcado2 == null:
-			marcado2 = pessoa
-			
-		elif marcado3 == null:
-			marcado3 = pessoa
-			
-		elif marcado4 == null:
-			marcado4 = pessoa
-			
-		elif marcado5 == null:
-			marcado5 = pessoa
-	elif pessoa.type == "hero":
-		pessoa.fx_comp.divida += 50
+func e_preview():
+	e_p.mesh_instance.scale.x = e.range /2
+	e_p.mesh_instance.scale.z = e.range /2
+	e_p.visible = true
+
+func e_cast():
+	if marcado1 != null &&  marcado1.position.distance_to(global_position) <= e.range/2:
+		juros(0.1 + (ability_power * 0.2),marcado1)
+		marcado1 = null
+	if marcado2 != null && marcado2.position.distance_to(global_position) <= e.range/2:
+		juros(0.1 + (ability_power * 0.2),marcado2)
+		marcado2 = null
+	if marcado3 != null &&  marcado3.position.distance_to(global_position) <= e.range/2:
+		juros(0.1 + (ability_power * 0.2),marcado3)
+		marcado3 = null
+	if marcado4 != null && marcado4.position.distance_to(global_position) <= e.range/2:
+		juros(0.1 + (ability_power * 0.2),marcado4)
+		marcado4 = null
+	if marcado5 != null &&  marcado5.position.distance_to(global_position) <= e.range/2:
+		juros(0.1 + (ability_power * 0.2),marcado5)
+		marcado5 = null
+	e_p.visible = false
+
+func juros(quanto:float,pessoa:Node):
+	pessoa.fx_comp.divida += pessoa.fx_comp.divida * quanto
+	pessoa.fx_comp.pagar = true
 
 func endividar(quanto:float):
 	if marcado1 != null:
@@ -156,7 +163,7 @@ func verificar_dividas():
 		
 	if  marcado5 != null && marcado5.fx_comp.devendo_efeito == false:
 		marcado5 = null
-
+	return true
 
 func _on_p_timer_timeout():
 	passiva_timer.start(p_tempo)
@@ -167,3 +174,23 @@ func _on_p_timer_timeout():
 	t.global_position.x = self.global_position.x + random.randf_range(-p_distancia_max,p_distancia_max)
 	t.global_position.z = self.global_position.z + random.randf_range(-p_distancia_max,p_distancia_max)
 	t.global_position.y = 0
+
+func marcar(pessoa):
+	print(pessoa)
+	if pessoa.type == "hero" && pessoa != null && pessoa != marcado1 && pessoa != marcado2 && pessoa != marcado3 && pessoa != marcado4 && pessoa != marcado5:
+		if  marcado1 == null:
+			marcado1 = pessoa
+			
+		elif marcado2 == null:
+			marcado2 = pessoa
+			
+		elif marcado3 == null:
+			marcado3 = pessoa
+			
+		elif marcado4 == null:
+			marcado4 = pessoa
+			
+		elif marcado5 == null:
+			marcado5 = pessoa
+	elif pessoa.type == "hero":
+		pessoa.fx_comp.divida += 10 + (ability_power * 0.30)
