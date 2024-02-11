@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://buiot4sqmdron"]
+
+[ext_resource type="Texture2D" uid="uid://dnfdm76a4edlc" path="res://heroes/corelio/material/dinheiro 2d.png" id="1_vxrr0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7bkrs"]
+angle_min = -301.9
+angle_max = 696.7
+direction = Vector3(0, 1, 0)
+spread = 46.451
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -1.5, 0)
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_noise_scale = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b4hbq"]
+albedo_texture = ExtResource("1_vxrr0")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8d2nu"]
+material = SubResource("StandardMaterial3D_b4hbq")
+size = Vector2(0.2, 0.4)
+
+[node name="GPUParticles3D2" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+emitting = false
+amount = 20
+lifetime = 10.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+randomness = 0.9
+process_material = SubResource("ParticleProcessMaterial_7bkrs")
+draw_pass_1 = SubResource("QuadMesh_8d2nu")

@@ -120,18 +120,38 @@ func e_preview():
 func e_cast():
 	if marcado1 != null &&  marcado1.position.distance_to(global_position) <= e.range:
 		juros(0.1 + (ability_power * 0.2),marcado1)
+		var s = load("res://heroes/corelio/material/juros.tscn").instantiate()
+		ability_box.add_child(s)
+		s.global_position = marcado1.global_position
+		s.emitting = true
 		marcado1 = null
 	if marcado2 != null && marcado2.position.distance_to(global_position) <= e.range:
 		juros(0.1 + (ability_power * 0.2),marcado2)
+		var s = load("res://heroes/corelio/material/juros.tscn").instantiate()
+		ability_box.add_child(s)
+		s.global_position = marcado2.global_position
+		s.emitting = true
 		marcado2 = null
 	if marcado3 != null &&  marcado3.position.distance_to(global_position) <= e.range:
 		juros(0.1 + (ability_power * 0.2),marcado3)
+		var s = load("res://heroes/corelio/material/juros.tscn").instantiate()
+		ability_box.add_child(s)
+		s.global_position = marcado3.global_position
+		s.emitting = true
 		marcado3 = null
 	if marcado4 != null && marcado4.position.distance_to(global_position) <= e.range:
 		juros(0.1 + (ability_power * 0.2),marcado4)
+		var s = load("res://heroes/corelio/material/juros.tscn").instantiate()
+		ability_box.add_child(s)
+		s.global_position = marcado4.global_position
+		s.emitting = true
 		marcado4 = null
 	if marcado5 != null &&  marcado5.position.distance_to(global_position) <= e.range:
 		juros(0.1 + (ability_power * 0.2),marcado5)
+		var s = load("res://heroes/corelio/material/juros.tscn").instantiate()
+		ability_box.add_child(s)
+		s.global_position = marcado5.global_position
+		s.emitting = true
 		marcado5 = null
 	e_p.visible = false
 

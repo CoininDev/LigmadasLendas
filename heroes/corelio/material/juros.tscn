@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://serjmpu1vamn"]
+
+[ext_resource type="Texture2D" uid="uid://xmnkosys2es2" path="res://graphics/sprites/pagando.png" id="1_71hnx"]
+
+[sub_resource type="Curve" id="Curve_541qy"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_063wt"]
+curve = SubResource("Curve_541qy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d8gcp"]
+emission_shape_scale = Vector3(1, 0.3, 1)
+emission_shape = 2
+emission_sphere_radius = 1.0
+direction = Vector3(0, 5, 0)
+spread = 0.0
+flatness = 1.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+orbit_velocity_curve = SubResource("CurveTexture_063wt")
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b27vf"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_71hnx")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_qwngm"]
+material = SubResource("StandardMaterial3D_b27vf")
+size = Vector2(0.6, 0.6)
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+emitting = false
+amount = 6
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_d8gcp")
+draw_pass_1 = SubResource("QuadMesh_qwngm")

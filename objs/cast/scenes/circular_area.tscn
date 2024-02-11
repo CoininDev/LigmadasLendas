@@ -15,6 +15,7 @@ is_hemisphere = true
 script = ExtResource("1_6paqy")
 
 [node name="Area3D" type="Area3D" parent="."]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_oammc")
