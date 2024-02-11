@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c3tywn6og5g45"]
+[gd_scene load_steps=20 format=3 uid="uid://c3tywn6og5g45"]
 
 [ext_resource type="Script" path="res://heroes/corelio/corelio.gd" id="1_sr7n3"]
+[ext_resource type="Material" uid="uid://brow3ato7irei" path="res://heroes/corelio/material/particles_aura_corelio.tres" id="2_o5pab"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_wdr0m"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="4_r40dm"]
 [ext_resource type="PackedScene" uid="uid://dihqxk54qchm4" path="res://comps/scenes/ranged_b_attack_component.tscn" id="5_7e7gm"]
@@ -14,17 +15,31 @@
 [ext_resource type="PackedScene" uid="uid://df4c8oi2h37jp" path="res://objs/pointer/scenes/spot_pointer.tscn" id="12_j2xbn"]
 [ext_resource type="PackedScene" uid="uid://bt3p7cj7om1ne" path="res://objs/pointer/scenes/target_pointer.tscn" id="13_b5pmj"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ugeic"]
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 1.0
+initial_velocity_max = 16.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_86l3n"]
+material = ExtResource("2_o5pab")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rv5s"]
 albedo_color = Color(0, 0.447059, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wvo1n"]
 material = SubResource("StandardMaterial3D_4rv5s")
+radius = 0.4
 height = 1.8
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sgr7i"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jm1xw"]
 height = 1.8
+radius = 0.35
 
 [node name="corelio" type="CharacterBody3D" node_paths=PackedStringArray("health_Comp", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
 script = ExtResource("1_sr7n3")
 health_Comp = NodePath("comps/HealthComponent")
 dmgr = NodePath("comps/DamageMgrComponent")
@@ -36,13 +51,23 @@ w_p = NodePath("AbilityPointers/W")
 e_p = NodePath("AbilityPointers/E")
 r_p = NodePath("AbilityPointers/R")
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0101285, 1.14831, -0.00225324)
+amount = 35
+lifetime = 0.01
+preprocess = 19.48
+speed_scale = 0.1
+fixed_fps = 120
+process_material = SubResource("ParticleProcessMaterial_ugeic")
+draw_pass_1 = SubResource("QuadMesh_86l3n")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 mesh = SubResource("CapsuleMesh_wvo1n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_sgr7i")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CylinderShape3D_jm1xw")
 
 [node name="comps" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -62,8 +87,7 @@ nav_comp = NodePath("../NavComponent")
 hero = NodePath("../..")
 
 [node name="NavComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_iryle")]
-target_desired_distance = 0.1
-path_height_offset = -0.25
+path_desired_distance = 0.5
 speed = 300
 hero = NodePath("../..")
 

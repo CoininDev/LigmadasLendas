@@ -75,6 +75,8 @@ func q_cast():
 	q_projetil = load("res://objs/cast/scenes/projectile.tscn").instantiate()
 	q_projetil.speed = 10
 	q_projetil.atk = q.atk
+	q_projetil.gfx.surface_set_material(0,load("res://heroes/alyssa/material/abilities_alyssa.tres"))
+	q_projetil.gfx_particles = load("res://heroes/alyssa/material/particles_aura_alyssa.tres")
 	q_projetil.radius = 0.25
 	q_projetil.distance = q.range
 	ability_box.add_child(q_projetil)
@@ -96,20 +98,17 @@ func w_cast():
 	w_ativado = 1
 	w_tokens = 1
 
-func e_preview():
-	e_p.range = 50
-	e_p.visible = true
-
 func e_cast():
 	var t = load("res://objs/cast/scenes/continuous_circular_area.tscn").instantiate()
 	t.atk = e.atk
 	t.radius = e.range
+	#t.gfx.surface_set_material(0,load("res://heroes/alyssa/material/abilities_alyssa.tres"))
 	t.delay = 0.1
 	t.pulse = 0.1
 	t.time = 3
 	ability_box.add_child(t)
 	t.global_position = global_position
-	e_p.visible = false
+	#e_p.visible = false
 
 func removed_cast(cast):
 	if cast == q_projetil or cast == q_rastro:

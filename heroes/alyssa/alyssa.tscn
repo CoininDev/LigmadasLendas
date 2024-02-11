@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://dctjqnt85jp8c"]
+[gd_scene load_steps=21 format=3 uid="uid://dctjqnt85jp8c"]
 
 [ext_resource type="Script" path="res://heroes/alyssa/alyssa.gd" id="1_h8uc8"]
 [ext_resource type="PackedScene" uid="uid://dhkimb8cguqd3" path="res://graphics/3d models/heroes/Alyssa.blend" id="2_28evr"]
+[ext_resource type="QuadMesh" uid="uid://blaghjjksd8bs" path="res://heroes/alyssa/material/particles_aura_alyssa.tres" id="2_rybij"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_57ypq"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="4_wyq3f"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="5_arwbl"]
@@ -16,6 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/scenes/direction_pointer.tscn" id="15_jcv68"]
 [ext_resource type="PackedScene" uid="uid://bt3p7cj7om1ne" path="res://objs/pointer/scenes/target_pointer.tscn" id="16_dptv7"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ssv6"]
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 1.0
+initial_velocity_max = 16.0
+gravity = Vector3(0, 0, 0)
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ey8t6"]
 height = 1.6
 radius = 0.25
@@ -29,7 +38,7 @@ radius = 10.0
 height = 10.0
 is_hemisphere = true
 
-[node name="Ana" type="CharacterBody3D" node_paths=PackedStringArray("p_p", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "e_p", "r_p")]
+[node name="Alyssa" type="CharacterBody3D" node_paths=PackedStringArray("p_p", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "r_p")]
 script = ExtResource("1_h8uc8")
 p_p = NodePath("Abilities/P(ContCircArea)")
 dmgr = NodePath("comps/DamageMgrComponent")
@@ -37,8 +46,17 @@ xp_comp = NodePath("comps/XPComponent")
 batk_comp = NodePath("comps/BAttackComponent")
 fx_comp = NodePath("comps/EffectsComponent")
 q_p = NodePath("Abilities/Q(Direction)")
-e_p = NodePath("Abilities/E(Target)")
 r_p = NodePath("Abilities/R(Target)")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0101285, 1.14831, -0.00225324)
+amount = 35
+lifetime = 0.01
+preprocess = 19.48
+speed_scale = 0.1
+fixed_fps = 120
+process_material = SubResource("ParticleProcessMaterial_2ssv6")
+draw_pass_1 = ExtResource("2_rybij")
 
 [node name="Alyssa" parent="." instance=ExtResource("2_28evr")]
 
@@ -65,9 +83,9 @@ nav_comp = NodePath("../NavComponent")
 hero = NodePath("../..")
 
 [node name="NavComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_pm5oo")]
-target_desired_distance = 0.1
-path_height_offset = -0.25
+path_desired_distance = 1.0
 speed = 300
+desired_distance = 1.0
 hero = NodePath("../..")
 
 [node name="ControllerComponent" parent="comps" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero") instance=ExtResource("7_gkx3m")]
@@ -112,8 +130,7 @@ mesh = SubResource("SphereMesh_llq3x")
 
 [node name="Q(Direction)" parent="Abilities" instance=ExtResource("15_jcv68")]
 
-[node name="E(Target)" parent="Abilities" instance=ExtResource("16_dptv7")]
-
 [node name="R(Target)" parent="Abilities" instance=ExtResource("16_dptv7")]
+range = 8.0
 
 [editable path="Abilities/P(ContCircArea)"]

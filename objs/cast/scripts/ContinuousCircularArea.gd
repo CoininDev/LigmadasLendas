@@ -8,9 +8,11 @@ extends Cast
 var running:bool=false
 
 func _ready():
+	$Area3D/MeshInstance3D.mesh = gfx
 	$Area3D/CollisionShape3D.shape.radius = radius
-	$Area3D/MeshInstance3D.mesh.radius = radius
-	$Area3D/MeshInstance3D.mesh.height = radius
+	if $Area3D/MeshInstance3D.mesh is SphereMesh:
+		$Area3D/MeshInstance3D.mesh.radius = radius
+		$Area3D/MeshInstance3D.mesh.height = radius
 	$DelayTimer.start(delay)
 
 func _process(delta):
