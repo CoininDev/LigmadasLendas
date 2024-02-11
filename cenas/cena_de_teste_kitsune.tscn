@@ -104,7 +104,7 @@ transform = Transform3D(1, 0, 0, 0, -0.564463, 0.825459, 0, -0.825459, -0.564463
 [node name="AbilityBox" type="Node3D" parent="."]
 
 [node name="corelio" parent="." node_paths=PackedStringArray("ability_box") instance=ExtResource("2_mf7bl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.9193)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 18.9845)
 ability_box = NodePath("../AbilityBox")
 
 [node name="SacoDePancada" parent="." instance=ExtResource("3_bqxcg")]

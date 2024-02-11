@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://be64oqngjod2a"]
+[gd_scene load_steps=13 format=3 uid="uid://be64oqngjod2a"]
 
 [ext_resource type="Script" path="res://heroes/corelio/casts/moeda_corelio.gd" id="1_enkb4"]
 [ext_resource type="Texture2D" uid="uid://bxo2ej8oclod5" path="res://graphics/sprites/moeda_corelio.png" id="2_ag4sy"]
@@ -10,10 +10,54 @@ radius = 0.183322
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5q8p"]
 albedo_texture = ExtResource("2_ag4sy")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r8l62"]
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 0, 0)
+spread = 4.355
+initial_velocity_min = 0.8
+initial_velocity_max = 0.8
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3ssf"]
+blend_mode = 1
+albedo_color = Color(1, 1, 0, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_74eu5"]
+material = SubResource("StandardMaterial3D_v3ssf")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p5v7d"]
+emission_shape = 1
+emission_sphere_radius = 0.7
+velocity_pivot = Vector3(1, 0, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2xcww"]
+blend_mode = 1
+albedo_color = Color(1, 1, 0, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_anfwy"]
+material = SubResource("StandardMaterial3D_2xcww")
+size = Vector2(0.1, 0.1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_0svcd"]
 
 [node name="moeda_corelio" type="Node3D"]
 script = ExtResource("1_enkb4")
+
+[node name="finalTimer" type="Timer" parent="."]
 
 [node name="bullet" type="Area3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -1.02859)
@@ -25,11 +69,28 @@ shape = SubResource("SphereShape3D_j4lej")
 material_override = SubResource("StandardMaterial3D_f5q8p")
 mesh = ExtResource("3_wl0gl")
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="bullet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+amount = 90
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_r8l62")
+draw_pass_1 = SubResource("QuadMesh_74eu5")
+
 [node name="end" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.43812)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="end"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_p5v7d")
+draw_pass_1 = SubResource("QuadMesh_anfwy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="end"]
 shape = SubResource("BoxShape3D_0svcd")
 
+[connection signal="timeout" from="finalTimer" to="." method="_on_final_timer_timeout"]
 [connection signal="area_entered" from="bullet" to="." method="_on_bullet_area_entered"]
 [connection signal="body_entered" from="bullet" to="." method="_on_bullet_body_entered"]

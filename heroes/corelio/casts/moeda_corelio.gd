@@ -8,6 +8,8 @@ extends Node3D
 @export var collide:bool = false
 @export var gfx:Material
 
+
+
 var obsolete:Array = []
 var running = false
 @onready var end = $end
@@ -25,9 +27,10 @@ func _ready():
 	
 func _process(delta):
 	
-	$bullet/MeshInstance3D.rotation.x += girar
-	if running:
-		run(delta)
+	if $bullet:
+		$bullet/MeshInstance3D.rotation.x += girar
+		if running:
+			run(delta)
 
 func start():
 	running = true
@@ -52,4 +55,10 @@ func _on_bullet_body_entered(body):
 
 func _on_bullet_area_entered(area):
 	if area == end:
-		queue_free()
+		$end/GPUParticles3D.emitting = true
+		$bullet.queue_free()
+		$finalTimer.start()
+
+
+func _on_final_timer_timeout():
+	queue_free()
