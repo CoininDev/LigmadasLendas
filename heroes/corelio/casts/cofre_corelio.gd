@@ -23,6 +23,5 @@ func die():
 	t.delay = 0.1
 	t.radius = radius
 	atk.caster.ability_box.add_child(t)
-	t.corelio_Passiva = true
 	t.global_position = self.global_position
 	queue_free()

@@ -15,13 +15,13 @@ func _ready():
 	health = MAX_HEALTH
 
 func damage(atk: Attack):
-	atk.physic_damage -= atk.physic_damage * physical_resistance
-	atk.magic_damage -= atk.physic_damage * magical_resistance
+	atk.physic_damage -= physical_resistance
+	atk.magic_damage -= magical_resistance
 	
 	health -= atk.physic_damage
 	health -= atk.magic_damage
 	damaged.emit()
-	
+	print("magic atack ",atk.magic_damage)
 	handle_death(atk)
 
 func damage_continuous(atk: Attack):

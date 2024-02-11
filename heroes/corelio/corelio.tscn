@@ -86,7 +86,12 @@ health_comp = NodePath("../HealthComponent")
 [node name="XPComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("10_yik6h")]
 hero = NodePath("../..")
 
-[node name="EffectsComponent" parent="comps" instance=ExtResource("11_8wv05")]
+[node name="EffectsComponent" parent="comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp", "hero") instance=ExtResource("11_8wv05")]
+battack_comp = NodePath("../RangedBAttackComponent")
+nav_comp = NodePath("../NavComponent")
+health_comp = NodePath("../HealthComponent")
+sanity_comp = NodePath("../SanityComponent")
+hero = NodePath("../..")
 
 [node name="AbilityPointers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)

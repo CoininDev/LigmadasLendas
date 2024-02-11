@@ -19,7 +19,7 @@ var q_dano = 10
 var w_dano = 10
 
 #E
-var e_dano = 0
+var e_dano = 10
 
 #passiva
 var p_distancia_max = 5
@@ -64,19 +64,20 @@ func _process(delta):
 		ultimavida = health_Comp.health
 	
 	#propriedades do Q
-	q.atk.physic_damage = q_dano + (q_dano * (ability_power * 0.3)) + (q_dano * buff)
+	q.atk.magic_damage = q_dano + (ability_power * 0.3)
 	q.target_direction = q_p.global_rotation
 	q.atk.devendo_time = q_tempo
 	
 	#propriedades do W
-	w.atk.physic_damage = w_dano + (w_dano * (ability_power * 0.75)) + (q_dano * buff)
+	w.atk.magic_damage = w_dano + (ability_power * 0.75) + (q_dano * buff)
 	w.target_position = w_p.mark_pos
 	
 	#propriedades do E
-	e.atk.physic_damage = e_dano 
+	e.atk.magic_damage = e_dano 
 	e.target_direction = e_p.global_rotation
 
 func q_preview():
+	print("ability power value ",ability_power)
 	q_p.mesh_instance.position.z = -q.range / 2
 	q_p.mesh_instance.scale.z = q.range
 	q_p.visible = true
@@ -97,7 +98,9 @@ func w_preview():
 	w_p.mesh_instance.get_mesh().surface_set_material(0,load("res://graphics/materials/visualizar.tres"))
 	w_p.mesh_instance.rotation_degrees.y = -90
 	w_p.mesh_instance.scale = Vector3(0.5, 0.5, 0.5)
-	w_p.radius = 3
+	w_p.rangeshow.scale.x = 1.5
+	w_p.rangeshow.scale.z = 1.5
+	w_p.radius = 3 
 	w_p.visible = true
 
 func w_cast():
@@ -115,19 +118,19 @@ func e_preview():
 	e_p.visible = true
 
 func e_cast():
-	if marcado1 != null &&  marcado1.position.distance_to(global_position) <= e.range/2:
+	if marcado1 != null &&  marcado1.position.distance_to(global_position) <= e.range:
 		juros(0.1 + (ability_power * 0.2),marcado1)
 		marcado1 = null
-	if marcado2 != null && marcado2.position.distance_to(global_position) <= e.range/2:
+	if marcado2 != null && marcado2.position.distance_to(global_position) <= e.range:
 		juros(0.1 + (ability_power * 0.2),marcado2)
 		marcado2 = null
-	if marcado3 != null &&  marcado3.position.distance_to(global_position) <= e.range/2:
+	if marcado3 != null &&  marcado3.position.distance_to(global_position) <= e.range:
 		juros(0.1 + (ability_power * 0.2),marcado3)
 		marcado3 = null
-	if marcado4 != null && marcado4.position.distance_to(global_position) <= e.range/2:
+	if marcado4 != null && marcado4.position.distance_to(global_position) <= e.range:
 		juros(0.1 + (ability_power * 0.2),marcado4)
 		marcado4 = null
-	if marcado5 != null &&  marcado5.position.distance_to(global_position) <= e.range/2:
+	if marcado5 != null &&  marcado5.position.distance_to(global_position) <= e.range:
 		juros(0.1 + (ability_power * 0.2),marcado5)
 		marcado5 = null
 	e_p.visible = false
@@ -169,7 +172,7 @@ func _on_p_timer_timeout():
 	passiva_timer.start(p_tempo)
 	var t = load("res://heroes/corelio/casts/dinheiro_corelio.tscn").instantiate()
 	t.atk = p.atk
-	t.dinheiro = 20
+	#t.dinheiro = 20
 	ability_box.add_child(t)
 	t.global_position.x = self.global_position.x + random.randf_range(-p_distancia_max,p_distancia_max)
 	t.global_position.z = self.global_position.z + random.randf_range(-p_distancia_max,p_distancia_max)
@@ -193,4 +196,4 @@ func marcar(pessoa):
 		elif marcado5 == null:
 			marcado5 = pessoa
 	elif pessoa.type == "hero":
-		pessoa.fx_comp.divida += 10 + (ability_power * 0.30)
+		pessoa.fx_comp.divida += 10 + (q_dano * 0.05)

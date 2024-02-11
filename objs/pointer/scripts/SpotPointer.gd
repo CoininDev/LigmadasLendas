@@ -2,6 +2,7 @@ extends Pointer
 
 @export var radius:float = 2
 @export var range:float = 15
+@onready var rangeshow = $Marker3D/RangeShow
 
 var mouse_pos:Vector3 = Vector3.ZERO
 var mark_pos:Vector3
