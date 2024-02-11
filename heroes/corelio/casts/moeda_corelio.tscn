@@ -70,7 +70,6 @@ material_override = SubResource("StandardMaterial3D_f5q8p")
 mesh = ExtResource("3_wl0gl")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="bullet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 amount = 90
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_r8l62")
@@ -80,7 +79,6 @@ draw_pass_1 = SubResource("QuadMesh_74eu5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.43812)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="end"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 emitting = false
 amount = 10
 lifetime = 0.3

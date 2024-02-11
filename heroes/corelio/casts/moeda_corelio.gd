@@ -50,7 +50,10 @@ func _on_bullet_body_entered(body):
 					atk.caster.marcar(body)
 					obsolete.append(body)
 					if collide:
-						queue_free()
+						$end/GPUParticles3D.emitting = true
+						$end.position = $bullet.position
+						$bullet.queue_free()
+						$finalTimer.start()
 
 
 func _on_bullet_area_entered(area):

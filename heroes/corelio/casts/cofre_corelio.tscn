@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce4k7x5smkxtl"]
+[gd_scene load_steps=10 format=3 uid="uid://ce4k7x5smkxtl"]
 
 [ext_resource type="Script" path="res://heroes/corelio/casts/cofre_corelio.gd" id="1_twq14"]
 [ext_resource type="ArrayMesh" uid="uid://bwvc43hfrdtsr" path="res://graphics/3d models/cofre.obj" id="2_ua0nu"]
@@ -11,6 +11,30 @@
 transparency = 1
 blend_mode = 1
 albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d633k"]
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector3(0, 1, 0)
+spread = 1.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+orbit_velocity_min = 1.0
+orbit_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0uc2t"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0, 1, 0, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8edwh"]
+material = SubResource("StandardMaterial3D_0uc2t")
+size = Vector2(0.1, 0.1)
 
 [node name="cofre_corelio" type="StaticBody3D" node_paths=PackedStringArray("dmgr")]
 script = ExtResource("1_twq14")
@@ -34,5 +58,13 @@ health_component = NodePath("../WardHealthComponent")
 [node name="WardHealthComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("4_v0xxy")]
 MAX_HEALTH = 1.0
 hero = NodePath("..")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.521154, 0)
+amount = 100
+lifetime = 0.06
+speed_scale = 0.7
+process_material = SubResource("ParticleProcessMaterial_d633k")
+draw_pass_1 = SubResource("QuadMesh_8edwh")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
