@@ -1,6 +1,5 @@
-extends Node3D
-@export var atk:Attack
-@export var apply_to:Array = ["hitbox_owner"]
+extends Cast
+
 @export var radius:float = 2
 @export var delay:float = 1
 @export var time:float = 1
@@ -25,7 +24,7 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	queue_free()
+	remove_self()
 
 
 func _on_delay_timer_timeout():

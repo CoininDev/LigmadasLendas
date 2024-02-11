@@ -74,12 +74,13 @@ hero = NodePath("..")
 [node name="XPComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("9_3sdxv")]
 hero = NodePath("..")
 
-[node name="BAttackComponent" parent="." node_paths=PackedStringArray("nav_comp") instance=ExtResource("9_lc4gq")]
+[node name="BAttackComponent" parent="." node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("9_lc4gq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 atk_damage = 15.0
 atk_cooldown = 0.5
 range = 5.0
 nav_comp = NodePath("../NavigationComponent")
+hero = NodePath("..")
 
 [node name="ControllerComponent" parent="." node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero") instance=ExtResource("10_njmc3")]
 nav = NodePath("../NavigationComponent")

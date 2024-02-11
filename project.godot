@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LigmadasLendas"
-run/main_scene="res://cenas/cena_de_teste_kitsune.tscn"
+run/main_scene="res://cenas/cena_de_teste_gaybe.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/fullsize=false
 config/icon="res://Chuu.png"
@@ -149,7 +149,6 @@ p={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/msaa_2d=2
 anti_aliasing/quality/msaa_3d=3

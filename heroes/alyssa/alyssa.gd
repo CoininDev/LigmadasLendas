@@ -10,8 +10,11 @@ var q_projetil:Node3D
 var q_dano:float = 40
 
 #W
-var w_dano_add:float #quando o W e ativado 
-var w_dano_add2:float #quando ela ataca um viciado com o W ativado
+var w_dano:float = 20 #quando o W e ativado 
+var w_dano2:float = 50#quando ela ataca um viciado com o W ativado
+var batk_dano_normal:float=13
+var w_tokens:int = 0
+var w_ativado:int = 0 #0=nao, 1=w simples ativado, 2=w forte ativado
 
 #R
 var r_dano_add:float #dano adicional na passiva
@@ -34,17 +37,28 @@ func _ready():
 	e.atk.caster = self
 
 func _process(delta):
-	#p
+	#P
 	p.atk.magic_damage = p_dano + (ability_power * 0.2) + (r_dano_add + (ability_power * 1.2))
 	p_p.atk = p.atk
 	p_p.apply_to = p.apply_to
-	#q
+	#Q
 	q.target_direction = q_p.global_rotation
 	q.atk.magic_damage = q_dano + (ability_power * 0.75)
-	print(q_rastro)
-	if q_rastro and q_projetil: 
-		q_rastro.area.position.z = -position.distance_to(q_projetil.bullet.position)/2
-		q_rastro.length = position.distance_to(q_projetil.bullet.position)
+	#print(q_rastro)
+	#if q_rastro and q_projetil: 
+		#print(str(position.distance_to(q_projetil.bullet.position)) +" ; "+ str(q_rastro.length))
+		#q_rastro.area.position.z = -position.distance_to(q_projetil.bullet.position)/9
+		#q_rastro.length = position.distance_to(q_projetil.bullet.position)/2
+	#W
+	if w_ativado == 1:
+		batk_comp.atk_damage = w_dano 
+	elif w_ativado == 2:
+		batk_comp.atk_damage = w_dano2
+	else:
+		batk_comp.atk_damage = batk_dano_normal
+	if w_tokens <= 0:
+		w_ativado = 0
+		print("w_tokens <= 0")
 
 func q_preview():
 	q_p.mesh_instance.position.z = -q.range/2
@@ -62,11 +76,30 @@ func q_cast():
 	q_projetil.global_rotation = q.target_direction
 	q_projetil.global_position = global_position
 	#rastro
-	q_rastro = load("res://objs/cast/scenes/continuous_rect_area.tscn").instantiate()
-	q_rastro.atk = Attack.new()
-	q_rastro.atk.slow_time = 0.5
-	q_rastro.atk.caster = self
-	ability_box.add_child(q_rastro)
-	q_rastro.global_rotation = q.target_direction
-	q_rastro.global_position = global_position
-	q_p.visible = false
+	#q_rastro = load("res://objs/cast/scenes/continuous_rect_area.tscn").instantiate()
+	#q_rastro.atk = Attack.new()
+	#q_rastro.atk.slow_time = 0.5
+	#q_rastro.atk.caster = selfj
+	#q_rastro.length = 0
+	#ability_box.add_child(q_rastro)
+	#q_rastro.global_rotation = q.target_direction
+	#q_rastro.global_position = global_position
+	#q_p.visible = false
+
+func w_cast():
+	w_ativado = 1
+	w_tokens = 1
+	print("w_cast()")
+
+func removed_cast(cast):
+	if cast == q_projetil or cast == q_rastro:
+		q_projetil = null
+		q_rastro = null
+
+func batk_attacked(target):
+	print("batk_attacked")
+	if w_ativado:
+		w_tokens -=1
+	if w_ativado == 1 && target.is_in_group("viciado"):
+		w_ativado = 2
+		w_tokens = 4

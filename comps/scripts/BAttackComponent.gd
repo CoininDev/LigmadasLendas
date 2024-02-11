@@ -11,12 +11,16 @@ var blocked:bool = false
 @onready var range_show = $range_show
 @onready var timer = $Timer
 
+signal attacked
+
 func _ready():
 	var escala = 0.4
 	range_show.scale.x = range * escala
 	range_show.scale.z = range * escala
 	timer.timeout.connect(timeout)
 	timer.wait_time = atk_cooldown
+	if hero.has_method("batk_attacked"):
+		attacked.connect(hero.batk_attacked)
 
 func _process(delta):
 	if target:
@@ -42,6 +46,7 @@ func attack():
 	var atk = Attack.new()
 	atk.physic_damage = atk_damage
 	atk.caster = hero
+	attacked.emit(target)
 	target.dmgr.damage(atk)
 
 func timeout():

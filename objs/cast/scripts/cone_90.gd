@@ -1,12 +1,9 @@
-extends Node3D
+extends Cast
 
-@export var atk:Attack
-@export var apply_to:Array = ["hitbox_owner"]
 @export var radius:float = 0.5
 @export var distance:float = 2
 @export var speed:float = 10
 @export var collide:bool = false
-@export var gfx:Material
 
 var obsolete:Array = []
 var running = false
@@ -46,9 +43,9 @@ func _on_bullet_body_entered(body):
 					atk.caster.ultimoAtaque = body
 					obsolete.append(body)
 					if collide:
-						queue_free()
+						remove_self()
 
 
 func _on_bullet_area_entered(area):
 	if area == end:
-		queue_free()
+		remove_self()

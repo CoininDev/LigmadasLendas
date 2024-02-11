@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://cgc65hb2jo1u7"]
 
-[ext_resource type="Script" path="res://heroes/scripts/dra_lixo.gd" id="1_02i8v"]
+[ext_resource type="Script" path="res://heroes/dra_lixo/dra_lixo.gd" id="1_02i8v"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="2_k0dsn"]
 [ext_resource type="Material" uid="uid://dlm42ehmxi6me" path="res://graphics/materials/dra_lixo.tres" id="2_wwf0o"]
 [ext_resource type="PackedScene" uid="uid://bfx1wxpmwujue" path="res://comps/scenes/sanity_component.tscn" id="3_b8par"]

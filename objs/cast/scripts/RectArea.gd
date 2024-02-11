@@ -1,6 +1,4 @@
-extends Node3D
-@export var atk:Attack
-@export var apply_to:Array = ["hitbox_owner"]
+extends Cast
 @export var thickness:float = 2
 @export var length:float = 5
 @export var delay:float = 1
@@ -23,4 +21,4 @@ func attack():
 			if body.is_in_group(x) && !body == atk.caster:
 				body.dmgr.damage(atk)
 				atk.caster.ultimoAlvo = body
-	queue_free()
+	remove_self()

@@ -1,6 +1,4 @@
-extends Node3D
-@export var atk:Attack
-@export var apply_to:Array = ["hitbox_owner"]
+extends Cast
 @export var thickness:float = 2
 @export var length:float = 5
 @export var delay:float = 1
@@ -16,6 +14,10 @@ func _ready():
 	$DelayTimer.start(delay)
 
 func _process(delta):
+	$Area3D/CollisionShape3D.shape.size.x = thickness
+	$Area3D/MeshInstance3D.mesh.size.x = thickness
+	$Area3D/CollisionShape3D.shape.size.z = length
+	$Area3D/MeshInstance3D.mesh.size.z = length
 	if running:
 		for body in area.get_overlapping_bodies():
 			for x in apply_to:
@@ -24,7 +26,7 @@ func _process(delta):
 					atk.caster.ultimoAlvo = body
 
 func _on_timer_timeout():
-	queue_free()
+	remove_self()
 
 func _on_delay_timer_timeout():
 	running = true
