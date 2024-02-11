@@ -20,11 +20,13 @@ var w_ativado:int = 0 #0=nao, 1=w simples ativado, 2=w forte ativado
 var r_dano_add:float #dano adicional na passiva
 var r_distancia:float
 
+#PROPRIEDADES IMUTAVEIS
 func _ready():
 	_ready_base()
 	p.atk = Attack.new()
 	p.apply_to = ["viciado"]
 	p.atk.caster = self
+	
 	
 	q.atk = Attack.new()
 	q.atk.caster = self
@@ -36,6 +38,7 @@ func _ready():
 	e.atk = Attack.new()
 	e.atk.caster = self
 
+#PROPRIEDADES MUTAVEIS
 func _process(delta):
 	#P
 	p.atk.magic_damage = p_dano + (ability_power * 0.2) + (r_dano_add + (ability_power * 1.2))
@@ -44,6 +47,8 @@ func _process(delta):
 	#Q
 	q.target_direction = q_p.global_rotation
 	q.atk.magic_damage = q_dano + (ability_power * 0.75)
+	q.atk.mark = "viciado"
+	q.atk.mark_time = 5
 	#print(q_rastro)
 	#if q_rastro and q_projetil: 
 		#print(str(position.distance_to(q_projetil.bullet.position)) +" ; "+ str(q_rastro.length))
@@ -58,7 +63,6 @@ func _process(delta):
 		batk_comp.atk_damage = batk_dano_normal
 	if w_tokens <= 0:
 		w_ativado = 0
-		print("w_tokens <= 0")
 
 func q_preview():
 	q_p.mesh_instance.position.z = -q.range/2
@@ -68,7 +72,7 @@ func q_preview():
 func q_cast():
 	#projetil
 	q_projetil = load("res://objs/cast/scenes/projectile.tscn").instantiate()
-	q_projetil.speed = 5
+	q_projetil.speed = 10
 	q_projetil.atk = q.atk
 	q_projetil.radius = 0.25
 	q_projetil.distance = q.range
@@ -84,12 +88,12 @@ func q_cast():
 	#ability_box.add_child(q_rastro)
 	#q_rastro.global_rotation = q.target_direction
 	#q_rastro.global_position = global_position
-	#q_p.visible = false
+	
+	q_p.visible = false
 
 func w_cast():
 	w_ativado = 1
 	w_tokens = 1
-	print("w_cast()")
 
 func removed_cast(cast):
 	if cast == q_projetil or cast == q_rastro:
@@ -97,7 +101,8 @@ func removed_cast(cast):
 		q_rastro = null
 
 func batk_attacked(target):
-	print("batk_attacked")
+	for group in target.get_groups():
+		print(group)
 	if w_ativado:
 		w_tokens -=1
 	if w_ativado == 1 && target.is_in_group("viciado"):

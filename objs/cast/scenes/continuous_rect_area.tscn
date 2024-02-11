@@ -25,5 +25,8 @@ mesh = SubResource("BoxMesh_l3njh")
 
 [node name="DelayTimer" type="Timer" parent="."]
 
+[node name="Pulse" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]
+[connection signal="timeout" from="Pulse" to="." method="_on_pulse_timeout"]

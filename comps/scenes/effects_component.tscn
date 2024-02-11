@@ -6,6 +6,7 @@
 script = ExtResource("1_382xm")
 
 [node name="DevendoTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="StunTimer" type="Timer" parent="."]
 one_shot = true
@@ -26,14 +27,19 @@ one_shot = true
 wait_time = 0.5
 
 [node name="MarkTimer1" type="Timer" parent="."]
+one_shot = true
 
 [node name="MarkTimer2" type="Timer" parent="."]
+one_shot = true
 
 [node name="MarkTimer3" type="Timer" parent="."]
+one_shot = true
 
 [node name="MarkTimer4" type="Timer" parent="."]
+one_shot = true
 
 [node name="MarkTimer5" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="DevendoTimer" to="." method="_on_devendo_timer_timeout"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

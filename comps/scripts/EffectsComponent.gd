@@ -43,8 +43,12 @@ func _process(delta):
 
 
 	for i in range(5):
-		if marktimers[i].time_left <= 0:
+		if marktimers[i].is_stopped():
+			hero.remove_from_group(marks[i])
+			if marks[i] == current_effect:
+				current_effect = ""
 			marks[i] = ""
+		
 
 func apply(atk:Attack):
 	
@@ -87,8 +91,9 @@ func apply(atk:Attack):
 			if marks[i] == "":
 				marks[i] = atk.mark
 				marktimers[i].start(atk.mark_time)
-				break
 				current_effect = marks[i]
+				hero.add_to_group(marks[i])
+				break
 
 
 
