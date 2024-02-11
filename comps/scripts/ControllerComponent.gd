@@ -25,10 +25,11 @@ func _input(event):
 			var result = GeneralFuncs.mouse_raycast()
 		
 		if Input.is_action_just_pressed("p"):
-			var atk = Attack.new()
-			atk.physic_damage = 20
-			atk.caster = hero
-			health_comp.ignore_resistance_damage(atk)
+			#var atk = Attack.new()
+			#atk.physic_damage = 20
+			#atk.caster = hero
+			#health_comp.ignore_resistance_damage(atk)
+			hero.ability_power += 100
 		upgrade_abilities()
 		abilities()
 		attack()

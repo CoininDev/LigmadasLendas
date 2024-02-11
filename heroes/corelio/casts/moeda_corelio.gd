@@ -33,7 +33,6 @@ func start():
 	running = true
 
 func run(delta):
-	
 	$bullet.translate(Vector3(0,0,-1) * (speed/5) * delta)
 	position.y = 0.5 
 
@@ -45,7 +44,6 @@ func _on_bullet_body_entered(body):
 			if body.is_in_group(group):
 				if !obsolete.has(body):
 					body.dmgr.damage(atk) 
-					atk.caster.ultimoAlvo = body
 					atk.caster.marcar(body)
 					obsolete.append(body)
 					if collide:

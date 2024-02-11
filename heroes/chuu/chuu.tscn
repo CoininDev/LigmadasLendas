@@ -23,7 +23,7 @@ material = ExtResource("2_h3sbd")
 radius = 0.35
 height = 1.2
 
-[node name="Chuu" type="CharacterBody3D" node_paths=PackedStringArray("nav", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
+[node name="Chuu" type="CharacterBody3D" node_paths=PackedStringArray("nav", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p") groups=["hitbox_owner"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_122ex")
@@ -34,7 +34,6 @@ batk_comp = NodePath("Comps/BAttackComponent")
 fx_comp = NodePath("Comps/EffectsComponent")
 q_p = NodePath("Abilities/Q")
 w_p = NodePath("Abilities/W")
-e_p = NodePath("Abilities/E")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
@@ -81,7 +80,6 @@ sanity_comp = NodePath("../SanityComponent")
 [node name="GUIComponent" parent="Comps" node_paths=PackedStringArray("health_comp", "sanity_comp") instance=ExtResource("8_petpy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02297, 0)
 health_comp = NodePath("../HealthComponent")
-has_sanity = true
 sanity_comp = NodePath("../SanityComponent")
 
 [node name="XPComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("11_p83qg")]
@@ -94,5 +92,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="W" parent="Abilities" instance=ExtResource("11_3pscn")]
 
-[node name="E" parent="Abilities" instance=ExtResource("9_1wcgu")]
+[node name="E" parent="Abilities" instance=ExtResource("11_3pscn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.589959, 0)

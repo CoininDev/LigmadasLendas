@@ -17,7 +17,7 @@ var current_effect:String = ""
 @onready var continuous_damage_timer = $ContinuousDamageTimer
 @onready var continuous_damage_pulse = $ContinuousDamagePulse
 @onready var devendo_timer = $DevendoTimer
-
+@onready var reset_efects_timer_1 = $ResetEfects
 var caster_divida:HeroBase
 var pagar = false
 var divida = 0.0
@@ -39,6 +39,10 @@ func _process(delta):
 		atk.magic_damage = divida
 		atk.caster = caster_divida
 		health_comp.ignore_resistance_damage(atk)
+		devendo_timer.stop()
+		reset_efects_timer_1.start()
+		divida = 0
+		devendo_efeito = false
 		pagar = false
 
 
@@ -126,3 +130,6 @@ func _on_devendo_timer_timeout():
 	pagar = true
 	devendo_efeito = false
 	current_effect = ""
+
+func _on_reset_efects_timeout():
+	current_effect = " "

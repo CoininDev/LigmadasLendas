@@ -39,6 +39,7 @@ func level_up():
 		level +=1
 		upgrade_tokens +=1
 		ultimate_upgrade_tokens +=1
+		hero.ability_power += 10
 		for upgradable in general_upgradable_atributes:
 			hero.set(upgradable, general_upgradable_atributes[upgradable][level])
 
