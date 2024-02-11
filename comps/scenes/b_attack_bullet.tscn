@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwufb24626oct"]
+[gd_scene load_steps=5 format=3 uid="uid://bwufb24626oct"]
 
 [ext_resource type="Script" path="res://comps/scripts/BAttackBullet.gd" id="1_cd3uj"]
+[ext_resource type="Material" uid="uid://ml0gye4upw8q" path="res://graphics/materials/b_attack_bullet.tres" id="2_16jq5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a3mfu"]
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 1.0
+linear_accel_max = 6.0
+scale_min = 0.01
+turbulence_noise_strength = 7.91
+turbulence_noise_scale = 0.91
+
+[sub_resource type="QuadMesh" id="QuadMesh_foyuo"]
+material = ExtResource("2_16jq5")
+size = Vector2(0.2, 0.2)
 
 [node name="BAttackBullet" type="Area3D"]
 script = ExtResource("1_cd3uj")
@@ -8,5 +24,11 @@ script = ExtResource("1_cd3uj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 100
+lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_a3mfu")
+draw_pass_1 = SubResource("QuadMesh_foyuo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

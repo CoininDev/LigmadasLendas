@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5jd107vangn5"
-path="res://.godot/imported/BaseColor (Alyssa).png-062c87d57894705435cb77164bc3079f.ctex"
+uid="uid://d0knw2hltoj6m"
+path="res://.godot/imported/BaseColor (Alyssa).png-a68813c63ad6442d81957b967a28be92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/sprites/BaseColor (Alyssa).png"
-dest_files=["res://.godot/imported/BaseColor (Alyssa).png-062c87d57894705435cb77164bc3079f.ctex"]
+source_file="res://graphics/3d models/heroes/textures/BaseColor (Alyssa).png"
+dest_files=["res://.godot/imported/BaseColor (Alyssa).png-a68813c63ad6442d81957b967a28be92.ctex"]
 
 [params]
 

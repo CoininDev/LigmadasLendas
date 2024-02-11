@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dihqxk54qchm4" path="res://comps/scenes/ranged_b_attack_component.tscn" id="10_c0o3h"]
 [ext_resource type="PackedScene" uid="uid://df4c8oi2h37jp" path="res://objs/pointer/scenes/spot_pointer.tscn" id="10_dmd1t"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/scenes/direction_pointer.tscn" id="11_a5veo"]
-[ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/materials/arer_generico.tres" id="11_xlmjt"]
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="12_g21sh"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gn32f"]
@@ -27,12 +26,23 @@ height = 1.7
 [sub_resource type="SphereShape3D" id="SphereShape3D_sg770"]
 radius = 0.2
 
-[sub_resource type="SphereMesh" id="SphereMesh_jwn45"]
-material = ExtResource("11_xlmjt")
-radius = 0.2
-height = 0.4
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aj7dj"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0.745098, 0.266667, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_p620i"]
+material = SubResource("StandardMaterial3D_aj7dj")
+size = Vector2(0.2, 0.2)
 
 [node name="DraLixo" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
 collision_layer = 3
 collision_mask = 7
 script = ExtResource("1_02i8v")
@@ -67,11 +77,12 @@ hero = NodePath("../..")
 [node name="SanityComponent" parent="Comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("3_b8par")]
 health_comp = NodePath("../HealthComponent")
 
-[node name="EffectsComponent" parent="Comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp") instance=ExtResource("4_3sbss")]
+[node name="EffectsComponent" parent="Comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp", "hero") instance=ExtResource("4_3sbss")]
 battack_comp = NodePath("../RangedBAttackComponent")
 nav_comp = NodePath("../NavigationComponent")
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
+hero = NodePath("../..")
 
 [node name="NavigationComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_flg0h")]
 speed = 300
@@ -81,19 +92,21 @@ hero = NodePath("../..")
 health_component = NodePath("../HealthComponent")
 effects_component = NodePath("../EffectsComponent")
 
-[node name="GUIComponent" parent="Comps" node_paths=PackedStringArray("health_comp", "sanity_comp") instance=ExtResource("9_5lmth")]
+[node name="GUIComponent" parent="Comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp") instance=ExtResource("9_5lmth")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2007, 0)
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
+fx_comp = NodePath("../EffectsComponent")
 
-[node name="RangedBAttackComponent" parent="Comps" node_paths=PackedStringArray("nav_comp") instance=ExtResource("10_c0o3h")]
+[node name="RangedBAttackComponent" parent="Comps" node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("10_c0o3h")]
 bullet_col = SubResource("SphereShape3D_sg770")
-bullet_gfx = SubResource("SphereMesh_jwn45")
+bullet_gfx_particles = SubResource("QuadMesh_p620i")
 bullet_speed = 0.3
 atk_damage = 15.0
 atk_cooldown = 0.5
 range = 10.0
 nav_comp = NodePath("../NavigationComponent")
+hero = NodePath("../..")
 
 [node name="XPComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("12_g21sh")]
 ability1_upgradable_atributes = {

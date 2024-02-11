@@ -49,7 +49,7 @@ func q_preview():
 	q_p.visible = true
 
 func q_cast():
-	var t = load("res://objs/cast/projectile.tscn").instantiate()
+	var t = load("res://objs/cast/scenes/projectile.tscn").instantiate()
 	t.atk = q.atk
 	t.distance = q.range
 	t.radius = 0.25
@@ -64,7 +64,7 @@ func w_preview():
 	w_p.visible = true
 
 func w_cast():
-	var t = load("res://objs/cast/circular_area.tscn").instantiate()
+	var t = load("res://objs/cast/scenes/circular_area.tscn").instantiate()
 	t.atk = w.atk
 	t.delay = 0.7
 	t.radius = 3
@@ -81,7 +81,7 @@ func e_preview():
 func e_cast():
 	var offset = -0.2
 	for i in 5:
-		var t = load("res://objs/cast/projectile.tscn").instantiate()
+		var t = load("res://objs/cast/scenes/projectile.tscn").instantiate()
 		t.atk = e.atk
 		t.distance = e.range
 		t.speed = 15
@@ -96,9 +96,9 @@ func e_cast():
 
 func r_cast():
 	ultada = true
-	$MeshInstance3D.mesh.material = load("res://graphics/arerer.tres")
+	$MeshInstance3D.mesh.material = load("res://graphics/materials/arer_generico.tres")
 	$UltTimer.start()
 
 func _on_ult_timer_timeout():
-	$MeshInstance3D.mesh.material = load("res://graphics/dra_lixo.tres")
+	$MeshInstance3D.mesh.material = load("res://graphics/materials/dra_lixo.tres")
 	ultada = false

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dhkimb8cguqd3"
-path="res://.godot/imported/Alyssa.blend-e5d524f4d2775ca1f34cd4278a7ee12a.scn"
+path="res://.godot/imported/Alyssa.blend-5622229141576275249077480c8325a5.scn"
 
 [deps]
 
-source_file="res://graphics/3d models/Alyssa.blend"
-dest_files=["res://.godot/imported/Alyssa.blend-e5d524f4d2775ca1f34cd4278a7ee12a.scn"]
+source_file="res://graphics/3d models/heroes/Alyssa.blend"
+dest_files=["res://.godot/imported/Alyssa.blend-5622229141576275249077480c8325a5.scn"]
 
 [params]
 

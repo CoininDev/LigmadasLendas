@@ -15,7 +15,7 @@ func _process(delta):
 	move(delta)
 
 func select_destiny(position:Vector3, desired_distance:float):
-	path_desired_distance = desired_distance
+	target_desired_distance = desired_distance
 	target_position = position
 	mouse_mostrar.visible = true
 

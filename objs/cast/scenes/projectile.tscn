@@ -1,19 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://1jcmuymd6mth"]
+[gd_scene load_steps=9 format=3 uid="uid://1jcmuymd6mth"]
 
 [ext_resource type="Script" path="res://objs/cast/scripts/Projectile.gd" id="1_34mhc"]
 [ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/materials/cast_generico.tres" id="2_0hdfs"]
+[ext_resource type="Material" uid="uid://ml0gye4upw8q" path="res://graphics/materials/b_attack_bullet.tres" id="3_2otw0"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_j4lej"]
+[sub_resource type="QuadMesh" id="QuadMesh_vo1c3"]
+material = ExtResource("3_2otw0")
+size = Vector2(0.5, 0.5)
 
 [sub_resource type="SphereMesh" id="SphereMesh_wwqp4"]
 material = ExtResource("2_0hdfs")
-radius = 0.1
-height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j4lej"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yjx16"]
+angle_max = 360.0
+direction = Vector3(0, 0, 1)
+spread = 3.0
+initial_velocity_min = 1.0
+initial_velocity_max = 16.0
+gravity = Vector3(0, 0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0svcd"]
 
 [node name="Projectile" type="Node3D"]
 script = ExtResource("1_34mhc")
+gfx_particles = SubResource("QuadMesh_vo1c3")
+gfx = SubResource("SphereMesh_wwqp4")
 
 [node name="bullet" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.02859)
@@ -23,6 +36,12 @@ shape = SubResource("SphereShape3D_j4lej")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="bullet"]
 mesh = SubResource("SphereMesh_wwqp4")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="bullet"]
+amount = 100
+lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_yjx16")
+draw_pass_1 = SubResource("QuadMesh_vo1c3")
 
 [node name="end" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.43812)

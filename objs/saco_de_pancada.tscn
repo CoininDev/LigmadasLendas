@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bi4vcv41hoy0q"]
+[gd_scene load_steps=15 format=3 uid="uid://bi4vcv41hoy0q"]
 
 [ext_resource type="Script" path="res://heroes/#base/HeroBase.gd" id="1_sq7xi"]
 [ext_resource type="Material" uid="uid://tdbycpp30oep" path="res://graphics/materials/gold.tres" id="2_5pqg1"]
-[ext_resource type="PackedScene" uid="uid://trp7xhom42y" path="res://objs/pointer/scenes/mouse_mostrar.tscn" id="2_bxvmy"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="2_w8m13"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_mautj"]
 [ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="5_vnvt4"]
@@ -32,8 +31,6 @@ w_p = NodePath("AbilityPointers/W")
 e_p = NodePath("AbilityPointers/E")
 r_p = NodePath("AbilityPointers/R")
 
-[node name="MouseMostrar" parent="." instance=ExtResource("2_bxvmy")]
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_vra3a")
@@ -58,11 +55,10 @@ fx_comp = NodePath("../EffectsComponent")
 [node name="SanityComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("6_0472j")]
 health_comp = NodePath("../HealthComponent")
 
-[node name="NavigationComponent" parent="." node_paths=PackedStringArray("hero", "mouse_mostrar") instance=ExtResource("7_r5h44")]
+[node name="NavigationComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("7_r5h44")]
 speed = 300
 desired_distance = 1.2
 hero = NodePath("..")
-mouse_mostrar = NodePath("../MouseMostrar")
 
 [node name="EffectsComponent" parent="." node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp", "hero") instance=ExtResource("8_xgmrb")]
 battack_comp = NodePath("../BAttackComponent")

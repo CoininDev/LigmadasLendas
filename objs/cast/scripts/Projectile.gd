@@ -4,6 +4,7 @@ extends Cast
 @export var distance:float = 2
 @export var speed:float = 10
 @export var collide:bool = false
+@export var gfx_particles:Mesh
 
 var obsolete:Array = []
 var running = false
@@ -11,11 +12,12 @@ var running = false
 @onready var bullet = $bullet
 
 func _ready():
-	if gfx:
-		$bullet/MeshInstance3D.mesh = gfx
+	$bullet/MeshInstance3D.mesh = gfx
+	$bullet/GPUParticles3D.draw_pass_1 = gfx_particles
 	$bullet/CollisionShape3D.shape.radius = radius
-	$bullet/MeshInstance3D.mesh.radius = radius
-	$bullet/MeshInstance3D.mesh.height = radius*2
+	if $bullet/MeshInstance3D.mesh is SphereMesh:
+		$bullet/MeshInstance3D.mesh.radius = radius
+		$bullet/MeshInstance3D.mesh.height = radius*2
 	$end.position.z = -distance
 	start()
 func _process(delta):
