@@ -27,7 +27,6 @@ func _ready():
 	p.apply_to = ["viciado"]
 	p.atk.caster = self
 	
-	
 	q.atk = Attack.new()
 	q.atk.caster = self
 	q.range = 5
@@ -47,8 +46,6 @@ func _process(delta):
 	#Q
 	q.target_direction = q_p.global_rotation
 	q.atk.magic_damage = q_dano + (ability_power * 0.75)
-	q.atk.mark = "viciado"
-	q.atk.mark_time = 5
 	#print(q_rastro)
 	#if q_rastro and q_projetil: 
 		#print(str(position.distance_to(q_projetil.bullet.position)) +" ; "+ str(q_rastro.length))
@@ -63,6 +60,10 @@ func _process(delta):
 		batk_comp.atk_damage = batk_dano_normal
 	if w_tokens <= 0:
 		w_ativado = 0
+	#E
+	e.range = 4 + (ability_power * 0.02)
+	e.atk.mark = "viciado"
+	e.atk.mark_time = 10
 
 func q_preview():
 	q_p.mesh_instance.position.z = -q.range/2
@@ -95,14 +96,27 @@ func w_cast():
 	w_ativado = 1
 	w_tokens = 1
 
+func e_preview():
+	e_p.range = 50
+	e_p.visible = true
+
+func e_cast():
+	var t = load("res://objs/cast/scenes/continuous_circular_area.tscn").instantiate()
+	t.atk = e.atk
+	t.radius = e.range
+	t.delay = 0.1
+	t.pulse = 0.1
+	t.time = 3
+	ability_box.add_child(t)
+	t.global_position = global_position
+	e_p.visible = false
+
 func removed_cast(cast):
 	if cast == q_projetil or cast == q_rastro:
 		q_projetil = null
 		q_rastro = null
 
 func batk_attacked(target):
-	for group in target.get_groups():
-		print(group)
 	if w_ativado:
 		w_tokens -=1
 	if w_ativado == 1 && target.is_in_group("viciado"):

@@ -29,7 +29,7 @@ radius = 10.0
 height = 10.0
 is_hemisphere = true
 
-[node name="Ana" type="CharacterBody3D" node_paths=PackedStringArray("p_p", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p")]
+[node name="Ana" type="CharacterBody3D" node_paths=PackedStringArray("p_p", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "e_p", "r_p")]
 script = ExtResource("1_h8uc8")
 p_p = NodePath("Abilities/P(ContCircArea)")
 dmgr = NodePath("comps/DamageMgrComponent")
@@ -37,6 +37,8 @@ xp_comp = NodePath("comps/XPComponent")
 batk_comp = NodePath("comps/BAttackComponent")
 fx_comp = NodePath("comps/EffectsComponent")
 q_p = NodePath("Abilities/Q(Direction)")
+e_p = NodePath("Abilities/E(Target)")
+r_p = NodePath("Abilities/R(Target)")
 
 [node name="Alyssa" parent="." instance=ExtResource("2_28evr")]
 
@@ -110,7 +112,8 @@ mesh = SubResource("SphereMesh_llq3x")
 
 [node name="Q(Direction)" parent="Abilities" instance=ExtResource("15_jcv68")]
 
+[node name="E(Target)" parent="Abilities" instance=ExtResource("16_dptv7")]
+
 [node name="R(Target)" parent="Abilities" instance=ExtResource("16_dptv7")]
-range = 8.0
 
 [editable path="Abilities/P(ContCircArea)"]
