@@ -30,8 +30,9 @@ var ultimate_upgrade_tokens:int = 0
 func add_xp(more_xp):
 	current_xp += more_xp
 	total_xp += more_xp
-	if current_xp >= xp_needed_for[level+1]:
-		level_up()
+	if level+1 < xp_needed_for.size():
+		if current_xp >= xp_needed_for[level+1]:
+			level_up()
 
 func level_up():
 	if level < level_max:
@@ -43,7 +44,6 @@ func level_up():
 		for upgradable in general_upgradable_atributes:
 			hero.set(upgradable, general_upgradable_atributes[upgradable][level])
 
-	
 func ability1_lvl_up():
 	if upgrade_tokens < 1:
 		return

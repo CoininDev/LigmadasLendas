@@ -88,8 +88,6 @@ mesh = ExtResource("2_ua0nu")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_espmt")
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="DmgrComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_vdofa")]
 health_component = NodePath("../WardHealthComponent")
 
@@ -100,7 +98,7 @@ hero = NodePath("..")
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 emitting = false
-amount = 200
+amount = 50
 lifetime = 0.6
 one_shot = true
 speed_scale = 3.0
@@ -112,7 +110,7 @@ draw_pass_1 = SubResource("QuadMesh_vkxhr")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 emitting = false
-amount = 200
+amount = 50
 lifetime = 0.6
 one_shot = true
 speed_scale = 3.0
@@ -122,6 +120,6 @@ process_material = SubResource("ParticleProcessMaterial_d633k")
 draw_pass_1 = SubResource("QuadMesh_8edwh")
 
 [node name="finaltimer" type="Timer" parent="."]
+one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="finaltimer" to="." method="_on_finaltimer_timeout"]

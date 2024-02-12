@@ -26,7 +26,6 @@ func _ready():
 	start()
 	
 func _process(delta):
-	
 	if $bullet:
 		$bullet/MeshInstance3D.rotation.x += girar
 		if running:

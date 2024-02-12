@@ -6,6 +6,7 @@ extends Pointer
 
 var mouse_pos:Vector3 = Vector3.ZERO
 var mark_pos:Vector3
+var mark_rot:Vector3
 
 func _ready():
 	$Marker3D/RangeShow.mesh.size.x = radius *2
@@ -15,6 +16,7 @@ func _process(delta):
 	mouse_pos_processing()
 	positioning()
 	mark_pos = $Marker3D.global_position
+	mark_rot = $Marker3D.global_rotation_degrees
 	#$Marker3D.global_rotation = Vector3(0,0,0)
 
 func mouse_pos_processing():

@@ -110,6 +110,7 @@ func w_cast():
 	t.radius = 3
 	ability_box.add_child(t)
 	t.global_position = w.target_position
+	t.global_rotation_degrees.y = w_p.mark_rot.y - 90
 	w_p.visible = false
 
 func e_preview():
