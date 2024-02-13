@@ -93,6 +93,8 @@ health_comp = NodePath("../HealthComponent")
 hero = NodePath("../..")
 
 [node name="NavigationComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_pm5oo")]
+max_speed = 35.0
+speed = 8.0
 desired_distance = 0.5
 hero = NodePath("../..")
 

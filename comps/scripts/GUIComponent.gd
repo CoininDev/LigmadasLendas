@@ -20,7 +20,7 @@ func _ready():
 	damage_bar.value = health_comp.health
 	health_comp.connect("damaged", on_damaged)
 	
-	if sanity_bar:
+	if sanity_comp:
 		sanity_bar.visible = true
 		sanity_label.visible = true
 		sanity_bar.max_value = sanity_comp.MAX_SANITY
@@ -29,7 +29,7 @@ func _ready():
 
 func _process(delta):
 	health_bar.value = health_comp.health
-	if sanity_bar:
+	if sanity_comp:
 		sanity_bar.value = sanity_comp.sanity
 		sanity_label.text = str(sanity_comp.sanity)
 	
