@@ -85,6 +85,9 @@ sanity_comp = NodePath("../SanityComponent")
 hero = NodePath("../..")
 
 [node name="NavigationComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_flg0h")]
+path_desired_distance = 1.0
+speed = 10.0
+desired_distance = 1.1
 hero = NodePath("../..")
 
 [node name="DmgrComponent" parent="Comps" node_paths=PackedStringArray("health_component", "effects_component") instance=ExtResource("8_fqqi0")]

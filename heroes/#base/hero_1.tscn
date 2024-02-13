@@ -55,9 +55,7 @@ range = 3.0
 nav_comp = NodePath("../NavComponent")
 
 [node name="NavComponent" parent="comps" node_paths=PackedStringArray("hero", "mouse_mostrar") instance=ExtResource("5_2h5n0")]
-target_desired_distance = 0.1
 path_height_offset = -0.25
-speed = 300
 hero = NodePath("../..")
 mouse_mostrar = NodePath("../MouseMostrar")
 

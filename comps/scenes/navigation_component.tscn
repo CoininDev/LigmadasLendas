@@ -4,9 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://trp7xhom42y" path="res://objs/pointer/scenes/mouse_mostrar.tscn" id="2_q1ngr"]
 
 [node name="NavigationComponent" type="NavigationAgent3D" node_paths=PackedStringArray("mouse_mostrar")]
-target_desired_distance = 0.1
-path_max_distance = 10.01
+path_desired_distance = 1.1
+path_height_offset = 0.25
+avoidance_enabled = true
+debug_enabled = true
 script = ExtResource("1_2wbvm")
+speed = 5.0
 mouse_mostrar = NodePath("MouseMostrar")
 
 [node name="MouseMostrar" parent="." instance=ExtResource("2_q1ngr")]

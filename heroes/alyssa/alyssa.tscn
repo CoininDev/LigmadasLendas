@@ -26,6 +26,7 @@ initial_velocity_max = 16.0
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pt7wg"]
+radius = 0.221336
 height = 1.6
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_l26lp"]
@@ -92,13 +93,14 @@ health_comp = NodePath("../HealthComponent")
 hero = NodePath("../..")
 
 [node name="NavigationComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_pm5oo")]
+desired_distance = 0.5
 hero = NodePath("../..")
 
 [node name="BAttackComponent" parent="comps" node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("5_arwbl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 atk_damage = 15.0
 atk_cooldown = 0.7
-range = 3.0
+range = 2.0
 nav_comp = NodePath("../NavigationComponent")
 hero = NodePath("../..")
 
