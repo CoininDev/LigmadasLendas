@@ -5,7 +5,7 @@ class_name NavigationComponent
 @export var desired_distance:float = 1 
 @export var hero:HeroBase
 var blocked:bool = false
-@export var mouse_mostrar:Node3D 
+@export var mouse_mostrar:Node3D  
 
 func _ready():
 	velocity_computed.connect(move)

@@ -49,8 +49,9 @@ func attack():
 	bul.atk = Attack.new()
 	bul.atk.physic_damage = atk_damage
 	bul.atk.caster = hero
+	attacked.emit(target)
 	cancel_bullet.connect(bul.cancel)
-	get_tree().root.add_child(bul)
+	hero.ability_box.add_child(bul)
 	#add_child(bul)
 #
 #func timeout():

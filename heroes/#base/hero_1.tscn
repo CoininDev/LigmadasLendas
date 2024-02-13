@@ -56,7 +56,6 @@ nav_comp = NodePath("../NavComponent")
 hero = NodePath("../..")
 
 [node name="NavComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("5_2h5n0")]
-target_desired_distance = 0.1
 path_height_offset = -0.25
 hero = NodePath("../..")
 

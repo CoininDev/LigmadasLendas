@@ -3,7 +3,7 @@ extends Node
 func mouse_raycast():
 	#converter o ponto do mouse na tela 2d para um ponto 3d no jogo.
 	#para isso é preciso criar um raio, uma linha reta que parte da camera e segue até encontrar uma colisão.
-	var camera = get_tree().get_nodes_in_group("camera")[0]
+	var camera = get_viewport().get_camera_3d()
 	var mousepos = get_viewport().get_mouse_position()
 	var raylen = 1000
 	var from = camera.project_ray_origin(mousepos)
@@ -17,7 +17,7 @@ func mouse_raycast():
 	return result
 
 func mouse_raycast_entity():
-	var camera = get_tree().get_nodes_in_group("camera")[0]
+	var camera = get_viewport().get_camera_3d()
 	var mousepos = get_viewport().get_mouse_position()
 	var raylen = 1000
 	var from = camera.project_ray_origin(mousepos)
@@ -31,7 +31,7 @@ func mouse_raycast_entity():
 	return result
 
 func mouse_raycast_all():
-	var camera = get_tree().get_nodes_in_group("camera")[0]
+	var camera = get_viewport().get_camera_3d()
 	var mousepos = get_viewport().get_mouse_position()
 	var raylen = 1000
 	var from = camera.project_ray_origin(mousepos)
