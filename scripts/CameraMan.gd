@@ -5,7 +5,8 @@ const JUMP_VELOCITY = 4.5
 
 
 @export var point:HeroBase
-var point_offset = Vector3(0,15,5)
+
+@export var point_offset = Vector3(0,15,5)
 var smooth_speed = 20
 var lock_camera = false
 @export var max_zoom:float = 10

@@ -33,14 +33,15 @@ func _process(delta):
 		sanity_bar.value = sanity_comp.sanity
 		sanity_label.text = str(sanity_comp.sanity)
 	
-	effect_label.text = fx_comp.current_effect
-	match fx_comp.current_effect:
-		"devendo":
-			effect_image.texture = load("res://graphics/sprites/dividendo.png")
-		"pagar":
-			effect_image.texture = load("res://graphics/sprites/pagando.png")
-		_:
-			effect_image.texture = null
+	if fx_comp:
+		effect_label.text = fx_comp.current_effect
+		match fx_comp.current_effect:
+			"devendo":
+				effect_image.texture = load("res://graphics/sprites/dividendo.png")
+			"pagar":
+				effect_image.texture = load("res://graphics/sprites/pagando.png")
+			_:
+				effect_image.texture = null
 
 func _on_timer_timeout():
 	damage_bar.value = health_comp.health
