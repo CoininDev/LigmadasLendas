@@ -40,7 +40,7 @@ func _input(event):
 			cancel()
 
 func walk():
-	nav_comp.select_destiny(target.position, range-0.2)
+	nav_comp.select_destiny_path(target.position, range-0.2)
 
 func attack():
 	var atk = Attack.new()

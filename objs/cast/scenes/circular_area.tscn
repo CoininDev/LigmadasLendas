@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4v0u0grly21r"]
+[gd_scene load_steps=6 format=3 uid="uid://c4v0u0grly21r"]
 
 [ext_resource type="Script" path="res://objs/cast/scripts/CircularArea.gd" id="1_6paqy"]
 [ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/materials/cast_generico.tres" id="2_7dysp"]
@@ -23,20 +23,6 @@ turbulence_enabled = true
 turbulence_noise_strength = 0.5
 turbulence_noise_scale = 3.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_in63t"]
-transparency = 1
-blend_mode = 1
-shading_mode = 0
-albedo_color = Color(0, 0.682353, 0.623529, 1)
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_misyr"]
-material = SubResource("StandardMaterial3D_in63t")
-size = Vector2(0.2, 0.2)
-
 [node name="CircularArea" type="Node3D"]
 script = ExtResource("1_6paqy")
 
@@ -58,7 +44,6 @@ speed_scale = 3.0
 explosiveness = 1.0
 randomness = 0.9
 process_material = SubResource("ParticleProcessMaterial_7bkrs")
-draw_pass_1 = SubResource("QuadMesh_misyr")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
