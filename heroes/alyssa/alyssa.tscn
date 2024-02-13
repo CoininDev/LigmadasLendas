@@ -25,9 +25,8 @@ initial_velocity_min = 1.0
 initial_velocity_max = 16.0
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ey8t6"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pt7wg"]
 height = 1.6
-radius = 0.25
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_l26lp"]
 radius = 10.0
@@ -62,7 +61,7 @@ draw_pass_1 = ExtResource("2_rybij")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-shape = SubResource("CylinderShape3D_ey8t6")
+shape = SubResource("CapsuleShape3D_pt7wg")
 
 [node name="comps" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
@@ -74,20 +73,8 @@ effects_component = NodePath("../EffectsComponent")
 [node name="HealthComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("4_wyq3f")]
 hero = NodePath("../..")
 
-[node name="BAttackComponent" parent="comps" node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("5_arwbl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-atk_damage = 4.0
-atk_cooldown = 0.65
-range = 3.0
-nav_comp = NodePath("../NavComponent")
-hero = NodePath("../..")
-
-[node name="NavComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_pm5oo")]
-speed = 300
-hero = NodePath("../..")
-
 [node name="ControllerComponent" parent="comps" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero") instance=ExtResource("7_gkx3m")]
-nav = NodePath("../NavComponent")
+nav = NodePath("../NavigationComponent")
 battack = NodePath("../BAttackComponent")
 xp_comp = NodePath("../XPComponent")
 hero = NodePath("../..")
@@ -104,9 +91,18 @@ health_comp = NodePath("../HealthComponent")
 [node name="XPComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("10_02r4u")]
 hero = NodePath("../..")
 
-[node name="EffectsComponent" parent="comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp", "hero") instance=ExtResource("12_yjyu3")]
-battack_comp = NodePath("../BAttackComponent")
-nav_comp = NodePath("../NavComponent")
+[node name="NavigationComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_pm5oo")]
+hero = NodePath("../..")
+
+[node name="BAttackComponent" parent="comps" node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("5_arwbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+atk_damage = 15.0
+atk_cooldown = 0.7
+range = 3.0
+nav_comp = NodePath("../NavigationComponent")
+hero = NodePath("../..")
+
+[node name="EffectsComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "hero") instance=ExtResource("12_yjyu3")]
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
 hero = NodePath("../..")
