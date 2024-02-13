@@ -49,6 +49,7 @@ r_p = NodePath("AbilityPointers/R")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0101285, 1.14831, -0.00225324)
+visible = false
 amount = 35
 lifetime = 0.01
 preprocess = 19.48
@@ -83,7 +84,6 @@ nav_comp = NodePath("../NavComponent")
 hero = NodePath("../..")
 
 [node name="NavComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_iryle")]
-speed = 300
 hero = NodePath("../..")
 
 [node name="ControllerComponent" parent="comps" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero", "health_comp") instance=ExtResource("7_npwxn")]

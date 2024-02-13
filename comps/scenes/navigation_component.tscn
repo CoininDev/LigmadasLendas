@@ -5,8 +5,14 @@
 
 [node name="NavigationComponent" type="NavigationAgent3D" node_paths=PackedStringArray("mouse_mostrar")]
 target_desired_distance = 0.1
+path_height_offset = 0.25
 path_max_distance = 10.01
+avoidance_enabled = true
+debug_enabled = true
 script = ExtResource("1_2wbvm")
 mouse_mostrar = NodePath("MouseMostrar")
 
 [node name="MouseMostrar" parent="." instance=ExtResource("2_q1ngr")]
+visible = false
+
+[connection signal="velocity_computed" from="." to="." method="_on_velocity_computed"]

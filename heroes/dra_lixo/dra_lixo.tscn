@@ -85,7 +85,6 @@ sanity_comp = NodePath("../SanityComponent")
 hero = NodePath("../..")
 
 [node name="NavigationComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_flg0h")]
-speed = 300
 hero = NodePath("../..")
 
 [node name="DmgrComponent" parent="Comps" node_paths=PackedStringArray("health_component", "effects_component") instance=ExtResource("8_fqqi0")]

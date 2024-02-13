@@ -83,7 +83,6 @@ nav_comp = NodePath("../NavComponent")
 hero = NodePath("../..")
 
 [node name="NavComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_pm5oo")]
-speed = 300
 hero = NodePath("../..")
 
 [node name="ControllerComponent" parent="comps" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero") instance=ExtResource("7_gkx3m")]

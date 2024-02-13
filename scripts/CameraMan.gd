@@ -59,6 +59,7 @@ func move():
 	move_and_slide()
 #cantos únicos
 func _on_up_mouse_entered():
+	print("bunda")
 	up=true
 func _on_down_mouse_entered():
 	down=true
