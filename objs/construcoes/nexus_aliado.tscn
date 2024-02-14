@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://053v0qs0f5b7"]
+
+[ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="1_egidt"]
+[ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="2_4vqf4"]
+[ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_m1i2w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhxw5"]
+albedo_color = Color(0, 0.054902, 1, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_lkigu"]
+material = SubResource("StandardMaterial3D_fhxw5")
+outer_radius = 3.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_i1l3h"]
+radius = 3.01102
+
+[node name="nexus_aliado" type="MeshInstance3D"]
+mesh = SubResource("TorusMesh_lkigu")
+skeleton = NodePath("../chão")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_egidt")]
+
+[node name="GUIComponent" parent="." node_paths=PackedStringArray("health_comp") instance=ExtResource("2_4vqf4")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 5.41959, 0)
+health_comp = NodePath("../HealthComponent")
+
+[node name="DmgrComponent" parent="." instance=ExtResource("3_m1i2w")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_i1l3h")
