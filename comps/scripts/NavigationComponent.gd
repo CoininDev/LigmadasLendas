@@ -4,8 +4,11 @@ class_name NavigationComponent
 @export var speed = 10.0
 @export var desired_distance:float = 1 
 @export var hero:HeroBase
-var blocked:bool = false
 @export var mouse_mostrar:Node3D 
+var blocked:bool = false
+var walking:bool = false
+var walking_check:bool = false #usado para fazer o sinal walking changed funcionar
+signal walking_changed
 
 func _ready():
 	velocity_computed.connect(move)
@@ -25,8 +28,9 @@ func _physics_process(delta):
 	mouse_mostrar.global_position = target_position
 	if is_navigation_finished(): 
 		mouse_mostrar.visible = false
+		walking = false
 		return
-	
+	walking = true
 	var next_pos = get_next_path_position()
 	var dir = hero.global_position.direction_to(next_pos) * speed
 	var new_vel = hero.velocity + (dir  - hero.velocity)
@@ -35,6 +39,12 @@ func _physics_process(delta):
 func move(new_vel):
 	hero.velocity = new_vel
 	hero.move_and_slide()
+	signal_walking_changed_handle()
+
+func signal_walking_changed_handle():
+	if walking != walking_check:
+		walking_check = walking
+		walking_changed.emit(walking)
 
 #func _physics_process(delta):
 	#mouse_mostrar.global_position = target_position

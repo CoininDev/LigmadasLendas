@@ -23,6 +23,7 @@ var r_distancia:float
 #PROPRIEDADES IMUTAVEIS
 func _ready():
 	_ready_base()
+	anim_comp.anim_player = $"3DModel/AnimationPlayer"
 	p.atk = Attack.new()
 	p.apply_to = ["viciado"]
 	p.atk.caster = self
@@ -82,6 +83,9 @@ func q_cast():
 	ability_box.add_child(q_projetil)
 	q_projetil.global_rotation = q.target_direction
 	q_projetil.global_position = global_position
+	
+	anim_comp.cast(1)
+	global_rotation = q_p.global_rotation
 	#rastro
 	#q_rastro = load("res://objs/cast/scenes/continuous_rect_area.tscn").instantiate()
 	#q_rastro.atk = Attack.new()

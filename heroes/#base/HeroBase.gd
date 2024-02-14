@@ -4,6 +4,7 @@ class_name HeroBase
 @export var xp_comp:XPComponent
 @export var batk_comp:BAttackComponent
 @export var fx_comp:EffectsComponent
+@export var anim_comp:AnimationComponent
 @export var ability_box: Node3D
 @export var q_p:Pointer
 @export var w_p:Pointer
