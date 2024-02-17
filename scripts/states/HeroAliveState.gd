@@ -6,6 +6,7 @@ class_name HeroAliveState
 @export var battack: BAttackComponent
 @export var xp_comp: XPComponent
 @export var hero: HeroBase
+@export var health_comp:HealthComponent
 @export var control: bool = true
 @export var walk_action = "mright"
 @export var attack_action = "mleft"
@@ -20,19 +21,27 @@ class_name HeroAliveState
 @export var upgrade_ultimate_action = "ctrl_r"
 @export var opt_ability1_action = "a"
 @export var opt_ability2_action = "s"
-@export var health_comp:HealthComponent
 
-func physic_update(_delta:float):
+
+func enter():
+	health_comp.health = health_comp.MAX_HEALTH
+	hero.global_position = hero.spawn_point.global_position
+	for child in hero.get_children():
+		if child.name.to_lower() == "collisionshape3d":
+			child.disabled = false
+			break
+
+func physics_update(_delta:float):
 	if control:
 		if Input.is_action_just_pressed(walk_action):
 			var result = GeneralFuncs.mouse_raycast()
 		
 		if Input.is_action_just_pressed("p"):
-			#var atk = Attack.new()
-			#atk.physic_damage = 20
-			#atk.caster = hero
-			#health_comp.ignore_resistance_damage(atk)
-			hero.ability_power += 100
+			var atk = Attack.new()
+			atk.physic_damage = 50
+			atk.caster = hero
+			health_comp.ignore_resistance_damage(atk)
+			#hero.ability_power += 100
 		upgrade_abilities()
 		abilities()
 		attack()
@@ -96,4 +105,3 @@ func attack():
 		if result:
 			if get_parent() != result.collider && result.collider:
 				battack.select_target(result.collider)
-

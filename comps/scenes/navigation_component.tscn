@@ -7,8 +7,9 @@
 path_desired_distance = 1.1
 path_height_offset = 0.25
 avoidance_enabled = true
-radius = 0.25
 max_speed = 25.0
+avoidance_layers = 0
+avoidance_mask = 0
 script = ExtResource("1_2wbvm")
 speed = 5.0
 mouse_mostrar = NodePath("MouseMostrar")

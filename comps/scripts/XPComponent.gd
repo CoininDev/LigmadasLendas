@@ -25,6 +25,7 @@ var ultimate_upgrade_tokens:int = 0
 @export var ability2_upgradable_atributes:Dictionary
 @export var ability3_upgradable_atributes:Dictionary
 @export var ultimate_upgradable_atributes:Dictionary
+@export var dead_state:HeroDeadState
 @export var hero:HeroBase
 
 func add_xp(more_xp):
@@ -41,6 +42,7 @@ func level_up():
 		upgrade_tokens +=1
 		ultimate_upgrade_tokens +=1
 		hero.ability_power += 10
+		dead_state.death_time = level*2 + 5
 		for upgradable in general_upgradable_atributes:
 			hero.set(upgradable, general_upgradable_atributes[upgradable][level])
 

@@ -1,11 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://denx8hjuuvnab"]
+[gd_scene load_steps=18 format=3 uid="uid://denx8hjuuvnab"]
 
-[ext_resource type="PackedScene" uid="uid://5fpdn8fr4h7o" path="res://comps/scenes/controller_component.tscn" id="1_6j33j"]
-[ext_resource type="Script" path="res://heroes/corelio/chuu.gd" id="1_122ex"]
+[ext_resource type="Script" path="res://heroes/chuu/chuu.gd" id="1_122ex"]
 [ext_resource type="Material" uid="uid://cj5vmy4bop28e" path="res://graphics/materials/chuu.tres" id="2_h3sbd"]
 [ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="2_rbyj7"]
+[ext_resource type="Script" path="res://comps/scripts/StateMachineComponent.gd" id="3_7t2n5"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="3_aalfp"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="4_6epna"]
+[ext_resource type="Script" path="res://scripts/states/HeroAliveState.gd" id="4_md6m4"]
+[ext_resource type="Script" path="res://scripts/states/HeroDeadState.gd" id="5_frloc"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="5_qcbcy"]
 [ext_resource type="PackedScene" uid="uid://bfx1wxpmwujue" path="res://comps/scenes/sanity_component.tscn" id="6_c53f5"]
 [ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="7_b0iy7"]
@@ -23,7 +25,8 @@ material = ExtResource("2_h3sbd")
 radius = 0.35
 height = 1.2
 
-[node name="Chuu" type="CharacterBody3D" node_paths=PackedStringArray("nav", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p") groups=["hitbox_owner"]]
+[node name="Chuu" type="CharacterBody3D" node_paths=PackedStringArray("nav", "dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_122ex")
@@ -32,8 +35,10 @@ dmgr = NodePath("Comps/DmgrComponent")
 xp_comp = NodePath("Comps/XPComponent")
 batk_comp = NodePath("Comps/BAttackComponent")
 fx_comp = NodePath("Comps/EffectsComponent")
+state_machine_comp = NodePath("Comps/StateMachineComponent")
 q_p = NodePath("Abilities/Q")
 w_p = NodePath("Abilities/W")
+e_p = NodePath("Abilities/E")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
@@ -46,20 +51,31 @@ mesh = SubResource("CapsuleMesh_wo8sv")
 [node name="Comps" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
-[node name="ControllerComponent" parent="Comps" node_paths=PackedStringArray("nav", "battack", "hero") instance=ExtResource("1_6j33j")]
-nav = NodePath("../NavigationComponent")
-battack = NodePath("../BAttackComponent")
-hero = NodePath("../..")
+[node name="StateMachineComponent" type="Node" parent="Comps" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_7t2n5")
+initial_state = NodePath("HeroAliveState")
+
+[node name="HeroAliveState" type="Node" parent="Comps/StateMachineComponent" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero", "health_comp")]
+script = ExtResource("4_md6m4")
+nav = NodePath("../../NavigationComponent")
+battack = NodePath("../../BAttackComponent")
+xp_comp = NodePath("../../XPComponent")
+hero = NodePath("../../..")
+health_comp = NodePath("../../HealthComponent")
+
+[node name="HeroDeadState" type="Node" parent="Comps/StateMachineComponent" node_paths=PackedStringArray("hero")]
+script = ExtResource("5_frloc")
+hero = NodePath("../../..")
 
 [node name="NavigationComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("2_rbyj7")]
-speed = 300
 hero = NodePath("../..")
 
-[node name="BAttackComponent" parent="Comps" node_paths=PackedStringArray("nav_comp") instance=ExtResource("3_aalfp")]
+[node name="BAttackComponent" parent="Comps" node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("3_aalfp")]
 atk_damage = 10.0
 atk_cooldown = 1.0
 range = 1.5
 nav_comp = NodePath("../NavigationComponent")
+hero = NodePath("../..")
 
 [node name="DmgrComponent" parent="Comps" node_paths=PackedStringArray("health_component", "effects_component") instance=ExtResource("4_6epna")]
 health_component = NodePath("../HealthComponent")
@@ -71,18 +87,21 @@ hero = NodePath("../..")
 [node name="SanityComponent" parent="Comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("6_c53f5")]
 health_comp = NodePath("../HealthComponent")
 
-[node name="EffectsComponent" parent="Comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp") instance=ExtResource("7_b0iy7")]
+[node name="EffectsComponent" parent="Comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp", "hero") instance=ExtResource("7_b0iy7")]
 battack_comp = NodePath("../BAttackComponent")
 nav_comp = NodePath("../NavigationComponent")
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
+hero = NodePath("../..")
 
-[node name="GUIComponent" parent="Comps" node_paths=PackedStringArray("health_comp", "sanity_comp") instance=ExtResource("8_petpy")]
+[node name="GUIComponent" parent="Comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp") instance=ExtResource("8_petpy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02297, 0)
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
+fx_comp = NodePath("../EffectsComponent")
 
-[node name="XPComponent" parent="Comps" node_paths=PackedStringArray("hero") instance=ExtResource("11_p83qg")]
+[node name="XPComponent" parent="Comps" node_paths=PackedStringArray("dead_state", "hero") instance=ExtResource("11_p83qg")]
+dead_state = NodePath("../StateMachineComponent/HeroDeadState")
 hero = NodePath("../..")
 
 [node name="Abilities" type="Node3D" parent="."]

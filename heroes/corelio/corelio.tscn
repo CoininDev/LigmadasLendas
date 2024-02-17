@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3tywn6og5g45"]
+[gd_scene load_steps=22 format=3 uid="uid://c3tywn6og5g45"]
 
 [ext_resource type="Script" path="res://heroes/corelio/corelio.gd" id="1_sr7n3"]
 [ext_resource type="Material" uid="uid://brow3ato7irei" path="res://heroes/corelio/material/particles_aura_corelio.tres" id="2_o5pab"]
@@ -6,13 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="4_r40dm"]
 [ext_resource type="PackedScene" uid="uid://dihqxk54qchm4" path="res://comps/scenes/ranged_b_attack_component.tscn" id="5_7e7gm"]
 [ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="6_iryle"]
-[ext_resource type="PackedScene" uid="uid://5fpdn8fr4h7o" path="res://comps/scenes/controller_component.tscn" id="7_npwxn"]
 [ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="8_083vp"]
 [ext_resource type="PackedScene" uid="uid://bfx1wxpmwujue" path="res://comps/scenes/sanity_component.tscn" id="9_s21jk"]
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="10_yik6h"]
 [ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="11_8wv05"]
+[ext_resource type="PackedScene" uid="uid://podwdpuarh5s" path="res://comps/scenes/state_machine_component.tscn" id="11_44sew"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/scenes/direction_pointer.tscn" id="11_ded72"]
+[ext_resource type="Script" path="res://scripts/states/HeroAliveState.gd" id="12_iv8jl"]
 [ext_resource type="PackedScene" uid="uid://df4c8oi2h37jp" path="res://objs/pointer/scenes/spot_pointer.tscn" id="12_j2xbn"]
+[ext_resource type="Script" path="res://scripts/states/HeroDeadState.gd" id="13_03lua"]
 [ext_resource type="PackedScene" uid="uid://bt3p7cj7om1ne" path="res://objs/pointer/scenes/target_pointer.tscn" id="13_b5pmj"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ugeic"]
@@ -34,7 +36,7 @@ material = SubResource("StandardMaterial3D_4rv5s")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ts1b0"]
 
-[node name="corelio" type="CharacterBody3D" node_paths=PackedStringArray("health_Comp", "dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p")]
+[node name="corelio" type="CharacterBody3D" node_paths=PackedStringArray("health_Comp", "dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "q_p", "w_p", "e_p", "r_p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
 script = ExtResource("1_sr7n3")
 health_Comp = NodePath("comps/HealthComponent")
@@ -42,6 +44,7 @@ dmgr = NodePath("comps/DamageMgrComponent")
 xp_comp = NodePath("comps/XPComponent")
 batk_comp = NodePath("comps/RangedBAttackComponent")
 fx_comp = NodePath("comps/EffectsComponent")
+state_machine_comp = NodePath("comps/StateMachineComponent")
 q_p = NodePath("AbilityPointers/Q")
 w_p = NodePath("AbilityPointers/W")
 e_p = NodePath("AbilityPointers/E")
@@ -86,13 +89,6 @@ hero = NodePath("../..")
 desired_distance = 1.1
 hero = NodePath("../..")
 
-[node name="ControllerComponent" parent="comps" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero", "health_comp") instance=ExtResource("7_npwxn")]
-nav = NodePath("../NavComponent")
-battack = NodePath("../RangedBAttackComponent")
-xp_comp = NodePath("../XPComponent")
-hero = NodePath("../..")
-health_comp = NodePath("../HealthComponent")
-
 [node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp") instance=ExtResource("8_083vp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73506, 0)
 health_comp = NodePath("../HealthComponent")
@@ -102,7 +98,8 @@ fx_comp = NodePath("../EffectsComponent")
 [node name="SanityComponent" parent="comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("9_s21jk")]
 health_comp = NodePath("../HealthComponent")
 
-[node name="XPComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("10_yik6h")]
+[node name="XPComponent" parent="comps" node_paths=PackedStringArray("dead_state", "hero") instance=ExtResource("10_yik6h")]
+dead_state = NodePath("../StateMachineComponent/HeroDeadState")
 hero = NodePath("../..")
 
 [node name="EffectsComponent" parent="comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp", "hero") instance=ExtResource("11_8wv05")]
@@ -111,6 +108,21 @@ nav_comp = NodePath("../NavComponent")
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
 hero = NodePath("../..")
+
+[node name="StateMachineComponent" parent="comps" node_paths=PackedStringArray("initial_state") instance=ExtResource("11_44sew")]
+initial_state = NodePath("HeroAliveState")
+
+[node name="HeroAliveState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero", "health_comp")]
+script = ExtResource("12_iv8jl")
+nav = NodePath("../../NavComponent")
+battack = NodePath("../../RangedBAttackComponent")
+xp_comp = NodePath("../../XPComponent")
+hero = NodePath("../../..")
+health_comp = NodePath("../../HealthComponent")
+
+[node name="HeroDeadState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("hero")]
+script = ExtResource("13_03lua")
+hero = NodePath("../../..")
 
 [node name="AbilityPointers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)

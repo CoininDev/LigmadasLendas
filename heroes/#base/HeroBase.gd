@@ -5,7 +5,9 @@ class_name HeroBase
 @export var batk_comp:BAttackComponent
 @export var fx_comp:EffectsComponent
 @export var anim_comp:AnimationComponent
+@export var state_machine_comp:StateMachineComponent
 @export var ability_box: Node3D
+@export var spawn_point: Node3D
 @export var q_p:Pointer
 @export var w_p:Pointer
 @export var e_p:Pointer
@@ -93,4 +95,8 @@ func cancel():
 	batk_comp.cancel() 
 
 func die():
-	queue_free()
+	var alive_state:State
+	for state in state_machine_comp.get_children():
+		if state.name.to_lower() == "heroalivestate":
+			alive_state = state
+	alive_state.transitioned.emit(alive_state, "herodeadstate")
