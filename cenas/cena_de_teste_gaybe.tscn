@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c1xp1m6kdpsgk" path="res://objs/camera_man.tscn" id="1_kqkdf"]
 [ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://heroes/#base/saco_de_pancada.tscn" id="3_7hwwl"]
-[ext_resource type="PackedScene" uid="uid://cgc65hb2jo1u7" path="res://heroes/dra_lixo/dra_lixo.tscn" id="3_kto8s"]
+[ext_resource type="PackedScene" uid="uid://dctjqnt85jp8c" path="res://heroes/alyssa/alyssa.tscn" id="3_uqtjy"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h4w6h"]
 vertices = PackedVector3Array(-49.5, 1, -49.5, -49.5, 1, 49.5, 49.5, 1, 49.5, 49.5, 1, -49.5)
@@ -39,7 +39,8 @@ volumetric_fog_density = 0.02
 
 [node name="CameraMan" parent="." node_paths=PackedStringArray("point") instance=ExtResource("1_kqkdf")]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 15, 10.9062)
-point = NodePath("../DraLixo")
+point = NodePath("../Alyssa")
+point_offset = Vector3(0, 15, 5)
 
 [node name="testingHUD" parent="CameraMan/Camera3D" index="1"]
 anchors_preset = 15
@@ -110,8 +111,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.6601)
 [node name="hero2" type="Node3D" parent="spawn_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67195, 0, 0)
 
-[node name="DraLixo" parent="." node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("3_kto8s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 2.52432)
+[node name="Alyssa" parent="." node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("3_uqtjy")]
 ability_box = NodePath("../AbilityBox")
 spawn_point = NodePath("../spawn_points/hero1")
 

@@ -157,7 +157,6 @@ dead_state = NodePath("../StateMachineComponent/HeroDeadState")
 hero = NodePath("../..")
 
 [node name="NavigationComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_pm5oo")]
-debug_enabled = true
 speed = 8.0
 desired_distance = 0.5
 hero = NodePath("../..")

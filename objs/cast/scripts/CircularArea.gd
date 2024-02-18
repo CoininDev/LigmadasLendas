@@ -31,10 +31,8 @@ func attack():
 	$Area3D/MeshInstance3D.visible = false
 	$Area3D/GPUParticles3D.emitting = true
 	$EffectTimer.start(2)
-	print("atacando")
 
 
 func _on_effect_timer_timeout():
-	print("caralhokkkk")
 	remove_self()
 	queue_free()

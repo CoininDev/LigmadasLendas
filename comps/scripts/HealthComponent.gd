@@ -13,6 +13,7 @@ var health:float
 
 func _ready():
 	health = MAX_HEALTH
+	died.connect(hero.die)
 
 func damage(atk: Attack):
 	atk.physic_damage -= physical_resistance
@@ -45,7 +46,7 @@ func handle_death(atk):
 				atk.caster.cancel()
 			if atk.caster.has_method("add_xp"):
 				atk.caster.add_xp(death_xp)
-		died.connect(hero.die)
+		
 		died.emit()
 		
 func ignore_resistance_damage(atk:Attack):

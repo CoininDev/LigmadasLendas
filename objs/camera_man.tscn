@@ -49,6 +49,7 @@ grow_horizontal = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
 mouse_filter = 1
+editor_only = false
 
 [node name="up_left" type="ReferenceRect" parent="Camera3D/Cantos"]
 layout_mode = 1
@@ -59,6 +60,7 @@ offset_bottom = 21.0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 mouse_filter = 1
+editor_only = false
 
 [node name="up_right" type="ReferenceRect" parent="Camera3D/Cantos"]
 layout_mode = 1
@@ -73,6 +75,7 @@ grow_horizontal = 0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 mouse_filter = 1
+editor_only = false
 
 [node name="down_left" type="ReferenceRect" parent="Camera3D/Cantos"]
 layout_mode = 1
@@ -87,6 +90,7 @@ grow_vertical = 0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 mouse_filter = 1
+editor_only = false
 
 [node name="down_right" type="ReferenceRect" parent="Camera3D/Cantos"]
 layout_mode = 1
@@ -104,6 +108,7 @@ grow_vertical = 0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 mouse_filter = 1
+editor_only = false
 
 [node name="down" type="ReferenceRect" parent="Camera3D/Cantos"]
 layout_mode = 1
@@ -118,6 +123,7 @@ offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
+editor_only = false
 
 [node name="left" type="ReferenceRect" parent="Camera3D/Cantos"]
 layout_mode = 1
@@ -129,6 +135,7 @@ offset_right = 16.0
 offset_bottom = -21.0
 grow_vertical = 2
 mouse_filter = 1
+editor_only = false
 
 [node name="right" type="ReferenceRect" parent="Camera3D/Cantos"]
 layout_mode = 1
@@ -143,6 +150,7 @@ offset_bottom = -21.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
+editor_only = false
 
 [node name="testingHUD" type="Control" parent="Camera3D" node_paths=PackedStringArray("camera")]
 layout_mode = 3
