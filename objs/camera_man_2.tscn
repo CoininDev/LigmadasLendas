@@ -3,8 +3,11 @@
 [ext_resource type="Script" path="res://scripts/CameraMan2.gd" id="1_wr261"]
 
 [node name="CameraMan2" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.788483, 0.615056, 0, -0.615056, 0.788483, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_wr261")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Elevation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Elevation"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
