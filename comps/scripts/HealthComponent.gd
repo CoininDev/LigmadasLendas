@@ -22,7 +22,6 @@ func damage(atk: Attack):
 	health -= atk.physic_damage
 	health -= atk.magic_damage
 	damaged.emit()
-	print("magic atack ",atk.magic_damage)
 	handle_death(atk)
 
 func damage_continuous(atk: Attack):

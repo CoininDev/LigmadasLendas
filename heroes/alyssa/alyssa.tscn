@@ -189,7 +189,9 @@ health_comp = NodePath("../../HealthComponent")
 script = ExtResource("14_hkx2i")
 hero = NodePath("../../..")
 
-[node name="EffectsComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "hero") instance=ExtResource("12_yjyu3")]
+[node name="EffectsComponent" parent="comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "sanity_comp", "hero") instance=ExtResource("12_yjyu3")]
+battack_comp = NodePath("../BAttackComponent")
+nav_comp = NodePath("../NavigationComponent")
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
 hero = NodePath("../..")

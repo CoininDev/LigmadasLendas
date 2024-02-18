@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dvmj1414akb08"]
 
-[ext_resource type="PackedScene" uid="uid://c1xp1m6kdpsgk" path="res://objs/camera_man.tscn" id="1_kqkdf"]
+[ext_resource type="PackedScene" uid="uid://dvxt2tqwb6fbb" path="res://objs/camera_man_2.tscn" id="3_3aujx"]
 [ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://heroes/#base/saco_de_pancada.tscn" id="3_7hwwl"]
 [ext_resource type="PackedScene" uid="uid://dctjqnt85jp8c" path="res://heroes/alyssa/alyssa.tscn" id="3_uqtjy"]
 
@@ -36,36 +36,6 @@ volumetric_fog_density = 0.02
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rba12"]
 
 [node name="Cena de teste" type="Node3D"]
-
-[node name="CameraMan" parent="." node_paths=PackedStringArray("point") instance=ExtResource("1_kqkdf")]
-transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 15, 10.9062)
-point = NodePath("../Alyssa")
-point_offset = Vector3(0, 15, 5)
-
-[node name="testingHUD" parent="CameraMan/Camera3D" index="1"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" parent="CameraMan/Camera3D/testingHUD" index="0"]
-offset_left = -104.0
-offset_top = -61.0
-offset_right = -19.0
-offset_bottom = -19.0
-
-[node name="Label4" type="Label" parent="CameraMan/Camera3D/testingHUD" index="3"]
-layout_mode = 0
-offset_left = 905.0
-offset_top = -23.0
-offset_right = 1008.0
-offset_bottom = 18.0
-text = "dindin"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -115,4 +85,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67195, 0, 0)
 ability_box = NodePath("../AbilityBox")
 spawn_point = NodePath("../spawn_points/hero1")
 
-[editable path="CameraMan"]
+[node name="CameraMan2" parent="." instance=ExtResource("3_3aujx")]
