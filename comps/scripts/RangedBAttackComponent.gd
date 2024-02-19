@@ -44,13 +44,13 @@ func attack():
 	bul.gfx_particles = bullet_gfx_particles
 	bul.speed = bullet_speed
 	bul.target = target
-	bul.global_position = global_position
 	bul.atk = Attack.new()
 	bul.atk.physic_damage = atk_damage
 	bul.atk.caster = hero
 	attacked.emit(target)
 	cancel_bullet.connect(bul.cancel)
 	hero.ability_box.add_child(bul)
+	bul.global_position = global_position
 	#add_child(bul)
 #
 #func timeout():

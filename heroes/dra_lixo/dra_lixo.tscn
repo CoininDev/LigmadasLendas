@@ -111,15 +111,19 @@ hero = NodePath("../..")
 
 [node name="XPComponent" parent="Comps" node_paths=PackedStringArray("dead_state", "hero") instance=ExtResource("12_g21sh")]
 ability1_upgradable_atributes = {
+"q_cooldown_val": [0.0, 20.0, 15.0, 12.0, 10.0, 8.0],
 "q_dano": [0.0, 100.0, 150.0, 250.0, 300.0, 350.0]
 }
 ability2_upgradable_atributes = {
+"w_cooldown_val": [0.0, 16.0, 13.0, 10.0, 8.0, 5.0],
 "w_dano": [0.0, 80.0, 100.0, 120.0, 140.0, 160.0]
 }
 ability3_upgradable_atributes = {
+"e_cooldown_val": [0.0, 30.0, 25.0, 20.0, 15.0, 10.0],
 "e_dano": [0.0, 60.0, 90.0, 120.0, 150.0, 180.0]
 }
 ultimate_upgradable_atributes = {
+"r_cooldown_val": [0.0, 70.0, 50.0, 30.0],
 "ult_buff_set": [0.0, 0.3, 0.4, 0.5]
 }
 dead_state = NodePath("../StateMachineComponent/HeroDeadState")
@@ -155,18 +159,7 @@ radius = 3.0
 
 [node name="E" parent="Abilities" instance=ExtResource("11_a5veo")]
 
-[node name="AbilityCooldown" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="QTimer" type="Timer" parent="AbilityCooldown"]
-
-[node name="WTimer" type="Timer" parent="AbilityCooldown"]
-
-[node name="ETimer" type="Timer" parent="AbilityCooldown"]
-
-[node name="RTimer" type="Timer" parent="AbilityCooldown"]
-
-[node name="UltTimer" type="Timer" parent="."]
+[node name="UltTimer" type="Timer" parent="Abilities"]
 wait_time = 15.0
 
-[connection signal="timeout" from="UltTimer" to="." method="_on_ult_timer_timeout"]
+[connection signal="timeout" from="Abilities/UltTimer" to="." method="_on_ult_timer_timeout"]
