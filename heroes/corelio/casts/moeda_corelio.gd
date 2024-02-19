@@ -1,7 +1,6 @@
 extends Node3D
 
 @export var atk:Attack
-@export var apply_to:Array = ["hitbox_owner"]
 @export var radius:float = 0.5
 @export var distance:float = 2
 @export var speed:float = 5
@@ -42,7 +41,7 @@ func run(delta):
 
 func _on_bullet_body_entered(body):
 	if body != atk.caster:
-		for group in apply_to:
+		for group in atk.apply_to:
 			if body.is_in_group(group):
 				if !obsolete.has(body):
 					body.dmgr.damage(atk) 

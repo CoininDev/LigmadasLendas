@@ -203,7 +203,7 @@ func _on_p_timer_timeout():
 	t.global_position.y = 0
 
 func marcar(pessoa):
-	if pessoa.type == "hero" && pessoa != null && pessoa != marcado1 && pessoa != marcado2 && pessoa != marcado3 && pessoa != marcado4 && pessoa != marcado5:
+	if pessoa is HeroBase && pessoa != null && pessoa != marcado1 && pessoa != marcado2 && pessoa != marcado3 && pessoa != marcado4 && pessoa != marcado5:
 		if  marcado1 == null:
 			marcado1 = pessoa
 			

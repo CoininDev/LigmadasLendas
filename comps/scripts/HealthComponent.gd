@@ -43,6 +43,8 @@ func handle_death(atk):
 		if atk.caster:
 			if atk.caster.has_method("cancel"):
 				atk.caster.cancel()
+			if "batk_comp" in atk.caster:
+				atk.caster.batk_comp.cancel()
 			if atk.caster.has_method("add_xp"):
 				atk.caster.add_xp(death_xp)
 		

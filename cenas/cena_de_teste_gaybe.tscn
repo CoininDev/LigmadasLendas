@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dvmj1414akb08"]
 
-[ext_resource type="PackedScene" uid="uid://cgc65hb2jo1u7" path="res://heroes/dra_lixo/dra_lixo.tscn" id="2_bwn7n"]
+[ext_resource type="PackedScene" uid="uid://c3tywn6og5g45" path="res://heroes/corelio/corelio.tscn" id="2_nc3nt"]
 [ext_resource type="PackedScene" uid="uid://dvxt2tqwb6fbb" path="res://objs/camera_man_2.tscn" id="3_3aujx"]
 [ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://heroes/#base/saco_de_pancada.tscn" id="3_7hwwl"]
 
@@ -69,9 +69,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67195, 0, 0)
 [node name="Player1" type="Node" parent="Players"]
 
 [node name="CameraMan2" parent="Players/Player1" node_paths=PackedStringArray("point") instance=ExtResource("3_3aujx")]
-point = NodePath("../DraLixo")
+point = NodePath(".")
 
-[node name="DraLixo" parent="Players/Player1" node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("2_bwn7n")]
+[node name="corelio" parent="Players/Player1" node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("2_nc3nt")]
 ability_box = NodePath("../../../AbilityBox")
 spawn_point = NodePath("../../../spawn_points/blue1")
 

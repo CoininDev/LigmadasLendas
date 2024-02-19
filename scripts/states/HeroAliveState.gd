@@ -101,7 +101,7 @@ func attack():
 	if Input.is_action_just_released(show_attack_range_action):
 		battack.visible = false
 	if Input.is_action_just_pressed(attack_action):
-		var result = GeneralFuncs.mouse_raycast_all()
+		var result = GeneralFuncs.mouse_raycast_entity()
 		if result:
 			if !result.collider.is_in_group(hero.team_comp.team_str):
 				battack.select_target(result.collider)
