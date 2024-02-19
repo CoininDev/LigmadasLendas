@@ -20,6 +20,10 @@ config/icon="res://Chuu.png"
 
 GeneralFuncs="*res://scripts/GeneralFuncs.gd"
 
+[display]
+
+window/size/mode=3
+
 [editor_plugins]
 
 enabled=PackedStringArray()

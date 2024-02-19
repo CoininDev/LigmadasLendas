@@ -11,7 +11,7 @@ bg_color = Color(0.25098, 0.654902, 0.290196, 1)
 bg_color = Color(0, 0.0745098, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nphwr"]
-bg_color = Color(1, 0.156863, 0.231373, 1)
+bg_color = Color(0.76662, 0.76662, 0.76662, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5hd3"]
 bg_color = Color(0.0862745, 0, 0.192157, 1)
@@ -27,6 +27,7 @@ script = ExtResource("1_k14il")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
+canvas_item_default_texture_filter = 0
 size = Vector2i(200, 80)
 
 [node name="HealthBar" type="ProgressBar" parent="SubViewport"]
@@ -87,7 +88,6 @@ offset_right = 196.0
 offset_bottom = 33.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_qvrbv")
 

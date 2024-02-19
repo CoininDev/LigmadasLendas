@@ -4,8 +4,8 @@
 
 [node name="AnimationComponent" type="Node" node_paths=PackedStringArray("block_timer")]
 script = ExtResource("1_prgj1")
-block_timer = NodePath("BlockTimer")
+block_timer = NodePath("CastTimer")
 
-[node name="BlockTimer" type="Timer" parent="."]
+[node name="CastTimer" type="Timer" parent="."]
 
-[connection signal="timeout" from="BlockTimer" to="." method="_on_block_timer_timeout"]
+[connection signal="timeout" from="CastTimer" to="." method="_on_cast_timer_timeout"]

@@ -48,11 +48,12 @@ hero = NodePath("../..")
 health_component = NodePath("../HealthComponent")
 effects_component = NodePath("../EffectsComponent")
 
-[node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp") instance=ExtResource("5_vnvt4")]
+[node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp", "team_comp") instance=ExtResource("5_vnvt4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.33255, 0)
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
 fx_comp = NodePath("../EffectsComponent")
+team_comp = NodePath("../TeamComponent")
 
 [node name="SanityComponent" parent="comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("6_0472j")]
 health_comp = NodePath("../HealthComponent")

@@ -30,6 +30,7 @@ gravity = Vector3(0, 0, 0)
 material = ExtResource("2_o5pab")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rv5s"]
+shading_mode = 0
 albedo_color = Color(0, 0.447059, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wvo1n"]
@@ -91,11 +92,13 @@ hero = NodePath("../..")
 desired_distance = 1.1
 hero = NodePath("../..")
 
-[node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp") instance=ExtResource("8_083vp")]
+[node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp", "team_comp") instance=ExtResource("8_083vp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73506, 0)
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
 fx_comp = NodePath("../EffectsComponent")
+team_comp = NodePath("../TeamComponent")
+is_player = true
 
 [node name="SanityComponent" parent="comps" node_paths=PackedStringArray("health_comp") instance=ExtResource("9_s21jk")]
 health_comp = NodePath("../HealthComponent")

@@ -3,6 +3,10 @@ extends Node3D
 @export var health_comp:HealthComponent
 @export var sanity_comp:SanityComponent
 @export var fx_comp:EffectsComponent
+@export var team_comp:TeamComponent
+@export var relative_player:HeroBase
+@export var is_player:bool
+@export var is_relative:bool
 #@export var has_level:bool = false
 
 @onready var health_bar = $SubViewport/HealthBar
@@ -19,6 +23,27 @@ func _ready():
 	damage_bar.max_value = health_comp.MAX_HEALTH
 	damage_bar.value = health_comp.health
 	health_comp.connect("damaged", on_damaged)
+	
+	
+	var sb = StyleBoxFlat.new()
+	health_bar.add_theme_stylebox_override("fill", sb)
+	#abolute painting
+	if is_relative:
+		if is_player:
+			sb.bg_color = Color.FOREST_GREEN
+		elif team_comp.team == relative_player.team_comp.team:
+			sb.bg_color = Color.ROYAL_BLUE
+		else:
+			sb.bg_color = Color(1, 0.157, 0.231) #vermelho
+	else:
+		if is_player:
+			sb.bg_color = Color.FOREST_GREEN
+		elif team_comp.team == 0:
+			sb.bg_color = Color.ROYAL_BLUE
+		elif team_comp.team == 1:
+			sb.bg_color = Color(1, 0.157, 0.231) #vermelho
+		else:
+			sb.bg_color = Color.BROWN
 	
 	if sanity_comp:
 		sanity_bar.visible = true
