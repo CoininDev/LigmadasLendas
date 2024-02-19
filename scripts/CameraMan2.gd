@@ -7,6 +7,7 @@ extends Node3D
 #########################
 #move
 @export var speed = 10
+@export var corner_margin = 20
 #zoom
 @export var min_zoom_out = 2
 @export var max_zoom_out = 90
@@ -32,6 +33,7 @@ func _process(delta):
 	move(delta)
 
 func _input(event):
+	
 	zoom()
 	rotate_camera(event)
 	lock_cam = Input.is_action_pressed("space") or lock_cam_persist
@@ -39,7 +41,18 @@ func _input(event):
 		lock_cam_persist = !lock_cam_persist
 
 func move(delta:float):
-	var dir:Vector3  = Vector3(Input.get_axis("ui_left","ui_right"), 0, Input.get_axis("ui_up", "ui_down")).normalized()
+	var v_size = get_viewport().size
+	var dir = Vector3()
+	var m_pos = get_viewport().get_mouse_position()
+	if m_pos.x < corner_margin:
+		dir.x -= 1
+	if m_pos.x > v_size.x - corner_margin:
+		dir.x += 1
+	if m_pos.y < corner_margin:
+		dir.z -= 1
+	if m_pos.y > v_size.y - corner_margin:
+		dir.z += 1
+	#var dir:Vector3  = Vector3(Input.get_axis("ui_left","ui_right"), 0, Input.get_axis("ui_up", "ui_down")).normalized()
 	position += dir * delta * speed 
 
 func zoom():
@@ -61,6 +74,6 @@ func rotate_camera(event:InputEvent):
 			$Elevation.rotation_degrees.x -= event.relative.y * rotation_speed
 			$Elevation.rotation_degrees.x = clamp($Elevation.rotation_degrees.x, -max_angle, -min_angle)
 			Input.mouse_mode = 2
-			rotation_degrees.y -= event.relative.x * rotation_speed
+			#rotation_degrees.y -= event.relative.x * rotation_speed
 	else:
 		Input.mouse_mode = 0
