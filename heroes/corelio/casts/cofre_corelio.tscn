@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://ce4k7x5smkxtl"]
+[gd_scene load_steps=18 format=3 uid="uid://ce4k7x5smkxtl"]
 
 [ext_resource type="Script" path="res://heroes/corelio/casts/cofre_corelio.gd" id="1_twq14"]
 [ext_resource type="ArrayMesh" uid="uid://bwvc43hfrdtsr" path="res://graphics/3d models/cofre.obj" id="2_ua0nu"]
 [ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="3_vdofa"]
 [ext_resource type="PackedScene" uid="uid://c41ghwyaavow6" path="res://comps/scenes/ward_health_component.tscn" id="4_v0xxy"]
+[ext_resource type="Script" path="res://comps/scripts/TeamComponent.gd" id="5_0wkyy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p7tkh"]
 
@@ -74,8 +75,9 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_fluft")
 size = Vector2(0.3, 0.3)
 
-[node name="cofre_corelio" type="StaticBody3D" node_paths=PackedStringArray("dmgr")]
+[node name="cofre_corelio" type="StaticBody3D" node_paths=PackedStringArray("team_comp", "dmgr")]
 script = ExtResource("1_twq14")
+team_comp = NodePath("TeamComponent")
 dmgr = NodePath("DmgrComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -121,5 +123,9 @@ draw_pass_1 = SubResource("QuadMesh_8edwh")
 
 [node name="finaltimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="TeamComponent" type="Node" parent="." node_paths=PackedStringArray("hero")]
+script = ExtResource("5_0wkyy")
+hero = NodePath("..")
 
 [connection signal="timeout" from="finaltimer" to="." method="_on_finaltimer_timeout"]

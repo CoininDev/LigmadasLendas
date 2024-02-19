@@ -18,4 +18,3 @@ var magic_continuous_damage:float=0
 var continuous_damage_time:float=0
 var devendo_time:float=0
 var caster:Node
-var dinheiro:float

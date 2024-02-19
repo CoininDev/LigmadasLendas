@@ -24,6 +24,7 @@ var e_dano = 10
 #passiva
 var p_distancia_max = 5
 var p_tempo = 10
+var p_dinheiro:float = 20
 
 var random = RandomNumberGenerator.new()
 
@@ -41,12 +42,10 @@ var vida_contagem = 0
 func _ready():
 	passiva_timer.start(p_tempo)
 	ultimavida = health_Comp.health
-	print(ultimavida)
 	_ready_base()
 	q.atk = Attack.new()
 	w.atk = Attack.new()
 	e.atk = Attack.new()
-	p.atk = Attack.new()
 	q.range = 10
 	w.range = 5
 	e.range = 15
@@ -65,7 +64,7 @@ func _process(delta):
 		endividar((ultimavida - health_Comp.health) * 0.3)
 		print((ultimavida - health_Comp.health) * 0.3)
 		ultimavida = health_Comp.health
-	
+
 	#propriedades do Q
 	q.atk.magic_damage = q_dano + (ability_power * 0.3)
 	q.target_direction = q_p.global_rotation
@@ -80,7 +79,6 @@ func _process(delta):
 	e.target_direction = e_p.global_rotation
 
 func q_preview():
-	print("ability power value ",ability_power)
 	q_p.mesh_instance.position.z = -q.range / 2
 	q_p.mesh_instance.scale.z = q.range
 	q_p.visible = true
@@ -111,6 +109,7 @@ func w_cast():
 	t.atk = w.atk
 	t.delay = 20
 	t.radius = 3
+	t.team_comp.team = team_comp.enemy_team
 	ability_box.add_child(t)
 	t.global_position = w.target_position
 	t.global_rotation_degrees.y = w_p.mark_rot.y - 90
@@ -195,7 +194,8 @@ func verificar_dividas():
 func _on_p_timer_timeout():
 	passiva_timer.start(p_tempo)
 	var t = load("res://heroes/corelio/casts/dinheiro_corelio.tscn").instantiate()
-	t.atk = p.atk
+	t.gold = p_dinheiro
+	t.apply_to = [team_comp.team_str]
 	#t.dinheiro = 20
 	ability_box.add_child(t)
 	t.global_position.x = self.global_position.x + random.randf_range(-p_distancia_max,p_distancia_max)
@@ -203,7 +203,6 @@ func _on_p_timer_timeout():
 	t.global_position.y = 0
 
 func marcar(pessoa):
-	print(pessoa)
 	if pessoa.type == "hero" && pessoa != null && pessoa != marcado1 && pessoa != marcado2 && pessoa != marcado3 && pessoa != marcado4 && pessoa != marcado5:
 		if  marcado1 == null:
 			marcado1 = pessoa

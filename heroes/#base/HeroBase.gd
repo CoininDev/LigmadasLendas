@@ -1,5 +1,14 @@
 extends CharacterBody3D
 class_name HeroBase
+###########################
+## PARAMETERS
+###########################
+
+@export_category("Points")
+@export var ability_box: Node3D
+@export var spawn_point: Node3D
+
+@export_category("Components")
 @export var dmgr: DamageMgrComponent
 @export var xp_comp:XPComponent
 @export var batk_comp:BAttackComponent
@@ -7,12 +16,18 @@ class_name HeroBase
 @export var anim_comp:AnimationComponent
 @export var state_machine_comp:StateMachineComponent
 @export var team_comp:TeamComponent
-@export var ability_box: Node3D
-@export var spawn_point: Node3D
+
+@export_category("Abilities")
 @export var q_p:Pointer
 @export var w_p:Pointer
 @export var e_p:Pointer
 @export var r_p:Pointer
+
+
+#######################
+## VARIABLES
+#######################
+# cooldown and block abilities parameters
 var q_cooldown = Timer.new()
 var w_cooldown = Timer.new()
 var e_cooldown = Timer.new()
@@ -25,7 +40,6 @@ var e_cooldown_block = false
 var r_cooldown_block = false
 var opt1_cooldown_block = false
 var opt2_cooldown_block = false
-
 var q_block = true
 var w_block = true
 var e_block = true
@@ -35,12 +49,15 @@ var opt2_block = true
 
 var silenced = false
 
-var type = "hero"
+#game stats
 var ultimoAlvo:Node3D
-
 var buff:float = 1
-var ability_power:float = 0
 
+#game attributes
+var ability_power:float = 0
+var gold:float = 0
+
+#abilities
 var q = Ability.new() 
 var w = Ability.new()
 var e = Ability.new()
@@ -48,6 +65,9 @@ var r = Ability.new()
 var p = Ability.new()
 
 
+#####################
+## FUNCTIONS
+#####################
 func _ready_base():
 	xp_comp.add_xp(100)
 	q_cooldown.timeout.connect(_on_q_cooldown_timeout)
@@ -109,7 +129,6 @@ func start_cooldown(x:String, cooldown_time:float):
 
 func _on_q_cooldown_timeout():
 	q_cooldown_block = false
-	print("eureka!")
 
 func _on_w_cooldown_timeout():
 	w_cooldown_block = false

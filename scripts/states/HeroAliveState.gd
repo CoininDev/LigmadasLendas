@@ -103,5 +103,5 @@ func attack():
 	if Input.is_action_just_pressed(attack_action):
 		var result = GeneralFuncs.mouse_raycast_all()
 		if result:
-			if result.collider.is_in_group(hero.team_comp.enemy_team_str):
+			if !result.collider.is_in_group(hero.team_comp.team_str):
 				battack.select_target(result.collider)
