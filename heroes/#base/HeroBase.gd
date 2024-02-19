@@ -1,4 +1,4 @@
-extends Unit
+extends CharacterBody3D
 class_name HeroBase
 @export var dmgr: DamageMgrComponent
 @export var xp_comp:XPComponent
@@ -6,6 +6,7 @@ class_name HeroBase
 @export var fx_comp:EffectsComponent
 @export var anim_comp:AnimationComponent
 @export var state_machine_comp:StateMachineComponent
+@export var team_comp:TeamComponent
 @export var ability_box: Node3D
 @export var spawn_point: Node3D
 @export var q_p:Pointer

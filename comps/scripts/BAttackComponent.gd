@@ -54,9 +54,6 @@ func timeout():
 	var distance = target.global_position.distance_to(global_position)
 	if distance <= range:
 		attack()
-	
-
-
 
 func cancel():
 	target = null

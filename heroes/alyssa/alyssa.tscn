@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dctjqnt85jp8c"]
+[gd_scene load_steps=25 format=3 uid="uid://dctjqnt85jp8c"]
 
 [ext_resource type="Script" path="res://heroes/alyssa/alyssa.gd" id="1_h8uc8"]
 [ext_resource type="QuadMesh" uid="uid://blaghjjksd8bs" path="res://heroes/alyssa/material/particles_aura_alyssa.tres" id="2_rybij"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://scripts/states/HeroDeadState.gd" id="14_hkx2i"]
 [ext_resource type="Material" uid="uid://7s52l7ud3a8x" path="res://graphics/materials/cast_generico.tres" id="14_r8liw"]
 [ext_resource type="PackedScene" uid="uid://bb82m0a0q1pso" path="res://objs/pointer/scenes/direction_pointer.tscn" id="15_jcv68"]
+[ext_resource type="Script" path="res://comps/scripts/TeamComponent.gd" id="16_0oj7t"]
 [ext_resource type="PackedScene" uid="uid://bt3p7cj7om1ne" path="res://objs/pointer/scenes/target_pointer.tscn" id="16_dptv7"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ssv6"]
@@ -41,7 +42,7 @@ radius = 10.0
 height = 10.0
 is_hemisphere = true
 
-[node name="Alyssa" type="CharacterBody3D" node_paths=PackedStringArray("p_p", "dmgr", "xp_comp", "batk_comp", "fx_comp", "anim_comp", "state_machine_comp", "q_p", "r_p")]
+[node name="Alyssa" type="CharacterBody3D" node_paths=PackedStringArray("p_p", "dmgr", "xp_comp", "batk_comp", "fx_comp", "anim_comp", "state_machine_comp", "team_comp", "q_p", "r_p")]
 script = ExtResource("1_h8uc8")
 p_p = NodePath("Abilities/P(ContCircArea)")
 dmgr = NodePath("comps/DamageMgrComponent")
@@ -50,6 +51,7 @@ batk_comp = NodePath("comps/BAttackComponent")
 fx_comp = NodePath("comps/EffectsComponent")
 anim_comp = NodePath("comps/AnimationComponent")
 state_machine_comp = NodePath("comps/StateMachineComponent")
+team_comp = NodePath("comps/TeamComponent")
 q_p = NodePath("Abilities/Q(Direction)")
 r_p = NodePath("Abilities/R(Target)")
 
@@ -194,6 +196,10 @@ battack_comp = NodePath("../BAttackComponent")
 nav_comp = NodePath("../NavigationComponent")
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
+hero = NodePath("../..")
+
+[node name="TeamComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
+script = ExtResource("16_0oj7t")
 hero = NodePath("../..")
 
 [node name="Abilities" type="Node3D" parent="."]

@@ -30,7 +30,7 @@ func _ready():
 	
 	q.atk = Attack.new()
 	q.atk.caster = self
-	q.atk.apply_to.append(self.enemy_team_name)
+	q.atk.apply_to.append(team_comp.enemy_team_str)
 	q.range = 5
 	
 	w.atk = Attack.new()
@@ -38,6 +38,7 @@ func _ready():
 	
 	e.atk = Attack.new()
 	e.atk.caster = self
+	e.atk.apply_to.append(team_comp.enemy_team_str)
 
 #PROPRIEDADES MUTAVEIS
 func _process(delta):
