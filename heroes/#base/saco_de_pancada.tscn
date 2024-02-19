@@ -20,19 +20,10 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vhjqo"]
 material = ExtResource("2_5pqg1")
 
-[node name="SacoDePancada" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "q_p", "w_p", "e_p", "r_p") groups=["hitbox_owner"]]
+[node name="SacoDePancada" type="CharacterBody3D"]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_sq7xi")
-dmgr = NodePath("DamageMgrComponent")
-xp_comp = NodePath("XPComponent")
-batk_comp = NodePath("BAttackComponent")
-fx_comp = NodePath("EffectsComponent")
-state_machine_comp = NodePath("StateMachineComponent")
-q_p = NodePath("AbilityPointers/Q")
-w_p = NodePath("AbilityPointers/W")
-e_p = NodePath("AbilityPointers/E")
-r_p = NodePath("AbilityPointers/R")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

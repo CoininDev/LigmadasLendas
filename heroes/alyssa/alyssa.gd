@@ -25,11 +25,12 @@ func _ready():
 	_ready_base()
 	anim_comp.anim_player = $"3DModel/AnimationPlayer"
 	p.atk = Attack.new()
-	p.apply_to = ["viciado"]
+	p.atk.apply_to = ["viciado"]
 	p.atk.caster = self
 	
 	q.atk = Attack.new()
 	q.atk.caster = self
+	q.atk.apply_to.append(self.enemy_team_name)
 	q.range = 5
 	
 	w.atk = Attack.new()
@@ -43,7 +44,6 @@ func _process(delta):
 	#P
 	p.atk.magic_damage = p_dano + (ability_power * 0.2) + (r_dano_add + (ability_power * 1.2))
 	p_p.atk = p.atk
-	p_p.apply_to = p.apply_to
 	#Q
 	q.target_direction = q_p.global_rotation
 	q.atk.magic_damage = q_dano + (ability_power * 0.75)

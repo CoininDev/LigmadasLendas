@@ -1,4 +1,4 @@
-extends Node3D
+extends Unit
 class_name HeroBase
 @export var dmgr: DamageMgrComponent
 @export var xp_comp:XPComponent
