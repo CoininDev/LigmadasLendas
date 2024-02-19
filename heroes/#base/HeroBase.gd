@@ -70,6 +70,12 @@ var p = Ability.new()
 #####################
 func _ready_base():
 	xp_comp.add_xp(100)
+	q_cooldown.one_shot = true
+	w_cooldown.one_shot = true
+	e_cooldown.one_shot = true
+	r_cooldown.one_shot = true
+	opt1_cooldown.one_shot = true
+	opt2_cooldown.one_shot = true
 	q_cooldown.timeout.connect(_on_q_cooldown_timeout)
 	w_cooldown.timeout.connect(_on_w_cooldown_timeout)
 	e_cooldown.timeout.connect(_on_e_cooldown_timeout)
