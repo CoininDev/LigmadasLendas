@@ -11,3 +11,132 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 
 [node name="Camera3D" type="Camera3D" parent="Elevation"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 10
+
+[node name="H" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -104.0
+offset_right = 240.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="stats" type="VBoxContainer" parent="CanvasLayer/Control/H"]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="nível" type="Label" parent="CanvasLayer/Control/H/stats"]
+layout_mode = 2
+text = "Nível: 0"
+
+[node name="xp" type="Label" parent="CanvasLayer/Control/H/stats"]
+layout_mode = 2
+text = "XP: 0"
+
+[node name="ouro" type="Label" parent="CanvasLayer/Control/H/stats"]
+layout_mode = 2
+text = "ouro: 0"
+
+[node name="AP" type="Label" parent="CanvasLayer/Control/H/stats"]
+layout_mode = 2
+text = "AP: 0"
+
+[node name="Abilites" type="HBoxContainer" parent="CanvasLayer/Control/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_group_ = true
+
+[node name="Q" type="ColorRect" parent="CanvasLayer/Control/H/Abilites"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.427451, 0.427451, 0.427451, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/H/Abilites/Q"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Q"
+
+[node name="TimeOutLabel" type="Label" parent="CanvasLayer/Control/H/Abilites/Q"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 26.0
+offset_right = 65.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 35
+text = "00"
+
+[node name="W" type="ColorRect" parent="CanvasLayer/Control/H/Abilites"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.427451, 0.427451, 0.427451, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/H/Abilites/W"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "W
+"
+
+[node name="TimeOutLabel" type="Label" parent="CanvasLayer/Control/H/Abilites/W"]
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 64.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 35
+text = "00"
+
+[node name="E" type="ColorRect" parent="CanvasLayer/Control/H/Abilites"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.427451, 0.427451, 0.427451, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/H/Abilites/E"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "E"
+
+[node name="TimeOutLabel" type="Label" parent="CanvasLayer/Control/H/Abilites/E"]
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 64.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 35
+text = "00"
+
+[node name="R" type="ColorRect" parent="CanvasLayer/Control/H/Abilites"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.427451, 0.427451, 0.427451, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/H/Abilites/R"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "R
+"
+
+[node name="TimeOutLabel" type="Label" parent="CanvasLayer/Control/H/Abilites/R"]
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 64.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 35
+text = "00"

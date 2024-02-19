@@ -93,11 +93,13 @@ hero = NodePath("../..")
 health_component = NodePath("../HealthComponent")
 effects_component = NodePath("../EffectsComponent")
 
-[node name="GUIComponent" parent="Comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp") instance=ExtResource("9_5lmth")]
+[node name="GUIComponent" parent="Comps" node_paths=PackedStringArray("health_comp", "sanity_comp", "fx_comp", "team_comp") instance=ExtResource("9_5lmth")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2007, 0)
 health_comp = NodePath("../HealthComponent")
 sanity_comp = NodePath("../SanityComponent")
 fx_comp = NodePath("../EffectsComponent")
+team_comp = NodePath("../TeamComponent")
+is_player = true
 
 [node name="RangedBAttackComponent" parent="Comps" node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("10_c0o3h")]
 bullet_col = SubResource("SphereShape3D_sg770")

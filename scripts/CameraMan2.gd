@@ -17,20 +17,33 @@ extends Node3D
 @export var max_angle = 75
 @export var rotation_speed = 0.2
 #lock_in_object
-@export var point:Node3D
+@export var point:HeroBase
 @export var smoth_speed = 15
 var lock_cam:bool = true
 var lock_cam_persist:bool
+
+#HUD Properties
+@onready var timeout_q:Label = $CanvasLayer/Control/H/Abilites/Q/TimeOutLabel
+@onready var timeout_w:Label = $CanvasLayer/Control/H/Abilites/W/TimeOutLabel
+@onready var timeout_e:Label = $CanvasLayer/Control/H/Abilites/E/TimeOutLabel
+@onready var timeout_r:Label = $CanvasLayer/Control/H/Abilites/R/TimeOutLabel
+
+@onready var nivel:Label = $"CanvasLayer/Control/H/stats/nível"
+@onready var xp:Label = $CanvasLayer/Control/H/stats/xp
+@onready var ouro:Label = $CanvasLayer/Control/H/stats/ouro
+@onready var ap:Label = $CanvasLayer/Control/H/stats/AP
 
 func _ready():
 	pass
 
 func _process(delta):
+	HUD()
 	if lock_cam:
 		global_position = lerp(global_position, point.global_position, smoth_speed * delta)
 		#global_position = point.global_position
 		return
 	move(delta)
+	
 
 func _input(event):
 	
@@ -77,3 +90,20 @@ func rotate_camera(event:InputEvent):
 			#rotation_degrees.y -= event.relative.x * rotation_speed
 	else:
 		Input.mouse_mode = 0
+
+func HUD():
+	#timeouts
+	timeout_q.text = "%2d" % point.q_cooldown.time_left
+	timeout_w.text = "%2d" % point.w_cooldown.time_left
+	timeout_e.text = "%2d" % point.e_cooldown.time_left
+	timeout_r.text = "%2d" % point.r_cooldown.time_left
+	if point.q_cooldown.time_left == 0: timeout_q.text = ""
+	if point.w_cooldown.time_left == 0: timeout_w.text = ""
+	if point.e_cooldown.time_left == 0: timeout_e.text = ""
+	if point.r_cooldown.time_left == 0: timeout_r.text = ""
+	
+	nivel.text ="Nível: "+ str(point.xp_comp.level)
+	xp.text ="XP: "+ str(point.xp_comp.current_xp)
+	ouro.text = "Ouro:"+str(point.gold)
+	ap.text = "AP: "+str(point.ability_power)
+	
