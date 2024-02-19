@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cgc65hb2jo1u7"]
+[gd_scene load_steps=22 format=3 uid="uid://cgc65hb2jo1u7"]
 
 [ext_resource type="Script" path="res://heroes/dra_lixo/dra_lixo.gd" id="1_02i8v"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="2_k0dsn"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/states/HeroAliveState.gd" id="12_8cib8"]
 [ext_resource type="PackedScene" uid="uid://boihyru5nyiju" path="res://comps/scenes/xp_component.tscn" id="12_g21sh"]
 [ext_resource type="Script" path="res://scripts/states/HeroDeadState.gd" id="13_f5i1g"]
+[ext_resource type="Script" path="res://comps/scripts/TeamComponent.gd" id="14_ufjxp"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gn32f"]
 height = 1.7
@@ -43,7 +44,7 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_aj7dj")
 size = Vector2(0.2, 0.2)
 
-[node name="DraLixo" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
+[node name="DraLixo" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "team_comp", "q_p", "w_p", "e_p") groups=["hitbox_owner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
 collision_layer = 3
 collision_mask = 7
@@ -53,6 +54,7 @@ xp_comp = NodePath("Comps/XPComponent")
 batk_comp = NodePath("Comps/RangedBAttackComponent")
 fx_comp = NodePath("Comps/EffectsComponent")
 state_machine_comp = NodePath("Comps/StateMachineComponent")
+team_comp = NodePath("Comps/TeamComponent")
 q_p = NodePath("Abilities/Q")
 w_p = NodePath("Abilities/W")
 e_p = NodePath("Abilities/E")
@@ -138,6 +140,10 @@ health_comp = NodePath("../../HealthComponent")
 [node name="HeroDeadState" type="Node" parent="Comps/StateMachineComponent" node_paths=PackedStringArray("hero")]
 script = ExtResource("13_f5i1g")
 hero = NodePath("../../..")
+
+[node name="TeamComponent" type="Node" parent="Comps" node_paths=PackedStringArray("hero")]
+script = ExtResource("14_ufjxp")
+hero = NodePath("../..")
 
 [node name="Abilities" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)

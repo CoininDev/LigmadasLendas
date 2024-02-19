@@ -18,8 +18,11 @@ func _ready():
 	w.range = 15
 	e.range = 15
 	q.atk.caster = self
+	q.atk.apply_to.append(team_comp.enemy_team_str)
 	w.atk.caster = self
+	w.atk.apply_to.append(team_comp.enemy_team_str)
 	e.atk.caster = self
+	e.atk.apply_to.append(team_comp.enemy_team_str)
 
 func _process(delta):
 	if ultada:

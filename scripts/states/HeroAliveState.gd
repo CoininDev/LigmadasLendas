@@ -103,7 +103,5 @@ func attack():
 	if Input.is_action_just_pressed(attack_action):
 		var result = GeneralFuncs.mouse_raycast_all()
 		if result:
-			print(str(hero.team_comp.enemy_team))
-			print(result.collider.is_in_group(hero.team_comp.enemy_team_str))
-			#if result.collider.is_in_group("troquem_de_sexo_penis_penis"):
-			battack.select_target(result.collider)
+			if result.collider.is_in_group(hero.team_comp.enemy_team_str):
+				battack.select_target(result.collider)

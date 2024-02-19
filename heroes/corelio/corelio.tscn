@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3tywn6og5g45"]
+[gd_scene load_steps=23 format=3 uid="uid://c3tywn6og5g45"]
 
 [ext_resource type="Script" path="res://heroes/corelio/corelio.gd" id="1_sr7n3"]
 [ext_resource type="Material" uid="uid://brow3ato7irei" path="res://heroes/corelio/material/particles_aura_corelio.tres" id="2_o5pab"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://df4c8oi2h37jp" path="res://objs/pointer/scenes/spot_pointer.tscn" id="12_j2xbn"]
 [ext_resource type="Script" path="res://scripts/states/HeroDeadState.gd" id="13_03lua"]
 [ext_resource type="PackedScene" uid="uid://bt3p7cj7om1ne" path="res://objs/pointer/scenes/target_pointer.tscn" id="13_b5pmj"]
+[ext_resource type="Script" path="res://comps/scripts/TeamComponent.gd" id="14_3wqx2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ugeic"]
 angle_max = 360.0
@@ -36,7 +37,7 @@ material = SubResource("StandardMaterial3D_4rv5s")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ts1b0"]
 
-[node name="corelio" type="CharacterBody3D" node_paths=PackedStringArray("health_Comp", "dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "q_p", "w_p", "e_p", "r_p")]
+[node name="corelio" type="CharacterBody3D" node_paths=PackedStringArray("health_Comp", "dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "team_comp", "q_p", "w_p", "e_p", "r_p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
 script = ExtResource("1_sr7n3")
 health_Comp = NodePath("comps/HealthComponent")
@@ -45,6 +46,7 @@ xp_comp = NodePath("comps/XPComponent")
 batk_comp = NodePath("comps/RangedBAttackComponent")
 fx_comp = NodePath("comps/EffectsComponent")
 state_machine_comp = NodePath("comps/StateMachineComponent")
+team_comp = NodePath("comps/TeamComponent")
 q_p = NodePath("AbilityPointers/Q")
 w_p = NodePath("AbilityPointers/W")
 e_p = NodePath("AbilityPointers/E")
@@ -123,6 +125,10 @@ health_comp = NodePath("../../HealthComponent")
 [node name="HeroDeadState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("hero")]
 script = ExtResource("13_03lua")
 hero = NodePath("../../..")
+
+[node name="TeamComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
+script = ExtResource("14_3wqx2")
+hero = NodePath("../..")
 
 [node name="AbilityPointers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)

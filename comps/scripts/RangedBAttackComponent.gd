@@ -18,14 +18,13 @@ func _ready():
 
 func _physics_process(delta):
 	if target:
-		if target.is_in_group("hitbox_owner"):
-			var distance = target.global_position.distance_to(global_position)
-			if distance > range:
-				walk()
-			else:
-				if timer.is_stopped():
-					attack()
-					timer.start()
+		var distance = target.global_position.distance_to(global_position)
+		if distance > range:
+			walk()
+		else:
+			if timer.is_stopped():
+				attack()
+				timer.start()
 	else:
 		timer.stop()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bj8w60mbxu343"]
+[gd_scene load_steps=17 format=3 uid="uid://bj8w60mbxu343"]
 
 [ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/materials/arer_generico.tres" id="1_25tss"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="1_jp1t4"]
@@ -13,18 +13,21 @@
 [ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="12_4xb0n"]
 [ext_resource type="PackedScene" uid="uid://podwdpuarh5s" path="res://comps/scenes/state_machine_component.tscn" id="12_83kr5"]
 [ext_resource type="Script" path="res://scripts/states/HeroAliveState.gd" id="13_0ihae"]
+[ext_resource type="Script" path="res://comps/scripts/TeamComponent.gd" id="13_c5rvx"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wvo1n"]
 material = ExtResource("1_25tss")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ey8t6"]
 
-[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "q_p", "w_p", "e_p", "r_p")]
+[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "team_comp", "q_p", "w_p", "e_p", "r_p")]
 script = ExtResource("1_ofmxg")
 dmgr = NodePath("comps/DamageMgrComponent")
 xp_comp = NodePath("comps/XPComponent")
 batk_comp = NodePath("comps/BAttackComponent")
 fx_comp = NodePath("comps/EffectsComponent")
+state_machine_comp = NodePath("comps/StateMachineComponent")
+team_comp = NodePath("comps/TeamComponent")
 q_p = NodePath("AbilityPointers/Q")
 w_p = NodePath("AbilityPointers/W")
 e_p = NodePath("AbilityPointers/E")
@@ -88,6 +91,10 @@ nav = NodePath("../../NavComponent")
 battack = NodePath("../../BAttackComponent")
 xp_comp = NodePath("../../XPComponent")
 hero = NodePath("../../..")
+
+[node name="TeamComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
+script = ExtResource("13_c5rvx")
+hero = NodePath("../..")
 
 [node name="AbilityPointers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
