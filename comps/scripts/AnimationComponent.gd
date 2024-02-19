@@ -4,8 +4,7 @@ class_name AnimationComponent
 @export var nav_comp:NavigationComponent
 @export var batk_comp:BAttackComponent
 @export var hero:Node3D
-@export var block_timer:Timer
-var anim_player:AnimationPlayer
+@export var cast_timer:Timer
 @export var anim_tree:AnimationTree
 #### normas de nomenclatura do AnimationTree:
 #idle = está vivo em seu estado normal, não está atacando nem lançando habilidade.
@@ -48,7 +47,7 @@ func idle():
 
 func cast(number:int):
 	anim_tree["parameters/conditions/casting"] = true
-	block_timer.start(anim_player.get_animation("cast" + str(number)).length)
+	cast_timer.start(anim_tree.get_animation("cast" + str(number)).length)
 
 func _on_cast_timer_timeout():
 	anim_tree["parameters/conditions/casting"] = false

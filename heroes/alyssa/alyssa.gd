@@ -23,7 +23,6 @@ var r_distancia:float
 #PROPRIEDADES IMUTAVEIS
 func _ready():
 	_ready_base()
-	anim_comp.anim_player = $"3DModel/AnimationPlayer"
 	p.atk = Attack.new()
 	p.atk.apply_to = ["viciado"]
 	p.atk.caster = self
