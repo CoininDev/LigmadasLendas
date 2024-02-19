@@ -51,8 +51,8 @@ func attack():
 	cancel_bullet.connect(bul.cancel)
 	hero.ability_box.add_child(bul)
 	bul.global_position = global_position
-	#add_child(bul)
-#
+	
+
 #func timeout():
 	#timer.wait_time = atk_cooldown
 	#var distance = target.global_position.distance_to(global_position)
