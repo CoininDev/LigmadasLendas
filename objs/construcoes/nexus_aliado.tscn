@@ -14,7 +14,7 @@ outer_radius = 3.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_i1l3h"]
 radius = 3.01102
 
-[node name="nexus_aliado" type="MeshInstance3D"]
+[node name="nexus" type="MeshInstance3D"]
 mesh = SubResource("TorusMesh_lkigu")
 skeleton = NodePath("../chão")
 

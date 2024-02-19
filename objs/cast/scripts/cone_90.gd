@@ -36,7 +36,7 @@ func run(delta):
 
 func _on_bullet_body_entered(body):
 	if body != atk.caster:
-		for group in apply_to:
+		for group in atk.apply_to:
 			if body.is_in_group(group):
 				if !obsolete.has(body):
 					body.dmgr.damage(atk)

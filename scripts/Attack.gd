@@ -1,6 +1,8 @@
 extends Node
 class_name Attack
 
+
+var apply_to:Array = [] #strings
 var physic_damage:float=0
 var magic_damage:float=0
 var heal:float=0

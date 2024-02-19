@@ -17,7 +17,7 @@ func _on_timer_timeout():
 
 func attack():
 	for body in area.get_overlapping_bodies():
-		for x in apply_to:
+		for x in atk.apply_to:
 			if body.is_in_group(x) && !body == atk.caster:
 				body.dmgr.damage(atk)
 				atk.caster.ultimoAlvo = body

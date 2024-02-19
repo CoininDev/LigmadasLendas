@@ -40,7 +40,7 @@ func _input(event):
 
 func move(delta:float):
 	var dir:Vector3  = Vector3(Input.get_axis("ui_left","ui_right"), 0, Input.get_axis("ui_up", "ui_down")).normalized()
-	position += dir * delta * speed
+	position += dir * delta * speed 
 
 func zoom():
 	#zoom in

@@ -2,7 +2,6 @@ extends Node3D
 class_name Cast
 signal removed
 @export var atk: Attack
-@export var apply_to:Array = ["hitbox_owner"]
 @export var gfx:Mesh
 
 func remove_self():
