@@ -62,7 +62,6 @@ func _process(delta):
 	#caso receba dano aumenta a divida de quem esta marcado
 	if health_Comp.health < ultimavida:
 		endividar((ultimavida - health_Comp.health) * 0.3)
-		print((ultimavida - health_Comp.health) * 0.3)
 		ultimavida = health_Comp.health
 
 	#propriedades do Q
@@ -218,5 +217,5 @@ func marcar(pessoa):
 			
 		elif marcado5 == null:
 			marcado5 = pessoa
-	elif pessoa.type == "hero":
+	elif pessoa is HeroBase:
 		pessoa.fx_comp.divida += 10 + (q_dano * 0.05)

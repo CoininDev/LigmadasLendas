@@ -34,7 +34,6 @@ func _ready():
 func _process(delta):
 	if pagar == true:
 		current_effect = "pagar"
-		print(divida)
 		var atk = Attack.new()
 		atk.magic_damage = divida
 		atk.caster = caster_divida
