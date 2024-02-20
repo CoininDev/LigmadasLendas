@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://comps/scripts/NavigationComponent.gd" id="1_2wbvm"]
 [ext_resource type="PackedScene" uid="uid://trp7xhom42y" path="res://objs/pointer/scenes/mouse_mostrar.tscn" id="2_q1ngr"]
 
-[node name="NavigationComponent" type="NavigationAgent3D" node_paths=PackedStringArray("mouse_mostrar")]
+[node name="NavigationComponent" type="NavigationAgent3D"]
 path_desired_distance = 1.1
 path_height_offset = 0.25
 avoidance_enabled = true
@@ -12,6 +12,5 @@ avoidance_layers = 0
 avoidance_mask = 0
 script = ExtResource("1_2wbvm")
 speed = 5.0
-mouse_mostrar = NodePath("MouseMostrar")
 
 [node name="MouseMostrar" parent="." instance=ExtResource("2_q1ngr")]

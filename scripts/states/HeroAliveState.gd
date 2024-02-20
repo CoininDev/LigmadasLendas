@@ -4,6 +4,7 @@ class_name HeroAliveState
 
 @export var nav: NavigationComponent
 @export var battack: BAttackComponent
+@export var sanity: SanityComponent
 @export var xp_comp: XPComponent
 @export var hero: HeroBase
 @export var health_comp:HealthComponent
@@ -25,6 +26,7 @@ class_name HeroAliveState
 
 func enter():
 	health_comp.health = health_comp.MAX_HEALTH
+	sanity.timer.start()
 	hero.global_position = hero.spawn_point.global_position
 	for child in hero.get_children():
 		if child.name.to_lower() == "collisionshape3d":

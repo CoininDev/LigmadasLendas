@@ -3,7 +3,7 @@ class_name NavigationComponent
 
 @export var speed = 10.0
 @export var desired_distance:float = 1 
-@export var hero:HeroBase
+@export var hero:Node3D
 @export var mouse_mostrar:Node3D 
 var blocked:bool = false
 var walking:bool = false
@@ -24,10 +24,10 @@ func select_destiny_path(destiny_pos:Vector3, distance:float):
 	set_target_position(destiny_pos)
 
 func _physics_process(delta):
-	mouse_mostrar.visible = true
-	mouse_mostrar.global_position = target_position
+	if mouse_mostrar: mouse_mostrar.visible = true
+	if mouse_mostrar: mouse_mostrar.global_position = target_position
 	if is_navigation_finished(): 
-		mouse_mostrar.visible = false
+		if mouse_mostrar: mouse_mostrar.visible = false
 		walking = false
 		return
 	walking = true
@@ -59,8 +59,8 @@ func signal_walking_changed_handle():
 	#target_position = position
 	#mouse_mostrar.visible = true
 #
-#func ditch_destiny():
-	#target_position = hero.position
+func ditch_destiny():
+	target_position = hero.global_position
 #
 #func move(delta):
 	#if not blocked:

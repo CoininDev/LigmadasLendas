@@ -9,7 +9,6 @@ class_name EffectsComponent
 var continuous_damage_atk:Attack
 var current_effect:String = ""
 
-
 @onready var stun_timer = $StunTimer
 @onready var root_timer = $RootTimer
 @onready var silence_timer = $SilenceTimer
@@ -32,6 +31,7 @@ func _ready():
 		marktimers.append(get_node("MarkTimer" + str(i+1)))
 
 func _process(delta):
+	
 	if pagar == true:
 		current_effect = "pagar"
 		var atk = Attack.new()
@@ -43,18 +43,15 @@ func _process(delta):
 		divida = 0
 		devendo_efeito = false
 		pagar = false
-
-
+	
 	for i in range(5):
 		if marktimers[i].is_stopped():
 			hero.remove_from_group(marks[i])
 			if marks[i] == current_effect:
 				current_effect = ""
 			marks[i] = ""
-		
 
 func apply(atk:Attack):
-	
 	if atk.devendo_time > 0:
 		devendo_timer.start(atk.devendo_time)
 		devendo_efeito = true
@@ -98,6 +95,17 @@ func apply(atk:Attack):
 				hero.add_to_group(marks[i])
 				break
 
+func cancel_all():
+	current_effect = ""
+	nav_comp.blocked = false
+	battack_comp.blocked = false
+	nav_comp.ditch_destiny()
+	continuous_damage_pulse.stop()
+	devendo_efeito = false
+	
+	for i in range(5):
+		hero.remove_from_group(marks[i])
+		marks[i] = ""
 
 
 func _on_stun_timer_timeout():
@@ -131,4 +139,4 @@ func _on_devendo_timer_timeout():
 	current_effect = ""
 
 func _on_reset_efects_timeout():
-	current_effect = " "
+	current_effect = ""
