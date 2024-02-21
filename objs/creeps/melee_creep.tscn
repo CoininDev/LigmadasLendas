@@ -49,6 +49,7 @@ script = ExtResource("4_iecur")
 health_component = NodePath("../HealthComponent")
 
 [node name="BAttackComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("2_2pm32")]
+atk_damage = null
 atk_cooldown = 0.1
 range = 3.0
 hero = NodePath(".")

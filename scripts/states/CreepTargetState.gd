@@ -1,11 +1,15 @@
 extends Node
 class_name CreepTargetState
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+@export var area:Area3D
+@export var batk:BAttackComponent
+@export var targets:Array
 
+func enter() -> void:
+	targets = area.get_overlapping_bodies().slice(1)
+	batk.select_target(targets[0])
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func update() -> void:
+	targets = area.get_overlapping_bodies().slice(1)
+	if !targets.is_empty():
+		
