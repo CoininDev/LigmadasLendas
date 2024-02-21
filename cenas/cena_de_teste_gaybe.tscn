@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dctjqnt85jp8c" path="res://heroes/alyssa/alyssa.tscn" id="2_rmfn5"]
 [ext_resource type="PackedScene" uid="uid://dvxt2tqwb6fbb" path="res://objs/camera_man_2.tscn" id="3_3aujx"]
 [ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://heroes/#base/saco_de_pancada.tscn" id="3_7hwwl"]
-[ext_resource type="PackedScene" uid="uid://053v0qs0f5b7" path="res://objs/construcoes/nexus.tscn" id="4_uiuv8"]
+[ext_resource type="PackedScene" uid="uid://c2igd6pamdef3" path="res://objs/creeps/melee_creep.tscn" id="4_4rqvw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h1w24"]
 sky_top_color = Color(0.0392157, 0.192157, 0.352941, 1)
@@ -84,19 +84,8 @@ ability_box = NodePath("../../../../AbilityBox")
 spawn_point = NodePath("../SpawnPoint")
 
 [node name="SpawnPoint" type="Node3D" parent="Players/RedTeam/Player2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.9706, 0, -48.1763)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0245, 0, 18.6558)
 
-[node name="BlueCode" parent="." node_paths=PackedStringArray("enemy_core") instance=ExtResource("4_uiuv8")]
-transform = Transform3D(0.726503, 0, -0.687164, 0, 1, 0, 0.687164, 0, 0.726503, -34.3308, 1, 38.8079)
-enemy_core = NodePath(".")
-
-[node name="RedCore" parent="." node_paths=PackedStringArray("team_comp", "dmgr", "enemy_core") instance=ExtResource("4_uiuv8")]
-transform = Transform3D(-0.772556, 0, 0.634946, 0, 1, 0, -0.634946, 0, -0.772556, 39.4058, 1, -34.2685)
-team_comp = NodePath("../BlueCode/TeamComponent")
-dmgr = NodePath("../BlueCode/DmgrComponent")
-enemy_core = NodePath(".")
-
-[node name="TeamComponent" parent="RedCore" index="5"]
-team = 1
-
-[editable path="RedCore"]
+[node name="MeleeCreep" parent="." node_paths=PackedStringArray("enemy_core") instance=ExtResource("4_4rqvw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.8979, 0, 45.3221)
+enemy_core = NodePath("../Players/RedTeam/Player2/SacoDePancada")

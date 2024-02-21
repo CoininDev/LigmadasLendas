@@ -14,3 +14,4 @@ script = ExtResource("1_2wbvm")
 speed = 5.0
 
 [node name="MouseMostrar" parent="." instance=ExtResource("2_q1ngr")]
+visible = false

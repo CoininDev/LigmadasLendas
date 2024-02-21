@@ -4,11 +4,12 @@ class_name NavigationComponent
 @export var speed = 10.0
 @export var desired_distance:float = 1 
 @export var hero:Node3D
-@export var mouse_mostrar:Node3D 
+@export var show_target_position:bool
 var blocked:bool = false
 var walking:bool = false
 var walking_check:bool = false #usado para fazer o sinal walking changed funcionar
 signal walking_changed
+@onready var mouse_mostrar:Node3D = $MouseMostrar
 
 func _ready():
 	velocity_computed.connect(move)
@@ -24,10 +25,10 @@ func select_destiny_path(destiny_pos:Vector3, distance:float):
 	set_target_position(destiny_pos)
 
 func _physics_process(delta):
-	if mouse_mostrar: mouse_mostrar.visible = true
-	if mouse_mostrar: mouse_mostrar.global_position = target_position
+	if show_target_position: mouse_mostrar.visible = true
+	mouse_mostrar.global_position = target_position
 	if is_navigation_finished(): 
-		if mouse_mostrar: mouse_mostrar.visible = false
+		if show_target_position: mouse_mostrar.visible = false
 		walking = false
 		return
 	walking = true

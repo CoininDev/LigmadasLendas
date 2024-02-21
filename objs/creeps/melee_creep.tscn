@@ -1,13 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2igd6pamdef3"]
+[gd_scene load_steps=12 format=3 uid="uid://c2igd6pamdef3"]
 
 [ext_resource type="Script" path="res://comps/scripts/HealthComponent.gd" id="1_hw3w7"]
 [ext_resource type="Script" path="res://objs/creeps/Creep.gd" id="1_tdqjc"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="2_2pm32"]
-[ext_resource type="Script" path="res://comps/scripts/NavigationComponent.gd" id="2_y0vmq"]
 [ext_resource type="Script" path="res://comps/scripts/TeamComponent.gd" id="3_w7w1j"]
 [ext_resource type="Script" path="res://comps/scripts/DamageMgrComponent.gd" id="4_iecur"]
 [ext_resource type="Script" path="res://comps/scripts/StateMachineComponent.gd" id="6_j4hxj"]
 [ext_resource type="Script" path="res://scripts/states/CreepInitialState.gd" id="8_3qh50"]
+[ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="8_hplwp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kn3ku"]
 radius = 0.25
@@ -16,6 +16,9 @@ height = 1.0
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wepd2"]
 radius = 0.25
 height = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jdy02"]
+radius = 4.0
 
 [node name="MeleeCreep" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "team_comp")]
 script = ExtResource("1_tdqjc")
@@ -37,11 +40,6 @@ script = ExtResource("1_hw3w7")
 death_xp = 20.0
 hero = NodePath("../..")
 
-[node name="NavigationComponent" type="NavigationAgent3D" parent="comps" node_paths=PackedStringArray("hero")]
-script = ExtResource("2_y0vmq")
-speed = 5.0
-hero = NodePath("../..")
-
 [node name="TeamComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
 script = ExtResource("3_w7w1j")
 hero = NodePath("../..")
@@ -50,10 +48,9 @@ hero = NodePath("../..")
 script = ExtResource("4_iecur")
 health_component = NodePath("../HealthComponent")
 
-[node name="BAttackComponent" parent="comps" node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("2_2pm32")]
+[node name="BAttackComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("2_2pm32")]
 atk_cooldown = 0.1
 range = 3.0
-nav_comp = NodePath("../NavigationComponent")
 hero = NodePath(".")
 
 [node name="StateMachineComponent" type="Node" parent="comps" node_paths=PackedStringArray("initial_state")]
@@ -64,3 +61,11 @@ initial_state = NodePath("CreepInitialState")
 script = ExtResource("8_3qh50")
 creep = NodePath("../../..")
 nav = NodePath("../../NavigationComponent")
+
+[node name="NavigationComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("8_hplwp")]
+hero = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_jdy02")
