@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://053v0qs0f5b7"]
+
+[ext_resource type="Script" path="res://objs/construcoes/Core.gd" id="1_h80c1"]
+[ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="2_i1x8e"]
+[ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="3_6ehnx"]
+[ext_resource type="PackedScene" uid="uid://dvaipocthe14r" path="res://comps/scenes/damage_mgr_component.tscn" id="4_o6esp"]
+[ext_resource type="Script" path="res://comps/scripts/TeamComponent.gd" id="5_iu7vh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_i1l3h"]
+radius = 3.01102
+
+[sub_resource type="TorusMesh" id="TorusMesh_lkigu"]
+outer_radius = 3.0
+
+[node name="Core" type="StaticBody3D" node_paths=PackedStringArray("team_comp", "dmgr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 0
+script = ExtResource("1_h80c1")
+team_comp = NodePath("TeamComponent")
+dmgr = NodePath("DmgrComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_i1l3h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("TorusMesh_lkigu")
+skeleton = NodePath("../chão")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("2_i1x8e")]
+MAX_HEALTH = 5000.0
+death_xp = 5000.0
+hero = NodePath("..")
+
+[node name="GUIComponent" parent="." node_paths=PackedStringArray("health_comp", "team_comp") instance=ExtResource("3_6ehnx")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.7274, 0)
+health_comp = NodePath("../HealthComponent")
+team_comp = NodePath("../TeamComponent")
+
+[node name="DmgrComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_o6esp")]
+health_component = NodePath("../HealthComponent")
+
+[node name="TeamComponent" type="Node" parent="." node_paths=PackedStringArray("hero")]
+script = ExtResource("5_iu7vh")
+hero = NodePath("..")

@@ -9,9 +9,9 @@ var point_to_go:Vector3
 
 func enter() -> void:
 	point_to_go = creep.enemy_core.global_position
-	nav.select_destiny(point_to_go, 3)
 
 func update(_delta:float) -> void:
+	nav.select_destiny(point_to_go, 3)
 	var targets = area.get_overlapping_bodies().slice(1)
 	if !targets.is_empty():
 		for target in targets:

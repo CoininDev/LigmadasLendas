@@ -5,7 +5,7 @@ class_name HeroBase
 ###########################
 
 @export_category("Points")
-@export var ability_box: Node3D
+@export var ability_box: Node
 @export var spawn_point: Node3D
 
 @export_category("Components")

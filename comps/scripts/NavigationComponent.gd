@@ -15,8 +15,8 @@ func _ready():
 	velocity_computed.connect(move)
 
 func select_destiny(destiny_pos:Vector3, distance:float):
-	set_path_desired_distance(desired_distance)
-	set_target_desired_distance(distance)
+	set_path_desired_distance(distance)
+	#set_target_desired_distance(distance)
 	set_target_position(destiny_pos)
 
 func select_destiny_path(destiny_pos:Vector3, distance:float):

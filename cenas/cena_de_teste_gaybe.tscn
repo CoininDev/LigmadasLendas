@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvmj1414akb08"]
+[gd_scene load_steps=14 format=3 uid="uid://dvmj1414akb08"]
 
 [ext_resource type="PackedScene" uid="uid://dctjqnt85jp8c" path="res://heroes/alyssa/alyssa.tscn" id="2_rmfn5"]
 [ext_resource type="PackedScene" uid="uid://dvxt2tqwb6fbb" path="res://objs/camera_man_2.tscn" id="3_3aujx"]
 [ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://heroes/#base/saco_de_pancada.tscn" id="3_7hwwl"]
 [ext_resource type="PackedScene" uid="uid://c3tywn6og5g45" path="res://heroes/corelio/corelio.tscn" id="3_cchld"]
-[ext_resource type="PackedScene" uid="uid://c2igd6pamdef3" path="res://objs/creeps/melee_creep.tscn" id="4_4rqvw"]
+[ext_resource type="Script" path="res://objs/creeps/CreepSpawner.gd" id="5_ua0qx"]
+[ext_resource type="PackedScene" uid="uid://053v0qs0f5b7" path="res://objs/construcoes/Core.tscn" id="6_jfqxl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h1w24"]
 sky_top_color = Color(0.0392157, 0.192157, 0.352941, 1)
@@ -42,6 +43,7 @@ size = Vector3(100, 1, 99.5153)
 environment = SubResource("Environment_h6fdy")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 navigation_mesh = SubResource("NavigationMesh_h4w6h")
 
 [node name="chão" type="MeshInstance3D" parent="NavigationRegion3D"]
@@ -54,12 +56,9 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/chão/Chao_colisao"]
 shape = SubResource("BoxShape3D_0cxa3")
 
-[node name="AbilityBox" type="Node3D" parent="."]
+[node name="AbilityBox" type="Node" parent="."]
 
-[node name="PlayerSpawnPoints" type="Node" parent="."]
-
-[node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.8723, 0, 45.6601)
+[node name="CreepBox" type="Node" parent="."]
 
 [node name="Players" type="Node" parent="."]
 
@@ -72,20 +71,23 @@ point = NodePath("../Alyssa")
 
 [node name="Alyssa" parent="Players/BlueTeam/Player1" node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("2_rmfn5")]
 ability_box = NodePath("../../../../AbilityBox")
-spawn_point = NodePath("../../../../SpawnPoint")
+spawn_point = NodePath("../SpawnPoint")
+
+[node name="SpawnPoint" type="Node3D" parent="Players/BlueTeam/Player1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.0882, 0, 46.8585)
 
 [node name="RedTeam" type="Node" parent="Players"]
 
 [node name="Player1" type="Node" parent="Players/RedTeam"]
 
-[node name="corelio" parent="Players/RedTeam/Player1" node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("3_cchld")]
+[node name="Corelio" parent="Players/RedTeam/Player1" node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("3_cchld")]
 ability_box = NodePath("../../../../AbilityBox")
 spawn_point = NodePath("../SpawnPoint")
 
-[node name="HeroAliveState" parent="Players/RedTeam/Player1/corelio/comps/StateMachineComponent" index="0"]
+[node name="HeroAliveState" parent="Players/RedTeam/Player1/Corelio/comps/StateMachineComponent" index="0"]
 control = false
 
-[node name="TeamComponent" parent="Players/RedTeam/Player1/corelio/comps" index="9"]
+[node name="TeamComponent" parent="Players/RedTeam/Player1/Corelio/comps" index="9"]
 team = 1
 
 [node name="SpawnPoint" type="Node3D" parent="Players/RedTeam/Player1"]
@@ -94,14 +96,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7156, 0, 11.7795)
 [node name="Player2" type="Node" parent="Players/RedTeam"]
 
 [node name="SacoDePancada" parent="Players/RedTeam/Player2" node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("3_7hwwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4.316)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.316)
 ability_box = NodePath("../../../../AbilityBox")
 spawn_point = NodePath("../SpawnPoint")
 
 [node name="SpawnPoint" type="Node3D" parent="Players/RedTeam/Player2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06779, 0, -7.61063)
 
-[node name="MeleeCreep" parent="." node_paths=PackedStringArray("enemy_core") instance=ExtResource("4_4rqvw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.8979, 0, 45.3221)
-enemy_core = NodePath("../Players/RedTeam/Player1/corelio")
+[node name="CreepSpawner" type="Node" parent="." node_paths=PackedStringArray("blue_core", "red_core", "creep_box")]
+script = ExtResource("5_ua0qx")
+time = 10.0
+blue_core = NodePath("../BlueCore")
+red_core = NodePath("../RedCore")
+creep_box = NodePath("../CreepBox")
 
-[editable path="Players/RedTeam/Player1/corelio"]
+[node name="MeleeCreepPoint" type="Node3D" parent="CreepSpawner" groups=["0", "melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6017, 0, 35.1193)
+
+[node name="MeleeCreepPoint2" type="Node3D" parent="CreepSpawner" groups=["0", "melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.4583, 0, 38.0936)
+
+[node name="MeleeCreepPoint3" type="Node3D" parent="CreepSpawner" groups=["0", "melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.926, 0, 32.5915)
+
+[node name="RedCore" parent="." instance=ExtResource("6_jfqxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3821, 2, -40.7061)
+
+[node name="TeamComponent" parent="RedCore" index="5"]
+team = 1
+
+[node name="BlueCore" parent="." instance=ExtResource("6_jfqxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.984, 1, 38.9183)
+
+[editable path="Players/RedTeam/Player1/Corelio"]
+[editable path="RedCore"]

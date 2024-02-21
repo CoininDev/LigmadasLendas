@@ -1,7 +1,8 @@
 extends StaticBody3D
+class_name Core
 @export var team_comp:TeamComponent
 @export var dmgr:DamageMgrComponent
-@export var enemy_core:Node3D
+#@export var enemy_core:Node3D
 
 var colors:Array = [Color.DARK_BLUE, Color.CYAN]
 var melee_creep_scene:PackedScene = preload("res://objs/creeps/melee_creep.tscn")
