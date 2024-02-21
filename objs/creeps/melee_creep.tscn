@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2igd6pamdef3"]
+[gd_scene load_steps=13 format=3 uid="uid://c2igd6pamdef3"]
 
 [ext_resource type="Script" path="res://comps/scripts/HealthComponent.gd" id="1_hw3w7"]
 [ext_resource type="Script" path="res://objs/creeps/Creep.gd" id="1_tdqjc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://comps/scripts/DamageMgrComponent.gd" id="4_iecur"]
 [ext_resource type="Script" path="res://comps/scripts/StateMachineComponent.gd" id="6_j4hxj"]
 [ext_resource type="Script" path="res://scripts/states/CreepInitialState.gd" id="8_3qh50"]
+[ext_resource type="Script" path="res://scripts/states/CreepTargetState.gd" id="8_8oqm3"]
 [ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="8_hplwp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kn3ku"]
@@ -48,20 +49,28 @@ hero = NodePath("../..")
 script = ExtResource("4_iecur")
 health_component = NodePath("../HealthComponent")
 
-[node name="BAttackComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("2_2pm32")]
-atk_damage = null
-atk_cooldown = 0.1
+[node name="BAttackComponent" parent="comps" node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("2_2pm32")]
+atk_damage = 50.0
+atk_cooldown = 0.5
 range = 3.0
+nav_comp = NodePath("../NavigationComponent")
 hero = NodePath(".")
 
 [node name="StateMachineComponent" type="Node" parent="comps" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_j4hxj")
 initial_state = NodePath("CreepInitialState")
 
-[node name="CreepInitialState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("creep", "nav")]
+[node name="CreepInitialState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("creep", "nav", "area")]
 script = ExtResource("8_3qh50")
 creep = NodePath("../../..")
 nav = NodePath("../../NavigationComponent")
+area = NodePath("../../../Area3D")
+
+[node name="CreepTargetState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("area", "batk", "team_comp")]
+script = ExtResource("8_8oqm3")
+area = NodePath("../../../Area3D")
+batk = NodePath("../../BAttackComponent")
+team_comp = NodePath("../../TeamComponent")
 
 [node name="NavigationComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("8_hplwp")]
 hero = NodePath("../..")

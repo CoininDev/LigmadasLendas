@@ -117,16 +117,19 @@ hero = NodePath("../..")
 [node name="StateMachineComponent" parent="comps" node_paths=PackedStringArray("initial_state") instance=ExtResource("11_44sew")]
 initial_state = NodePath("HeroAliveState")
 
-[node name="HeroAliveState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("nav", "battack", "xp_comp", "hero", "health_comp")]
+[node name="HeroAliveState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("nav", "battack", "sanity", "xp_comp", "hero", "health_comp")]
 script = ExtResource("12_iv8jl")
 nav = NodePath("../../NavComponent")
 battack = NodePath("../../RangedBAttackComponent")
+sanity = NodePath("../../SanityComponent")
 xp_comp = NodePath("../../XPComponent")
 hero = NodePath("../../..")
 health_comp = NodePath("../../HealthComponent")
 
-[node name="HeroDeadState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("hero")]
+[node name="HeroDeadState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("fx_comp", "sanity_comp", "hero")]
 script = ExtResource("13_03lua")
+fx_comp = NodePath("../../EffectsComponent")
+sanity_comp = NodePath("../../SanityComponent")
 hero = NodePath("../../..")
 
 [node name="TeamComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]

@@ -86,10 +86,10 @@ func rotate_camera(event:InputEvent):
 		if event is InputEventMouseMotion:
 			$Elevation.rotation_degrees.x -= event.relative.y * rotation_speed
 			$Elevation.rotation_degrees.x = clamp($Elevation.rotation_degrees.x, -max_angle, -min_angle)
-			Input.mouse_mode = 2
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 			#rotation_degrees.y -= event.relative.x * rotation_speed
 	else:
-		Input.mouse_mode = 0
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func HUD():
 	#timeouts

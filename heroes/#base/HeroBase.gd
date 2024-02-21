@@ -68,6 +68,8 @@ var p = Ability.new()
 #####################
 ## FUNCTIONS
 #####################
+func _ready():
+	_ready_base()
 func _ready_base():
 	xp_comp.add_xp(100)
 	q_cooldown.one_shot = true

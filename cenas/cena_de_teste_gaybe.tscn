@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvmj1414akb08"]
+[gd_scene load_steps=13 format=3 uid="uid://dvmj1414akb08"]
 
 [ext_resource type="PackedScene" uid="uid://dctjqnt85jp8c" path="res://heroes/alyssa/alyssa.tscn" id="2_rmfn5"]
 [ext_resource type="PackedScene" uid="uid://dvxt2tqwb6fbb" path="res://objs/camera_man_2.tscn" id="3_3aujx"]
 [ext_resource type="PackedScene" uid="uid://bi4vcv41hoy0q" path="res://heroes/#base/saco_de_pancada.tscn" id="3_7hwwl"]
+[ext_resource type="PackedScene" uid="uid://c3tywn6og5g45" path="res://heroes/corelio/corelio.tscn" id="3_cchld"]
 [ext_resource type="PackedScene" uid="uid://c2igd6pamdef3" path="res://objs/creeps/melee_creep.tscn" id="4_4rqvw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h1w24"]
@@ -41,7 +42,6 @@ size = Vector3(100, 1, 99.5153)
 environment = SubResource("Environment_h6fdy")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 navigation_mesh = SubResource("NavigationMesh_h4w6h")
 
 [node name="chão" type="MeshInstance3D" parent="NavigationRegion3D"]
@@ -52,12 +52,14 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/chão/Chao_colisao"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.242371)
 shape = SubResource("BoxShape3D_0cxa3")
 
 [node name="AbilityBox" type="Node3D" parent="."]
 
 [node name="PlayerSpawnPoints" type="Node" parent="."]
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.8723, 0, 45.6601)
 
 [node name="Players" type="Node" parent="."]
 
@@ -70,22 +72,36 @@ point = NodePath("../Alyssa")
 
 [node name="Alyssa" parent="Players/BlueTeam/Player1" node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("2_rmfn5")]
 ability_box = NodePath("../../../../AbilityBox")
-spawn_point = NodePath("../SpawnPoint")
-
-[node name="SpawnPoint" type="Node3D" parent="Players/BlueTeam/Player1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.8723, 0, 45.6601)
+spawn_point = NodePath("../../../../SpawnPoint")
 
 [node name="RedTeam" type="Node" parent="Players"]
 
+[node name="Player1" type="Node" parent="Players/RedTeam"]
+
+[node name="corelio" parent="Players/RedTeam/Player1" node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("3_cchld")]
+ability_box = NodePath("../../../../AbilityBox")
+spawn_point = NodePath("../SpawnPoint")
+
+[node name="HeroAliveState" parent="Players/RedTeam/Player1/corelio/comps/StateMachineComponent" index="0"]
+control = false
+
+[node name="TeamComponent" parent="Players/RedTeam/Player1/corelio/comps" index="9"]
+team = 1
+
+[node name="SpawnPoint" type="Node3D" parent="Players/RedTeam/Player1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7156, 0, 11.7795)
+
 [node name="Player2" type="Node" parent="Players/RedTeam"]
 
-[node name="SacoDePancada" parent="Players/RedTeam/Player2" node_paths=PackedStringArray("ability_box", "spawn_point") groups=["troquem_de_sexo_penis_penis"] instance=ExtResource("3_7hwwl")]
+[node name="SacoDePancada" parent="Players/RedTeam/Player2" node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("3_7hwwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4.316)
 ability_box = NodePath("../../../../AbilityBox")
 spawn_point = NodePath("../SpawnPoint")
 
 [node name="SpawnPoint" type="Node3D" parent="Players/RedTeam/Player2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0245, 0, 18.6558)
 
 [node name="MeleeCreep" parent="." node_paths=PackedStringArray("enemy_core") instance=ExtResource("4_4rqvw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.8979, 0, 45.3221)
-enemy_core = NodePath("../Players/RedTeam/Player2/SacoDePancada")
+enemy_core = NodePath("../Players/RedTeam/Player1/corelio")
+
+[editable path="Players/RedTeam/Player1/corelio"]

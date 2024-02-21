@@ -18,10 +18,10 @@ func _process(delta):
 func die():
 	queue_free()
 
-func creep_spawn():
-	for point in $CreepSpawnPoints.get_children():
-		var creep = melee_creep_scene.instantiate()
-		creep.enemy_core = enemy_core
-		creep.team_comp.team = team_comp.team
-		add_child(creep)
-		creep.global_position = point.global_position
+#func creep_spawn():
+	#for point in $CreepSpawnPoints.get_children():
+		#var creep = melee_creep_scene.instantiate()
+		#creep.enemy_core = enemy_core
+		#creep.team_comp.team = team_comp.team
+		#add_child(creep)
+		#creep.global_position = point.global_position

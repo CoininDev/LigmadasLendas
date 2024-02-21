@@ -23,29 +23,29 @@ signal attacked
 
 
 func _ready():
-	var escala = 0.4
+	var escala = 0.6
 	if range_show: range_show.scale.x = range * escala
 	if range_show: range_show.scale.z = range * escala
-	area_col.shape.radius = range / 2
+	area_col.shape.radius = range 
 	timer.timeout.connect(timeout)
 	timer.wait_time = atk_cooldown
 	if hero.has_method("batk_attacked"):
 		attacked.connect(hero.batk_attacked)
 
 func _process(delta):
-	#if target:
-		#var distance = target.global_position.distance_to(global_position)
-		#if distance > range:
-			#walk()
-		#else:
-			#if timer.is_stopped():
-				##attack()
-				#timer.start()
-	#else:
-		#timer.stop()
-	in_range_bodies = area.get_overlapping_bodies().slice(1)
 	if target:
-		walk()
+		in_range_bodies = area.get_overlapping_bodies().slice(1)
+		if !in_range_bodies.has(target):
+			walk()
+		else:
+			if timer.is_stopped():
+				#attack()
+				timer.start()
+	else:
+		timer.stop()
+	#in_range_bodies = area.get_overlapping_bodies().slice(1)
+	#if target:
+		#walk()
 func _input(event):
 	for cancelling_action in cancelling_actions:
 		if Input.is_action_just_pressed(cancelling_action) or Input.is_action_just_released(cancelling_action):
