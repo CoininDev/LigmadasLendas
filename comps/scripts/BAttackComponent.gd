@@ -33,13 +33,13 @@ func _ready():
 		attacked.connect(hero.batk_attacked)
 
 func _process(delta):
-	if target:
+	if is_instance_valid(target):
 		in_range_bodies = area.get_overlapping_bodies().slice(1)
 		if !in_range_bodies.has(target):
 			walk()
 		else:
 			if timer.is_stopped():
-				#attack()
+				attack()
 				timer.start()
 	else:
 		timer.stop()

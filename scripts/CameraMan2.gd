@@ -66,7 +66,7 @@ func move(delta:float):
 	if m_pos.y > v_size.y - corner_margin:
 		dir.z += 1
 	#var dir:Vector3  = Vector3(Input.get_axis("ui_left","ui_right"), 0, Input.get_axis("ui_up", "ui_down")).normalized()
-	position += dir * delta * speed 
+	position += dir.normalized() * delta * speed 
 
 func zoom():
 	#zoom in

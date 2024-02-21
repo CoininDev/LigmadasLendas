@@ -24,7 +24,6 @@ shape = SubResource("CylinderShape3D_i1l3h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("TorusMesh_lkigu")
-skeleton = NodePath("../chão")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("hero") instance=ExtResource("2_i1x8e")]
 MAX_HEALTH = 5000.0

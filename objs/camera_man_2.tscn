@@ -4,7 +4,8 @@
 
 [node name="CameraMan2" type="Node3D"]
 script = ExtResource("1_wr261")
-min_zoom_out = 10
+speed = 20
+min_zoom_out = 1
 
 [node name="Elevation" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
@@ -95,6 +96,7 @@ text = "W
 "
 
 [node name="TimeOutLabel" type="Label" parent="CanvasLayer/Control/H/Abilites/W"]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 26.0
 offset_right = 64.0
@@ -114,6 +116,7 @@ offset_bottom = 23.0
 text = "E"
 
 [node name="TimeOutLabel" type="Label" parent="CanvasLayer/Control/H/Abilites/E"]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 26.0
 offset_right = 64.0
@@ -134,6 +137,7 @@ text = "R
 "
 
 [node name="TimeOutLabel" type="Label" parent="CanvasLayer/Control/H/Abilites/R"]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 26.0
 offset_right = 64.0

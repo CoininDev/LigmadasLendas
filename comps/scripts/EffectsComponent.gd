@@ -5,7 +5,7 @@ class_name EffectsComponent
 @export var nav_comp:NavigationComponent
 @export var health_comp:HealthComponent
 @export var sanity_comp:SanityComponent
-@export var hero:HeroBase
+@export var hero:Node3D
 var continuous_damage_atk:Attack
 var current_effect:String = ""
 

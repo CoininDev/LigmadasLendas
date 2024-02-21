@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2igd6pamdef3"]
+[gd_scene load_steps=15 format=3 uid="uid://c2igd6pamdef3"]
 
 [ext_resource type="Script" path="res://comps/scripts/HealthComponent.gd" id="1_hw3w7"]
 [ext_resource type="Script" path="res://objs/creeps/Creep.gd" id="1_tdqjc"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="2_2pm32"]
 [ext_resource type="Script" path="res://comps/scripts/TeamComponent.gd" id="3_w7w1j"]
 [ext_resource type="Script" path="res://comps/scripts/DamageMgrComponent.gd" id="4_iecur"]
+[ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="6_3o43n"]
 [ext_resource type="Script" path="res://comps/scripts/StateMachineComponent.gd" id="6_j4hxj"]
 [ext_resource type="Script" path="res://scripts/states/CreepInitialState.gd" id="8_3qh50"]
 [ext_resource type="Script" path="res://scripts/states/CreepTargetState.gd" id="8_8oqm3"]
 [ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="8_hplwp"]
+[ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="11_k3uvm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kn3ku"]
 radius = 0.25
@@ -38,23 +40,32 @@ mesh = SubResource("CapsuleMesh_wepd2")
 
 [node name="HealthComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
 script = ExtResource("1_hw3w7")
-death_xp = 20.0
+death_xp = 5.0
 hero = NodePath("../..")
 
 [node name="TeamComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
 script = ExtResource("3_w7w1j")
 hero = NodePath("../..")
 
-[node name="DamageMgrComponent" type="Node" parent="comps" node_paths=PackedStringArray("health_component")]
+[node name="DamageMgrComponent" type="Node" parent="comps" node_paths=PackedStringArray("health_component", "effects_component")]
 script = ExtResource("4_iecur")
 health_component = NodePath("../HealthComponent")
+effects_component = NodePath("../EffectsComponent")
 
 [node name="BAttackComponent" parent="comps" node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("2_2pm32")]
-atk_damage = 50.0
+atk_damage = 2.0
 atk_cooldown = 0.5
 range = 3.0
 nav_comp = NodePath("../NavigationComponent")
 hero = NodePath(".")
+
+[node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "team_comp") instance=ExtResource("6_3o43n")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.17877, 0)
+health_comp = NodePath("../HealthComponent")
+team_comp = NodePath("../TeamComponent")
+
+[node name="NavigationComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("8_hplwp")]
+hero = NodePath("../..")
 
 [node name="StateMachineComponent" type="Node" parent="comps" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_j4hxj")
@@ -72,7 +83,10 @@ area = NodePath("../../../Area3D")
 batk = NodePath("../../BAttackComponent")
 team_comp = NodePath("../../TeamComponent")
 
-[node name="NavigationComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("8_hplwp")]
+[node name="EffectsComponent" parent="comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "hero") instance=ExtResource("11_k3uvm")]
+battack_comp = NodePath("../BAttackComponent")
+nav_comp = NodePath("../NavigationComponent")
+health_comp = NodePath("../HealthComponent")
 hero = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="."]

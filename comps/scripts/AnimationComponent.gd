@@ -25,7 +25,7 @@ func _process(delta):
 		hero.look_at(nav_comp.target_position)
 		hero.global_rotation.x = 0 
 		hero.global_rotation.z = 0 
-	if batk_comp.target:
+	if is_instance_valid(batk_comp.target):
 		hero.look_at(batk_comp.target.global_position)
 		hero.global_rotation.x = 0 
 		hero.global_rotation.z = 0 
