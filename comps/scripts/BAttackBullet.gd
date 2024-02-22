@@ -13,9 +13,13 @@ func _ready():
 	$GPUParticles3D.draw_pass_1 = gfx_particles
 
 func _process(delta):
-	var velocity = global_position.direction_to(target.position) * speed
-	look_at(atk.caster.position.direction_to(target.position))
-	global_position += velocity
+	if is_instance_valid(target):
+		var velocity = global_position.direction_to(target.position) * speed
+		look_at(position.direction_to(target.position))
+		global_position += velocity
+	else:
+		target = null
+		queue_free()
 
 func _on_body_entered(body):
 	if body == target:

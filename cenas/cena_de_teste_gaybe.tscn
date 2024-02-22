@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvmj1414akb08"]
+[gd_scene load_steps=20 format=3 uid="uid://dvmj1414akb08"]
 
 [ext_resource type="PackedScene" uid="uid://dctjqnt85jp8c" path="res://heroes/alyssa/alyssa.tscn" id="2_rmfn5"]
 [ext_resource type="PackedScene" uid="uid://dvxt2tqwb6fbb" path="res://objs/camera_man_2.tscn" id="3_3aujx"]
@@ -37,28 +37,219 @@ size = Vector3(100, 1, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0cxa3"]
 size = Vector3(100, 1, 99.5153)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_3vi2t"]
+vertices = PackedVector3Array(-40.3798, 0.5, -26.3533, -31.3798, 0.5, -26.3533, -31.3798, 0.5, -28.3533, -31.3798, 0.5, -28.3533, -29.1298, 0.5, -28.6033, -29.1298, 0.5, -37.6033, -29.1298, 0.5, -37.6033, -39.6298, 0.5, -37.6033, -40.3798, 0.5, -37.1033, -40.3798, 0.5, -26.3533, -31.3798, 0.5, -28.3533, -29.1298, 0.5, -28.6033, 39.6202, 0.5, -28.6033, 39.6202, 0.5, -37.6033, -29.1298, 0.5, -37.6033, -31.3798, 0.5, -26.3533, -40.3798, 0.5, -26.3533, -40.3798, 0.5, 42.1467, -31.3798, 0.5, 42.1467)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 10), PackedInt32Array(8, 10, 9), PackedInt32Array(14, 13, 11), PackedInt32Array(11, 13, 12), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e8pa3"]
+size = Vector2(10, 80)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7k521"]
+size = Vector2(80, 10)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_s4sx8"]
+vertices = PackedVector3Array(39.6056, 0.5, -43.4544, -44.6444, 0.5, 40.7956, -38.3944, 0.5, 47.2956, -37.8944, 0.5, 47.2956, 46.1056, 0.5, -36.7044, 46.1056, 0.5, -37.2044)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vvfsj"]
+size = Vector2(10, 120)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_lvkl1"]
+vertices = PackedVector3Array(30.1058, 0.5, 30.9976, 39.3558, 0.5, 31.2476, 39.3558, 0.5, -37.7524, 30.1058, 0.5, -37.7524, 29.8558, 0.5, 32.7476, 28.3558, 0.5, 32.7476, 28.6058, 0.5, 41.9976, 39.3558, 0.5, 31.2476, 30.1058, 0.5, 30.9976, 29.8558, 0.5, 32.7476, 28.6058, 0.5, 41.9976, 38.3558, 0.5, 41.9976, 38.6058, 0.5, 41.2476, 38.6058, 0.5, 41.2476, 39.3558, 0.5, 41.2476, 39.3558, 0.5, 31.2476, 28.3558, 0.5, 32.7476, -40.6442, 0.5, 32.7476, -40.6442, 0.5, 41.9976, 28.6058, 0.5, 41.9976)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 9), PackedInt32Array(12, 9, 8), PackedInt32Array(12, 8, 7), PackedInt32Array(15, 14, 13), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19)]
+
 [node name="Cena de teste" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h6fdy")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-navigation_mesh = SubResource("NavigationMesh_h4w6h")
+[node name="CreepSpawner" type="Node" parent="." node_paths=PackedStringArray("blue_core", "red_core", "creep_box", "ability_box")]
+script = ExtResource("5_ua0qx")
+blue_core = NodePath("../BlueCore")
+red_core = NodePath("../RedCore")
+creep_box = NodePath("../CreepBox")
+ability_box = NodePath("../AbilityBox")
 
-[node name="chão" type="MeshInstance3D" parent="NavigationRegion3D"]
-mesh = SubResource("BoxMesh_vq1lt")
+[node name="Blue" type="Node" parent="CreepSpawner"]
 
-[node name="Chao_colisao" type="StaticBody3D" parent="NavigationRegion3D/chão" groups=["chao"]]
-collision_layer = 4
-collision_mask = 0
+[node name="Top" type="Node" parent="CreepSpawner/Blue"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/chão/Chao_colisao"]
-shape = SubResource("BoxShape3D_0cxa3")
+[node name="BlueMeleeCreepPoint" type="Node3D" parent="CreepSpawner/Blue/Top" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.978, 0, 29.2247)
+
+[node name="BlueMeleeCreepPoint2" type="Node3D" parent="CreepSpawner/Blue/Top" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.3314, 0, 28.4408)
+
+[node name="BlueMeleeCreepPoint3" type="Node3D" parent="CreepSpawner/Blue/Top" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.7933, 0, 27.9693)
+
+[node name="BlueRangedCreepPoint4" type="Node3D" parent="CreepSpawner/Blue/Top" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.978, 0, 32.2483)
+
+[node name="BlueRangedCreepPoint5" type="Node3D" parent="CreepSpawner/Blue/Top" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8167, 0, 32.2483)
+
+[node name="BlueRangedCreepPoint6" type="Node3D" parent="CreepSpawner/Blue/Top" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.8758, 0, 32.2483)
+
+[node name="Mid" type="Node" parent="CreepSpawner/Blue"]
+
+[node name="BlueMeleeCreepPoint" type="Node3D" parent="CreepSpawner/Blue/Mid" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0581, 0, 28.2219)
+
+[node name="BlueMeleeCreepPoint2" type="Node3D" parent="CreepSpawner/Blue/Mid" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.4115, 0, 29.021)
+
+[node name="BlueMeleeCreepPoint3" type="Node3D" parent="CreepSpawner/Blue/Mid" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.8734, 0, 26.9665)
+
+[node name="BlueRangedCreepPoint4" type="Node3D" parent="CreepSpawner/Blue/Mid" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.6031, 0, 32.2483)
+
+[node name="BlueRangedCreepPoint5" type="Node3D" parent="CreepSpawner/Blue/Mid" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4417, 0, 32.2483)
+
+[node name="BlueRangedCreepPoint6" type="Node3D" parent="CreepSpawner/Blue/Mid" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5009, 0, 32.2483)
+
+[node name="Bot" type="Node" parent="CreepSpawner/Blue"]
+
+[node name="BlueMeleeCreepPoint" type="Node3D" parent="CreepSpawner/Blue/Bot" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4187, 0, 37.2408)
+
+[node name="BlueMeleeCreepPoint2" type="Node3D" parent="CreepSpawner/Blue/Bot" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7721, 0, 38.0399)
+
+[node name="BlueMeleeCreepPoint3" type="Node3D" parent="CreepSpawner/Blue/Bot" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.234, 0, 35.9854)
+
+[node name="BlueRangedCreepPoint4" type="Node3D" parent="CreepSpawner/Blue/Bot" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2727, 0, 37.2742)
+
+[node name="BlueRangedCreepPoint5" type="Node3D" parent="CreepSpawner/Blue/Bot" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.1114, 0, 37.2742)
+
+[node name="BlueRangedCreepPoint6" type="Node3D" parent="CreepSpawner/Blue/Bot" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.1705, 0, 37.2742)
+
+[node name="Red" type="Node" parent="CreepSpawner"]
+
+[node name="Top" type="Node" parent="CreepSpawner/Red"]
+
+[node name="BlueMeleeCreepPoint" type="Node3D" parent="CreepSpawner/Red/Top" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7288, 0, -33.2692)
+
+[node name="BlueMeleeCreepPoint2" type="Node3D" parent="CreepSpawner/Red/Top" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.3754, 0, -32.4701)
+
+[node name="BlueMeleeCreepPoint3" type="Node3D" parent="CreepSpawner/Red/Top" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9135, 0, -34.5246)
+
+[node name="BlueRangedCreepPoint4" type="Node3D" parent="CreepSpawner/Red/Top" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.4048, 0, -33.3295)
+
+[node name="BlueRangedCreepPoint5" type="Node3D" parent="CreepSpawner/Red/Top" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5661, 0, -33.3295)
+
+[node name="BlueRangedCreepPoint6" type="Node3D" parent="CreepSpawner/Red/Top" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.507, 0, -33.3295)
+
+[node name="Mid" type="Node" parent="CreepSpawner/Red"]
+
+[node name="BlueMeleeCreepPoint" type="Node3D" parent="CreepSpawner/Red/Mid" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1403, 0, -21.7295)
+
+[node name="BlueMeleeCreepPoint2" type="Node3D" parent="CreepSpawner/Red/Mid" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.7869, 0, -20.9304)
+
+[node name="BlueMeleeCreepPoint3" type="Node3D" parent="CreepSpawner/Red/Mid" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.325, 0, -22.9849)
+
+[node name="BlueRangedCreepPoint4" type="Node3D" parent="CreepSpawner/Red/Mid" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.4048, 0, -26.5525)
+
+[node name="BlueRangedCreepPoint5" type="Node3D" parent="CreepSpawner/Red/Mid" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5661, 0, -26.5525)
+
+[node name="BlueRangedCreepPoint6" type="Node3D" parent="CreepSpawner/Red/Mid" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.507, 0, -26.5525)
+
+[node name="Bot" type="Node" parent="CreepSpawner/Red"]
+
+[node name="BlueMeleeCreepPoint" type="Node3D" parent="CreepSpawner/Red/Bot" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2738, 0, -22.3277)
+
+[node name="BlueMeleeCreepPoint2" type="Node3D" parent="CreepSpawner/Red/Bot" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9204, 0, -21.5286)
+
+[node name="BlueMeleeCreepPoint3" type="Node3D" parent="CreepSpawner/Red/Bot" groups=["melee_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.4585, 0, -23.5831)
+
+[node name="BlueRangedCreepPoint4" type="Node3D" parent="CreepSpawner/Red/Bot" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1101, 0, -28.0847)
+
+[node name="BlueRangedCreepPoint5" type="Node3D" parent="CreepSpawner/Red/Bot" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.2715, 0, -28.0847)
+
+[node name="BlueRangedCreepPoint6" type="Node3D" parent="CreepSpawner/Red/Bot" groups=["ranged_creep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2123, 0, -28.0847)
 
 [node name="AbilityBox" type="Node" parent="."]
 
 [node name="CreepBox" type="Node" parent="."]
+
+[node name="Map" type="Node" parent="."]
+
+[node name="GeneralNavRegion" type="NavigationRegion3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+navigation_mesh = SubResource("NavigationMesh_h4w6h")
+
+[node name="chão" type="MeshInstance3D" parent="Map/GeneralNavRegion"]
+mesh = SubResource("BoxMesh_vq1lt")
+
+[node name="Chao_colisao" type="StaticBody3D" parent="Map/GeneralNavRegion/chão" groups=["chao"]]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/GeneralNavRegion/chão/Chao_colisao"]
+shape = SubResource("BoxShape3D_0cxa3")
+
+[node name="TopLane" type="NavigationRegion3D" parent="Map"]
+navigation_mesh = SubResource("NavigationMesh_3vi2t")
+navigation_layers = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/TopLane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.8798, 0, 2.57002)
+visible = false
+mesh = SubResource("PlaneMesh_e8pa3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/TopLane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.1033)
+visible = false
+mesh = SubResource("PlaneMesh_7k521")
+
+[node name="MidLane" type="NavigationRegion3D" parent="Map"]
+navigation_mesh = SubResource("NavigationMesh_s4sx8")
+navigation_layers = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/MidLane"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.81757, 0, 2.00754)
+visible = false
+mesh = SubResource("PlaneMesh_vvfsj")
+
+[node name="BotLane" type="NavigationRegion3D" parent="Map"]
+navigation_mesh = SubResource("NavigationMesh_lvkl1")
+navigation_layers = 8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/BotLane"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.14422, 0, 37.4209)
+visible = false
+mesh = SubResource("PlaneMesh_e8pa3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map/BotLane"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34.7356, 0, 1.74757)
+visible = false
+mesh = SubResource("PlaneMesh_7k521")
 
 [node name="Players" type="Node" parent="."]
 
@@ -69,13 +260,12 @@ shape = SubResource("BoxShape3D_0cxa3")
 [node name="CameraMan2" parent="Players/BlueTeam/Player1" node_paths=PackedStringArray("point") instance=ExtResource("3_3aujx")]
 point = NodePath("../Alyssa")
 
-[node name="SpawnPoint" type="Node3D" parent="Players/BlueTeam/Player1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.0882, 0, 46.8585)
-
 [node name="Alyssa" parent="Players/BlueTeam/Player1" node_paths=PackedStringArray("ability_box", "spawn_point") instance=ExtResource("2_rmfn5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.0882, 0, 46.8585)
 ability_box = NodePath("../../../../AbilityBox")
 spawn_point = NodePath("../SpawnPoint")
+
+[node name="SpawnPoint" type="Node3D" parent="Players/BlueTeam/Player1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.0882, 0, 46.8585)
 
 [node name="Player2" type="Node" parent="Players/BlueTeam"]
 
@@ -105,37 +295,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.95613, 0, -6.34495)
 ability_box = NodePath("../../../../AbilityBox")
 spawn_point = NodePath("../SpawnPoint")
 
-[node name="CreepSpawner" type="Node" parent="." node_paths=PackedStringArray("blue_core", "red_core", "creep_box")]
-script = ExtResource("5_ua0qx")
-time = 10.0
-blue_core = NodePath("../BlueCore")
-red_core = NodePath("../RedCore")
-creep_box = NodePath("../CreepBox")
-
-[node name="Blue" type="Node" parent="CreepSpawner"]
-
-[node name="BlueMeleeCreepPoint" type="Node3D" parent="CreepSpawner/Blue" groups=["melee_creep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6017, 0, 35.1193)
-
-[node name="BlueMeleeCreepPoint2" type="Node3D" parent="CreepSpawner/Blue" groups=["melee_creep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.9551, 0, 35.9184)
-
-[node name="BlueMeleeCreepPoint3" type="Node3D" parent="CreepSpawner/Blue" groups=["melee_creep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.417, 0, 33.8639)
-
-[node name="Red" type="Node" parent="CreepSpawner"]
-
-[node name="RedMeleeCreepPoint" type="Node3D" parent="CreepSpawner/Red" groups=["melee_creep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.49, 0, -37.8764)
-
-[node name="RedMeleeCreepPoint2" type="Node3D" parent="CreepSpawner/Red" groups=["melee_creep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.1366, 0, -37.0773)
-
-[node name="RedMeleeCreepPoint3" type="Node3D" parent="CreepSpawner/Red" groups=["melee_creep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6747, 0, -39.1318)
-
 [node name="RedCore" parent="." instance=ExtResource("6_jfqxl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3821, 2, -40.7061)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2158, 2, -31.4871)
+metadata/_edit_group_ = true
 
 [node name="TeamComponent" parent="RedCore" index="5"]
 team = 1

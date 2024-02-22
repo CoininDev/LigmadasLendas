@@ -1,5 +1,7 @@
 extends Node
 
+var creep_count:int = 0
+
 func mouse_raycast():
 	#converter o ponto do mouse na tela 2d para um ponto 3d no jogo.
 	#para isso é preciso criar um raio, uma linha reta que parte da camera e segue até encontrar uma colisão.
@@ -42,3 +44,7 @@ func mouse_raycast_all():
 	rayquery.to = to
 	var result = space.intersect_ray(rayquery)
 	return result
+
+func _process(delta):
+	print("Creep Count: %d" % creep_count)
+	

@@ -8,6 +8,7 @@ signal damaged
 @export var physical_resistance:float = 0
 @export var magical_resistance:float = 0
 @export var death_xp:float = 100
+@export var death_gold:float = 300
 @export var hero:Node3D
 var health:float
 
@@ -40,14 +41,13 @@ func heal(healing:float):
 
 func handle_death(atk):
 	if health <= 0:
-		if atk.caster:
+		if is_instance_valid(atk.caster):
 			if atk.caster.has_method("cancel"):
 				atk.caster.cancel()
 			if "batk_comp" in atk.caster:
 				atk.caster.batk_comp.cancel()
-			if atk.caster.has_method("add_xp"):
-				atk.caster.add_xp(death_xp)
-		
+			if atk.caster.has_method("add_stats"):
+				atk.caster.add_stats(death_xp, death_gold)
 		died.emit()
 		
 func ignore_resistance_damage(atk:Attack):

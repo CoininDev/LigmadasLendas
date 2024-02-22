@@ -3,7 +3,8 @@ class_name Creep
 
 @export var dmgr:DamageMgrComponent
 @export var team_comp:TeamComponent
-@export var enemy_core:Node3D
+
 
 func die():
+	GeneralFuncs.creep_count -=1
 	queue_free()

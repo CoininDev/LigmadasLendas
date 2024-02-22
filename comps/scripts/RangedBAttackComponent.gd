@@ -9,24 +9,14 @@ signal cancel_bullet
 @onready var bullet:PackedScene = load("res://comps/scenes/b_attack_bullet.tscn")
 
 
+
 func _ready():
 	var escala = 0.4
 	range_show.scale.x = range * escala
 	range_show.scale.z = range * escala
+	area_col.shape.radius = range
 	timer.timeout.connect(timeout)
 	timer.wait_time = atk_cooldown
-
-func _physics_process(delta):
-	if target:
-		var distance = target.global_position.distance_to(global_position)
-		if distance > range:
-			walk()
-		else:
-			if timer.is_stopped():
-				attack()
-				timer.start()
-	else:
-		timer.stop()
 
 func _input(event):
 	for cancelling_action in cancelling_actions:

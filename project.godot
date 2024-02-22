@@ -23,6 +23,7 @@ GeneralFuncs="*res://scripts/GeneralFuncs.gd"
 [display]
 
 window/size/mode=3
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
@@ -154,10 +155,15 @@ lock_camera={
 [layer_names]
 
 3d_physics/layer_1="unidades"
+3d_navigation/layer_1="general"
 3d_physics/layer_2="players"
+3d_navigation/layer_2="toplane"
 3d_physics/layer_3="chao"
+3d_navigation/layer_3="midlane"
+3d_navigation/layer_4="botlane"
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.0941176, 0.0941176, 0.0941176, 1)

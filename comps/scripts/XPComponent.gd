@@ -38,7 +38,7 @@ func add_xp(more_xp):
 func level_up():
 	if level < level_max:
 		level +=1
-		current_xp = xp_needed_for[level]
+		current_xp -= xp_needed_for[level]
 		upgrade_tokens +=1
 		ultimate_upgrade_tokens +=1
 		hero.ability_power += 10

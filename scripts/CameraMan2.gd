@@ -28,16 +28,22 @@ var lock_cam_persist:bool
 @onready var timeout_e:Label = $CanvasLayer/Control/H/Abilites/E/TimeOutLabel
 @onready var timeout_r:Label = $CanvasLayer/Control/H/Abilites/R/TimeOutLabel
 
+@onready var level_q:Label = $CanvasLayer/Control/H/Abilites/Q/LevelLabel
+@onready var level_w:Label = $CanvasLayer/Control/H/Abilites/W/LevelLabel
+@onready var level_e:Label = $CanvasLayer/Control/H/Abilites/E/LevelLabel
+@onready var level_r:Label = $CanvasLayer/Control/H/Abilites/R/LevelLabel
+
 @onready var nivel:Label = $"CanvasLayer/Control/H/stats/nível"
 @onready var xp:Label = $CanvasLayer/Control/H/stats/xp
 @onready var ouro:Label = $CanvasLayer/Control/H/stats/ouro
 @onready var ap:Label = $CanvasLayer/Control/H/stats/AP
 
-func _ready():
-	pass
+@onready var fps_label:Label = $CanvasLayer/Control/VBoxContainer/FPSLabel
+@onready var respawn_time_label:Label = $CanvasLayer/Control/VBoxContainer/RespawnTimeLabel
 
 func _process(delta):
 	HUD()
+	left_top_HUD()
 	if lock_cam:
 		global_position = lerp(global_position, point.global_position, smoth_speed * delta)
 		#global_position = point.global_position
@@ -73,13 +79,13 @@ func zoom():
 	if Input.is_action_pressed("scroll_up"):
 		if camera.position.z > min_zoom_out:
 			camera.position.z -= 1
-			speed -= 3
+			speed -= 1
 	
 	#zoom out
 	if Input.is_action_pressed("scroll_down"):
 		if camera.position.z < max_zoom_out:
 			camera.position.z += 1
-			speed += 3
+			speed += 1
 
 func rotate_camera(event:InputEvent):
 	if Input.is_action_pressed("rotate_camera"):
@@ -107,3 +113,19 @@ func HUD():
 	ouro.text = "Ouro:"+str(point.gold)
 	ap.text = "AP: "+str(point.ability_power)
 	
+	level_q.text = str(point.xp_comp.ability1_lvl)
+	level_w.text = str(point.xp_comp.ability2_lvl)
+	level_e.text = str(point.xp_comp.ability3_lvl)
+	level_r.text = str(point.xp_comp.ultimate_lvl)
+
+func left_top_HUD():
+	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
+	if point.state_machine_comp.current_state is HeroDeadState:
+		respawn_time_label.visible = true
+		respawn_time_label.text = "Respawn in %d" % point.state_machine_comp.current_state.death_time_count
+	else:
+		respawn_time_label.visible = false
+
+
+func _on_button_pressed():
+	$"Cena de teste/CreepSpawner".free_all_creeps()

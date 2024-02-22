@@ -26,7 +26,7 @@ func _ready():
 	var escala = 0.6
 	if range_show: range_show.scale.x = range * escala
 	if range_show: range_show.scale.z = range * escala
-	area_col.shape.radius = range 
+	area_col.shape.radius = range *escala
 	timer.timeout.connect(timeout)
 	timer.wait_time = atk_cooldown
 	if hero.has_method("batk_attacked"):
@@ -43,6 +43,7 @@ func _process(delta):
 				timer.start()
 	else:
 		timer.stop()
+		cancel()
 	#in_range_bodies = area.get_overlapping_bodies().slice(1)
 	#if target:
 		#walk()
@@ -53,8 +54,8 @@ func _input(event):
 
 func walk():
 	nav_comp.select_destiny_path(target.position, range-0.2)
-	if in_range_bodies.has(target) and timer.is_stopped():
-		timer.start()
+	#if in_range_bodies.has(target) and timer.is_stopped():
+		#timer.start()
 
 func attack():
 	var atk = Attack.new()

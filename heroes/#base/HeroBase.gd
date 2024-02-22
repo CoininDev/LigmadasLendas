@@ -153,8 +153,9 @@ func _on_opt1_cooldown_timeout():
 func _on_opt2_cooldown_timeout():
 	opt2_cooldown_block = false
 
-func add_xp(xp):
+func add_stats(xp:float, add_gold:float):
 	xp_comp.add_xp(xp)
+	gold += add_gold
 
 func cancel():
 	batk_comp.cancel() 

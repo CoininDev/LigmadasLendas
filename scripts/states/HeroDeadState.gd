@@ -13,7 +13,7 @@ func enter():
 	
 	fx_comp.cancel_all()
 	sanity_comp.timer.stop()
-	
+	print("coco inevitável")
 	for child in hero.get_children():
 		if child.name.to_lower() == "collisionshape3d":
 			child.disabled = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://c2igd6pamdef3"]
 
 [ext_resource type="Script" path="res://comps/scripts/HealthComponent.gd" id="1_hw3w7"]
-[ext_resource type="Script" path="res://objs/creeps/Creep.gd" id="1_tdqjc"]
+[ext_resource type="Script" path="res://objs/creeps/MinionCreep.gd" id="1_q3h7w"]
 [ext_resource type="PackedScene" uid="uid://ek5hq7khlfdc" path="res://comps/scenes/battack_component.tscn" id="2_2pm32"]
 [ext_resource type="Script" path="res://comps/scripts/TeamComponent.gd" id="3_w7w1j"]
 [ext_resource type="Script" path="res://comps/scripts/DamageMgrComponent.gd" id="4_iecur"]
@@ -23,8 +23,9 @@ height = 1.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_jdy02"]
 radius = 4.0
 
-[node name="MeleeCreep" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "team_comp")]
-script = ExtResource("1_tdqjc")
+[node name="MeleeCreep" type="CharacterBody3D" node_paths=PackedStringArray("nav", "dmgr", "team_comp")]
+script = ExtResource("1_q3h7w")
+nav = NodePath("comps/NavigationComponent")
 dmgr = NodePath("comps/DamageMgrComponent")
 team_comp = NodePath("comps/TeamComponent")
 
@@ -40,7 +41,9 @@ mesh = SubResource("CapsuleMesh_wepd2")
 
 [node name="HealthComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
 script = ExtResource("1_hw3w7")
-death_xp = 5.0
+MAX_HEALTH = 180.0
+death_xp = 5.5
+death_gold = 20.0
 hero = NodePath("../..")
 
 [node name="TeamComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
@@ -65,6 +68,8 @@ health_comp = NodePath("../HealthComponent")
 team_comp = NodePath("../TeamComponent")
 
 [node name="NavigationComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("8_hplwp")]
+navigation_layers = 0
+avoidance_layers = 1
 hero = NodePath("../..")
 
 [node name="StateMachineComponent" type="Node" parent="comps" node_paths=PackedStringArray("initial_state")]
@@ -77,11 +82,11 @@ creep = NodePath("../../..")
 nav = NodePath("../../NavigationComponent")
 area = NodePath("../../../Area3D")
 
-[node name="CreepTargetState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("area", "batk", "team_comp")]
+[node name="CreepTargetState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("area", "batk", "creep")]
 script = ExtResource("8_8oqm3")
 area = NodePath("../../../Area3D")
 batk = NodePath("../../BAttackComponent")
-team_comp = NodePath("../../TeamComponent")
+creep = NodePath("../../..")
 
 [node name="EffectsComponent" parent="comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "hero") instance=ExtResource("11_k3uvm")]
 battack_comp = NodePath("../BAttackComponent")

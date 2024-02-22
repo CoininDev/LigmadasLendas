@@ -1,0 +1,100 @@
+[gd_scene load_steps=15 format=3 uid="uid://cdl8yivxsrlnb"]
+
+[ext_resource type="Script" path="res://objs/creeps/MinionCreep.gd" id="1_r6o81"]
+[ext_resource type="Script" path="res://comps/scripts/HealthComponent.gd" id="2_k02ip"]
+[ext_resource type="Script" path="res://comps/scripts/TeamComponent.gd" id="3_5cfhq"]
+[ext_resource type="Script" path="res://comps/scripts/DamageMgrComponent.gd" id="4_sdwhb"]
+[ext_resource type="PackedScene" uid="uid://cwhihpdu5pw3h" path="res://comps/scenes/gui_component.tscn" id="5_r0j1t"]
+[ext_resource type="PackedScene" uid="uid://bid6uhyybfx4x" path="res://comps/scenes/navigation_component.tscn" id="6_sipm0"]
+[ext_resource type="PackedScene" uid="uid://cx88lgs15cpdr" path="res://comps/scenes/effects_component.tscn" id="7_xr1qo"]
+[ext_resource type="PackedScene" uid="uid://dihqxk54qchm4" path="res://comps/scenes/ranged_b_attack_component.tscn" id="8_hkmf4"]
+[ext_resource type="Script" path="res://comps/scripts/StateMachineComponent.gd" id="9_23ly0"]
+[ext_resource type="Script" path="res://scripts/states/CreepInitialState.gd" id="10_kw0j7"]
+[ext_resource type="Script" path="res://scripts/states/CreepTargetState.gd" id="11_5jpy3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kn3ku"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wepd2"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_63ei6"]
+radius = 10.0
+
+[node name="RangedCreep" type="CharacterBody3D" node_paths=PackedStringArray("nav", "dmgr", "team_comp")]
+script = ExtResource("1_r6o81")
+nav = NodePath("comps/NavigationComponent")
+dmgr = NodePath("comps/DamageMgrComponent")
+team_comp = NodePath("comps/TeamComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_kn3ku")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CapsuleMesh_wepd2")
+
+[node name="comps" type="Node3D" parent="."]
+
+[node name="HealthComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
+script = ExtResource("2_k02ip")
+death_xp = 5.0
+death_gold = 15.0
+hero = NodePath("../..")
+
+[node name="TeamComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
+script = ExtResource("3_5cfhq")
+hero = NodePath("../..")
+
+[node name="DamageMgrComponent" type="Node" parent="comps" node_paths=PackedStringArray("health_component", "effects_component")]
+script = ExtResource("4_sdwhb")
+health_component = NodePath("../HealthComponent")
+effects_component = NodePath("../EffectsComponent")
+
+[node name="GUIComponent" parent="comps" node_paths=PackedStringArray("health_comp", "fx_comp", "team_comp") instance=ExtResource("5_r0j1t")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.17877, 0)
+health_comp = NodePath("../HealthComponent")
+fx_comp = NodePath("../EffectsComponent")
+team_comp = NodePath("../TeamComponent")
+
+[node name="NavigationComponent" parent="comps" node_paths=PackedStringArray("hero") instance=ExtResource("6_sipm0")]
+navigation_layers = 0
+avoidance_layers = 1
+hero = NodePath("../..")
+
+[node name="EffectsComponent" parent="comps" node_paths=PackedStringArray("battack_comp", "nav_comp", "health_comp", "hero") instance=ExtResource("7_xr1qo")]
+battack_comp = NodePath("../RangedBAttackComponent")
+nav_comp = NodePath("../NavigationComponent")
+health_comp = NodePath("../HealthComponent")
+hero = NodePath("../..")
+
+[node name="RangedBAttackComponent" parent="comps" node_paths=PackedStringArray("nav_comp", "hero") instance=ExtResource("8_hkmf4")]
+atk_damage = 5.0
+atk_cooldown = 0.5
+range = 6.0
+nav_comp = NodePath("../NavigationComponent")
+hero = NodePath("../..")
+
+[node name="StateMachineComponent" type="Node" parent="comps" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("9_23ly0")
+initial_state = NodePath("CreepInitialState")
+
+[node name="CreepInitialState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("creep", "nav", "area")]
+script = ExtResource("10_kw0j7")
+creep = NodePath("../../..")
+nav = NodePath("../../NavigationComponent")
+area = NodePath("../../../Area3D")
+
+[node name="CreepTargetState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("area", "batk", "creep")]
+script = ExtResource("11_5jpy3")
+area = NodePath("../../../Area3D")
+batk = NodePath("../../RangedBAttackComponent")
+creep = NodePath("../../..")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_63ei6")
