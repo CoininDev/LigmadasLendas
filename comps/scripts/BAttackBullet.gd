@@ -12,7 +12,7 @@ func _ready():
 	$MeshInstance3D.mesh = gfx
 	$GPUParticles3D.draw_pass_1 = gfx_particles
 
-func _process(delta):
+func _process(_delta):
 	if is_instance_valid(target):
 		var velocity = global_position.direction_to(target.position) * speed
 		look_at(position.direction_to(target.position))

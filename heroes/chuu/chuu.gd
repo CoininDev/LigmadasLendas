@@ -22,7 +22,7 @@ func _ready():
 	e.atk.caster = self
 	e.atk.apply_to.append(team_comp.enemy_team_str)
 
-func _process(delta):
+func _process(_delta):
 	q.atk.physic_continuous_damage = q_dano * buff
 	q.atk.continuous_damage_time = q_tempo
 	q.target_direction = q_p.global_rotation

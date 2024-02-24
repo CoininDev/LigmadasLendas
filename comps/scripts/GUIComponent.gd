@@ -52,7 +52,7 @@ func _ready():
 		sanity_bar.value = sanity_comp.sanity
 		sanity_label.text = str(sanity_comp.sanity)
 
-func _process(delta):
+func _process(_delta):
 	health_bar.value = health_comp.health
 	if sanity_comp:
 		sanity_bar.value = sanity_comp.sanity

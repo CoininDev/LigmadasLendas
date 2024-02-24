@@ -13,8 +13,6 @@ func _ready():
 	time_countdown = time 
 
 func _process(delta):
-	print("Creep Box Children: %d" % creep_box.get_child_count())
-	
 	time_countdown -= delta
 	if time_countdown <= 0:
 		GeneralFuncs.creep_count += 36
@@ -46,6 +44,5 @@ func create_minion_creep(team:int, type:String, lane:int) -> MinionCreep:
 	return creep
 
 func free_all_creeps():
-	for creep in creep_box.get_children():
-		GeneralFuncs.creep_count -=1
+	for creep in creep_box.get_children(): 
 		creep.queue_free()

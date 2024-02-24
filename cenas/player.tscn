@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://7bly47sph2u3"]
+
+[ext_resource type="Script" path="res://scripts/player_node.gd" id="1_7vf4c"]
+[ext_resource type="PackedScene" uid="uid://dvxt2tqwb6fbb" path="res://objs/camera_man_2.tscn" id="1_nkdg8"]
+[ext_resource type="Script" path="res://scripts/PlayerInput.gd" id="3_ys7ch"]
+
+[node name="Player" type="Node"]
+script = ExtResource("1_7vf4c")
+
+[node name="CameraMan" parent="." instance=ExtResource("1_nkdg8")]
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+
+[node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath(".")
+script = ExtResource("3_ys7ch")

@@ -15,6 +15,7 @@ class_name HeroBase
 @export var fx_comp:EffectsComponent
 @export var anim_comp:AnimationComponent
 @export var state_machine_comp:StateMachineComponent
+@export var alive_state:HeroAliveState
 @export var team_comp:TeamComponent
 
 @export_category("Abilities")
@@ -153,16 +154,24 @@ func _on_opt1_cooldown_timeout():
 func _on_opt2_cooldown_timeout():
 	opt2_cooldown_block = false
 
-func add_stats(xp:float, add_gold:float):
-	xp_comp.add_xp(xp)
-	gold += add_gold
+#func add_stats(xp:float, add_gold:float):
+	#xp_comp.add_xp(xp)
+	#gold += add_gold
 
 func cancel():
 	batk_comp.cancel() 
 
-func die():
+func die(_self:Node3D):
 	var alive_state:State
 	for state in state_machine_comp.get_children():
 		if state.name.to_lower() == "heroalivestate":
 			alive_state = state
 	alive_state.transitioned.emit(alive_state, "herodeadstate")
+
+func last_hitted(loot:Dictionary):
+	xp_comp.add_xp(loot["xp"])
+	gold += loot["gold"]
+
+func target_died(target:Node3D):
+	if batk_comp.target == target:
+		batk_comp.cancel()

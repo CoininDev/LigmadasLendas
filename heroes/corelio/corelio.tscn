@@ -38,7 +38,7 @@ material = SubResource("StandardMaterial3D_4rv5s")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ts1b0"]
 
-[node name="corelio" type="CharacterBody3D" node_paths=PackedStringArray("health_Comp", "dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "team_comp", "q_p", "w_p", "e_p", "r_p")]
+[node name="corelio" type="CharacterBody3D" node_paths=PackedStringArray("health_Comp", "dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "alive_state", "team_comp", "q_p", "w_p", "e_p", "r_p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
 script = ExtResource("1_sr7n3")
 health_Comp = NodePath("comps/HealthComponent")
@@ -47,6 +47,7 @@ xp_comp = NodePath("comps/XPComponent")
 batk_comp = NodePath("comps/RangedBAttackComponent")
 fx_comp = NodePath("comps/EffectsComponent")
 state_machine_comp = NodePath("comps/StateMachineComponent")
+alive_state = NodePath("comps/StateMachineComponent/HeroAliveState")
 team_comp = NodePath("comps/TeamComponent")
 q_p = NodePath("AbilityPointers/Q")
 w_p = NodePath("AbilityPointers/W")
@@ -117,20 +118,23 @@ hero = NodePath("../..")
 [node name="StateMachineComponent" parent="comps" node_paths=PackedStringArray("initial_state") instance=ExtResource("11_44sew")]
 initial_state = NodePath("HeroAliveState")
 
-[node name="HeroAliveState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("nav", "battack", "sanity", "xp_comp", "hero", "health_comp")]
+[node name="HeroAliveState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("nav", "battack", "sanity", "xp_comp", "hero", "hero_col", "health_comp")]
 script = ExtResource("12_iv8jl")
 nav = NodePath("../../NavComponent")
 battack = NodePath("../../RangedBAttackComponent")
 sanity = NodePath("../../SanityComponent")
 xp_comp = NodePath("../../XPComponent")
 hero = NodePath("../../..")
+hero_col = NodePath("../../../CollisionShape3D")
 health_comp = NodePath("../../HealthComponent")
 
-[node name="HeroDeadState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("fx_comp", "sanity_comp", "hero")]
+[node name="HeroDeadState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("fx_comp", "sanity_comp", "health_comp", "hero", "hero_col")]
 script = ExtResource("13_03lua")
 fx_comp = NodePath("../../EffectsComponent")
 sanity_comp = NodePath("../../SanityComponent")
+health_comp = NodePath("../../HealthComponent")
 hero = NodePath("../../..")
+hero_col = NodePath("../../../CollisionShape3D")
 
 [node name="TeamComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
 script = ExtResource("14_3wqx2")

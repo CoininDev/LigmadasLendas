@@ -30,7 +30,7 @@ func _ready():
 		marks.append("")
 		marktimers.append(get_node("MarkTimer" + str(i+1)))
 
-func _process(delta):
+func _process(_delta):
 	
 	if pagar == true:
 		current_effect = "pagar"

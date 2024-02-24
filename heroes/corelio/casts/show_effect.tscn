@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://7jpo0gk6b183"]
 
-[ext_resource type="Script" path="res://comps/scripts/show_effect.gd" id="1_13pb6"]
+[ext_resource type="Script" path="res://heroes/corelio/casts/show_effect.tscn" id="1_13pb6"]
 [ext_resource type="Texture2D" uid="uid://6r4132ur6tgw" path="res://graphics/sprites/dividendo.png" id="2_pm5ha"]
 [ext_resource type="Texture2D" uid="uid://xmnkosys2es2" path="res://graphics/sprites/pagando.png" id="3_d3vqf"]
 

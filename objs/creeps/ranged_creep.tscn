@@ -21,7 +21,7 @@ radius = 0.25
 height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_63ei6"]
-radius = 10.0
+radius = 12.0
 
 [node name="RangedCreep" type="CharacterBody3D" node_paths=PackedStringArray("nav", "dmgr", "team_comp")]
 script = ExtResource("1_r6o81")

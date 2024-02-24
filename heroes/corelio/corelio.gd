@@ -56,7 +56,7 @@ func _ready():
 	e.atk.caster = self
 	e.atk.apply_to.append(team_comp.enemy_team_str)
 
-func _process(delta):
+func _process(_delta):
 	verificar_dividas()
 	
 	#caso receba dano aumenta a divida de quem esta marcado

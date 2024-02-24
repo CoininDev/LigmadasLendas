@@ -40,7 +40,7 @@ func _ready():
 	e.atk.apply_to.append(team_comp.enemy_team_str)
 
 #PROPRIEDADES MUTAVEIS
-func _process(delta):
+func _process(_delta):
 	#P
 	p.atk.magic_damage = p_dano + (ability_power * 0.2) + (r_dano_add + (ability_power * 1.2))
 	p_p.atk = p.atk

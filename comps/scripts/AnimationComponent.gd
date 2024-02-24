@@ -20,7 +20,7 @@ func _ready():
 	nav_comp.navigation_finished.connect(idle)
 	nav_comp.walking_changed.connect(run)
 
-func _process(delta):
+func _process(_delta):
 	if !anim_tree["parameters/conditions/idle"]:
 		hero.look_at(nav_comp.target_position)
 		hero.global_rotation.x = 0 
@@ -36,7 +36,7 @@ func run(walking:bool):
 		anim_tree["parameters/conditions/idle"] = false
 
 
-func attack(target:Node3D):
+func attack(_target:Node3D):
 	anim_tree["parameters/conditions/attacking"] = true
 	anim_tree["parameters/conditions/idle"] = false
 	#hero.look_at(target.position)

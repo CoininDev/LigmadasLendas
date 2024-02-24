@@ -24,7 +24,7 @@ func select_destiny_path(destiny_pos:Vector3, distance:float):
 	set_path_desired_distance(distance)
 	set_target_position(destiny_pos)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if show_target_position: mouse_mostrar.visible = true
 	mouse_mostrar.global_position = target_position
 	if is_navigation_finished(): 

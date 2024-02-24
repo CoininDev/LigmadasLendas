@@ -32,10 +32,11 @@ func _ready():
 	if hero.has_method("batk_attacked"):
 		attacked.connect(hero.batk_attacked)
 
-func _process(delta):
+func _process(_delta):
 	if is_instance_valid(target):
 		in_range_bodies = area.get_overlapping_bodies().slice(1)
 		if !in_range_bodies.has(target):
+			print("plau")
 			walk()
 		else:
 			if timer.is_stopped():
@@ -47,7 +48,7 @@ func _process(delta):
 	#in_range_bodies = area.get_overlapping_bodies().slice(1)
 	#if target:
 		#walk()
-func _input(event):
+func _input(_event):
 	for cancelling_action in cancelling_actions:
 		if Input.is_action_just_pressed(cancelling_action) or Input.is_action_just_released(cancelling_action):
 			cancel()

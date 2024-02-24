@@ -5,6 +5,6 @@ class_name Creep
 @export var team_comp:TeamComponent
 
 
-func die():
+func die(_self:Node3D):
 	GeneralFuncs.creep_count -=1
 	queue_free()

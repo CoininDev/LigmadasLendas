@@ -18,7 +18,7 @@ func _ready():
 	timer.timeout.connect(timeout)
 	timer.wait_time = atk_cooldown
 
-func _input(event):
+func _input(_event):
 	for cancelling_action in cancelling_actions:
 		if Input.is_action_just_pressed(cancelling_action) or Input.is_action_just_released(cancelling_action):
 			cancel()

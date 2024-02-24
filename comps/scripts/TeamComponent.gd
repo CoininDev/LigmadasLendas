@@ -6,7 +6,7 @@ enum TeamName{
 	red
 }
 
-@export var team:TeamName = 0
+@export var team:TeamName = TeamName.blue
 @export var hero:Node3D
 var enemy_team:TeamName
 var team_str:String

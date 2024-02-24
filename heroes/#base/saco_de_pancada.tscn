@@ -86,21 +86,24 @@ hero = NodePath("../..")
 script = ExtResource("11_dngpm")
 initial_state = NodePath("HeroAliveState")
 
-[node name="HeroAliveState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("nav", "battack", "sanity", "xp_comp", "hero", "health_comp")]
+[node name="HeroAliveState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("nav", "battack", "sanity", "xp_comp", "hero", "hero_col", "health_comp")]
 script = ExtResource("12_mnhv5")
 nav = NodePath("../../NavigationComponent")
 battack = NodePath("../../BAttackComponent")
 sanity = NodePath("../../SanityComponent")
 xp_comp = NodePath("../../XPComponent")
 hero = NodePath("../../..")
+hero_col = NodePath("../../../CollisionShape3D")
 health_comp = NodePath("../../HealthComponent")
 control = false
 
-[node name="HeroDeadState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("fx_comp", "sanity_comp", "hero")]
+[node name="HeroDeadState" type="Node" parent="comps/StateMachineComponent" node_paths=PackedStringArray("fx_comp", "sanity_comp", "health_comp", "hero", "hero_col")]
 script = ExtResource("13_dboos")
 fx_comp = NodePath("../../EffectsComponent")
 sanity_comp = NodePath("../../SanityComponent")
+health_comp = NodePath("../../HealthComponent")
 hero = NodePath("../../..")
+hero_col = NodePath("../../../CollisionShape3D")
 
 [node name="TeamComponent" type="Node" parent="comps" node_paths=PackedStringArray("hero")]
 script = ExtResource("14_ukvv4")

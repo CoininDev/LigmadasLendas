@@ -22,6 +22,8 @@ extends Node3D
 var lock_cam:bool = true
 var lock_cam_persist:bool
 
+
+
 #HUD Properties
 @onready var timeout_q:Label = $CanvasLayer/Control/H/Abilites/Q/TimeOutLabel
 @onready var timeout_w:Label = $CanvasLayer/Control/H/Abilites/W/TimeOutLabel
@@ -45,14 +47,15 @@ func _process(delta):
 	HUD()
 	left_top_HUD()
 	if lock_cam:
-		global_position = lerp(global_position, point.global_position, smoth_speed * delta)
+		var tween:Tween = create_tween()
+		#global_position = lerp(global_position, point.global_position, smoth_speed * delta)
+		tween.tween_property(self, "global_position", point.global_position, 0.5)
 		#global_position = point.global_position
 		return
 	move(delta)
 	
 
 func _input(event):
-	
 	zoom()
 	rotate_camera(event)
 	lock_cam = Input.is_action_pressed("space") or lock_cam_persist
@@ -125,7 +128,3 @@ func left_top_HUD():
 		respawn_time_label.text = "Respawn in %d" % point.state_machine_comp.current_state.death_time_count
 	else:
 		respawn_time_label.visible = false
-
-
-func _on_button_pressed():
-	$"Cena de teste/CreepSpawner".free_all_creeps()
