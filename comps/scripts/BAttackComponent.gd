@@ -36,7 +36,6 @@ func _process(_delta):
 	if is_instance_valid(target):
 		in_range_bodies = area.get_overlapping_bodies().slice(1)
 		if !in_range_bodies.has(target):
-			print("plau")
 			walk()
 		else:
 			if timer.is_stopped():

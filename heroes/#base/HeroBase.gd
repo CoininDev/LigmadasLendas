@@ -1,5 +1,5 @@
-extends CharacterBody3D
 class_name HeroBase
+extends CharacterBody3D
 ###########################
 ## PARAMETERS
 ###########################
@@ -19,10 +19,7 @@ class_name HeroBase
 @export var team_comp:TeamComponent
 
 @export_category("Abilities")
-@export var q_p:Pointer
-@export var w_p:Pointer
-@export var e_p:Pointer
-@export var r_p:Pointer
+@export var pointer:NewPointer
 
 
 #######################
@@ -94,6 +91,7 @@ func _ready_base():
 
 func _process_base(delta):
 	if xp_comp.ability1_lvl >0:
+		print("unblocked")
 		q_block = false
 	if xp_comp.ability2_lvl >0:
 		w_block = false
@@ -128,7 +126,7 @@ func a_cast():
 func s_cast():
 	pass
 
-func check(x:String) -> bool:
+func is_blocked(x:String) -> bool:
 	if get(x+"_cooldown_block") or get(x+"_block") or silenced: return true
 	return false
 

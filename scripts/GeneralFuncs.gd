@@ -2,13 +2,6 @@ extends Node
 
 var creep_count:int = 0
 
-var char_dict:Dictionary = {
-	"Alyssa": "res://heroes/alyssa/alyssa.tscn",
-	"Chuu": "res://heroes/chuu/chuu.tscn",
-	"Corelio":"res://heroes/corelio/corelio.tscn",
-	"Dra. Lixo":"res://heroes/dra_lixo/dra_lixo.tscn"
-}
-
 func mouse_raycast():
 	#converter o ponto do mouse na tela 2d para um ponto 3d no jogo.
 	#para isso é preciso criar um raio, uma linha reta que parte da camera e segue até encontrar uma colisão.

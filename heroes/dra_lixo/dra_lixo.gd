@@ -1,3 +1,4 @@
+class_name DraLixo
 extends HeroBase
 
 var q_cooldown_val:float
@@ -10,6 +11,8 @@ var e_dano = 60
 var ult_buff_set = 0.3
 var ultada = false
 
+var ult_time_max:float  = 15
+var ult_time:float  = 15
 var ult_buff:float = 0
 var dano_cont:float = 10
 
@@ -37,26 +40,32 @@ func _process(delta):
 	q.atk.physic_damage = q_dano + (q_dano * ult_buff)
 	q.atk.magic_continuous_damage = dano_cont
 	q.atk.continuous_damage_time = 5
-	q.target_direction = q_p.global_rotation
+	q.target_direction = pointer.global_rotation
 	
 	w.atk.physic_damage = w_dano + (w_dano * ult_buff)
 	w.atk.magic_continuous_damage = dano_cont
 	w.atk.continuous_damage_time = 5
-	w.target_position = w_p.mark_pos
+	w.target_position = pointer.mouse_pos
 	
 	e.atk.physic_damage = e_dano + (e_dano * ult_buff)
 	e.atk.magic_continuous_damage = dano_cont
-	e.target_direction = e_p.global_rotation
+	e.target_direction = pointer.global_position
 	e.atk.continuous_damage_time = 5
 
+	if ultada:
+		ult_time -= delta
+		if ult_time <= 0:
+			ultada = false
+			ult_time = ult_time_max
+			_on_ult_timer_timeout()
+
 func q_preview():
-	if check("q"): return
-	q_p.mesh_instance.position.z = -q.range / 2
-	q_p.mesh_instance.scale.z = q.range
-	q_p.visible = true
+	if is_blocked("q"): return
+	pointer.pointer_range = q.range
+	pointer.show_direction()
 
 func q_cast():
-	if check("q"): return
+	if is_blocked("q"): return
 	var t = load("res://objs/cast/scenes/projectile.tscn").instantiate()
 	t.atk = q.atk
 	t.distance = q.range
@@ -66,34 +75,31 @@ func q_cast():
 	ability_box.add_child(t)
 	t.global_rotation = q.target_direction
 	t.global_position = global_position
-	q_p.visible = false
+	pointer.hide_all()
 	start_cooldown("q", q_cooldown_val)
 
 func w_preview():
-	if check("w"): return
-	w_p.visible = true
+	if is_blocked("w"): return
+	pointer.show_circle(3)
 
 func w_cast():
-	if check("w"): return
+	if is_blocked("w"): return
 	var t = load("res://objs/cast/scenes/circular_area.tscn").instantiate()
 	t.atk = w.atk
 	t.delay = 0.7
 	t.radius = 3
 	ability_box.add_child(t)
 	t.global_position = w.target_position
-	w_p.visible = false
+	pointer.hide_all()
 	start_cooldown("w", w_cooldown_val)
 
 func e_preview():
-	if check("e"): return
-	e_p.mesh_instance.position.z = -e.range / 2
-	e_p.mesh_instance.scale.z = e.range
-	e_p.mesh_instance.scale.x = e.range /3
-	e_p.visible = true
+	if is_blocked("e"): return
+	pointer.show_cone(0.66)
 	
 
 func e_cast():
-	if check("e"): return
+	if is_blocked("e"): return
 	var offset = -0.2
 	for i in 5:
 		var t = load("res://objs/cast/scenes/projectile.tscn").instantiate()
@@ -106,14 +112,13 @@ func e_cast():
 		t.global_rotation = e.target_direction - Vector3(0,offset,0)
 		t.global_position = global_position
 		offset += 0.1
-	e_p.visible = false
+	pointer.hide_all()
 	start_cooldown("e", e_cooldown_val)
 
 func r_cast():
-	if check("r"): return
+	if is_blocked("r"): return
 	ultada = true
 	$MeshInstance3D.mesh.material = load("res://graphics/materials/arer_generico.tres")
-	$Abilities/UltTimer.start()
 	start_cooldown("r", r_cooldown_val)
 
 func _on_ult_timer_timeout():

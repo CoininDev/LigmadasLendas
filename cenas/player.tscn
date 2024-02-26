@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://7bly47sph2u3"]
+[gd_scene load_steps=7 format=3 uid="uid://7bly47sph2u3"]
 
 [ext_resource type="Script" path="res://scripts/player_node.gd" id="1_7vf4c"]
 [ext_resource type="PackedScene" uid="uid://dvxt2tqwb6fbb" path="res://objs/camera_man_2.tscn" id="1_nkdg8"]
+[ext_resource type="PackedScene" uid="uid://bj8w60mbxu343" path="res://heroes/#base/hero_1.tscn" id="3_ualiv"]
 [ext_resource type="Script" path="res://scripts/PlayerInput.gd" id="3_ys7ch"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ru16g"]
@@ -22,14 +23,20 @@ properties/4/spawn = true
 properties/4/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_77j2i"]
-properties/0/path = NodePath(".:player_id")
+properties/0/path = NodePath(".:velocity")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("..:player_id")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Player" type="Node"]
 script = ExtResource("1_7vf4c")
 
 [node name="CameraMan" parent="." instance=ExtResource("1_nkdg8")]
+
+[node name="Hero" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("3_ualiv")]
+spawn_point = NodePath("../SpawnPoint")
 
 [node name="SpawnPoint" type="Node3D" parent="."]
 
@@ -38,6 +45,9 @@ root_path = NodePath(".")
 replication_config = SubResource("SceneReplicationConfig_ru16g")
 script = ExtResource("3_ys7ch")
 
-[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="HeroSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../Hero")
 replication_config = SubResource("SceneReplicationConfig_77j2i")
 public_visibility = false
+
+[editable path="Hero"]

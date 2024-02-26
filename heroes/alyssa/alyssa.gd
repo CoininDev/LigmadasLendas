@@ -2,7 +2,6 @@ extends HeroBase
 
 #P
 var p_dano:float
-@export var p_p:Node3D
 
 #Q
 var q_rastro:Node3D

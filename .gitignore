@@ -2,3 +2,7 @@
 .godot/
 project.godot
 project.godot
+.vscode/launch.json
+.vscode/launch.json
+.vscode/launch.json
+*.json

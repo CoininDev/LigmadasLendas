@@ -25,7 +25,8 @@ func damage(atk: Attack):
 	health -= atk.magic_damage
 	if is_instance_valid(atk.caster):
 		if atk.caster.has_method("target_died"):
-			damaged.connect(atk.caster.target_died)
+			if damaged.is_connected(atk.caster.target_died):
+				damaged.connect(atk.caster.target_died)
 	damaged.emit()
 	handle_death(atk)
 

@@ -19,6 +19,7 @@ config/icon="res://Chuu.png"
 [autoload]
 
 GeneralFuncs="*res://scripts/GeneralFuncs.gd"
+HeroesDict="*res://scripts/HeroesDictionary.gd"
 
 [display]
 

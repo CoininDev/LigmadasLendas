@@ -1,0 +1,49 @@
+[gd_scene load_steps=12 format=3 uid="uid://bcfk30leqvxws"]
+
+[ext_resource type="Script" path="res://objs/pointer/Pointer.gd" id="1_5n016"]
+[ext_resource type="Texture2D" uid="uid://boia5wfdh8g3d" path="res://graphics/sprites/iconmonstr-arrow-up-thin.svg" id="2_w3al1"]
+[ext_resource type="Material" uid="uid://dwp5u07dkdfqm" path="res://graphics/sprites/cone_pointer.tres" id="3_wfdtw"]
+[ext_resource type="Texture2D" uid="uid://clnpl1p7w8086" path="res://graphics/sprites/circle.svg" id="4_7acqv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g3xh"]
+transparency = 1
+albedo_texture = ExtResource("2_w3al1")
+
+[sub_resource type="QuadMesh" id="QuadMesh_nd1h0"]
+material = SubResource("StandardMaterial3D_0g3xh")
+
+[sub_resource type="QuadMesh" id="QuadMesh_v2yxx"]
+material = ExtResource("3_wfdtw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvoxx"]
+transparency = 1
+albedo_texture = ExtResource("4_7acqv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_7jkhn"]
+material = SubResource("StandardMaterial3D_uvoxx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82cr0"]
+transparency = 1
+albedo_texture = ExtResource("4_7acqv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qbmbv"]
+material = SubResource("StandardMaterial3D_82cr0")
+
+[node name="Pointer" type="Node3D"]
+script = ExtResource("1_5n016")
+
+[node name="DirectionSprite" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
+mesh = SubResource("QuadMesh_nd1h0")
+
+[node name="ConeSprite" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
+mesh = SubResource("QuadMesh_v2yxx")
+
+[node name="RangeSprite" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_7jkhn")
+
+[node name="CircleSprite" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_qbmbv")

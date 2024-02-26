@@ -2,7 +2,7 @@ extends Node
 class_name StartUpNode
 
 @export var PORT = 6969
-var charname:String = "Dra. Lixo"
+var charname:String = "dra_lixo"
 var charteam:int = 0
 
 func _on_char_textbox_text_set():
