@@ -14,8 +14,6 @@ func _ready():
 	$MeshInstance3D.mesh.surface_set_material(0,new_material)
 	print()
 
-func _process(delta):
-	pass
 func die():
 	queue_free()
 

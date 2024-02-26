@@ -23,6 +23,7 @@ func add_player(id: int)->void:
 	player.name = str(id)
 	player.character_name = start_up_node.charname
 	player.ability_box = ability_box
+	player.set("player_id", id)
 	if start_up_node.charteam == 0: $Players/BlueTeam.add_child(player)
 	elif start_up_node.charteam == 1: $Players/RedTeam.add_child(player)
 	else: print("Erro ao adicionar player %d: Time %d não encontrado, use 0 para azul ou 1 para vermelho" % [id, start_up_node.charteam])

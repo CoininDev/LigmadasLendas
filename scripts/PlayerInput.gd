@@ -1,6 +1,7 @@
 extends MultiplayerSynchronizer
 class_name PlayerInput
 
+@export_group("Input Actions")
 @export var walk_action = "mright"
 @export var attack_action = "mleft"
 @export var show_attack_range_action = "show_range"
@@ -15,12 +16,12 @@ class_name PlayerInput
 @export var opt_ability1_action = "a"
 @export var opt_ability2_action = "s"
 
-var walk_pressed:bool = false
-var attack_pressed:bool = false
-var ability_pressed:Array = [false,false,false,false,false,false]
-var ability_released:Array = [false,false,false,false,false,false]
-
-var lvl_up_ability_pressed:Array = [false,false,false,false]
+@export_group("Input Readers")
+@export var walk_pressed:bool = false
+@export var attack_pressed:bool = false
+@export var ability_pressed:Array = [false,false,false,false,false,false]
+@export var ability_released:Array = [false,false,false,false,false,false]
+@export var lvl_up_ability_pressed:Array = [false,false,false,false]
 
 var show_range_pressed:bool = false
 

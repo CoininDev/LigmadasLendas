@@ -1,9 +1,10 @@
 extends Node
 
-@export var player_id = 5:
+@export var player_id = 1:
 	set(id):
 		player_id = id
 		$PlayerInput.set_multiplayer_authority(id)
+
 
 @export var ability_box:Node
 @export var spawn_point_position:Vector3 = Vector3.ZERO
@@ -16,5 +17,7 @@ func _ready()->void:
 	character.spawn_point = $SpawnPoint
 	character.alive_state.player_input = $PlayerInput
 	character.team_comp.team = team
+	character.name = "Character"
 	add_child(character)
 	$CameraMan.point = character
+	#$ServerSynchronizer.add_property("Character:velocity")
