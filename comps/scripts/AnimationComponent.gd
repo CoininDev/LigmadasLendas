@@ -16,21 +16,21 @@ var run_blend_val:float = -1
 #var atk_blend_val:float = -1
 
 func _ready():
-    if is_instance_valid(anim_tree):
-        batk_comp.attacked.connect(attack)
-        nav_comp.navigation_finished.connect(idle)
-        nav_comp.walking_changed.connect(run)
+    if anim_tree == null: return
+    batk_comp.attacked.connect(attack)
+    nav_comp.navigation_finished.connect(idle)
+    nav_comp.walking_changed.connect(run)
 
 func _process(_delta):
-    if is_instance_valid(anim_tree):
-        if !anim_tree["parameters/conditions/idle"]:
-            hero.look_at(nav_comp.target_position)
-            hero.global_rotation.x = 0 
-            hero.global_rotation.z = 0 
-        if is_instance_valid(batk_comp.target):
-            hero.look_at(batk_comp.target.global_position)
-            hero.global_rotation.x = 0 
-            hero.global_rotation.z = 0 
+    if anim_tree == null: return
+    if !anim_tree["parameters/conditions/idle"]:
+        hero.look_at(nav_comp.target_position)
+        hero.global_rotation.x = 0 
+        hero.global_rotation.z = 0 
+    if is_instance_valid(batk_comp.target):
+        hero.look_at(batk_comp.target.global_position)
+        hero.global_rotation.x = 0 
+        hero.global_rotation.z = 0 
 
 func run(walking:bool):
     if walking:

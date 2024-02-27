@@ -18,6 +18,7 @@ func enter():
     sanity.timer.start()
     hero.global_position = hero.spawn_point.global_position
     hero_col.disabled = false
+    print(hero.has_method("_on_ult_timer_timeout"))
 
 func physics_update(_delta:float):
     if Input.is_action_just_pressed("p"):
@@ -45,30 +46,30 @@ func upgrade_abilities():
 func abilities():
     if Input.is_action_pressed("ctrl"): return
     if player_input.ability_pressed[0]:    
-        hero.q_preview()
+        hero.abilities_comp.q_preview()
     if player_input.ability_pressed[1]:
-        hero.w_preview()
+        hero.abilities_comp.w_preview()
     if player_input.ability_pressed[2]:
-        hero.e_preview()
+        hero.abilities_comp.e_preview()
     if player_input.ability_pressed[3]:
-        hero.r_preview()
+        hero.abilities_comp.r_preview()
     if player_input.ability_pressed[4]:
-        hero.a_preview()
+        hero.abilities_comp.a_preview()
     if player_input.ability_pressed[5]:
-        hero.s_preview()
+        hero.abilities_comp.s_preview()
     
     if player_input.ability_released[0]:
-        hero.q_cast()
+        hero.abilities_comp.q_cast()
     if player_input.ability_released[1]:
-        hero.w_cast()
+        hero.abilities_comp.w_cast()
     if player_input.ability_released[2]:
-        hero.e_cast()
+        hero.abilities_comp.e_cast()
     if player_input.ability_released[3]:
-        hero.r_cast()
+        hero.abilities_comp.r_cast()
     if player_input.ability_released[4]:
-        hero.a_cast()
+        hero.abilities_comp.a_cast()
     if player_input.ability_released[5]:
-        hero.s_cast()
+        hero.abilities_comp.s_cast()
 
 func walk():
     if player_input.walk_pressed:

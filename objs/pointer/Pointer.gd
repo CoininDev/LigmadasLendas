@@ -21,11 +21,13 @@ func _process(_delta):
         $CircleSprite.position.z = -global_position.distance_to(mouse_pos)
 
 func show_direction():
+    #TODO
     $DirectionSprite.scale.z = pointer_range
     $DirectionSprite.position.z = -pointer_range/2
     $DirectionSprite.visible = true
 
 func show_cone(spread:float):
+    #TODO
     $ConeSprite.scale.z = pointer_range 
     $ConeSprite.scale.x = pointer_range * spread
     $ConeSprite.position.z = -pointer_range/2 
@@ -36,7 +38,7 @@ func show_range():
     $RangeSprite.visible = true
 
 func show_circle(circle_radius:float):
-    $CircleSprite.scale = circle_radius*0.8
+    $CircleSprite.mesh.size = Vector2(circle_radius*0.8, circle_radius*0.8)
     $CircleSprite.visible = true
 
 func hide_all():

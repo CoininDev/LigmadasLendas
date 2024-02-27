@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bj8w60mbxu343"]
+[gd_scene load_steps=20 format=3 uid="uid://bj8w60mbxu343"]
 
 [ext_resource type="Material" uid="uid://bccsu1ub6vu34" path="res://graphics/materials/arer_generico.tres" id="1_25tss"]
 [ext_resource type="PackedScene" uid="uid://d20x3gfrmoext" path="res://comps/scenes/health_component.tscn" id="1_jp1t4"]
@@ -16,21 +16,25 @@
 [ext_resource type="Script" path="res://scripts/states/HeroDeadState.gd" id="13_f12rq"]
 [ext_resource type="PackedScene" uid="uid://cg1wvqhrrctxm" path="res://comps/scenes/animation_component.tscn" id="15_2masr"]
 [ext_resource type="PackedScene" uid="uid://bcfk30leqvxws" path="res://objs/pointer/Pointer.tscn" id="15_6unsq"]
+[ext_resource type="Script" path="res://comps/scripts/AbilityComponent.gd" id="16_4xyog"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wvo1n"]
 material = ExtResource("1_25tss")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ey8t6"]
 
-[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "state_machine_comp", "alive_state", "team_comp")]
+[node name="Hero1" type="CharacterBody3D" node_paths=PackedStringArray("dmgr", "xp_comp", "batk_comp", "fx_comp", "anim_comp", "state_machine_comp", "alive_state", "team_comp", "abilities_comp", "pointer")]
 script = ExtResource("1_ofmxg")
 dmgr = NodePath("comps/DamageMgrComponent")
 xp_comp = NodePath("comps/XPComponent")
 batk_comp = NodePath("comps/BAttackComponent")
 fx_comp = NodePath("comps/EffectsComponent")
+anim_comp = NodePath("comps/AnimationComponent")
 state_machine_comp = NodePath("comps/StateMachineComponent")
 alive_state = NodePath("comps/StateMachineComponent/HeroAliveState")
 team_comp = NodePath("comps/TeamComponent")
+abilities_comp = NodePath("comps/AbilitiesComponent")
+pointer = NodePath("Pointer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -41,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_ey8t6")
 
 [node name="comps" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 
 [node name="DamageMgrComponent" parent="comps" node_paths=PackedStringArray("health_component", "effects_component") instance=ExtResource("2_qs483")]
 health_component = NodePath("../HealthComponent")
@@ -112,5 +116,8 @@ hero = NodePath("../..")
 nav_comp = NodePath("../NavComponent")
 batk_comp = NodePath("../BAttackComponent")
 hero = NodePath("../..")
+
+[node name="AbilitiesComponent" type="Node" parent="comps"]
+script = ExtResource("16_4xyog")
 
 [node name="Pointer" parent="." instance=ExtResource("15_6unsq")]

@@ -1,3 +1,4 @@
+class_name ContinuousCircularArea
 extends Cast
 
 @export var radius:float = 2
@@ -15,7 +16,7 @@ func _ready():
 		$Area3D/MeshInstance3D.mesh.height = radius
 	$DelayTimer.start(delay)
 
-func _process(delta):
+func _process(_delta):
 	$Area3D/CollisionShape3D.shape.radius = radius
 	$Area3D/MeshInstance3D.mesh.radius = radius
 	$Area3D/MeshInstance3D.mesh.height = radius
